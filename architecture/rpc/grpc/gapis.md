@@ -138,6 +138,8 @@ java -cp /Users/wii/Downloads/gapic-generator-2.11.1/build/libs/gapic-generator-
 
 顺便，[这里](https://github.com/sunzhenkai/cook-grpc/tree/master/cook-gapic-playground)提供了一个示例。
 
+最后，在使用 gapic 时，可能需要引用一些 google 的 proto 文件，比如 `google/api/annotation.proto` ，这些文件定义在[这里](https://github.com/googleapis/api-common-protos/tree/master/google)。
+
 # Bazel
 
 ## rules_proto
