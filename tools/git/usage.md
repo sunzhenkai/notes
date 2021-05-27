@@ -79,3 +79,19 @@ $ git stash drop stash@{?}
 $ git stash clear
 ```
 
+# submodule
+
+```shell
+# 添加子模块
+$ git submodule add <git-address> <localpath>
+
+# 初始化/下载子模块代码
+$ git submodule update --init --recursive
+
+# 递归clone
+$ git clone ... --recursive
+
+# 更新子模块至最新提交
+$ git submodule update --remote --merge
+```
+
