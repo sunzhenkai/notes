@@ -38,3 +38,22 @@ $ node -v
 ```shell
 $ npm install nrm -g
 ```
+
+# 初始化项目
+
+```shell
+$ npm init
+```
+
+**安装依赖**
+
+```shell
+$ npm install <pkg-name> -s
+```
+
+**引入依赖**
+
+```javascript
+const name = require('pkg-name');
+```
+
