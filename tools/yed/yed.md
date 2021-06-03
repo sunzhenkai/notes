@@ -18,11 +18,11 @@ update: 2021/06/02 00:00:00
 
 **不启用效果**
 
-<img src="yed/image-20210602201723571.png" alt="image-20210602201723571" style="zoom:50%;" />
+![](yed/image-20210602201723571.png)
 
 **启用效果**
 
-<img src="yed/image-20210602201650095.png" alt="image-20210602201650095" style="zoom:50%;" />
+![](yed/image-20210602201650095.png)
 
 ## 调整格式
 
@@ -32,8 +32,9 @@ update: 2021/06/02 00:00:00
 
 假设，有如下 node。
 
-<img src="yed/image-20210602202028962.png" alt="image-20210602202028962" style="zoom:50%;" />
+![](yed/image-20210602202028962.png)
 
 调整后效果如下。
 
-<img src="yed/image-20210602202054283.png" alt="image-20210602202054283" style="zoom:50%;" />
+![](yed/image-20210602202054283.png)
+
