@@ -185,3 +185,16 @@ gRPC 怎么处理关闭 channel 的流程，语言间有所不同。
 ## thrift VS protocol buffer
 
 - pb 生成 service 的 client 和 server 代码，需要额外的插件
+
+# 负载均衡
+
+关于 gRPC 的负载均衡，[这里](https://grpc.io/blog/grpc-load-balancing/ ) 列举了主要的几种方式，胖客户端、Lookaside LB、Proxy。
+
+# 参考
+
+- https://grpc.io/blog/grpc-load-balancing/ 
+- https://sultanov.dev/blog/grpc-client-side-load-balancing/
+- https://blog.csdn.net/u013360850/article/details/115278408
+- https://skyao.gitbooks.io/learning-grpc/content/channel/channel/impl/name_resolver.html
+
+- https://mykidong.medium.com/howto-grpc-java-client-side-load-balancing-using-consul-8f729668d3f8
