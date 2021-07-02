@@ -34,7 +34,7 @@ http_archive(
 )
 ```
 
-> 这里的 8b976f7c6187f7f68956207b9a154bc278e11d7e 为 commit id，下载 url 为 https://github.com/{user}/{repo}/archive/{commit}.tar.gz
+> 这里的 8b976f7c6187f7f68956207b9a154bc278e11d7e 为 commit id，下载 url 为 **https://github.com/{user}/{repo}/archive/{commit}.tar.gz**
 
 **BUILD 文件中引用**
 

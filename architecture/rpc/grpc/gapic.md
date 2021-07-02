@@ -160,6 +160,107 @@ c89348b73f4bc59c0add4074cc0c620a5a2a08338eb4ef207d57eaa8453b82e8
 $ pip3 install googleapis-artman
 ```
 
+# 配置文件
+
+生成 gapic 库时，指定的配置文件。
+
+```bazel
+java_gapic_library(
+    name = "java_cook_gapic",
+    srcs = [":cook_proto"],
+    gapic_yaml = "cook_gapic.yaml",  # 这里指定的文件
+    grpc_service_config = "cook_gapic_service_config.json",
+    deps = [
+        ":java_cook_proto",
+        ":java_cook_grpc"
+    ],
+)
+```
+
+配置参考 `auth.proto` 内定义的 Authentication 结构。
+
+```protobuf
+// `Authentication` defines the authentication configuration for API methods
+// provided by an API service.
+//
+// Example:
+//
+//     name: calendar.googleapis.com
+//     authentication:
+//       providers:
+//       - id: google_calendar_auth
+//         jwks_uri: https://www.googleapis.com/oauth2/v1/certs
+//         issuer: https://securetoken.google.com
+//       rules:
+//       - selector: "*"
+//         requirements:
+//           provider_id: google_calendar_auth
+//       - selector: google.calendar.Delegate
+//         oauth:
+//           canonical_scopes: https://www.googleapis.com/auth/calendar.read
+message Authentication {
+  // A list of authentication rules that apply to individual API methods.
+  //
+  // **NOTE:** All service configuration rules follow "last one wins" order.
+  repeated AuthenticationRule rules = 3;
+
+  // Defines a set of authentication providers that a service supports.
+  repeated AuthProvider providers = 4;
+}
+```
+
+可以看到，有两个字段，rules & providers。对于 rules，数据结构为 AuthenticationRule。
+
+```protobuf
+// Authentication rules for the service.
+//
+// By default, if a method has any authentication requirements, every request
+// must include a valid credential matching one of the requirements.
+// It's an error to include more than one kind of credential in a single
+// request.
+//
+// If a method doesn't have any auth requirements, request credentials will be
+// ignored.
+message AuthenticationRule {
+  // Selects the methods to which this rule applies.
+  //
+  // Refer to [selector][google.api.DocumentationRule.selector] for syntax details.
+  string selector = 1;
+
+  // The requirements for OAuth credentials.
+  OAuthRequirements oauth = 2;
+
+  // If true, the service accepts API keys without any other credential.
+  // This flag only applies to HTTP and gRPC requests.
+  bool allow_without_credential = 5;
+
+  // Requirements for additional authentication providers.
+  repeated AuthRequirement requirements = 7;
+}
+```
+
+示例如下。
+
+```
+type: google.api.Service
+config_version: 3
+name: analyticsadmin.googleapis.com
+title: Google Analytics Admin API
+
+# 横线开头定义数组
+apis:
+- name: google.analytics.admin.v1alpha.AnalyticsAdminService
+
+authentication:
+  rules:
+  - selector: 'google.analytics.admin.v1alpha.AnalyticsAdminService.*'
+    oauth:
+      canonical_scopes: |-
+        https://www.googleapis.com/auth/analytics.edit
+  - selector: '*'
+  	allow_without_credential: true  # 无需认证
+```
+
 # Reference
 
 - [rules_proto](https://github.com/stackb/rules_proto)
