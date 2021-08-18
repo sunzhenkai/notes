@@ -12,4 +12,3 @@ update: 2020/12/29 00:00:00
 
 - [mathpix snip](https://mathpix.com/)
 - [visual-paradigm](https://www.visual-paradigm.com/)
-

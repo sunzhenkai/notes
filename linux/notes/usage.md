@@ -67,3 +67,29 @@ $  ~ dirs
 ~
 ```
 
+# 用户管理
+
+## 创建用户
+
+```shell
+$ useradd -d <home-dir> -s <login-shell> -g <GROUP> username
+```
+
+# 免密登录
+
+```shell
+# 以配置 主机A 免密登录 主机B 为例
+# [A] 生成密钥文件(~/.ssh/id_rsa, ~/.ssh/id_rsa.pub), 如果已生成可略过
+$ ssh-keygen -t rsa -C <email>
+
+# [A] 拷贝密钥
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub <user@remote-host>
+
+# [B] 修改目录权限
+$ chmod 700 ./.ssh 
+$ chmod 600 ~/.ssh/authorized_keys
+
+# [A] 登录
+$ ssh <remote-host>
+```
+

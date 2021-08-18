@@ -8,7 +8,7 @@ date: 2021/06/28 00:00:00
 update: 2021/06/28 00:00:00
 ---
 
-**netstat**
+# **netstat**
 
 ```shell
 # 参数
@@ -30,7 +30,7 @@ $ netstat -atnp	# 获取所有活动的TCP连接
 $ netstat -ie		# 打印用户友好的网络接口信息
 ```
 
-**watch**
+# **watch**
 
 ```shell
 # 参数
@@ -44,14 +44,14 @@ $ watch -n 1 -d 'pstree|grep http'	# 观察每秒http链接的变化
 $ watch -n 10 'cat /proc/loadavg'		# 每10秒输出一次系统平均负载
 ```
 
-**awk**
+# **awk**
 
 ```shell
 # 示例
 $ awk '{ print $1 }'	# 打印首列
 ```
 
-**sed**
+# **sed**
 
 ```shell
 # 格式
@@ -84,7 +84,7 @@ $ 2,5d	删除2~5行
 $ 3,$d	删除第三行至结尾数据
 ```
 
-**cut**
+# **cut**
 
 ```shell
 # 示例
@@ -93,7 +93,7 @@ $ echo "localhost:8080" | cut -d ':' -f1	# 提取host
 localhost
 ```
 
-**tr**
+# **tr**
 
 ```shell
 # tr: translate characters, 转换和删除字符
@@ -132,7 +132,7 @@ $ $ echo "What a cute dog" | tr [:lower:] [:upper:]
 WHAT A CUTE DOG
 ```
 
-**sort**
+# **sort**
 
 ```shell
 # 排序
@@ -171,13 +171,13 @@ $ cat t2 | sort -t ':' -k 2
 10.0.0.1:8090
 ```
 
-**uniq**
+# **uniq**
 
 ```shell
 # 删除重复行，一般与sort结合使用
 ```
 
-**date**
+# **date**
 
 ```shell
 # format
@@ -185,3 +185,6 @@ date +"%Y%m%d"
 # minus
 -d "-1 days"
 ```
+
+# top
+
