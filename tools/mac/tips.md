@@ -4,7 +4,7 @@ categories:
 	- [tools, mac]
 tags:
 	- mac
-date: 2021/12/29 00:00:00
+date: 2020/12/29 00:00:00
 update: 2020/12/29 00:00:00
 ---
 
