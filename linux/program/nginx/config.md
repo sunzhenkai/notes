@@ -101,7 +101,12 @@ server {
 
 ## 修改 root 后 403
 
-**配置**
+**可能原因**
+
+- 没有目录访问权限
+- 目录没有指定的默认文件（比如，index.html），同时又未开启 autoindex
+
+**修改 root**
 
 ```nginx
 # /etc/nginx/nginx.conf

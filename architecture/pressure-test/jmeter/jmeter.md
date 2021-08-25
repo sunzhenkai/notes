@@ -51,7 +51,7 @@ update: 2021/08/25 00:00:00
 
 ```java
 // EchoService 是已运行的 gRPC 服务
-public class DivinerClientExampleForJMeter implements JavaSamplerClient {
+public class EchoClientExampleForJMeter implements JavaSamplerClient {
   EchoService echoService;
   @Override
   public void setupTest(JavaSamplerContext javaSamplerContext) {
