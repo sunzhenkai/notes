@@ -9,7 +9,146 @@ date: 2020/11/13 22:00:00
 update: 2020/11/13 22:00:00
 ---
 
-# 默认配置
+# 命令
+
+```shell
+# 检查配置文件
+$ sudo nginx -t
+
+# 重新加载配置
+$ sudo nginx -s reload
+```
+
+# 配置
+
+## Centos
+
+centos 下 nginx 配置默认是在 `/etc/nginx/nginx.conf` 及 `/etc/nginx/conf.d/`。
+
+# 开启目录访问
+
+```nginx
+# 在配置文件的 server 配置的 location 配置中添加 autoindex on
+location / {
+    autoindex on;
+    autoindex_exact_size off;
+    autoindex_format html;
+    autoindex_localtime on;
+}
+```
+
+
+# 配置服务
+
+## upstream
+
+```
+upstream [us-name] {
+    server 127.0.0.1:[port];
+}
+
+server {
+    listen       80;
+    server_name  example.com;
+    client_max_body_size 100m;
+
+    # rewrite ^/(.*) https://example.com/$1 permanent;
+
+    location / {
+        proxy_pass         http://[us-name];
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+# 认证
+
+## Basic
+
+```shell
+# 1. 安装 apache2-utils (Debian, Ubuntu) / httpd-tools (RHEL/CentOS/Oracle Linux)
+# 2. 创建认证文件
+$ sudo mkdir /etc/apache2
+## 创建
+$ sudo htpasswd -c /etc/apache2/.htpasswd user
+## 添加，移除 -c 参数
+$ sudo htpasswd /etc/apache2/.htpasswd another-user
+
+# 3. 配置
+## 按路径配置
+server {
+	...
+  location /api {
+      auth_basic           "Administrator’s Area";
+      auth_basic_user_file /etc/apache2/.htpasswd; 
+  }
+}
+## 全局配置
+server {
+	...
+	auth_basic           "Administrator’s Area";
+  auth_basic_user_file /etc/apache2/.htpasswd; 
+  
+  location /api {
+  	...
+  }
+}
+```
+
+# 异常
+
+## 修改 root 后 403
+
+**配置**
+
+```nginx
+# /etc/nginx/nginx.conf
+http {
+  ...
+  server {
+    ...
+    root /home/wii/www;
+  }
+}
+```
+
+**查看权限**
+
+```shell
+$ namei -om /home/wii/www
+f: /home/wii/www
+ dr-xr-xr-x root root /
+ drwxr-xr-x root root home
+ drwx------ wii  wii  wii
+ drwxrwxr-x wii  wii  www
+```
+
+**查看 nginx 启动时使用的用户**
+
+```shell
+$ ps aux | grep nginx
+wii       9364  0.0  0.0 112692  2012 pts/1    R+   15:54   0:00 grep --color=auto nginx
+root     11219  0.0  0.0  39308   956 ?        Ss   14:58   0:00 nginx: master process /usr/sbin/nginx
+nginx    11220  0.0  0.0  41796  4364 ?        S    14:58   0:00 nginx: worker process
+nginx    11221  0.0  0.0  41796  3824 ?        S    14:58   0:00 nginx: worker process
+nginx    11222  0.0  0.0  41796  4168 ?        S    14:58   0:00 nginx: worker process
+nginx    11223  0.0  0.0  41796  4092 ?        S    14:58   0:00 nginx: worker process
+```
+
+可以看到，nginx 使用 nginx 启动，且没有 `/home/wii` 的访问权限，可以通过 `chomd` 设置 `/home/wii` 的权限，或更换其他路径。
+
+**root 更换为 /www**
+
+```shell
+$ sudo mkdir /www
+$ sudo chmod -R 755 /www
+```
+
+# 附录
+
+## 默认配置
 
 ```
 ##
@@ -104,63 +243,3 @@ server {
 #	}
 #}
 ```
-
-# 配置服务
-
-## upstream
-
-```
-upstream [us-name] {
-    server 127.0.0.1:[port];
-}
-
-server {
-    listen       80;
-    server_name  example.com;
-    client_max_body_size 100m;
-
-    # rewrite ^/(.*) https://example.com/$1 permanent;
-
-    location / {
-        proxy_pass         http://[us-name];
-        proxy_set_header   Host             $host;
-        proxy_set_header   X-Real-IP        $remote_addr;
-        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-    }
-}
-```
-
-# 认证
-
-## Basic
-
-```shell
-# 1. 安装 apache2-utils (Debian, Ubuntu) / httpd-tools (RHEL/CentOS/Oracle Linux)
-# 2. 创建认证文件
-$ sudo mkdir /etc/apache2
-## 创建
-$ sudo htpasswd -c /etc/apache2/.htpasswd user
-## 添加，移除 -c 参数
-$ sudo htpasswd /etc/apache2/.htpasswd another-user
-
-# 3. 配置
-## 按路径配置
-server {
-	...
-  location /api {
-      auth_basic           "Administrator’s Area";
-      auth_basic_user_file /etc/apache2/.htpasswd; 
-  }
-}
-## 全局配置
-server {
-	...
-	auth_basic           "Administrator’s Area";
-  auth_basic_user_file /etc/apache2/.htpasswd; 
-  
-  location /api {
-  	...
-  }
-}
-```
-

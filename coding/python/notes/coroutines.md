@@ -1,5 +1,5 @@
 ---
-title: python - coroutines
+title: python coroutines
 categories: 
 	- [python, notes]
 tags:
