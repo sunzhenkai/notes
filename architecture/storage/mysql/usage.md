@@ -118,6 +118,20 @@ skip-name-resolve
 
 - [参考](https://stackoverflow.com/questions/5118151/mysql-error-cant-get-hostname-from-your-ip-address)
 
+# 使用
+
+## 执行 SQL 文件
+
+```shell
+> SOURCE /path/to/file.sql;
+```
+
+## 创建数据库
+
+```shell
+> CREATE DATABASE 'database-name';
+```
+
 # 安装
 
 ## CentOS

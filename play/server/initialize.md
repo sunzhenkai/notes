@@ -153,6 +153,16 @@ $ npm install nrm
 $ nrm use taobao
 ```
 
+## mysql
+
+```shell
+yum install mariadb mariadb-server
+systemctl start mariadb   #启动mariadb
+systemctl enable mariadb  #设置开机自启动
+mysql_secure_installation #设置root密码等相关
+mysql -uroot -p           #测试登录
+```
+
 ## ambari
 
 **依赖**

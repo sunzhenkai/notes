@@ -8,6 +8,12 @@ date: 2021/08/25 00:00:00
 update: 2021/08/25 00:00:00
 ---
 
+# 命令行运行
+
+```shell
+$ ./jmeter -n -t config.jmx -l results.jtl
+```
+
 # RPC 压测
 
 针对 RPC 需要基于 SDK 做开发，整体流程如下。
