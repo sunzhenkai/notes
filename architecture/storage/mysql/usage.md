@@ -72,6 +72,12 @@ GRANT ALL ON *.* TO 'myuser'@'%';
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 ```
 
+## 刷新权限
+
+```shell
+> FLUSH PRIVILEGES;
+```
+
 ## 允许远程连接
 
 ### 设置bind-address
@@ -90,6 +96,13 @@ bind-address = 0.0.0.0
 
 ```shell
 mysql -u root -p -h 10.154.0.43 -P 3306
+```
+
+**设置**
+
+```shell
+> USE mysql;
+> UPDATE user SET Host='%' WHERE User='root' AND Host='localhost';
 ```
 
 ## workbench
