@@ -28,6 +28,7 @@ Centos 7。
 # 关闭 selinux
 $ sudo vim /etc/selinux/config
 SELINUX=enforcing -> SELINUX=disabled
+$ sudo setenforce 0
 
 # 关闭 swap
 $ sudo vim /etc/fstab
@@ -50,6 +51,8 @@ sudo yum install git telnet -y
 
 ```shell
 $ sudo yum install zsh
+# on my zsh
+$ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 ## docker
@@ -83,9 +86,9 @@ Description=Remote desktop service (VNC)
 After=syslog.target network.target
 
 [Service]
-User=wii
-Group=wii
-WorkingDirectory=/home/wii
+#User=wii
+#Group=wii
+#WorkingDirectory=/home/wii
 Type=forking
 
 # Clean any existing files in /tmp/.X11-unix environment
@@ -153,17 +156,17 @@ $ npm install nrm
 $ nrm use taobao
 ```
 
-## mysql
+## mysql / mariadb
 
 ```shell
-yum install mariadb mariadb-server
-systemctl start mariadb   #启动mariadb
-systemctl enable mariadb  #设置开机自启动
-mysql_secure_installation #设置root密码等相关
-mysql -uroot -p           #测试登录
+$ yum install mariadb mariadb-server
+$ systemctl start mariadb   #启动mariadb
+$ systemctl enable mariadb  #设置开机自启动
+$ mysql_secure_installation #设置root密码等相关
+$ mysql -uroot -p           #测试登录
 ```
 
-## ambari
+## ~~ambari~~ (using MapR)
 
 **依赖**
 

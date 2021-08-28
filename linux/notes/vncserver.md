@@ -37,7 +37,7 @@ After=syslog.target network.target
 Type=forking
 ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
 ExecStart=/sbin/runuser -l wii -c "/usr/bin/vncserver %i -geometry 1280x1024"
-PIDFile=/home/wii/.vnc/%H%i.pid
+# PIDFile=/home/wii/.vnc/%H%i.pid
 ExecStop=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
 
 [Install]
