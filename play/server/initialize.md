@@ -286,5 +286,5 @@ pcieport 0000:80:02.0: device recovery successful
 
 # 最终
 
-![image-20210831235813167](initialize/image-20210831235813167.png)
+![image-20210831235937113](initialize/image-20210831235937113.png)
 
