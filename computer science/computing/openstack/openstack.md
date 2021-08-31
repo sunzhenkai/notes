@@ -179,3 +179,11 @@ $ pvremove /dev/sda
 $ apt install apache2 libapache2-mod-wsgi tgt
 ```
 
+**tgt 配置**
+
+```shell
+$ vim /etc/tgt/targets.conf
+# 添加如下内容
+include /var/lib/cinder/volumes/*
+```
+
