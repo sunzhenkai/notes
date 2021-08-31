@@ -247,3 +247,44 @@ mvn -B clean install rpm:rpm -DnewVersion=2.7.5.0.0 -DbuildNumber=5895e4ed6b30a2
 
 整机无负载功率在 100w 左右，功率大且并不常用，工作的时候可能会用到。远程关闭、启动方案是通过设置 BIOS 的断电恢复后自动启动 + 小米智能插座实现。
 
+# 使用
+
+系统尝试了 centos 7、centos 8、ubuntu 20.04（desktop + server），尝试安装了 ambari、mapr、openstack、microstack。最终的使用方案是，ubuntu 20.04 + openstack Wallaby。
+
+系统最开始打算用 centos 7，觉得可能会更稳定吧，公司服务器一般也是。
+
+想搭一套大数据平台（zookeeper、hadoop、impala、yarn、spark、kudu 等），先是尝试了 ambari，但是现在 CDH 的时候遇到收费墙问题，放弃。后发现 MapR，惊喜，先是尝试在 centos 7 上装，后来发现最新版本不支持。然后尝试从 centos 7 直接升级到 centos 8，失败。重新安装 centos 8，再安装 MapR，配置后无法开机，又重新安装。
+
+一出问题，买的那个亮机卡就不显示内容，需要搬机箱、拆换另外一台机器的显卡，崩溃。不想再在裸机上装太多东西，笨重的东西全部放虚拟机。考虑用 virtual box，但不太方便，最后选了 openstack。
+
+先是尝试在 centos 7 装 openstack，每次创建卷时，cinder 都会报错，pip 锁死在 8.x.x。本打算用 centos 8 试下，最终放弃。
+
+转战 Ubuntu 之后，开始倾向于 desktop 版本，有个界面也挺好，但是那个亮机卡装的时候好好的，一进系统就什么都不显示，随选择 server 版本。
+
+Snap 有个 MicroStack，可以一键安装 openstack，试了下，可以。但是 snap 包内的文件只读，没办法改。最终，决定还是一步一步按官网教程来安装。
+
+openstack 官方文档有一些细节没有覆盖到，总体还是很赞。
+
+# 问题
+
+## 硬件错误
+
+### intel ssd 兼容性问题
+
+但凡能看到内核日志的地方，都在疯狂刷下面的内容。后排查原因是 inter 一款 nvme 的 ssd 硬盘导致的，换了一块好了。
+
+```shell
+pcieport 0000:80:02.0: Multiple Uncorrected (Non-Fatal) error received: 0000:80:02.0
+pcieport 0000:80:02.0: PCIe Bus Error: severity=Uncorrected (Non-Fatal), type=Transaction Layer, (Request ID)
+pcieport 0000:80:02.0:   device [8086:bf] error status/mask=88100000/88000000
+pcieport 0000:80:02.0:    [28] UnsupReq             (First)
+pcieport 0000:80:02.0:   TLP Header: 34000000 01000010 00000000 00000000
+pcieport 0000:80:02.0: device recovery successful
+```
+
+![image-20210831233753508](initialize/image-20210831233753508.png)
+
+# 最终
+
+![image-20210831235813167](initialize/image-20210831235813167.png)
+

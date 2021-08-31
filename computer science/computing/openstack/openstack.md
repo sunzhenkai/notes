@@ -10,6 +10,8 @@ update: 2021/08/29 00:00:00
 
 # 安装
 
+安装教程仅供个人学习用，请谨慎用于生产环境。
+
 ## 环境检查
 
 打开[安装指引](https://docs.openstack.org/install-guide/)，在 [Environment](https://docs.openstack.org/install-guide/environment.html#) 章节下方，有 [OpenStack packages](https://docs.openstack.org/install-guide/environment-packages.html) 连接，在下方有不同 linux 发行版的 package 说明，比如 [centos](https://docs.openstack.org/install-guide/environment-packages-rdo.html)，里面有对发行版版本的要求说明，[这里](https://releases.openstack.org/index.html) 有所有的 openstack 版本。比如，centos 7  只能安装 Ussuri 之前的版本，即 Train 及之前。
@@ -105,13 +107,75 @@ export OS_IDENTITY_API_VERSION=3
 
 修改 `ADMIN_PASS` 之后，保存到文件 `admin-openrc`，后面会用到。
 
+安装指引有创建 domain、project、user、role 的教程，后续安装尽量不要使用新创建的项目，使用默认即可。
+
+| 项目               | 值      |
+| ------------------ | ------- |
+| domain / domain_id | default |
+| domain_name        | Default |
+| project            | service |
+
 ## 安装 glance
 
 ```shell
  # 第二步有个 source admin-openrc，即为安装 keystone 时最后给出的内容
 ```
 
+## 安装 placement
 
+### 验证
 
+验证时如果出现 `Expecting value： line 1 column 1 (char 0)` ，可以参考[这篇文章](https://www.jianshu.com/p/50e5bacc43dd)。
 
+## 安装 horizon
+
+如果访问 `http://controller/dashboard` 提示 404，在配置 local_settings 时添加如下内容。
+
+```python
+WEBROOT = '/dashboard'
+```
+
+# 创建实例
+
+## 先决条件
+
+- 创建镜像
+- 创建实例类型
+- 创建网络
+  - 选 vxlan
+
+### 创建网络
+
+#### 网络类型
+
+- local
+- flat
+- vlan
+- vxlan
+- gre
+- geneve
+
+# LVM
+
+```shell
+# 创建
+$ pvcreate /dev/sda
+$ vgcreate cinder-volumes /dev/sda
+
+# 删除
+## 移除卷
+$ lvremove cinder--volumes-cinder--volumes--pool_tmeta
+## 删除组
+$ vgremove cinder-volumes
+## 删除物理卷
+$ pvremove /dev/sda
+```
+
+# Ubuntu 安装
+
+**prepare**
+
+```shell
+$ apt install apache2 libapache2-mod-wsgi tgt
+```
 

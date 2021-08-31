@@ -1,5 +1,5 @@
 ---
-title: mysql usage
+title: mysql/mariadb usage
 categories: 
 	- [架构, 存储, mysql]
 tags:

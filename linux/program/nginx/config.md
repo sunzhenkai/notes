@@ -50,6 +50,8 @@ upstream [us-name] {
 server {
     listen       80;
     server_name  example.com;
+    # auth_basic "Auth Message";
+    # auth_basic_user_file /etc/apache2/.htpasswd;
     client_max_body_size 100m;
 
     # rewrite ^/(.*) https://example.com/$1 permanent;
@@ -59,6 +61,11 @@ server {
         proxy_set_header   Host             $host;
         proxy_set_header   X-Real-IP        $remote_addr;
         proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+        
+        # enable websocket
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
     }
 }
 ```
