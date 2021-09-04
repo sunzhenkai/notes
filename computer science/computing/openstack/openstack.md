@@ -10,7 +10,7 @@ update: 2021/08/29 00:00:00
 
 # 安装
 
-安装教程仅供个人学习用，请谨慎用于生产环境。
+安装教程仅供个人学习用，请谨慎用于生产环境。对于 Ubuntu 安装 openstack，推荐按照官网指引操作，[这里](https://www.server-world.info/en/note?os=Ubuntu_20.04&p=openstack_wallaby&f=1) 是一个不错的辅助。
 
 ## 环境检查
 
@@ -143,17 +143,6 @@ WEBROOT = '/dashboard'
 - 创建实例类型
 - 创建网络
   - 选 vxlan
-
-### 创建网络
-
-#### 网络类型
-
-- local
-- flat
-- vlan
-- vxlan
-- gre
-- geneve
 
 # LVM
 

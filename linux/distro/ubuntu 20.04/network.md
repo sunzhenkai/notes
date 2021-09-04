@@ -27,3 +27,28 @@ network:
 $ sudo netplan apply
 ```
 
+# 重启
+
+```shell
+# method 1
+$ sudo netplan apply
+
+# method 2
+$ sudo nmcli networking off
+$ sudo nmcli networking on
+
+# method 3
+$ sudo systemctl start NetworkManager 
+$ sudo systemctl stop NetworkManager 
+
+# method 4
+$ sudo service network-manager restart
+
+# method 5
+$ sudo ifdown -a
+$ sudo ifup -a
+
+# method 6
+$ sudo systemctl restart sytemd-networking
+```
+

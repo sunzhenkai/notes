@@ -14,6 +14,18 @@ update: 2021/08/25 00:00:00
 $ ./jmeter -n -t config.jmx -l results.jtl
 ```
 
+**参数**
+
+```shell
+# 命令格式
+jmeter -n -t test-file [-p property-file] [-l results-file] [-j log-file]
+
+# 参数
+-n	non gui
+-t	test file
+-l	result file
+```
+
 # RPC 压测
 
 针对 RPC 需要基于 SDK 做开发，整体流程如下。
