@@ -52,3 +52,20 @@ $ sudo ifup -a
 $ sudo systemctl restart sytemd-networking
 ```
 
+# 设置 DNS
+
+```shell
+# cat /etc/netplan/***.yaml
+network:
+    version: 2
+    ethernets:
+        ens4:
+            dhcp4: true
+            match:
+                macaddress: fa:16:3e:65:2c:6b
+            mtu: 1450
+            set-name: ens4
+            nameservers:
+                addresses: [192.168.6.1,8.8.8.8]  # 设置 dns
+```
+
