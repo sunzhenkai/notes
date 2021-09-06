@@ -62,3 +62,22 @@ Caused by: io.lettuce.core.RedisException: Connection is closed
 @DependsOn({"redisTemplate", "redisLockRegistry"})
 ```
 
+# 接口返回 null 字段
+
+```yaml
+# 添加如下配置
+spring:
+  jackson:
+    default-property-inclusion: non_null
+```
+
+# 跨域
+
+```java
+// 添加如下注解
+@CrossOrigin(maxAge = 1, methods = {RequestMethod.POST, RequestMethod.GET})
+@RequestMapping(value = "info", method = {
+        RequestMethod.POST, RequestMethod.GET
+}, produces = MediaType.APPLICATION_JSON_VALUE)
+```
+
