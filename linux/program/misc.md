@@ -186,5 +186,16 @@ date +"%Y%m%d"
 -d "-1 days"
 ```
 
-# top
+# json
+
+```shell
+# 美化 json 字符串
+$ echo '{"data":{"name":"wii","age":18}}' | python -m json.tool
+{
+    "data": {
+        "age": 18,
+        "name": "wii"
+    }
+}
+```
 
