@@ -74,11 +74,7 @@ $ bin/elasticsearch-users useradd wii -p <password> -r superuser
 >
 > - `superuser` : 管理员，所有权限
 
-# ~~Sense~~
-
-~~Senses 是一个 Kibana 应用，提供交互式控制台，在浏览器中向 ES 提交请求。安装 Sense 前需要安装 Kibana，文档在[这里](https://www.elastic.co/guide/en/kibana/4.6/setup-repositories.html)。~~
-
-# 安装 Kibana
+## 安装 Kibana
 
 ### yum 安装
 
@@ -106,15 +102,6 @@ $ sudo /bin/systemctl daemon-reload
 $ sudo /bin/systemctl enable kibana.service
 ```
 
-## ~~安装 Sense~~
-
-~~安装文档在[这里](https://www.elastic.co/guide/cn/elasticsearch/guide/current/running-elasticsearch.html)也有。~~
-
-```shell
-$ cd /usr/share/kibana
-$ ./bin/kibana plugin --install elastic/sense
-```
-
 ## 启动 Kibana
 
 ```shell
@@ -124,14 +111,39 @@ $ sudo systemctl start kibana.service
 ## 配置
 
 ```yaml
-# file: /etc/kibana/kibana.ym
+# file: /etc/kibana/kibana.yml
 # 添加如下内容
 server.host: "0.0.0.0"
 ```
 
-
-
 ## 访问
 
 [http://host:5601](http://host:5601)
+
+# 使用
+
+## 数据
+
+## 工具
+
+在 Kibana 首页，打开 Dev Tools，或者直接访问 `http://host:5601/app/dev_tools#/console`。
+
+![image-20210922115803345](es/image-20210922115803345.png)
+
+左侧为请求，右侧为响应。
+
+请求的第一行，为**请求方法及 URL**，下方为**数据**。
+
+## 写入数据
+
+## 查询
+
+```json
+GET index_article/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+```
 

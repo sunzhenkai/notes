@@ -16,3 +16,15 @@ update: 2021/08/27 00:00:00
 $ yarn logs -applicationId <application-id>
 ```
 
+## kill 任务
+
+```shell
+$ yarn app -kill <application-id>
+```
+
+## 查看任务
+
+```shell
+$ yarn top
+```
+
