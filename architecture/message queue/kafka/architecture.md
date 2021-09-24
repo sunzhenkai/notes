@@ -34,13 +34,48 @@ broker 是一个 kafka 进程，多个 broker 组成了一个 kafka 集群。
 
 ### producer
 
-生产者，产生消息的实例。
+生产者，产生消息的实例。producer 需要指定 topic，可选地将消息写入哪个 partition，通过指定 `partitioner.class` 选项实现。
+
+```java
+Properties props = new Properties();
+props.put("bootstrap.servers", "localhost:9092");
+props.put("acks", "all");
+props.put("retries", 0);
+props.put("batch.size", 16384);
+props.put("linger.ms", 1);
+props.put("partitioner.class", "com.example.MyPartitioner");
+props.put("buffer.memory", 33554432);
+props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+Producer<String, String> producer = new KafkaProducer<>(props);
+```
 
 ### consumer
 
 #### consumer
 
-消费者，逻辑概念，指从消息队列获取消息的实例。
+消费者，逻辑概念，指从消息队列获取消息的实例。consumer 必须指定 topic，可选地指定 partition。
+
+```java
+Properties props = new Properties();
+props.setProperty("bootstrap.servers", "localhost:9092");
+props.setProperty("group.id", "test-group");
+props.setProperty("enable.auto.commit", "false");
+props.setProperty("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+props.setProperty("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+
+KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+//don't call consumer#subscribe()
+//assigning partition-id=1
+consumer.assign(Collections.singleton(new TopicPartition("topic", 1)));
+while (true) {
+    ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(2));
+    for (ConsumerRecord<String, String> record : records) {
+        // todo sth.
+    }
+    consumer.commitSync(); // enable.auto.commit 设置为 false 时必须
+}
+```
 
 #### consumer instance
 
