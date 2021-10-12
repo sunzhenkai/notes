@@ -117,3 +117,12 @@ $ chmod 600 ~/.ssh/authorized_keys
 $ ssh <remote-host>
 ```
 
+# 批量杀死进程
+
+```shell
+# 按进程名称
+$ ps aux | grep <process-name> | awk '{print $2}' | xargs kill -9
+# 按端口
+$ lsof -i:8200 | awk '{print $2}' | xargs kill -9
+```
+

@@ -33,3 +33,11 @@ vfio-pci.ids=054c:0899
 $ virsh undefine --nvram "Macinabox BigSur"
 ```
 
+# 设置 DNS
+
+```shell
+$ vim /boot/config/go
+echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+echo "nameserver 4.4.4.4" >> /etc/resolv.conf
+```
+

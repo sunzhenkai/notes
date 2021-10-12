@@ -4,8 +4,8 @@ categories:
 	- [架构, 存储, mariadb]
 tags:
 	- mariadb
-date: 2021/09/30 00:00:00
-update: 2021/09/30 00:00:00
+date: 2021/08/30 00:00:00
+update: 2021/08/30 00:00:00
 ---
 
 # too many connections

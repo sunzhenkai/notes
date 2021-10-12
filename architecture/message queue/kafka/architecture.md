@@ -26,7 +26,12 @@ update: 2021/09/24 00:00:00
 
 ### broker
 
-broker 是一个 kafka 进程，多个 broker 组成了一个 kafka 集群。
+broker 是一个 kafka 进程，多个 broker 组成了一个 kafka 集群。在 conumer 和 producer 中，使用如下方式指定多个 broker。
+
+```java
+Properties props = new Properties();
+props.put("bootstrap.servers", "localhost:9092,localhost:9093");
+```
 
 ### topics
 
