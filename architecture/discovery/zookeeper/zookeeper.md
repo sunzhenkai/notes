@@ -11,6 +11,10 @@ update: 2021/03/15 00:00:00
 # cli
 
 ```shell
-$ zookeeper
+# 列举目录
+$ zookeepercli ls /path
+
+# 获取节点内容
+$ zookeepercli get /path/node
 ```
 

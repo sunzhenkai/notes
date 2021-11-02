@@ -126,3 +126,15 @@ $ ps aux | grep <process-name> | awk '{print $2}' | xargs kill -9
 $ lsof -i:8200 | awk '{print $2}' | xargs kill -9
 ```
 
+# 磁盘读写
+
+```shell
+$ iotop -o 
+```
+
+**参数**
+
+```shell
+-o 仅显示有速度的进程
+```
+

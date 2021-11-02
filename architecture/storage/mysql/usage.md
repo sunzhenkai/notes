@@ -194,3 +194,10 @@ $ firewall-cmd --zone=public --add-port=3306/tcp --permanent
 $ firewall-cmd --reload
 ```
 
+# 导入导出
+
+```shell
+$ mysqldump -u root -p 'password' -h 'host' -P port <database>  # 导出数据库
+$ mysqldump -u root -p 'password' -h 'host' -P port <database> <table>  # 导出表
+```
+
