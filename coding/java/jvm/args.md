@@ -1,7 +1,7 @@
 ---
 title: JVM 参数
 categories: 
-	- [coding, java]
+	- [coding, java, jvm]
 tags:
 	- jvm
 	- gc

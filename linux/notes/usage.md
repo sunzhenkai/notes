@@ -138,3 +138,20 @@ $ iotop -o
 -o 仅显示有速度的进程
 ```
 
+# tail 多个远程文件
+
+```shell
+# 在一台机器执行
+ssh -n user@host1 'tail -f /path/to/file' &
+ssh -n user@host2 'tail -f /path/to/file' &
+ssh -n user@host3 'tail -f /path/to/file' &
+```
+
+# 日期
+
+```shell
+# 当前年月日
+$ date '+%Y-%m-%d'
+2021-11-06
+```
+

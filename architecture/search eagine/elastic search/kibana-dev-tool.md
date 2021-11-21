@@ -32,3 +32,28 @@ GET /index_name/_search
 }
 ```
 
+# 搜索字段
+
+```json
+GET /<index>/_search
+
+{
+  "query": {
+    "match": {
+      "<filed>": "<value>"
+    }
+  }
+}
+```
+
+# 更新数据
+
+```json
+POST /<index>/_update/<id>
+{
+  "doc": {
+    "<field>": "<value>"
+  }
+}
+```
+
