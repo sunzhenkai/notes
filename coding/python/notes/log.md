@@ -25,8 +25,8 @@ console_handler.setLevel(logging.INFO)
 logger.addHandler(console_handler)
 # 写入文件
 file_handler = logging.handlers.RotatingFileHandler(file_path,
-                                                    maxBytes=per_file_size,
-                                                    backupCount=log_file_number)
+maxBytes=per_file_size,
+backupCount=log_file_number)
 file_handler.setFormatter(fmt)
 file_handler.setLevel(logging.INFO)
 logger.addHandler(file_handler)
