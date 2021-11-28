@@ -25,3 +25,5 @@ sum by(cluster)(rate(<app>_timer_count{counter="search"}[1m]))
 sum(increase(requst_count{counter="...",...}}[3d]))
 ```
 
+# QPS
+
