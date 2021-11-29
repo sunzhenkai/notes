@@ -58,8 +58,6 @@ hOv454LZNZhPoS2nbtnH7S1phhkdVVX0NtF7xx37H4tNKelTguQ0i/obZXBGVRC7FoP0CAP7lrqo/VlT
 
 # Java
 
-## 代码
-
 ```java
 package pub.wii.cook.springboot.utils;
 
@@ -126,6 +124,10 @@ public class RSAUtil {
 ```
 
 # Node
+
+```shell
+npm i node-rsa
+```
 
 ```js
 const NodeRSA = require('node-rsa')
