@@ -29,3 +29,9 @@ PasswordAuthentication yes
 $ sudo service ssh restart  # 重启 ssh server
 ```
 
+# 设置时区
+
+```shell
+$ sudo dpkg-reconfigure tzdata
+```
+

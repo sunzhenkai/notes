@@ -52,3 +52,9 @@ s := string(bys)
 bys := []byte(s)
 ```
 
+# 依赖
+
+```shell
+$ go mod tidy # 整理依赖, 下载没有下载的, 移除没有的
+```
+

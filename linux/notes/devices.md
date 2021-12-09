@@ -24,6 +24,12 @@ $ lspci
 
 ```shell
 $ lsblk
+
+# 查看挂载的节点和对应的分区 UUID
+$ ls -lha /dev/disk/by-uuid
+
+# 查看块设备的信息，包含 UUID
+$ blkid /dev/sda1
 ```
 
 **参数**
@@ -185,7 +191,26 @@ tmpfs                    6.3G     0  6.3G   0% /run/user/1000
 
 **注** 创建分区表时 `4096s` 的取值，可以参考 [这里](https://blog.51cto.com/402753795/1754636) 和 [这里](https://blog.51cto.com/xiaosu/1590212)。
 
+# 脚本创建分区 & 格式化
+
+```shell
+# 分区
+parted --script /dev/vdb \
+	mklabel gpt \
+	mkpart primary 4096s 100% 
+	
+# 格式化
+mkfs.ext4 /dev/vdb1
+
+# 挂载
+mount -t auto /dev/vdb1 /data
+
+# 写入 /etc/fstab
+echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0"
+```
+
 # 参考
 
 - https://phoenixnap.com/kb/linux-create-partition
 - https://phoenixnap.com/kb/linux-format-disk
+- https://unix.stackexchange.com/questions/200582/scripteable-gpt-partitions-using-parted
