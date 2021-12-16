@@ -57,3 +57,10 @@ $ sudo systemctl enable vncserver@:1   # 开启自启动
 
 - https://www.tecmint.com/install-and-configure-vnc-server-in-centos-7/
 - https://www.tecmint.com/install-tightvnc-remote-desktop/
+
+# ubuntu
+
+## 参考
+
+- https://www.teknotut.com/en/install-vnc-server-with-gnome-display-on-ubuntu-18-04/
+- https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-20-04

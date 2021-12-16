@@ -46,6 +46,18 @@ sudo /usr/local/mysql/support-files/mysql.server stop	# 停止
 sudo /usr/local/mysql/support-files/mysql.server restart	# 重启
 ```
 
+## 修改密码认证规则
+
+```sql
+SET GLOBAL validate_password.LENGTH = 4;
+SET GLOBAL validate_password.policy = 0;
+SET GLOBAL validate_password.mixed_case_count = 0;
+SET GLOBAL validate_password.number_count = 0;
+SET GLOBAL validate_password.special_char_count = 0;
+SET GLOBAL validate_password.check_user_name = 0;
+FLUSH PRIVILEGES;
+```
+
 ## 修改密码
 
 ### SET PASSWORD
@@ -53,6 +65,9 @@ sudo /usr/local/mysql/support-files/mysql.server restart	# 重启
 ```shell
 # set password for 用户名@localhost = password('新密码'); 
 set password for root@localhost = password('123'); 
+
+# 修改
+ALTER USER 'user'@'localhost' IDENTIFIED BY 'pass';
 ```
 
 ## 系统用户
