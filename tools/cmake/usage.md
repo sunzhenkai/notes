@@ -118,6 +118,29 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 ```
 
+## 遍历
+
+```cmake
+set(L 1 2 3)
+foreach(ITEM IN LISTS L)
+	messag(STATUS "item: ${ITEM}")
+endforeach()
+```
+
+## 判断变量是否定义
+
+```cmake
+if (DEFINED VAR_NAME) 
+	...
+endif()
+```
+
+## 转换字符串为大写
+
+```cmake
+string(TOUPPER ${ORIGIN_VAR} DEST_VAR)
+```
+
 # 修改库搜索路径
 
 ```shell

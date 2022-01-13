@@ -16,3 +16,25 @@ $ vim /etc/resolve.conf
 nameserver 192.168.6.1 # 或其他
 ```
 
+# 修改网络配置
+
+```shell
+# 文件
+$ vi /etc/sysconfig/network-scripts/ifcfg-[network_device_name]
+
+# 配置
+ONBOOT=yes
+BOOTPROTO=dhcp
+
+# 重启网络
+$ systemctl restart network
+```
+
+# sudo 权限无需密码
+
+```shell
+$ sudo visudo
+# 添加如下内容，替换掉下面的用户名
+<username> ALL=(ALL) NOPASSWD:ALL
+```
+

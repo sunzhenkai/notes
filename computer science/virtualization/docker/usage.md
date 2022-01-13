@@ -8,6 +8,8 @@ date: 2020/12/21 19:00:00
 update: 2020/12/21 19:00:00
 ---
 
+[toc]
+
 # Docker
 
 ## 简介
@@ -145,6 +147,46 @@ $ docker pull
 ```shell
 $ docker images
 $ docker images ubuntu	# 查看单个镜像
+```
+
+# 非 root 用户使用 docker
+
+## ubuntu
+
+https://www.jianshu.com/p/35cdb71a32d3
+
+```shell
+$ sudo groupadd docker
+$ sudo usermod -aG docker $(whoami)
+
+# 生效
+$ sudo service docker restart
+$ newgrp - docker # 切换到docker用户组
+```
+
+## macos
+
+bash rc 添加如下内容。
+
+```shell
+unset DOCKER_TLS_VERIFY
+unset DOCKER_CERT_PATH
+unset DOCKER_MACHINE_NAME
+unset DOCKER_HOST
+```
+
+# 拷贝文件
+
+## 从容器拷贝至宿主机
+
+```shell
+$ docker cp <container-name>:/path/to/file /path/to/dest
+```
+
+## 从宿主机拷贝至容器
+
+```shell
+$ docker cp /path/to/file <container-name>:/path/to/dest
 ```
 
 # 参考

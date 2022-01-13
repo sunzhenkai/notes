@@ -211,8 +211,17 @@ $ firewall-cmd --reload
 
 # 导入导出
 
+## 参数
+
+```shel
+-B, --databases : 导出创建语句
+```
+
+## 示例
+
 ```shell
-$ mysqldump -u root -p 'password' -h 'host' -P port <database>  # 导出数据库
-$ mysqldump -u root -p 'password' -h 'host' -P port <database> <table>  # 导出表
+$ mysqldump -uroot -p<password> -h 'host' -P port <database>  # 导出数据库
+$ mysqldump -uroot -p<password> -h 'host' -P port <database> <table>  # 导出表
+$ mysqldump -uroot -p<password> -B --events --routines --triggers <database>
 ```
 

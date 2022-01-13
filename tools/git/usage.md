@@ -90,8 +90,19 @@ $ git submodule update --init --recursive
 
 # 递归clone
 $ git clone ... --recursive
+$ git clone --recurse-submodules ...
 
 # 更新子模块至最新提交
 $ git submodule update --remote --merge
+```
+
+# tags
+
+```shell
+$ git tag -s "tag_name" -m "comments"
+# push 到远端
+$ git push origin <tag_name>	# one
+$ git push --tags							# all
+$ git push origin --tags			# all
 ```
 
