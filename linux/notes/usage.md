@@ -8,6 +8,8 @@ date: 2020/12/21 9:40:00
 update: 2020/12/21 9:40:00
 ---
 
+[toc]
+
 # 文件及目录
 
 ## 按大小排序打印文件
@@ -85,6 +87,16 @@ f: /home/wii/share/
 
 如果一个用户需要访问一个目录，应该有访问其父路径的权限。
 
+## 获取脚本路径
+
+### 脚本所在文件夹
+
+支持使用 source 引用脚本。
+
+```shell
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+```
+
 # 用户
 
 ## 创建用户
@@ -153,5 +165,23 @@ ssh -n user@host3 'tail -f /path/to/file' &
 # 当前年月日
 $ date '+%Y-%m-%d'
 2021-11-06
+```
+
+# Tips
+
+## 打印保存在变量内的变量值
+
+```shell
+# ${!ref}
+$ real="hello"
+$ ref=real
+$ echo ${!ref}
+hello
+
+# 环境变量可以也可以使用 printenv
+$ export real="hello"
+$ ref=real
+$ printenv $ref
+hello
 ```
 

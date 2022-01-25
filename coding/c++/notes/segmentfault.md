@@ -25,3 +25,80 @@ update: 2022/1/13 00:00:00
 定义的方法返回值类型不为 void，但是没有 return 语句，定义 std::function 对象，在析构时报 segmentation fault
 ```
 
+# Lambda
+
+## shared_ptr
+
+### shared_ptr 引用导致的内存非法访问
+
+```c++
+class A {
+public:
+    int a;
+};
+
+std::function<void()> fun() {
+    std::shared_ptr<A> sa = std::make_shared<A>();
+    sa->a = 2;
+    auto f = [&] {
+        std::cout << "sa-> " << sa->a << std::endl;
+        sa->a = 1;
+    };
+    return f;
+}
+
+void test() {
+    std::cout << "----- in test -----" << std::endl;
+    fun()();
+    std::cout << "----- out test -----" << std::endl;
+}
+```
+
+**调用**
+
+```c++
+int main() {
+    test();
+    return 0;
+}
+```
+
+**输出**
+
+```shell
+----- in test -----
+sa-> 281314120
+
+Process finished with exit code 138 (interrupted by signal 10: SIGBUS)
+```
+
+**原因**
+
+lambda 表达式使用引用访问局部变量，在 `fun()` 返回 lambda 表达式对象时，局部变量 `sa` 已被释放，在 `test` 中执行 lambda 表达式时会访问已被释放的内存。
+
+**解决**
+
+使用拷贝替换引用，增加引用计数。
+
+```c++
+std::function<void()> fun() {
+    std::shared_ptr<A> sa = std::make_shared<A>();
+    sa->a = 2;
+    auto f = [&, sa] {
+        std::cout << "sa-> " << sa->a << std::endl;
+        sa->a = 1;
+    };
+    return f;
+}
+```
+
+**输出**
+
+```shell
+----- in test -----
+sa-> 2
+----- out test -----
+
+Process finished with exit code 0
+```
+

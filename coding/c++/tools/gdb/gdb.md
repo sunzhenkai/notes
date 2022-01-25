@@ -18,3 +18,21 @@ update: 2022/1/10 00:00:00
 handle SIG34 nostop noprint pass noignore
 ```
 
+# 调试程序
+
+```shell
+$ gdb <program>
+
+# 添加程序参数
+$ gdb --args program <args>
+```
+
+# 调试 core 文件
+
+```shell
+$ gdb <program> <core-file>
+$ gdb <program> -c <core-file>
+$ gdb <program>
+(gdb) core <core-file>
+```
+

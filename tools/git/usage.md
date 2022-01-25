@@ -92,6 +92,9 @@ $ git submodule update --init --recursive
 $ git clone ... --recursive
 $ git clone --recurse-submodules ...
 
+# pull with submodules
+$ git pull --recurse-submodules
+
 # 更新子模块至最新提交
 $ git submodule update --remote --merge
 ```
