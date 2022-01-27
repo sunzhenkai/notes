@@ -97,6 +97,9 @@ $ git pull --recurse-submodules
 
 # 更新子模块至最新提交
 $ git submodule update --remote --merge
+
+# 重置 submodule commit id
+$ git submodule update --init
 ```
 
 # tags

@@ -199,3 +199,14 @@ $ echo '{"data":{"name":"wii","age":18}}' | python -m json.tool
 }
 ```
 
+# time
+
+```shell
+# 统计程序运行时间
+time <program args>
+...
+real	0m0.003s
+user	0m0.001s
+sys	0m0.002s
+```
+
