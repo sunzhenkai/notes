@@ -15,3 +15,37 @@ update: 2021/12/01 00:00:00
 # 使用 sudo 命令反应慢
 
 - `/etc/hosts` 中没有 hostname 的记录，在 `/etc/hosts` 中添加 `127.0.0.1 <hostname>`
+
+# ssh key 免密登录失败
+
+**生成公钥和密钥**
+
+```shell
+ssh-keygen -t ras -C your@email.com
+
+# ~/.ssh/id_rsa & ~/.ssh/id_rsa.pub
+```
+
+**配置**
+
+将生成的 `~/.ssh/id_rsa.pub` 内容附加到需要登录机器的 `~/.ssh/authorized_keys` 文件后面。
+
+**登录**
+
+```shell
+ssh remote-host
+```
+
+**登录失败**
+
+```shell
+# Permission denied (publickey).
+## 查看远程机器文件权限
+chmod 700 /home/$OS_USER/.ssh
+chmod 600 /home/$OS_USER/.ssh/authorized_keys
+chmod 600 /home/$OS_USER/.ssh/config
+chmod 600 /home/$OS_USER/.ssh/id_rsa
+```
+
+
+
