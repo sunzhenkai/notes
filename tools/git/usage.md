@@ -86,7 +86,7 @@ $ git stash clear
 $ git submodule add <git-address> <localpath>
 
 # 初始化/下载子模块代码
-$ git submodule update --init --recursive
+git submodule update --init --recursive
 
 # 递归clone
 $ git clone ... --recursive
@@ -99,7 +99,7 @@ $ git pull --recurse-submodules
 $ git submodule update --remote --merge
 
 # 重置 submodule commit id
-$ git submodule update --init
+git submodule update --init
 ```
 
 # tags

@@ -129,6 +129,18 @@ $ chmod 600 ~/.ssh/authorized_keys
 $ ssh <remote-host>
 ```
 
+## 切换至 root 用户
+
+```shell
+Summary of the differences found   
+                                               corrupted by user's 
+                HOME=/root      uses root's PATH     env vars
+sudo -i         Y               Y[2]                 N
+sudo -s         N               Y[2]                 Y
+sudo bash       N               Y[2]                 Y
+sudo su         Y               N[1]                 Y
+```
+
 # 批量杀死进程
 
 ```shell

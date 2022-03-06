@@ -1,5 +1,5 @@
 ---
-title: memset & fill
+title: c++ sizeof
 categories: 
 	- [coding, c++]
 tags:

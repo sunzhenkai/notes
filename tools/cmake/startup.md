@@ -166,6 +166,10 @@ include_directories(${PROJECT_SOURCE_DIR}/third_party/glog/)
 include_directories(${PROJECT_SOURCE_DIR}/third_party/hdfs/)
 ```
 
+## find_package_handle_standard_args
+
+用于 find_package 的实现。
+
 # 变量
 
 ## Cache

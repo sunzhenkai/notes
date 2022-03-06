@@ -74,6 +74,29 @@ $ go get -d -v ./... 			# 递归地下载当前目录下所有文件的依赖
 package http;
 ```
 
+# 私有库
+
+## terminal prompts disabled
+
+```shell
+go: gitlab.company.com/org/pkg@v0.0.1: reading https://goproxy.cn/gitlab.company.com/org/pkg/@v/v0.0.1.mod: 404 Not Found
+	server response:
+	not found: gitlab.company.com/org/pkg@v0.0.1: invalid version: git fetch -f origin refs/heads/*:refs/heads/* refs/tags/*:refs/tags/* in /tmp/gopath/pkg/mod/cache/vcs/1b2a69e43fbd284ebef999cca485d367b743c300d2970b093def252bae54d3ef: exit status 128:
+		fatal: could not read Username for 'http://gitlab.company.com': terminal prompts disabled
+```
+
+私有项目，默认走 goproxy，故找不到 pkg。
+
+```shell
+# 设置 pkg 路径为私有库
+go env -w GOPRIVATE="gitlab.company.com/org"
+
+# get
+GIT_TERMINAL_PROMPT=1 go get
+```
+
+或者使用 ssh 认证。
+
 # 参考
 
 - [Effective Go](https://golang.org/doc/effective_go.html#package-names)

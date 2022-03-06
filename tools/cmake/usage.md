@@ -148,3 +148,82 @@ export CMAKE_PREFIX_PATH="$CUSTOME_LIBRARY_PATH"
 export CMAKE_LIBRARY_PATH="$CUSTOME_LD_LIBRARY_PATH"
 ```
 
+# 查找&链接库
+
+```cmake
+# 将库路径写入 CMAKE_PREFIX_PATH
+set(CMAKE_PREFIX_PATH ${PATH_TO_LIB} ${CMAKE_PREFIX_PATH})
+find_package(<library-name> REQUIRED)
+# 使用
+target_link_libraries(<library-name> <target-name>)
+```
+
+**示例**
+
+```cmake
+find_package(Snappy REQUIRED)
+target_link_libraries(brpc Snappy::snappy)
+```
+
+# 自定义 Find Cmake 文件
+
+```cmake
+find_path(THRIFT_INCLUDE_DIR
+    NAMES
+        thrift/Thrift.h
+    HINTS
+        /usr/local
+    PATH_SUFFIXES
+        include
+)
+
+find_library(THRIFT_LIBRARIES
+    NAMES
+        thrift libthrift
+    HINTS
+        /usr/local
+    PATH_SUFFIXES
+        lib lib64
+)
+
+find_program(THRIFT_COMPILER
+    NAMES
+        thrift
+    HINTS
+        /usr/local
+    PATH_SUFFIXES
+        bin bin64
+)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(THRIFT DEFAULT_MSG THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
+# 设置变量为高级，在 GUI 模式下默认不展示
+mark_as_advanced(THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
+```
+
+# Misc
+
+## 引入第三方库
+
+> 引入第三方库的几种方式。第一种，find_path 查找头文件，find_library 查找库文件，分别使用 include_directories(DEP_INCLUDE_DIR)、target_link_libraries(target library) 链接库，这种方式一般用于没有 Find*.cmake 的库。第二种，对于有 Find cmake 的库，可以使用 find_package(Library REQUIRED) 来 import 库，然后使用 target_link_libraries 来链接库。第三种，自定义 Find Cmake 文件，借助 find_package_handle_standard_args 实现。对于有 pkgconfig 的库来说，也可以用 pkg_check_modules 来导入，但是有个问题，pkgconfig 内可能有写死的 prefix，移动之后可能会出现找不到库的问题。
+>
+> ```cmake
+> # snappy
+> find_package(Snappy REQUIRED)
+> target_link_libraries(brpc-static Snappy::snappy)
+> 
+> # thrift
+> find_path(THRIFT_INCLUDE_DIR NAMES thrift/Thrift.h PATH_SUFFIXES include)
+> find_library(thrift thrift REQUIRED CONFIG)
+> include_directories(${THRIFT_INCLUDE_DIR})
+> target_link_libraries(brpc-static thrift)
+> 
+> # pkg_check_modules
+> include(FindPkgConfig)
+> pkg_check_modules(Curl libcurl REQUIRED)
+> # Curl_INCLUDE_DIR、Curl_LIBRARIES、Curl_FOUND 会被设置
+> ```
+
+# 参考
+
+- https://github.com/snikulov/cmake-modules/blob/master/FindThrift.cmake

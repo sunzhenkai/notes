@@ -160,6 +160,12 @@ skip-name-resolve
 > CREATE DATABASE 'database-name';
 ```
 
+## Pretty 查询结果
+
+```shell
+> select * from <table> \G
+```
+
 # 安装
 
 ## CentOS
@@ -215,6 +221,7 @@ $ firewall-cmd --reload
 
 ```shel
 -B, --databases : 导出创建语句
+--skip-add-locks : 导出的文件中跳过添加 LOCK TABLE 语句
 ```
 
 ## 示例

@@ -50,3 +50,29 @@ $ docker pull redis:latest
 $ docker run -itd --name redis -p 6379:6379 redis:latest
 ```
 
+## 集群模式
+
+```shell
+$ docker pull redis
+
+docker create --name redis-node1 -p 6379:6379 redis --cluster-enabled yes
+docker create --name redis-node2 -p 6378:6378 redis --cluster-enabled yes --port 6378
+docker create --name redis-node3 -p 6377:6377 redis --cluster-enabled yes --port 6377
+docker start redis-node1 redis-node2 redis-node3
+
+docker exec -it redis-node1 /bin/sh
+
+> redis-cli --cluster create 172.17.0.2:6379 172.17.0.3:6379 172.17.0.4:6379
+
+> redis-cli --cluster create 192.168.4.13:6379 192.168.4.13:6378 192.168.4.13:6377
+
+# 查看容器 ip
+$ docker inspect <container-name>
+
+# stop
+docker stop redis-node1 redis-node2 redis-node3
+
+# rm
+docker rm redis-node1 redis-node2 redis-node3
+```
+
