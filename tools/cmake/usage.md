@@ -40,6 +40,15 @@ $ View Help
 # cmake --help[-<topic>]
 ```
 
+# 内置变量
+
+```cmake
+PROJECT_SOURCE_DIR           项目目录
+CMAKE_CURRENT_LIST_DIR 		   当前 cmake 文件所在目录
+CMAKE_STATIC_LIBRARY_PREFIX  静态库前缀, 例如 lib
+CMAKE_STATIC_LIBRARY_SUFFIX  静态库后缀, 例如 .a
+```
+
 # CMakeLists
 
 ## 设置cmake最小版本
@@ -141,6 +150,25 @@ endif()
 string(TOUPPER ${ORIGIN_VAR} DEST_VAR)
 ```
 
+## 判断变量为空
+
+```cmake
+if (${V} STREQUAL "")
+	...
+endif()
+```
+
+## 循环
+
+```cmake
+set (L A B C)
+foreach (V IN LISTS L)
+	... ${V}
+endforeach()
+```
+
+
+
 # 修改库搜索路径
 
 ```shell
@@ -223,6 +251,117 @@ mark_as_advanced(THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
 > pkg_check_modules(Curl libcurl REQUIRED)
 > # Curl_INCLUDE_DIR、Curl_LIBRARIES、Curl_FOUND 会被设置
 > ```
+
+# 库管理
+
+## ExternalProject_Add
+
+```shell
+include(ExternalProject)
+
+set(target spdlog)
+set(CMAKE_ARGS
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_INSTALL_PREFIX=${DEPS_PREFIX}
+        -DCMAKE_INSTALL_LIBDIR=lib
+        -DBUILD_STATIC_LIB=ON
+        -DBUILD_SHARED_LIB=OFF)
+ExternalProject_Add(
+        ${target}_build
+        GIT_REPOSITORY https://github.com/gabime/spdlog.git
+        GIT_TAG v1.9.2
+        CMAKE_ARGS ${CMAKE_ARGS}
+)
+
+# 指定 libary 安装文件夹，统一在 lib/lib64
+-DCMAKE_INSTALL_LIBDIR=lib
+```
+
+## AddLibrary
+
+```cmake
+add_library(${TGT} STATIC IMPORTED GLOBAL)
+set_target_properties(${TGT} PROPERTIES
+	IMPORTED_LOCATION "${TGT_PREFIX}/lib/${CMAKE_STATIC_LIBRARY_PREFIX}${TGT}${CMAKE_STATIC_LIBRARY_SUFFIX}"
+	INCLUDE_DIRECTORIES ${TGT_PREFIX}/include
+	INTERFACE_INCLUDE_DIRECTORIES ${TGT_PREFIX}/include
+)
+
+# INTERFACE_INCLUDE_DIRECTORIES
+set_target_propterties 添加 INTERFACE_INCLUDE_DIRECTORIES, 在 target_link_libraries 时，不需要再 include 库的头文件
+```
+
+# 方法 (function)
+
+```cmake
+function(FNAME)
+endfunction(FNAME)
+```
+
+## 作用域
+
+方法有独立的作用域，可以访问父级作用域内的变量。在函数内定义的变量，对父级作用域不可访问。如果需要修改父级作用域变量，需要使用 PARENT_SCOPE。
+
+```cmake
+SET(VAR vALUEe PARENT_SCOPE)
+```
+
+## 参数
+
+### 参数列表指定
+
+```cmake
+function(ARG version url flag)
+    message(STATUS "version: ${version}, url: ${url}, flag: ${flag}")
+endfunction(ARG)
+
+ARG(1.0.0 www.so.com true)
+```
+
+### 非参数列表
+
+首先了解在函数内定义的默认变量。
+
+- ARGC，参数数量
+- ARGN，参数，去掉声明的参数的参数列表
+- ARGV，参数，全部参数
+- ARG0，ARG1 ...
+
+```cmake
+
+function(ARG4)
+    set(options OPTIONAL FAST)
+    set(oneValueArgs NAME URL)
+    set(multiValueArgs KEY)
+    cmake_parse_arguments(PREFIX "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+    message(STATUS "FAST=${PREFIX_FAST} NAME=${PREFIX_NAME} URL=${PREFIX_URL} KET=${PREFIX_KEY}")
+endfunction(ARG4)
+
+ARG4(
+        FAST
+        NAME beijing
+        URL www.so.com
+        KEY weight price
+)
+# FAST=TRUE NAME=beijing URL=www.so.com KET=weight;price
+
+ARG4(
+        URL www.so.com
+        KEY band price
+)
+# FAST=FALSE NAME= URL=www.so.com KET=band;price
+```
+
+# 宏 (macro)
+
+```cmake
+macro(MName)
+endmacro(MName)
+```
+
+Macro 和 function 比较相似，区别如下。
+
+- macro 和调用域共享变量的作用域，function 则有独立的作用域
 
 # 参考
 
