@@ -141,6 +141,18 @@ sudo bash       N               Y[2]                 Y
 sudo su         Y               N[1]                 Y
 ```
 
+## root 权限无需密码
+
+```shell
+# 修改权限
+sudo chmod u+w /etc/sudoers
+
+# 修改 /etc/sudoers，添加下面内容
+<username>    ALL=(ALL) NOPASSWD: ALL
+```
+
+
+
 # 批量杀死进程
 
 ```shell

@@ -8,6 +8,17 @@ date: 2021/10/06 00:00:00
 update: 2021/10/06 00:00:00
 ---
 
+# package
+
+```python
+import pathlib
+import sys
+from os.path import dirname, abspath
+
+PROJECT_BASE_PATH = dirname(abspath(pathlib.Path(__file__).absolute()))
+sys.path.append(PROJECT_BASE_PATH)
+```
+
 # path
 
 ## 判断路径是否存在

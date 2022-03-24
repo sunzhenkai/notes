@@ -172,6 +172,18 @@ include_directories(${PROJECT_SOURCE_DIR}/third_party/hdfs/)
 
 # 变量
 
+## Cache
+
+```cmake
+# CACHE, 不覆盖已有值. 
+## 用途 
+### 1. 在命令行指定变量, 且不被覆盖
+set(MY_CACHE_VARIABLE "VALUE" CACHE STRING "Description")
+
+# FORCE, 强制设置
+set(MY_CACHE_VARIABLE "VALUE" CACHE STRING "" FORCE) 
+```
+
 ## 常用变量
 
 - PROJECT_BINARY_DIR
@@ -180,6 +192,14 @@ include_directories(${PROJECT_SOURCE_DIR}/third_party/hdfs/)
   - Top level source directory for the current project.
 - CMAKE_CURRENT_SOURCE_DIR
   - This the full path to the source directory that is currently being processed by cmake.
+
+# Scope
+
+```shell
+add_subdirectory : 建立新的 scope
+include : 不会建立新的 scope
+function : 建立新的 scope
+```
 
 # 示例
 

@@ -47,5 +47,13 @@ chmod 600 /home/$OS_USER/.ssh/config
 chmod 600 /home/$OS_USER/.ssh/id_rsa
 ```
 
+# 设置语言和地区
 
+在 `~/.bash_profile` 或 `~/.zshrc` 中添加如下内容，具体文件视使用的 shell 而定。
+
+```shell
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+```
 
