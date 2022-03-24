@@ -32,3 +32,21 @@ setRouters(std::function<void(seastar::httpd::routes & )> routes)
 }
 ```
 
+# 分隔字符串
+
+```c++
+std::string server_address = "127.0.0.1:80";
+std::vector<std::string> result;
+boost::split(result, server_address, boost::is_any_of(":"));
+
+result.at(0); // 127.0.0.1
+result.at(1); // 80
+```
+
+# 类型转换
+
+```c++
+// string -> int
+stoi("80")
+```
+

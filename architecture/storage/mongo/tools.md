@@ -39,7 +39,7 @@ $ mongosh [options] [db address] [file names (ending in .js or .mongodb)]
 -p password
 
 # example
-$ mongosh mongodb://192.168.0.5:9999/ships
+$ mongosh mongodb://192.168.0.5:9999
 ```
 
 ## 读取 secondary 节点
@@ -62,6 +62,6 @@ $ mongosh mongodb://192.168.0.5:9999/ships
 
 ```shell
 # 连接时添加 readPreference 参数
-$ mongosh mongodb://192.168.0.5:9999/ships/?readPreference=secondary
+$ mongosh mongodb://192.168.0.5:9999/?readPreference=secondary
 ```
 

@@ -186,9 +186,20 @@ $ docker cp <container-name>:/path/to/file /path/to/dest
 ## 从宿主机拷贝至容器
 
 ```shell
-$ docker cp /path/to/file <container-name>:/path/to/dest
+1·$ docker cp /path/to/file <container-name>:/path/to/dest
+```
+
+# docker hub
+
+```shell
+# 登录 docker hub
+docker login
+
+# 登录私有仓库
+docker login hub.private.com
 ```
 
 # 参考
 
 - [[1] Docker容器的创建、启动、和停止](http://www.cnblogs.com/linjiqin/p/8608975.html)
+
