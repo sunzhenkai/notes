@@ -12,3 +12,26 @@ update: 2021/12/08 00:00:00
 
 - [nginx+consul](https://chabik.com/2019/12/dynamic-upstreams-in-nginx-w-consul/)
 
+# KV
+
+## 导入导出
+
+[export](https://www.consul.io/commands/kv/export)，[import](https://www.consul.io/commands/kv/import#stale)。
+
+```shell
+consul kv export          # 导出所有
+consul kv export online/  # 导出 online 前缀
+```
+
+```shell
+consul kv import @data.json         # 文件导入, 需要在文件名前加 @
+cat data.json | consul kv import -  # 通过管道导入
+```
+
+## 查询
+
+```shell
+# 列出所有 key
+curl --location --request GET 'http://127.0.0.1:8500/v1/kv/?keys'
+```
+

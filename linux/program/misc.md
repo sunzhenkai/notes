@@ -182,8 +182,12 @@ $ cat t2 | sort -t ':' -k 2
 ```shell
 # format
 date +"%Y%m%d"
+
 # minus
 -d "-1 days"
+
+# 前一台日期
+date -d "-1 days" +"%Y-%m-%d"
 ```
 
 # json

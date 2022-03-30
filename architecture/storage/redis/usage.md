@@ -52,6 +52,7 @@ nohup redis-server --cluster-enabled yes --port 6379 --cluster-config-file nodes
 nohup redis-server --cluster-enabled yes --port 6378 --cluster-config-file nodes2.conf &
 nohup redis-server --cluster-enabled yes --port 6377 --cluster-config-file nodes3.conf &
 
+sleep 3 # 等服务节点起来
 redis-cli --cluster create 127.0.0.1:6379 127.0.0.1:6378 127.0.0.1:6377
 ```
 

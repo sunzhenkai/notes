@@ -21,3 +21,12 @@ export LC_COLLATE=C
 export LC_CTYPE=en_US.UTF-8
 ```
 
+# yum 卡住
+
+```shell
+# 问题出在 Amazon Linux 2，所有 yum 命令卡住
+ps aux | grep yum
+
+kill -9 <pid>  # kill 所有 yum 进程
+```
+

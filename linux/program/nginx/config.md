@@ -158,6 +158,86 @@ $ sudo mkdir /www
 $ sudo chmod -R 755 /www
 ```
 
+# 基于 consul 动态发现
+
+## 重新编译 nginx
+
+使用 [ginx-upsync-module](https://github.com/weibocom/nginx-upsync-module) 模块，下载 nginx 源码，然后把模块代码放在 modules 下，用下面命令编译 nginx。
+
+```shell
+#!/bin/sh
+./configure --prefix="`pwd`/build" \
+	--with-pcre \
+	--with-stream \
+	--with-http_v2_module \
+	--with-http_realip_module \
+	--with-http_gzip_static_module \
+	--with-http_addition_module \
+	--with-http_ssl_module \
+	--with-http_sub_module \
+	--add-module="`pwd`/modules/nginx-upsync-module" \
+	--http-log-path=/logs/nginx/access.log \
+  --error-log-path=/logs/nginx/error.log
+```
+
+
+
+## 配置
+
+```shell
+upstream main {
+    server 127.0.0.1:8000;
+    upsync 127.0.0.1:8500/v1/health/service/echo-service upsync_timeout=6m upsync_interval=500ms upsync_type=consul_health strong_dependency=off;
+    upsync_dump_path /home/ubuntu/app/nginx/upsync_backend/echo-service.conf;
+    include /home/ubuntu/app/nginx/upsync_backend/echo-service.conf;
+}
+
+server {
+    listen 8080;
+
+    location /api/v1/echo {
+        proxy_pass http://main;
+        mirror_request_body on;
+        mirror /mirror;
+    }
+}
+
+```
+
+# 流量复制
+
+```shell
+upstream main {
+    server 192.168.0.10:8000;
+}
+
+upstream mirror {
+    server 192.168.0.11:8000;
+}
+
+server {
+    listen 8080;
+
+    location /api/v1/echo {
+        proxy_pass http://main;
+        proxy_pass_request_body on;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        mirror_request_body on;
+        mirror /mirror;
+    }
+
+    location /mirror {
+        proxy_pass http://mirror$request_uri;
+        proxy_pass_request_body on;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
 # 附录
 
 ## 默认配置

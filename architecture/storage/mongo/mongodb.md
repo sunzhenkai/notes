@@ -32,5 +32,15 @@ $ mongodump --uri "mongodb://127.0.0.1" --out data-dump --db library --collectio
 $ mongorestore --nsInclude=<db>.<table> /path/to/data.bson
 ```
 
+# 操作
 
+文档参考[这里](https://www.mongodb.com/docs/mongodb-shell/run-commands/)。
+
+```shell
+# 1. 创建数据库. 使用 use 即可创建 database
+> use <db-name>
+
+# 2. 创建集合. 使用插入数据语法, 不存在集合则创建 
+> db.test.insertOne( { x: 1 } );
+```
 
