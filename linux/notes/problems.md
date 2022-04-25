@@ -56,3 +56,14 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 ```
+
+# df 磁盘用满但 du 显示还有空间
+
+```shell
+#lsof | grep delete
+COMMAND     PID   TID           USER   FD      TYPE             DEVICE     SIZE/OFF       NODE NAME
+intercept 14265                 root    3u      REG              259,1 227432595897   54608901 /data/intercept/access.log (deleted)
+```
+
+`/data/intercept/access.log` 日志占用 210G 容量，但是已经被删除。
+

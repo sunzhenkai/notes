@@ -149,6 +149,14 @@ $ docker images
 $ docker images ubuntu	# 查看单个镜像
 ```
 
+## 分析镜像大小
+
+参考工具 [dive](https://github.com/wagoodman/dive)。
+
+```shell
+dive hub.docker.com/<user>/<image>:<tag>
+```
+
 # 非 root 用户使用 docker
 
 ## ubuntu

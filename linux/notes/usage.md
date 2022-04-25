@@ -151,15 +151,21 @@ sudo chmod u+w /etc/sudoers
 <username>    ALL=(ALL) NOPASSWD: ALL
 ```
 
+# 进程
 
-
-# 批量杀死进程
+## 批量杀死进程
 
 ```shell
 # 按进程名称
 $ ps aux | grep <process-name> | awk '{print $2}' | xargs kill -9
 # 按端口
 $ lsof -i:8200 | awk '{print $2}' | xargs kill -9
+```
+
+## 滚动日志
+
+```shell
+kill -USR1 <pid>
 ```
 
 # 磁盘读写
@@ -207,5 +213,21 @@ $ export real="hello"
 $ ref=real
 $ printenv $ref
 hello
+```
+
+# ssh
+
+## 端口转发
+
+```shell
+ssh -i <secret> -L <port-local>:<ip>:<port-remote> <user>@<host>
+
+# 实例
+ssh -i ~/.ssh/id_rsa -L 8000:192.168.0.10:8000 wii@relay.company.com
+
+# 多端口后台转发
+ssh -i <secret> <user>@<host> -f -N -L <port-local>:<ip>:<port-remote> -L <port-local>:<ip>:<port-remote> ...
+
+-f -N: 仅后台转发端口
 ```
 

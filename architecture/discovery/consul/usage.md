@@ -19,8 +19,8 @@ update: 2021/12/08 00:00:00
 [export](https://www.consul.io/commands/kv/export)，[import](https://www.consul.io/commands/kv/import#stale)。
 
 ```shell
-consul kv export          # 导出所有
-consul kv export online/  # 导出 online 前缀
+consul kv export > data.json         # 导出所有
+consul kv export online/ > data.json # 导出 online 前缀
 ```
 
 ```shell
