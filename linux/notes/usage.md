@@ -97,6 +97,13 @@ f: /home/wii/share/
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 ```
 
+## 查看软连文件大小
+
+```shell
+# -L 
+ls -lhL
+```
+
 # 用户
 
 ## 创建用户
@@ -151,7 +158,16 @@ sudo chmod u+w /etc/sudoers
 <username>    ALL=(ALL) NOPASSWD: ALL
 ```
 
+## ssh 无需确认添加指纹信息
 
+```shell
+ssh -o StrictHostKeyChecking=no
+
+# 比如
+The authenticity of host '192.168.6.10 (<no hostip for proxy command>)' can't be established.
+ECDSA key fingerprint is SHA256:Zag81PG/YLKsybs3QAdsea4Sd4gJvwaa+c49X6ts3buM.
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
 
 # 批量杀死进程
 
