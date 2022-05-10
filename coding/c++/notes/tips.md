@@ -34,7 +34,13 @@ setRouters(std::function<void(seastar::httpd::routes & )> routes)
 }
 ```
 
-# 分隔字符串
+## 对象成员函数作为参数
+
+参考[这里](https://www.codeguru.com/cplusplus/c-tutorial-pointer-to-member-function/)。
+
+# 字符串
+
+## 分隔字符串
 
 ```c++
 std::string server_address = "127.0.0.1:80";
@@ -43,6 +49,15 @@ boost::split(result, server_address, boost::is_any_of(":"));
 
 result.at(0); // 127.0.0.1
 result.at(1); // 80
+```
+
+## join 字符串
+
+```c++
+// 使用 fmt
+#include <fmt/format.h>
+// fmt::join(elems, delim)
+auto s = fmt::format("{}",fmt::join(elems, delim)); 
 ```
 
 # 类型转换

@@ -20,6 +20,9 @@ $ brew install go
 ```shell
 $ go build main.go
 $ go build -o output-file-name main.go
+
+# 打印 gc 信息
+$ go build -gcflags="-m" main.go
 ```
 
 ## 示例
@@ -96,6 +99,36 @@ GIT_TERMINAL_PROMPT=1 go get
 ```
 
 或者使用 ssh 认证。
+
+```shell
+git config --global --add url."git@your-repo.com:".insteadOf "https://your-repo.com/"
+```
+
+# Env
+
+```shell
+# 查看 go env
+$ go env
+GO111MODULE=""
+GOARCH="amd64"
+...
+
+# 设置
+$ go env -w GOPROXY="..."
+
+# 取消设置
+$ go env -u GOPROXY
+```
+
+## Proxy
+
+```shell
+# 设置 proxy
+$ go env -w GOPROXY="..."
+
+# 不使用 proxy 的仓库
+$ go env -w "git.a.com,git.b.com,..."
+```
 
 # 参考
 

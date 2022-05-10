@@ -308,6 +308,36 @@ swapT(iv[0], iv[2]);
 // 1 2 3 -> 3 2 1
 ```
 
+## define
+
+### `##`
+
+连接形参，忽略前后空白符。
+
+```c++
+#define Concat(a, b) a##b
+
+int ab = 1, ax = 2, xa = 3;
+std::cout << Concat(a, b) << std::endl; // output: 1
+std::cout << AppendX(a) << std::endl; // output: 2
+std::cout << XAppend(a) << std::endl; // output: 3
+```
+
+### `#@`
+
+字符化形参。
+
+### `#`
+
+字符串化形参。
+
+```c++
+#define ToString(a) #a
+std::cout << ToString(abc) << std::endl;  // abc
+```
+
+
+
 # 其他
 
 ## 常量

@@ -139,6 +139,8 @@ $ ssh <remote-host>
 ## 切换至 root 用户
 
 ```shell
+# sudo -i / sudo -s / sudo bash / sudo su
+
 Summary of the differences found   
                                                corrupted by user's 
                 HOME=/root      uses root's PATH     env vars
@@ -167,6 +169,12 @@ ssh -o StrictHostKeyChecking=no
 The authenticity of host '192.168.6.10 (<no hostip for proxy command>)' can't be established.
 ECDSA key fingerprint is SHA256:Zag81PG/YLKsybs3QAdsea4Sd4gJvwaa+c49X6ts3buM.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
+```
+
+### 切换用户
+
+```shell
+su <user>
 ```
 
 # 进程
@@ -244,8 +252,20 @@ ssh -i <secret> -L <port-local>:<ip>:<port-remote> <user>@<host>
 ssh -i ~/.ssh/id_rsa -L 8000:192.168.0.10:8000 wii@relay.company.com
 
 # 多端口后台转发
-ssh -i <secret> <user>@<host> -f -N -L <port-local>:<ip>:<port-remote> -L <port-local>:<ip>:<port-remote> ...
+ssh -i <secret> <user>@<host> -fCqTnN -L <port-local>:<ip>:<port-remote> -L <port-local>:<ip>:<port-remote> ...
 
 -f -N: 仅后台转发端口
+-C: 压缩数据
+-q: 安静模式
+-T: 禁止远程分配终端
+-n: 关闭标准输入
+-N: 不执行远程命令
+```
+
+## 代理
+
+```shell
+# socks5 代理
+ssh -D <localhost>:<local-port> <remote-host>
 ```
 
