@@ -50,9 +50,6 @@ info locals
 info variables
 # 查看参数
 info args
-
-# 打印 vector
-
 ```
 
 # 常见问题

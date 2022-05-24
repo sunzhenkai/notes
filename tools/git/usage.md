@@ -8,6 +8,8 @@ date: 2020/11/20 00:00:00
 update: 2020/11/20 00:00:00
 ---
 
+[toc]
+
 # basic
 
 生成公钥
@@ -112,3 +114,29 @@ $ git push --tags							# all
 $ git push origin --tags			# all
 ```
 
+# 删除大文件
+
+```shell
+git filter-branch -f --prune-empty --index-filter "git rm -rf --cached --ignore-unmatch recommend/keywords.txt" --tag-name-filter cat -- --all
+```
+
+# 修改 commit 用户名
+
+```shell
+# 设置用户名、邮箱
+git config user.name "New User"
+git config user.email "newuser@gmail.com"
+
+git log
+git rebase -i <commit-id> # 这个 commit-id 需要修改的前一个
+# 把需要修改的 commit 前的 'pick' 改为 'edit', 保存并退出
+
+# 重复下面两步
+git commit --amend --reset-author --no-edit
+git rebase --continue
+
+# 强制提交
+git push --force-with-lease
+```
+
+参考[这里](https://stackoverflow.com/questions/3042437/how-to-change-the-commit-author-for-one-specific-commit)。

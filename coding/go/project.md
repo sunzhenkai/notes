@@ -42,6 +42,12 @@ update: 2020/12/30 12:00:00
 $ go mod init github.com/sunzhenkai/go-hello-world
 ```
 
+# 添加依赖
+
+```shell
+$ go get github.com/*/*
+```
+
 # Reference
 
 - [Project Layout](https://github.com/golang-standards/project-layout)
