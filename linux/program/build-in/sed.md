@@ -1,5 +1,5 @@
 ---
- title: sed
+title: sed
 categories: 
 	- [linux,程序]
 tags:
