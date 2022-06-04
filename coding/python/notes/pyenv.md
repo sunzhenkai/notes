@@ -24,5 +24,12 @@ $ pyenv install -l
 
 ```shell
 $ pyenv install <version>  # e.g 3.8.9
+# 使用国内源安装
+$ v=3.8.9;wget https://npm.taobao.org/mirrors/python/$v/Python-$v.tar.xz -P ~/.pyenv/cache/;pyenv install $v 
 ```
 
+# 设置全局版本
+
+```shell
+pyenv global 3.8.9
+```

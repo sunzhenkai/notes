@@ -68,7 +68,7 @@ $ sudo mkfs -t ext4 /dev/sda
 ### 打开存储盘
 
 ```shell
-$ sudo parted /dev/sda
+$ sudo parted -a optimal /dev/sda
 GNU Parted 3.1
 Using /dev/sda
 Welcome to GNU Parted! Type 'help' to view a list of commands.
@@ -130,7 +130,7 @@ $ sudo mkfs.ext4 /dev/sda1
 
 ```shell
 $ sudo mkdir data
-$ sudo mount auto /dev/sda1 /data
+$ sudo mount -t auto /dev/sda1 /data
 ```
 
 ### 示例
@@ -205,8 +205,8 @@ mkfs.ext4 /dev/vdb1
 # 挂载
 mount -t auto /dev/vdb1 /data
 
-# 写入 /etc/fstab
-echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0"
+# 写入 /etc/fstab, root 用户运行
+echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0" >> /etc/fstab
 ```
 
 # 参考

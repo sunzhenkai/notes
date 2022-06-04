@@ -84,3 +84,86 @@ go get git.*.com/org/repo
 go mod edit -require git.*.com/org/repo@version
 ```
 
+# GC
+
+## 阶段
+
+| 阶段                     | STW（STOP THE WORLD） |
+| ------------------------ | --------------------- |
+| STW sweep termination    | YES                   |
+| concurrent mark and scan | NO                    |
+| STW mark termination     | YES                   |
+
+## gc log
+
+```shell
+GODEBUG=gctrace=1 ./<program> <parameters>
+# GODEBUG 多值
+GODEBUG=gctrace=1,schedtrace=1000./<program> <parameters>
+
+gctrace=1 : 打印 gc 日志
+schedtrace=1000 : 每 1000 ms 打印一次调度器的摘要信息
+```
+
+### 格式
+
+```html
+gctrace: setting gctrace=1 causes the garbage collector to emit a single line to standard
+error at each collection, summarizing the amount of memory collected and the
+length of the pause. Setting gctrace=2 emits the same summary but also
+repeats each collection. The format of this line is subject to change.
+Currently, it is:
+	gc # @#s #%: #+#+# ms clock, #+#/#/#+# ms cpu, #->#-># MB, # MB goal, # P
+where the fields are as follows:
+	gc #        the GC number, incremented at each GC
+	@#s         time in seconds since program start
+	#%          percentage of time spent in GC since program start
+	#+...+#     wall-clock/CPU times for the phases of the GC
+	#->#-># MB  heap size at GC start, at GC end, and live heap
+	# MB goal   goal heap size
+	# P         number of processors used
+The phases are stop-the-world (STW) sweep termination, concurrent
+mark and scan, and STW mark termination. The CPU times
+for mark/scan are broken down in to assist time (GC performed in
+line with allocation), background GC time, and idle GC time.
+If the line ends with "(forced)", this GC was forced by a
+runtime.GC() call and all phases are STW.
+```
+
+```shell
+gc # @#s #%: #+#+# ms clock, #+#/#/#+# ms cpu, #->#-># MB, # MB goal, # P
+```
+
+- `gc #` ：编号
+- `@#s` ：自程序启动到打印 gc 日志的时间
+- `#%`：自程序启动，gc 花费的时间占比
+- `#+#+# ms clock`：垃圾回收时间，(sweep)+(mark & scan)+(termination) 
+- `#+#/#/#+# ms cpu`：垃圾回收占用的 CPU 时间 (sweep)+(mark & scan (辅助时间/后台gc时间/空闲时间))+(termination) 
+- `#->#-># MB`：gc 开始时堆大小、gc 结束时堆大小、存活堆大小
+- `#MB goal` ：全局堆大小
+- `#P` ：使用的处理器数量
+
+> ms cpu 约等于 cpu_num * ms clock
+
+**示例**
+
+```shell
+gc 35 @1130.489s 1%: 0.71+3290+0.12 ms clock, 5.7+5932/26084/4619+1.0 ms cpu, 35956->37042->8445 MB, 37411 MB goal, 32 P
+
+1. 第 35 次 gc，距离程序启动 1130s，自程序启动 gc 时间占比 1%
+```
+
+**参考**
+
+- [golang_debug_gctrace](https://zboya.github.io/post/golang_debug_gctrace/)
+
+# Profile
+
+```shell
+curl http://127.0.0.1:12067/debug/pprof/profile > profile.dat
+go tool pprof -http=:8081 ~/profile.dat
+
+curl http://127.0.0.1:12067/debug/pprof/heap > heap.dat
+go tool pprof -alloc_space -http=:8082 ~/heap.at
+```
+

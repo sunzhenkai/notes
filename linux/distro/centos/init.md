@@ -29,4 +29,3 @@ $ systemctl disable firewalld
 $ vim /etc/resolve.conf
 nameserver 192.168.6.1 # 或其他
 ```
-

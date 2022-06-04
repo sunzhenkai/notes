@@ -25,9 +25,13 @@ $ vi /etc/sysconfig/network-scripts/ifcfg-[network_device_name]
 # 配置
 ONBOOT=yes
 BOOTPROTO=dhcp
+GATEWAY=...
+DNS1=...
+DNS2=...
 
 # 重启网络
 $ systemctl restart network
+$ systemctl restart NetworkManager # centos 8
 ```
 
 # sudo 权限无需密码

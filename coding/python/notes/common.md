@@ -27,6 +27,13 @@ sys.path.append(PROJECT_BASE_PATH)
 os.path.exists('path')
 ```
 
+## 获取 Home 路径
+
+```python
+from pathlib import Path
+Path.home() # 用户目录
+```
+
 # json
 
 ## 序列化类

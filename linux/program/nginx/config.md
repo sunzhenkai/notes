@@ -201,10 +201,13 @@ server {
         mirror /mirror;
     }
 }
-
 ```
 
 # 流量复制
+
+mirror 有个坑，nginx 以 subrequest 的方式请求 mirror 地址，只有在所有 subrequest 完成之后才会处理下一个请求。如果用来复制流量给开发环境，那么开发环境的响应时间会作用在线上环境的请求上面。
+
+[参考这里](https://stackoverflow.com/questions/51644141/how-to-make-nginx-mirror-module-not-wait-for-response) 和 [这里](https://forum.nginx.org/read.php?2,281042,281042)。
 
 ```shell
 upstream main {

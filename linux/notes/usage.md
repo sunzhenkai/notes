@@ -171,7 +171,7 @@ ECDSA key fingerprint is SHA256:Zag81PG/YLKsybs3QAdsea4Sd4gJvwaa+c49X6ts3buM.
 Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
-### 切换用户
+## 切换用户
 
 ```shell
 su <user>
@@ -267,5 +267,50 @@ ssh -i <secret> <user>@<host> -fCqTnN -L <port-local>:<ip>:<port-remote> -L <por
 ```shell
 # socks5 代理
 ssh -D <localhost>:<local-port> <remote-host>
+```
+
+## pem 文件登录
+
+**命令方式**
+
+```shell
+ssh -i key.pem user@host
+```
+
+**配置方式**
+
+```shell
+Host <host>
+   User <user>
+   IdentityFile /path/to/key.pem
+   IdentitiesOnly yes
+```
+
+## 配置密码登录
+
+```shell
+sudo vim /etc/ssh/sshd_config
+# 设置
+PasswordAuthentication yes
+
+# 重启 ssh 服务
+sudo service sshd restart
+```
+
+# 网络
+
+## 端口
+
+```shell
+# 查看进程在监听的端口
+lsof -iTCP -sTCP:LISTEN | grep <pid/pname>
+```
+
+# 自启动
+
+```shell
+crontab -e
+# 添加如下内容
+@reboot /path/to/program
 ```
 

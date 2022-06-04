@@ -15,4 +15,8 @@ from configparser import ConfigParser
 
 cp = ConfigParser()
 cp.read('config.ini')
+
+# 读取 section
+cp.get('section', 'item')
 ```
+
