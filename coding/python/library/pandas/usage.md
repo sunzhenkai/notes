@@ -1,16 +1,25 @@
 ---
-title: panda
+title: pandas usage
 categories: 
-	- [python, library]
+	- [python, library, pandas]
 tags:
-	- panda
-date: 2020/12/04 20:00:00
+	- pandas
+date: 2022/06/05 00:00:00
 ---
 
+[toc]
 #  引入
 
 ```python
 import pandas as pd
+```
+
+# 读取文件
+
+## 读取 csv 文件
+
+```shell
+df = pd.read_csv('dataset.csv')
 ```
 
 # 配置
@@ -43,7 +52,13 @@ df[['a', 'b']] = df[['a', 'b']].apply(pd.to_numeric)
 df[['a', 'b', 'c']] = df['label'].apply(lambda x: pd.Series(x.split(',')))
 ```
 
+# 常用操作
 
+```python
+# 某一列的所有取值
+df['Species'].unique()
 
-
+# 转换为 np array
+df.to_numpy()
+```
 

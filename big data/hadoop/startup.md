@@ -155,9 +155,9 @@ hdfs namenode -format
 ```shell
 # ${HADOOP_HOME}/sbin 目录下
 # 启动dfs服务
-start-dfs.sh
+./start-dfs.sh
 # 启动yarn服务
-start-yarn.sh
+./start-yarn.sh
 ```
 
 ## 查看集群
@@ -180,6 +180,13 @@ $ jps
 | 8020 | name node rpc 端口  |
 | 9870 | name node http 端口 |
 | 9864 | data node http 端口 |
+
+## 停掉集群
+
+```shell
+# sbin 下
+./stop-all.sh
+```
 
 ## 配置自启动
 
@@ -263,6 +270,20 @@ round-trip min/avg/max/stddev = 2.651/3.474/4.142/0.619 ms
 
 还有一个问题就是，hadoop 集群不要使用外部网络 ip，这样在传输数据的时候都要走一遍外部网络，效率极低。
 
+## 权限
+
+### 关闭权限控制
+
+在内网搭建的集群，为了方便把权限关掉了。
+
+```xml
+<!-- hdfs-site.xml -->
+<property>
+  <name>dfs.permissions.enabled</name>
+  <value>false</value>
+</property>
+```
+
 # MR 作业
 
 ## 配置
@@ -342,3 +363,11 @@ fs.exists(path)
 # 删除
 fs.delete(path, true);	# (path, recursive)
 ```
+
+# 命令
+
+```shell
+# 创建目录
+hdfs dfs -mkdir -p /path/to/dir/
+```
+
