@@ -384,3 +384,65 @@ using namespace std::literals;
 std::string_view v = "hello"sv;
 ```
 
+# 类定义
+
+## 静态变量
+
+```c++
+// a.h
+class A {
+  public:
+  	static int v;
+}
+
+// a.cpp
+int A::v;
+```
+
+# thread_local
+
+## 静态成员变量定义
+
+```c++
+// a.h
+class A {
+  public:
+  	static thread_local int v;
+}
+
+// a.cpp
+thread_local int A::v;
+```
+
+# 全局成员定义
+
+## 函数
+
+### 仅在 header file
+
+```c++
+// global.h
+namespace global {
+  // static functions
+  static void f() {
+    // do something
+  }
+}
+```
+
+### header / source 分开定义
+
+```c++
+// global.h
+namespace global {
+  static void f();
+}
+
+// global.cpp
+namespace global {
+  void f() {
+    // do something
+  }
+}
+```
+

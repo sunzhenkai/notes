@@ -336,8 +336,6 @@ std::cout << XAppend(a) << std::endl; // output: 3
 std::cout << ToString(abc) << std::endl;  // abc
 ```
 
-
-
 # 其他
 
 ## 常量

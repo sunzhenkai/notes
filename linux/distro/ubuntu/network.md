@@ -55,6 +55,7 @@ $ sudo systemctl restart sytemd-networking
 # 设置 DNS
 
 ```shell
+## ubuntu 20.04+
 # cat /etc/netplan/***.yaml
 network:
     version: 2
@@ -67,5 +68,19 @@ network:
             set-name: ens4
             nameservers:
                 addresses: [192.168.6.1,8.8.8.8]  # 设置 dns
+
+# 生效
+sudo netplan apply
+```
+
+# 防火墙
+
+```shell
+# 查看防火墙状态
+$ sudo ufw status
+# active: 激活, inactive: 非激活
+
+# disable
+$ sudo ufw disable
 ```
 

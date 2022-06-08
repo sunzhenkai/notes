@@ -157,6 +157,14 @@ $ docker images ubuntu	# 查看单个镜像
 dive hub.docker.com/<user>/<image>:<tag>
 ```
 
+## 删除镜像
+
+```shell
+$ docker image remove <id>
+$ docker image prune    # 删除危险镜像
+$ docker image prune -a # 删除所有镜像
+```
+
 # 非 root 用户使用 docker
 
 ## ubuntu
@@ -205,6 +213,22 @@ docker login
 
 # 登录私有仓库
 docker login hub.private.com
+```
+
+# 配置代理
+
+```shell
+sudo mkdir -p /etc/systemd/system/docker.service.d 
+sudo touch /etc/systemd/system/docker.service.d/proxy.conf
+sudo chmod 777 /etc/systemd/system/docker.service.d/proxy.conf
+sudo echo '
+[Service]
+Environment="HTTP_PROXY=socks5://192.168.6.19:3213" 
+Environment="HTTPS_PROXY=socks5://192.168.6.19:3213"
+' >> /etc/systemd/system/docker.service.d/proxy.conf
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo systemctl restart kubelet
 ```
 
 # 参考
