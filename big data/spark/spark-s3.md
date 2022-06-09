@@ -70,7 +70,7 @@ val spark: SparkSession = SparkSession.builder()
 	.appName("queue_pb_log")
 	.getOrCreate()
 
-// 读取 Spark 认证信息
+// 读取 s3 认证信息
 val cf = Paths.get(System.getProperty("user.home"), ".aws/credentials")
 val c = new Ini(new File(cf.toUri))
 val prefs = new IniPreferences(c)
