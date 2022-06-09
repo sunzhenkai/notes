@@ -185,6 +185,42 @@ remove-etcd-member     Remove a local etcd member.
 cleanup-node           Run cleanup node.
 ```
 
+## 安装 dashboard
+
+```shell
+# 下面是官方的安装命令, 直接运行会有证书的问题
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
+```
+
+### **https 证书**
+
+对于 https 证书，可以自己生成证书，可以用证书认证服务商。对于自己生成证书，可以手动生成，也可以通过添加 `--auto-generate-certificates`  来自动生成，更多参数参考[这里](https://github.com/kubernetes/dashboard/blob/master/docs/common/dashboard-arguments.md)。
+
+```shell
+# 自认证证书
+# 生成 dashboard.pass.key
+$ openssl genrsa -des3 -passout pass:over4chars -out dashboard.pass.key 2048
+# 生成 dashboard.key
+$ openssl rsa -passin pass:over4chars -in dashboard.pass.key -out dashboard.key
+$ rm dashboard.pass.key # 可以删除了
+# 生成 dashboard.csr
+$ openssl req -new -key dashboard.key -out dashboard.csr # 一直回车
+# 生成 dashboard.crt
+$ openssl x509 -req -sha256 -days 365 -in dashboard.csr -signkey dashboard.key -out dashboard.crt
+```
+
+### 安装 dashboard
+
+```shell
+$ kubectl create --edit -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
+```
+
+### 删除 dashboard
+
+```shell
+$ kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
+```
+
 # 网络扩展
 
 ## flannel
