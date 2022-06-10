@@ -142,7 +142,7 @@ $ sudo kubeadm config images pull \
 # 10.244.0.0/16 是 chennel 扩展的配置
 # --apiserver-advertise-address 是 master 节点的 ip，如果是单机，即为该机器 ip 地址
 $ kubeadm init --image-repository registry.aliyuncs.com/google_containers \
-  --pod-network-cidr 10.5.0.0/16 \
+  --pod-network-cidr 10.244.0.0/16 \
   --control-plane-endpoint 10.1.0.145 \
 	--cri-socket unix:///var/run/cri-dockerd.sock
 ```
