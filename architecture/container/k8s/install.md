@@ -185,6 +185,86 @@ remove-etcd-member     Remove a local etcd member.
 cleanup-node           Run cleanup node.
 ```
 
+## 添加节点
+
+```shell
+# 在 master 节点
+$ kubeadm token create --print-join-command
+... 
+
+# 在待加入的节点, 在上面生成的命令后面指定 cri socket
+$ kubeadm join 10.1.0.145:6443 --token nxxcv7.gge00x97wiphualw --discovery-token-ca-cert-hash sha256:cfb324b2ee7ee548b08e38d2e6d60905e392553bf6715504e87888183a1238fd
+u --cri-socket unix:///var/run/cri-dockerd.sock
+
+# 为新节点指定 label
+$ kubectl label node k8s-worker-1 node-role.kubernetes.io/worker=worker
+
+# 验证
+ubuntu@k8s-master-1:~$ kubectl get nodes
+NAME           STATUS   ROLES           AGE     VERSION
+k8s-master-1   Ready    control-plane   9h      v1.24.1
+k8s-worker-1   Ready    worker          3m17s   v1.24.1
+```
+
+## 安装  dashboard
+
+```shell
+# 安装 dashboard
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
+
+# 启动代理
+$ kubectl proxy --address=0.0.0.0
+```
+
+**创建服务账号**
+
+ 保存到 `account.yaml`。
+
+```shell
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+```
+
+然后运行。
+
+```shell
+kubectl apply -f account.yaml
+```
+
+**设置权限**
+
+保存到 `permission.yaml`。
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+```
+
+然后运行。
+
+```shell
+kubectl apply -f permission.yaml
+```
+
+**获取 token**
+
+```shell
+kubectl -n kubernetes-dashboard create token admin-user
+```
+
 # 网络扩展
 
 ## flannel
@@ -217,6 +297,16 @@ kube-system   kube-apiserver-localhost.localdomain            1/1     Running   
 kube-system   kube-controller-manager-localhost.localdomain   1/1     Running   0          3m8s
 kube-system   kube-proxy-4w84n                                1/1     Running   0          2m52s
 kube-system   kube-scheduler-localhost.localdomain            1/1     Running   0          3m6s
+```
+
+# pod 管理
+
+```shell
+# 查看 pod  信息
+$ kubectl get pods -A  # A = all-namespaces
+
+# 删除 pod
+$ kubectl delete pod kubernetes-dashboard --namespace=kubernetes-dashboard
 ```
 
 # 参考
