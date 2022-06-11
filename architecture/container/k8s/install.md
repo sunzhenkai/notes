@@ -290,21 +290,40 @@ subjects:
 kubectl apply -f permission.yaml
 ```
 
+也可以放到一个文件里面。
+
+```shell
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+```
+
 **获取 token**
 
 ```shell
 kubectl -n kubernetes-dashboard create token admin-user
-
-## 安装 dashboard
-
-```shell
-# 下面是官方的安装命令, 直接运行会有证书的问题
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
 ```
 
 ### **https 证书**
 
-对于 https 证书，可以自己生成证书，可以用证书认证服务商。对于自己生成证书，可以手动生成，也可以通过添加 `--auto-generate-certificates`  来自动生成，更多参数参考[这里](https://github.com/kubernetes/dashboard/blob/master/docs/common/dashboard-arguments.md)。
+k8s dashboard 默认会自己生成证书，可以跳过。对于 https 证书，可以自己生成证书，可以用证书认证服务商。对于自己生成证书，可以手动生成，也可以通过添加 `--auto-generate-certificates`  来自动生成，更多参数参考[这里](https://github.com/kubernetes/dashboard/blob/master/docs/common/dashboard-arguments.md)。
 
 ```shell
 # 自认证证书
@@ -317,12 +336,6 @@ $ rm dashboard.pass.key # 可以删除了
 $ openssl req -new -key dashboard.key -out dashboard.csr # 一直回车
 # 生成 dashboard.crt
 $ openssl x509 -req -sha256 -days 365 -in dashboard.csr -signkey dashboard.key -out dashboard.crt
-```
-
-### 安装 dashboard
-
-```shell
-$ kubectl create --edit -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.0/aio/deploy/recommended.yaml
 ```
 
 ### 删除 dashboard
@@ -523,6 +536,7 @@ $ systemctl restart docker
 验证 pod ip。
 
 ```shell
+# alias k8s="kubectl --namespace=default"
 $ k8s get pods
 NAME                                        READY   STATUS    RESTARTS   AGE
 dashboard-metrics-scraper-8c47d4b5d-2bbbx   1/1     Running   0          43s
@@ -542,3 +556,113 @@ IP:           10.244.1.3
 ```
 
 这里需要注意的是，需要在每个 node 执行上面的操作，docker_opt.env 文件不能共用。
+
+## dashboard 无法登录
+
+使用 proxy 的方式打开登录界面之后，会发现无法登录，有如下提示。
+
+```shell
+Insecure access detected. Sign in will not be available. Access Dashboard securely over HTTPS or using localhost. Read more here .
+```
+
+即便添加如下参数。
+
+```shell
+--auto-generate-certificates
+--namespace=default
+--insecure-bind-address=0.0.0.0
+--insecure-port=8080
+--enable-insecure-login	
+```
+
+根据 [这里](https://github.com/kubernetes/dashboard/issues/6693) 说的，`--enable-insecure-login` 仅适用在 `127.0.0.1` 和 `localhost` 使用 http 登录的情景，对于使用 kubectl proxy 使用 http 协议并不适用。
+
+**端口转发**
+
+```shell
+$ kubectl port-forward -n default service/kubernetes-dashboard 18082:443 --address='0.0.0.0' 
+```
+
+## 解决方案
+
+dashboard 的 ssl 认证有点坑，可以确认下面几点。
+
+- 不允许使用非 `localhost` 和 `127.0.0.1` 地址使用 HTTP 协议访问，没有配置可以规避这个问题，所以
+
+  - `kubectl proxy` 方式只能是在本机安装 k8s 时使用
+  - 基本可以放弃使用 HTTP 访问了
+
+- 非 `localhost` 和 `127.0.0.1` 只能使用 HTTPS 协议访问了
+
+所以，对于使用 HTTPS ，可以从两个方向来解决。
+
+- 购买证书认证商的认证服务，使用域名，并配置域名解析
+- 搭建 self-signed 站点
+
+购买证书认证服务就不说了，**记录几个可行的解决方案。**
+
+- 端口转发
+  - Firefox 可以访问
+  - Chrome 不能查看证书，Safari、Chrome、Opera 不能访问
+- 搭建 nginx 服务并做自认证
+  - Safari、Firefox 可以忽略风险直接访问
+  - Chrome 需要先下载证书，标记信任后可访问
+
+## 搭建 nginx 并配置自认证
+
+至于搭建参考[这里](https://www.howtogeek.com/devops/how-to-create-and-use-self-signed-ssl-on-nginx/)吧，端口类型改为 NodePort。
+
+```shell
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: default
+spec:
+  ports:
+    - port: 443
+      targetPort: 8443
+  type: NodePort
+  selector:
+    k8s-app: kubernetes-dashboard
+```
+
+添加 nginx 配置。
+
+```shell
+upstream k8s-dashboard {
+    server 10.244.1.2:8443;
+}
+
+server {
+    # auth_basic "Auth Message";
+    # auth_basic_user_file /etc/apache2/.htpasswd;
+    client_max_body_size 100m;
+	  listen 8443 ssl default_server;
+	  listen [::]:8443 ssl default_server;
+	  server_name  192.168.6.103;
+	  include snippets/self-signed.conf;
+
+    location / {
+        proxy_pass         https://k8s-dashboard;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+        
+        # enable websocket
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
+```
+
+然后就可以使用 Chrome 访问了。
+
+```shell
+# 浏览器输入地址
+https://192.168.6.103:8443/#/login
+```
+
