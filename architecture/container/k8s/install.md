@@ -185,7 +185,38 @@ remove-etcd-member     Remove a local etcd member.
 cleanup-node           Run cleanup node.
 ```
 
+## 配置网络
+
+这一步很关键，如不能正确配置集群网络，pod 间可能无法通讯，kubectl proxy 无法正常访问（通常表现为 pod 运行正常，但提示连接拒绝）。以 flannel 为例，首先安装 flannel。
+
+```shell
+$ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+
+[使用工具 mk-docker-opts.sh](https://github.com/flannel-io/flannel/blob/master/dist/mk-docker-opts.sh)生成网络信息，这个工具也可以使用 `sudo find / -name 'mk-docker-opts.sh'` 在 docker 容器中找到。
+
+```shell
+$ mk-docker-opts.sh -d /run/docker_opts.env -c
+```
+
+修改 docker service。
+
+```shell
+# root 用户执行
+$ vim /lib/systemd/system/docker.service
+# 添加这一行
+EnvironmentFile=/run/docker_opts.env
+# 修改这一行
+ExecStart=/usr/bin/dockerd $DOCKER_OPTS -H fd:// ...
+
+# 重启 docker
+$ systemctl daemon-reload
+$ systemctl restart docker
+```
+
 ## 添加节点
+
+对添加的节点同样需要配置网络，且不可复用其他节点的 docker_opts.env 文件。
 
 ```shell
 # 在 master 节点
@@ -432,3 +463,82 @@ sudo systemctl restart docker
 sudo systemctl restart kubelet
 ```
 
+## 使用 kubectl proxy 无法访问其他节点服务
+
+下面是访问 dashboard 的错误信息，运行时是 docker，kubernetes-dashboard 运行在另外一台 worker node 上，使用 master node 的 proxy 访问 dashboard 服务会报下面的错误。
+
+```shell
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {
+    
+  },
+  "status": "Failure",
+  "message": "error trying to reach service: dial tcp 172.17.0.3:8443: connect: connection refused",
+  "reason": "ServiceUnavailable",
+  "code": 503
+}
+```
+
+原因是 docker 容器使用的网络（172.17.0.1/16）和网络扩展（用的是 flannel，10.244.0.0/32）不是统一个网络，导致无法访问。这里的 172.17.0.3 其实是 worker node 的网络地址，这是因为 proxy 容易部署早于 flannel，不在同一个网络。
+
+```shell
+# 查看 flannel 网络
+$ cat /run/flannel/subnet.env
+FLANNEL_NETWORK=10.244.0.0/16
+FLANNEL_SUBNET=10.244.0.1/24
+FLANNEL_MTU=1400
+FLANNEL_IPMASQ=true
+```
+
+生成 docker 环境变量 DOCKER_OPTS。
+
+```shell
+# 找到 mk-docker-opts.sh，在 flannel 镜像里面；也可以下载 flannel 的二进制包找到这个脚本
+$ sudo find / -name 'mk-docker-opts.sh'
+/var/lib/docker/overlay2/8779d2bd83ddf0e237da15f5c0e62fd79bbf6d3868cea87ec926c471f1184774/merged/opt/bin/mk-docker-opts.sh
+/var/lib/docker/overlay2/99462f1d9e955f5c40a11844119dc1e0f295208c20a696e7bea76b39324a9943/diff/opt/bin/mk-docker-opts.sh
+
+# root 用户; 生成 docker opts
+$ alias mk-docker-opts="/var/lib/docker/overlay2/99462f1d9e955f5c40a11844119dc1e0f295208c20a696e7bea76b39324a9943/diff/opt/bin/mk-docker-opts.sh"
+$ mk-docker-opts -d /run/docker_opts.env -c
+```
+
+修改 docker service。
+
+```shell
+# root 用户执行
+$ vim /lib/systemd/system/docker.service
+# 添加这一行
+EnvironmentFile=/run/docker_opts.env
+# 修改这一行
+ExecStart=/usr/bin/dockerd $DOCKER_OPTS -H fd:// ...
+
+# 重启 docker
+$ systemctl daemon-reload
+$ systemctl restart docker
+```
+
+验证 pod ip。
+
+```shell
+$ k8s get pods
+NAME                                        READY   STATUS    RESTARTS   AGE
+dashboard-metrics-scraper-8c47d4b5d-2bbbx   1/1     Running   0          43s
+kubernetes-dashboard-59fccbc7d7-9wmn9       1/1     Running   0          43s
+$ k8s describe pod kubernetes-dashboard-59fccbc7d7-9wmn9
+Name:         kubernetes-dashboard-59fccbc7d7-9wmn9
+Namespace:    default
+Priority:     0
+Node:         k8s-worker-1/10.1.0.123
+Start Time:   Sat, 11 Jun 2022 07:03:10 +0000
+Labels:       k8s-app=kubernetes-dashboard
+              pod-template-hash=59fccbc7d7
+Annotations:  seccomp.security.alpha.kubernetes.io/pod: runtime/default
+Status:       Running
+IP:           10.244.1.3
+...
+```
+
+这里需要注意的是，需要在每个 node 执行上面的操作，docker_opt.env 文件不能共用。

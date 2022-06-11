@@ -18,6 +18,11 @@ $ yum install gperftools gperftools-devel -y
 # Heap Profile
 
 ```shell
-$ env LD_PRELOAD="/usr/lib64/libtcmalloc.so" HEAPPROFILE="/tmp/heap.hprof" <binary>
-```
+# dump
+$ env LD_PRELOAD="/usr/lib64/libtcmalloc_and_profiler.so" HEAPPROFILE="/tmp/profile" <binary>
+$ env LD_PRELOAD="/usr/lib64/libtcmalloc.so" HEAPPROFILE="/tmp/profile" HEAP_PROFILE_TIME_INTERVAL=60 <binary>
 
+# analysis
+$ pprof --text <binary> /tmp/profile....heap
+$ pprof --svg <binary> /tmp/profile....heap > heap.svg
+```
