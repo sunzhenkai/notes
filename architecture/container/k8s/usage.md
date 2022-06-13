@@ -8,6 +8,14 @@ date: 2022/06/09 00:00:00
 update: 2022/06/09 00:00:00
 ---
 
+# 节点管理
+
+## 删除节点
+
+```shell
+$ sudo kubeadm reset cleanup-node  # master 节点也可以清除
+```
+
 # Pod 管理
 
 ```shell

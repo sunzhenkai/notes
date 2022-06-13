@@ -180,8 +180,6 @@ $ sudo chmod -R 755 /www
   --error-log-path=/logs/nginx/error.log
 ```
 
-
-
 ## 配置
 
 ```shell
