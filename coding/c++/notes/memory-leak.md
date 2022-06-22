@@ -36,7 +36,13 @@ $ gcore $pid
 
 ```shell
 $ gdb bin/ranker_service core.9085
-$ dump binary memory result.bin 0x23546400000 0x23586400000  # dump 1G 内存数据
+(gdb) dump binary memory result.bin 0x23546400000 0x23586400000  # dump 1G 内存数据
+
+## dump 内存块 0x23546400000 全部数据
+# 计算地址
+> hex(0x0000023546400000 + 23330816 * 1024) # python3
+'0x23ad6400000'
+(gdb) dump binary memory result.bin 0x23546400000 0x23ad6400000  # dump 区块全部数据 23330816KB
 ```
 
 **统计 vtable**

@@ -308,6 +308,20 @@ swapT(iv[0], iv[2]);
 // 1 2 3 -> 3 2 1
 ```
 
+不限于类型。
+
+```c++
+template<unsigned N>
+void f() {
+    std::cout << N << std::endl;
+}
+
+int main() {
+    f<10>();
+    return 0;
+}
+```
+
 ## define
 
 ### `##`
@@ -335,6 +349,16 @@ std::cout << XAppend(a) << std::endl; // output: 3
 #define ToString(a) #a
 std::cout << ToString(abc) << std::endl;  // abc
 ```
+
+## Parameter pack
+
+[Parameter pack](https://en.cppreference.com/w/cpp/language/parameter_pack)。
+
+> A template parameter pack is a template parameter that accepts zero or more template arguments (non-types, types, or templates). A function parameter pack is a function parameter that accepts zero or more function arguments.
+>
+> A template with at least one parameter pack is called a *variadic template*.
+
+包含至少一个参数包的模板称为可变模板。
 
 # 其他
 
