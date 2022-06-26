@@ -10,7 +10,7 @@ update: 2021/11/15 00:00:00
 
 # gRPC 的一些想法
 
-开源的 RPC 框架有很多，如果专注于 java，可以尝试 [finagle](https://twitter.github.io/finagle/)，打造基于 java 的微服务系统可以考虑  dubbo、spring cloud、spring cloud alibaba；如果是 c++ 可以尝试 thrift/pb + brpc；如果服务有跨语言调用的需求，可以考虑 thrift、gRPC。
+开源的 RPC 框架有很多，如果专注于 java，可以尝试 [finagle](https://twitter.github.io/finagle/)，打造基于 java 的微服务系统可以考虑  `dubbo`、`spring cloud`、`spring cloud alibaba`；如果是 c++ 可以尝试 thrift/pb + brpc；如果服务有跨语言调用的需求，可以考虑 thrift、gRPC。
 
 相信，谷歌的背书 + 多语言 + pb & gRPC，会吸引很多人的注意，但是 gRPC 的一些坑还是要慢慢趟才行。
 
