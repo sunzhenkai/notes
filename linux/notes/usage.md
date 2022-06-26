@@ -37,6 +37,10 @@ $ grep -inr --include pom.xml apollo . # i: 忽略大小写; r: 递归; n: 行�
 ## 递归查找特定文件[夹]
 
 ```shell
+# command
+find <search-pa>
+
+# 示例
 $ find . -name '\.idea'
 ```
 
@@ -194,6 +198,12 @@ $ lsof -i:8200 | awk '{print $2}' | xargs kill -9
 kill -USR1 <pid>
 ```
 
+## 排查进程无故 killed
+
+```shell
+$ dmesg -T| grep -E -i -B100 'killed process'
+```
+
 # 磁盘读写
 
 ```shell
@@ -295,6 +305,22 @@ PasswordAuthentication yes
 
 # 重启 ssh 服务
 sudo service sshd restart
+```
+
+## 远程执行命令
+
+```shell
+$ ssh -i /path/to/secret-key-file user@host "command"
+```
+
+**示例**
+
+```shell
+# 从 172.31.0.1 同步 consul 数据到本机
+C="/usr/local/consul/consul kv export abtest-platform > /tmp/abtest-consul-data.json"
+ssh mobdev@172.31.0.1 "$C"
+scp mobdev@172.31.0.1:/tmp/abtest-consul-data.json /tmp/
+/home/ubuntu/app/consul/consul kv import @/tmp/abtest-consul-data.json
 ```
 
 # 网络

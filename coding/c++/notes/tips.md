@@ -446,3 +446,18 @@ namespace global {
 }
 ```
 
+# 特殊语法
+
+## template ...
+
+[Parameter pack](https://en.cppreference.com/w/cpp/language/parameter_pack)。
+
+```c++
+template<typename T, T...Ts>
+class ... {};
+```
+
+## this->template
+
+[参考](https://stackoverflow.com/questions/5533354/what-does-a-call-to-this-template-somename-do)，[这里](https://www.zhihu.com/question/37990298)。
+

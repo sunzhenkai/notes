@@ -32,4 +32,3 @@ mkdir gcc-build
 cd gcc-build
 $PWD/../gcc-<version>/configure --prefix=/path/to/install/dir --enable-languages=c,c++ --disable-multilib
 ```
-
