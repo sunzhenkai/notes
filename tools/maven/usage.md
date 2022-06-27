@@ -8,6 +8,8 @@ date: 2021/01/29 00:00:00
 update: 2021/01/29 00:00:00
 ---
 
+[toc]
+
 # 命令
 
 ```shell
@@ -37,6 +39,18 @@ $ mvn archetype:generate
 
 ```shell
 $ mvn package
+```
+
+## 指定模块
+
+```shell
+$ mvn clean package -pl <group-id>:<artifact-id> -am
+```
+
+## 指定 pom 文件
+
+```shell
+$ mvn package -f /path/to/pom.xml
 ```
 
 # 可执行jar
