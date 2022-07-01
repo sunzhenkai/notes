@@ -140,3 +140,10 @@ git push --force-with-lease
 ```
 
 参考[这里](https://stackoverflow.com/questions/3042437/how-to-change-the-commit-author-for-one-specific-commit)。
+
+# 查看某一行修改人
+
+```shell
+git blame <file> -L <start-line>,<end-line>
+```
+

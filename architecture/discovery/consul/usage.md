@@ -8,6 +8,12 @@ date: 2021/12/08 00:00:00
 update: 2021/12/08 00:00:00
 ---
 
+# 启动
+
+```shell
+$ consul agent -dev -bind=0.0.0.0 -client=0.0.0.0 -advertise=127.0.0.1
+```
+
 # 高可用
 
 - [nginx+consul](https://chabik.com/2019/12/dynamic-upstreams-in-nginx-w-consul/)

@@ -55,11 +55,23 @@ update: 2022/04/28 00:00:00
 
 ## 循环
 
+```scala
+// 遍历次数
+(0 until 10).map(...)
+```
+
 ## 判断
 
 ## 函数
 
 ## 类
+
+```scala
+class Point(xc: Int, yc: Int) {
+  var x: Int = xc
+  var y: Int = yc
+}
+```
 
 # 特性
 

@@ -202,3 +202,45 @@ $ mvn package -f /path/to/pom.xml
     </plugins>
 </build>
 ```
+
+# 添加本地依赖
+
+如果有需要添加一个 jar 包到工程，且没有可用的如 nexus 的包管理服务，可以参考[这里](https://stackoverflow.com/questions/2229757/maven-add-a-dependency-to-a-jar-by-relative-path/2230464#2230464)。
+
+首先在工程创建一个目录 `libs`。
+
+```shell
+$ mkdir libs
+```
+
+然后，安装 jar 包到 `libs` 。
+
+```shell
+$ mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file \
+  -Dfile=<path-to-jar> \
+  -DgroupId=<group-id> \
+  -DartifactId=<artifact-id> \
+  -Dversion=<version> \
+  -Dpackaging=jar \
+  -DlocalRepositoryPath=libs
+```
+
+然后，修改 pom。
+
+```xml
+<repositories>
+  <repository>
+    <id>project-repo</id>
+    <url>file://${project.basedir}/libs</url>
+  </repository>
+</repositories>
+
+<dependencies>
+   <dependency>
+        <groupId>org.apache.bahir</groupId>
+        <artifactId>flink-connector-kudu_${scala.version}</artifactId>
+        <version>1.2-SNAPSHORT</version>
+    </dependency>
+</dependencies>
+```
+

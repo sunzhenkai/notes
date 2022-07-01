@@ -46,6 +46,56 @@ $ kafka-topics --zookeeper 127.0.0.1:2181 --describe --topic <topic-name>
 ```shell
 $ ./bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic <topic> --from-beginning
 $ ./bin/kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic <topic> # 默认最新消息开始消费
+
+# oom 异常, 设置 KAFKA_HEAP_OPTS="-Xms512m -Xmx1g"
+$ env KAFKA_HEAP_OPTS="-Xms512m -Xmx1g" ./bin/kafka-console-consumer.sh --bootstrap-server <bootstrap-servers> --topic <topic> --from-beginning
+```
+
+## 指定配置文件
+
+`kafka-auth.properties`
+
+```ini
+security.protocol        = "ssl"
+ssl.ca.location          = "ca_cert.pem"
+ssl.certificate.location = "client_cert.pem"
+ssl.key.location         = "client_cert_key.pem"
+ssl.key.password         = "password"
+```
+
+```shell
+# 指定配置文件
+## consumer
+... --consumer.config kafka-auth.properties
+## producer
+... --producer.config kafka-auth.properties
+```
+
+参考
+
+- [REF 1](https://docs.cloudera.com/HDPDocuments/HDP3/HDP-3.1.0/configuring-wire-encryption/content/configuring_kafka_producer_and_kafka_consumer.html)
+
+## 环境变量指定认证
+
+```shell
+CONNECT_CONSUMER_SECURITY_PROTOCOL: SASL_SSL
+CONNECT_CONSUMER_SASL_KERBEROS_SERVICE_NAME: "kafka"
+CONNECT_CONSUMER_SASL_JAAS_CONFIG: com.sun.security.auth.module.Krb5LoginModule required \
+                            useKeyTab=true \
+                            storeKey=true \
+                            keyTab="/etc/kafka-connect/secrets/kafka-connect.keytab" \
+                            principal="<principal>;
+CONNECT_CONSUMER_SASL_MECHANISM: GSSAPI
+CONNECT_CONSUMER_SSL_TRUSTSTORE_LOCATION: <path_to_truststore.jks>
+CONNECT_CONSUMER_SSL_TRUSTSTORE_PASSWORD: <PWD>
+```
+
+
+
+# 发送消息
+
+```shell
+$ /bin/kafka-console-producer.sh --broker-list localhost:9092 --topic <topic>
 ```
 
 # 删除 topic

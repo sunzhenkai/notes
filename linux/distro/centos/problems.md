@@ -8,6 +8,8 @@ date: 2021/08/28 00:00:00
 update: 2021/08/28 00:00:00
 ---
 
+[toc]
+
 # 编码
 
 ```shell
@@ -57,3 +59,10 @@ DNS1=192.168.6.1
 # 重启网络服务
 sudo systemctl restart NetworkManager
 ```
+
+# Centos 7 安装 gcc 7
+
+```shell
+sudo yum install gcc72-c++
+```
+

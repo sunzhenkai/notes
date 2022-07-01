@@ -9,6 +9,8 @@ date: 2020/10/27 19:00:00
 update: 2020/10/27 19:00:00
 ---
 
+[toc]
+
 # 函数
 
 ```shell
@@ -22,7 +24,14 @@ echo Hello
 # 条件判断
 
 ```shell
+# [ ... ]
 [ ... ] : 
+
+# if ... else ...
+if [ expression ]
+then
+	...
+fi
 ```
 
 # 路径及文件
@@ -95,6 +104,12 @@ FLAG=true
 if [[ $FLAG == true ]]; then
 	# do something
 fi
+```
+
+# 字符串
+
+```shell
+[ "$v" = "value" ]
 ```
 
 # 循环

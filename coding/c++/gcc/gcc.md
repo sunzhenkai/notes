@@ -32,3 +32,16 @@ mkdir gcc-build
 cd gcc-build
 $PWD/../gcc-<version>/configure --prefix=/path/to/install/dir --enable-languages=c,c++ --disable-multilib
 ```
+
+# 编译
+
+```shell
+gcc sample.cpp # 默认生成 a.out
+
+# 指定输出文件
+gcc -o sample.exe sample.cpp
+
+# 指定 c++ std 版本
+gcc -std=c++17 -o sample.exe sample.cpp
+```
+
