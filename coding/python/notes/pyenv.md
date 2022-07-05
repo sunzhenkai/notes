@@ -11,7 +11,11 @@ update: 2021/12/08 00:00:00
 # 安装
 
 ```shell
-$ brew install pyenv
+# brew
+brew install pyenv
+
+# 脚本
+curl https://pyenv.run | bash
 ```
 
 # 列出所有可安装版本
@@ -33,3 +37,16 @@ $ v=3.8.9;wget https://npm.taobao.org/mirrors/python/$v/Python-$v.tar.xz -P ~/.p
 ```shell
 pyenv global 3.8.9
 ```
+
+# 查看 安装的版本
+
+```shell
+pyenv versions
+```
+
+# 回滚系统默认
+
+```shell
+pyenv global system
+```
+
