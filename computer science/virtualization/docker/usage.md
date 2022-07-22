@@ -196,13 +196,13 @@ unset DOCKER_HOST
 ## 从容器拷贝至宿主机
 
 ```shell
-$ docker cp <container-name>:/path/to/file /path/to/dest
+docker cp <container-name>:/path/to/file /path/to/dest
 ```
 
 ## 从宿主机拷贝至容器
 
 ```shell
-1·$ docker cp /path/to/file <container-name>:/path/to/dest
+docker cp /path/to/file <container-name>:/path/to/dest
 ```
 
 # docker hub

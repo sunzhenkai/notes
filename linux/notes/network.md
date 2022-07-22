@@ -31,3 +31,28 @@ iface wlan0 inet static
 	dns-nameserver 192.168.8.1
 ```
 
+# Proxy
+
+## 全局代理
+
+```shell
+export http_proxy=socks5://<host>:<port>
+export https_proxy=socks5://<host>:<port>
+```
+
+### 适用
+
+- cURL
+
+## Git 代理
+
+```shell
+# 设置代理
+git config --global https.proxy socks5://<host>:<port>
+git config --global https.proxy socks5://<host>:<port>
+
+# 取消
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+

@@ -8,6 +8,8 @@ date: 2021/09/24 00:00:00
 update: 2021/09/24 00:00:00
 ---
 
+# 基础
+
 - 架构
   - 介绍
     - [Ref](https://blog.csdn.net/lp284558195/article/details/80297208)
@@ -30,7 +32,6 @@ update: 2021/09/24 00:00:00
       - [Ref](https://www.learningjournal.guru/courses/kafka/kafka-foundation-training/rebalance-listener/)
     - more
       - [Ref](https://www.cnblogs.com/huxi2b/p/6223228.html)
-
 - 名词
 
   - Broker
@@ -76,7 +77,6 @@ update: 2021/09/24 00:00:00
     - Leader处理partition的所有读写请求，follower定期复制leader上的数据
     - 负责维护和跟踪ISR（副本同步队列）中所有follower滞后的状态
     - producer发送一条消息到broker后，leader写入消息并复制到所有follower
-
 - 如何提高可靠性
 
   - 通过request.required.acks参数设置数据可靠性级别
@@ -89,14 +89,33 @@ update: 2021/09/24 00:00:00
     - topic的配置：replication.factor>=3,即副本数至少是个;2<=min.insync.replicas<=replication.factor
     - broker的配置：leader的选举条件unclean.leader.election.enable=false
     - producer的配置：request.required.acks=-1(all)，producer.type=sync
-
 - 应用
   - 日志收集
   - 业务数据收集
   - page view
   - ...
-
 - Ref
   - [Ref 1](https://sq.163yun.com/blog/article/185482391401111552)
   - [Ref 2](https://blog.csdn.net/lp284558195/article/details/80297208)
   - [Ref 3](http://www.infoq.com/cn/articles/kafka-analysis-part-4)
+
+# 读取消息示例
+
+```scala
+val props = new Properties()
+props.setProperty("group.id", "-")
+props.setProperty("bootstrap.servers", "-")
+props.setProperty("auto.offset.reset", "-")
+props.put("key.deserializer", classOf[StringDeserializer])
+props.put("value.deserializer", classOf[StringDeserializer])
+props.put("partition.assignment.strategy", "org.apache.kafka.clients.consumer.RangeAssignor")
+val consumer = new KafkaConsumer[String, String](props)
+consumer.subscribe(List(topic))
+while (true) {
+  val results = consumer.poll(2000)
+  for (record <- results.iterator()) {
+    print(s"${record.key()} - ${record.value()}")
+  }
+}
+```
+

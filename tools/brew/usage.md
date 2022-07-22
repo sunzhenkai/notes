@@ -12,6 +12,8 @@ update: 2021/08/06 00:00:00
 
 **安装**
 
+使用清华开源站仓库安装参考[这里](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)。
+
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```

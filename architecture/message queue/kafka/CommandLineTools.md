@@ -8,6 +8,15 @@ date: 2021/09/24 00:00:00
 update: 2021/09/24 00:00:00
 ---
 
+[toc]
+
+# list consumer groups
+
+```shell
+# 列出所有 consumer group
+./bin/kafka-consumer-groups.sh --bootstrap-server $bootstrap_servers --list
+```
+
 # list topic
 
 ```shell

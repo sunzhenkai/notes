@@ -46,3 +46,18 @@ World::GetReflection()->SetRepeatedString(&wd, tag, 1, "c");
 wd.mutable_sea()->set_name("pacific");
 ```
 
+# Json
+
+```c++
+#include <google/protobuf/util/json_util.h>
+
+// message -> json
+std::string output;
+google::protobuf::util::MessageToJsonString(message, &output);
+
+// json -> message
+SomeMessage msg;
+std::string input;
+google::protobuf::util::MessageToJsonString(input, &msg);
+```
+

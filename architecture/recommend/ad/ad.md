@@ -21,3 +21,13 @@ update: 2022/04/12 00:00:00
 - Supply，供给方，媒体
 - Demand，需求方，广告主
 - Advertiser，广告主
+
+# 服务
+
+## DMP
+
+数据管理平台（Data Management Platform，DMP），用于存储设备用户的兴趣、安装列表、以及人物画像等数据。
+
+# 其他
+
+- [PCOC](https://zhuanlan.zhihu.com/p/398235467)，Predict Click Over Click，校准之后的点击率与后验点击率（近似真实概率）的比值

@@ -265,7 +265,7 @@ ssh -i ~/.ssh/id_rsa -L 8000:192.168.0.10:8000 wii@relay.company.com
 ssh -i <secret> <user>@<host> -fCqTnN -L <port-local>:<ip>:<port-remote> -L <port-local>:<ip>:<port-remote> ...
 
 -f -N: 仅后台转发端口
--C: 压缩数据
+-C: 压缩数据d
 -q: 安静模式
 -T: 禁止远程分配终端
 -n: 关闭标准输入
@@ -323,9 +323,31 @@ scp mobdev@172.31.0.1:/tmp/abtest-consul-data.json /tmp/
 /home/ubuntu/app/consul/consul kv import @/tmp/abtest-consul-data.json
 ```
 
+## 免密登录
+
+```shell
+# 拷贝密钥, 免密登录
+ssh-copy-id <user>@<host> -p <port>
+
+# 手动拷贝 *.pub 内容添加至目标机 ~/.ssh/authorized_keys
+```
+
+### 无法免密登录
+
+```shell
+# 目标机
+## 检查 authorized_keys 读写权限
+chmod 0600 ~/.ssh/authorized_keys
+## 检查 authorized_keys owner+group
+chown <user> ~/.ssh/authorized_keys
+chgrp <group> ~/.ssh/authorized_keys
+```
+
 # 网络
 
 ## 端口
+
+### 查看进程监听的端口
 
 ```shell
 # 查看进程在监听的端口

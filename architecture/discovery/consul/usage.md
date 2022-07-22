@@ -18,6 +18,32 @@ $ consul agent -dev -bind=0.0.0.0 -client=0.0.0.0 -advertise=127.0.0.1
 
 - [nginx+consul](https://chabik.com/2019/12/dynamic-upstreams-in-nginx-w-consul/)
 
+# 接口
+
+## 查询所有服务
+
+```shell
+curl -XGET http://localhost:8500/v1/catalog/services
+```
+
+## 查询服务所有监控实例
+
+```shell
+curl -XGET http://localhost:8500/v1/health/service/:servicename
+```
+
+## 列出所有节点
+
+```shell
+curl -XGET http://localhost:8500/v1/catalog/nodes
+```
+
+## 强制去除节点
+
+```shell
+curl -XPUT http://localhost:8500/v1/agent/force-leave/:node_name	
+```
+
 # KV
 
 ## 导入导出
