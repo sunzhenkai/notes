@@ -75,6 +75,24 @@ Reading symbols from <bin>...done.
 
 yum 同样卡住，使用 `ps aux | grep yum`，`kill -9` 之后，恢复正常。
 
+# 断点
+
+## Attach 方式
+
+```shell
+# 定义断点文件 bp.info
+break main.cpp:15
+
+# attach 进程
+gdb attach 10232 -x bp.info
+```
+
+**命令**
+
+```shell
+
+```
+
 # 参考
 
 - [打印变量](https://stackoverflow.com/questions/6261392/printing-all-global-variables-local-variables)

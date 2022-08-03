@@ -375,6 +375,29 @@ classname& operator=(classname &&other)
 | Move assignment operator | `MyClass& operator=(MyClass&& other) noexcept;` |
 |        Destructor        |                  `~MyClass();`                  |
 
+## 默认添加构造函数
+
+### 判断类型是否有默认构造函数
+
+```c++
+std::cout << std::is_nothrow_move_constructible<Metric>() << std::endl;
+```
+
+### 不添加默认构造函数
+
+某些会导致编译器不会添加默认构造函数。
+
+```c++
+class Metric {
+  std::map<std::string, int> metrics;
+} // OK
+
+class Metric {
+  std::map<std::string, int> metrics;
+  std::mutex mtx;
+} // not ok
+```
+
 # string_view
 
 ```c++

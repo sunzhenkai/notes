@@ -235,3 +235,10 @@ sudo systemctl restart kubelet
 
 - [[1] Docker容器的创建、启动、和停止](http://www.cnblogs.com/linjiqin/p/8608975.html)
 
+# 配置网络
+
+## centos
+
+```shell
+```
+

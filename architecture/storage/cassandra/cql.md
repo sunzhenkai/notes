@@ -122,7 +122,6 @@ ALTER TABLE [keyspace_name.] table_name
 **示例**
 
 ```cql
-ALTER TABLE <keyspace>.<tabel>
-ADD <column-name> text;
+ALTER TABLE trace.ranker ADD rid TEXT;
 ```
 
