@@ -22,7 +22,10 @@ sum by(cluster)(rate(<app>_timer_count{counter="search"}[1m]))
 
 ```sql
  # 3天内请求总量
-sum(increase(requst_count{counter="...",...}}[3d]))
+sum(increase(requst_count{counter="...",...}[3d]))
+
+# sum_over_time
+sum(sum_over_time(request_count{...}[1d]))
 ```
 
 # QPS

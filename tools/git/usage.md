@@ -147,3 +147,10 @@ git push --force-with-lease
 git blame <file> -L <start-line>,<end-line>
 ```
 
+# branch
+
+```shell
+# 删除分支
+git push origin --delete <branch>
+```
+
