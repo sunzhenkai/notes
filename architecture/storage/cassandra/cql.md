@@ -86,6 +86,12 @@ CREATE  KEYSPACE IF NOT EXISTS "trace" WITH REPLICATION = {
 
 # Table
 
+## 查询
+
+```shell
+desc <keyspace-name>;
+```
+
 ## 创建
 
 ```cql

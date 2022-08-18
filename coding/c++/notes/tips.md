@@ -32,6 +32,23 @@ setRouters(std::function<void(seastar::httpd::routes & )> routes)
 {
   // ...
 }
+
+// 等价的
+setRouters(void (*routes)(seastar::httpd::routes &)) 
+{
+  // ...
+  routes(...);
+}
+
+// lambda
+template<typename F>
+SafetyRun(F &&func) {
+  func(...);
+}
+
+SafetyRun([...](...) {
+  ...
+});
 ```
 
 ## 对象成员函数作为参数
