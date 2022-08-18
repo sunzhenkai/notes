@@ -29,3 +29,50 @@ update: 2022/02/10 00:00:00
 
 - 实时配置
   - [nacos cpp client -  借助 long polling 机制实现](https://github.com/nacos-group/nacos-sdk-cpp/blob/master/src/listen/ClientWorker.cpp#L333)
+
+# 定义全局变量
+
+```c++
+// global.h
+namespace {
+  extern int i;
+}
+
+// global.cpp
+namespace {
+  int i = 1024;
+}
+```
+
+# 随机数
+
+```c++
+// random_util.h
+#include "random"
+#include "climits"
+namespace utils {
+    extern std::random_device gRandomDev;
+    extern std::mt19937 gRandomGenerator;
+    extern std::uniform_int_distribution<std::mt19937::result_type> gRandomDist; // (0, INT_MAX)
+  
+  	uint32_t RandomInt(const int &min = 0, const int &max = 0);
+}
+
+// random_util.cpp
+#include "random_util.h"
+namespace ranker::utils {
+    std::random_device gRandomDev;
+    std::mt19937 gRandomGenerator(gRandomDev());
+    std::uniform_int_distribution<std::mt19937::result_type> gRandomDist(0, INT_MAX);
+
+    uint32_t RandomInt(const int &min, const int &max) {
+        if (min == max && min == 0) {
+            return (uint32_t) gRandomDist(gRandomGenerator);
+        } else {
+            std::uniform_int_distribution<std::mt19937::result_type> dist(min, max);
+            return (uint32_t) dist(gRandomGenerator);
+        }
+    }
+}
+```
+

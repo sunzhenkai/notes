@@ -13,6 +13,9 @@ update: 2022/04/12 00:00:00
 
 - eCPM
 - 填充率
+- ROI
+
+> ROI ，投资回报率（Return on Investment），利润 / 花费
 
 # 术语
 
