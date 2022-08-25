@@ -559,7 +559,9 @@ IP:           10.244.1.3
 
 ## dashboard 无法登录
 
-使用 proxy 的方式打开登录界面之后，会发现无法登录，有如下提示。
+**最简单的方式是，网络类型设置为 NodePort，使用火狐浏览器打开。**
+
+使用 proxy 的方式打开登录界面之后，会发现无法登录，有如下提示。 
 
 ```shell
 Insecure access detected. Sign in will not be available. Access Dashboard securely over HTTPS or using localhost. Read more here .

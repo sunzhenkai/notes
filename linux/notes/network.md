@@ -56,3 +56,35 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
+# IP
+
+```shell
+via : [FAMILY] ADDRESS, 指定下一跳地址
+src : ADDRESS, 发送至目的地时优先使用的源地址
+```
+
+## table
+
+```shell
+# show table
+ip route show table all
+ip route show table 10
+
+# add table
+ip route add 192.168.6.0/24 dev br0 table 10
+ip route add default via 192.168.6.1 table 10
+
+# 删除 table
+ip route delete table 12 192.168.9.0/24
+```
+
+## rule
+
+```shell
+# show rule
+ip rule show
+
+# 添加
+ip rule add from 192.168.6.0/24 table 10 priority 1
+```
+

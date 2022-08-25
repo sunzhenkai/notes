@@ -28,7 +28,13 @@ $ jupyter notebook
 # 生成配置文件
 $ jupyter notebook --generate-config
 
-# 设置密码
+# 设置密码, 把密码加密后写入文件, 不会启动服务
 $ jupyter notebook password
+```
+
+# 设置监听和端口
+
+```shell
+jupyter notebook --ip 0.0.0.0 --port 18800 
 ```
 

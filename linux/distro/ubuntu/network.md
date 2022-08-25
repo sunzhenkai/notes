@@ -52,6 +52,32 @@ $ sudo ifup -a
 $ sudo systemctl restart sytemd-networking
 ```
 
+# 接口
+
+```shell
+# up / down
+ip link set dev ens7 up    # up
+ip link set dev ens7 down  # down
+```
+
+# 路由
+
+```shell
+# 展示路由配置
+ip route show
+
+# 添加路由
+ip route add <network_ip>/<cidr> via <gateway_ip> dev <network_card_name>
+## 示例
+ip route add 192.168.6.0/24 dev eth0
+ip route add default 
+
+# 删除路由
+ip route del default # 删除默认路由
+```
+
+
+
 # 设置 DNS
 
 ```shell

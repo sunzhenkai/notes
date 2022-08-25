@@ -154,3 +154,22 @@ git blame <file> -L <start-line>,<end-line>
 git push origin --delete <branch>
 ```
 
+# 配置
+
+```shell
+# 打印全局配置
+git config --list --global
+```
+
+## 代理
+
+```shell
+# 设置
+git config --global http.proxy http://user:password@domain:port
+git config --global https.proxy http://user:password@domain:port
+
+# 取消设置
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+

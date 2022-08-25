@@ -69,3 +69,6 @@ intercept 14265                 root    3u      REG              259,1 227432595
 
 `/data/intercept/access.log` 日志占用 210G 容量，但是已经被删除。
 
+# 使用不同网关导致配合端口转发失效
+
+- [这里](https://unix.stackexchange.com/questions/664757/port-forwarding-does-not-work-using-different-gateway)

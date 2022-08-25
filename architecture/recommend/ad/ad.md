@@ -24,6 +24,7 @@ update: 2022/04/12 00:00:00
 - Supply，供给方，媒体
 - Demand，需求方，广告主
 - Advertiser，广告主
+- [PMP](https://www.zhihu.com/question/26188653)，Private Marketplace，优质媒体私有化购买
 
 # 服务
 

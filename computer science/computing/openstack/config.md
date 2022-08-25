@@ -20,6 +20,12 @@ sudo service <service> restart
 sudo service nova-scheduler restart
 ```
 
+## 状态
+
+```shell
+sudo systemctl status <service>
+```
+
 # 超分
 
 ```shell

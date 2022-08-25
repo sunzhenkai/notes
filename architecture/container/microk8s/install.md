@@ -41,6 +41,7 @@ capabilities = ["pull", "resolve"]
 
 # 检查状态
 ```shell
+# 如果不翻墙/替换镜像, 会在这里卡住
 microk8s status --wait-ready
 ```
 
