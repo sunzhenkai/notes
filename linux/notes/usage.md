@@ -354,6 +354,20 @@ chgrp <group> ~/.ssh/authorized_keys
 lsof -iTCP -sTCP:LISTEN | grep <pid/pname>
 ```
 
+## 网络速度
+
+- iftop
+- nload
+- cbm
+- ifstat
+
+```shell
+sudo iftop
+
+# 安装
+sudo apt install iftop
+```
+
 # 自启动
 
 ```shell
@@ -421,5 +435,11 @@ $ uname -r  # OR -a
 journalctl -u <service> -f
 ```
 
+# 需求
 
+## 同步文件夹
+
+```shell
+async -auz <path-to-local> user@host:/path/to/remote
+```
 

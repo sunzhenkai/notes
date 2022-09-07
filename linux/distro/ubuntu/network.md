@@ -110,3 +110,56 @@ $ sudo ufw status
 $ sudo ufw disable
 ```
 
+# Netplan
+
+## 设置路由
+
+```yaml
+network:
+  version: 2
+  ethernets:
+    enp0s31f6:
+      match:
+        macaddress: 6c:4b:90:85:5d:59
+      dhcp4: true
+      wakeonlan: true
+      set-name: enp0
+      nameservers:
+        addresses: [223.5.5.5, 8.8.8.8]
+      addresses: [192.168.6.8/24]
+      routes:
+        - to: default
+          via: 192.168.6.1
+          table: 100
+      routing-policy:
+        - to: 192.168.6.0/24
+          table: 100
+          priority: 100
+    enxf8e43b1a1229:
+      match:
+        macaddress: f8:e4:3b:1a:12:29
+      addresses: [192.168.9.99/24]
+      set-name: ext0
+      nameservers:
+        addresses: [223.5.5.5, 8.8.8.8]
+```
+
+# wireshark
+
+## 安装
+
+```shell
+apt install tshark
+```
+
+文档参考[这里](https://www.wireshark.org/docs/wsug_html_chunked/AppToolstshark.html)。
+
+## 使用
+
+```shell
+tshark -i <entwork-interface>
+
+# 筛选端口
+tshark -i enp0 -f "src port 30800"
+```
+

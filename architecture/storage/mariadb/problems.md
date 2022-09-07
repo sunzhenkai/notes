@@ -47,5 +47,3 @@ LimitNOFILE=10000
 LimitNPROC=10000
 ```
 
-
-

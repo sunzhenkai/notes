@@ -54,7 +54,8 @@ ip rule add from 192.168.9.0/24 table 12 priority 2 # 可以不设置 priority
 # 如果有设置了默认的路由，可以忽略其中的一个，比如有如下默认路由
 ip route add default via 192.168.6.1 dev ens8
 # 那么只需要设置 192.168.9.0/24
-ip route add default via 192.168.9.1 dev ens9 table 12
+# ip route add default via 192.168.9.1 dev ens9 table 12
+ip route add 192.168.9.0/24 dev ens9 proto kernel scope link src 192.168.9.8 
 ip rule add from 192.168.9.0/24 table 12 
 ```
 
@@ -74,5 +75,20 @@ sudo netstat -rn
 ## en0 是 wifi 网络接口, vpn 的网络端口是 utun3
 ## 修改路由, 把 192.168.6.0/24 所有网段的路由走 vpn
 sudo route change 192.168.6.0/24 -interface utun3
+```
+
+# USB 外接网卡
+
+```shell
+$ lshw -c network
+WARNING: you should run this program as super-user.
+  *-network
+       ...
+       logical name: enp0s31f6
+       ...
+  *-network DISABLED
+       ...
+       logical name: enxf8e43b1a1229
+       ...
 ```
 

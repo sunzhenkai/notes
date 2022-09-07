@@ -44,6 +44,9 @@ spec:
         image: nginx:1.14.2
         ports:
         - containerPort: 80
+        env:
+        	- name: ENV_NAME
+        		value: ENV_VALUE
 ```
 
 ### 需要的字段

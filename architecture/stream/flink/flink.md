@@ -29,3 +29,18 @@ import com.twitter.chill.protobuf.ProtobufSerializer
 env.getConfig.registerTypeWithKryoSerializer(classOf[PbMessage], classOf[ProtobufSerializer])
 ```
 
+# 参数
+
+```shell
+-m    address of job manager which to connect
+-d    detached mode
+-yd   yarn detached mode
+-ynm  yarn application name
+-yn   number of yarn container to allocate = Number of Task Managers
+-ys   Number of slots per TaskManager
+-yjm  Memory for JobManager Container with optional unit (default: MB)
+-ytm  Memory per TaskManager Container with optional unit (default: MB)
+-p    The parallelism with which to run the program.
+-c    class to run
+```
+

@@ -98,7 +98,11 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
 ### 设置bind-address
 
 ```shell
+# mysql
 sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+# mariadb
+/etc/mysql/mariadb.conf.d/50-server.cnf
+
 # 修改bind-address
 bind-address = 0.0.0.0
 ```

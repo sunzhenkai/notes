@@ -21,6 +21,17 @@ package main
 package config
 ```
 
+## 版本
+
+```shell
+# 格式
+v<major>.<minor>.<patch>-<pre-release>.<patch>
+# 实例
+v1.2.23
+v1.4.0-beta.2
+v2.3.4-alpha.3
+```
+
 # 数据类型
 
 ## 类型
