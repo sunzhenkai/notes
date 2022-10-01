@@ -98,7 +98,7 @@ C-z			vim 后台运行
 fg 			调回vim
 
 ## 2
-:!{cmd}
+:!<cmd>
 ```
 
 # 查找替换
@@ -135,3 +135,4 @@ Ctrl + v
 # select 
 d / x
 ```
+

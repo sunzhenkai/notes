@@ -61,10 +61,17 @@ microk8s kubectl create token -n kube-system default --duration=8544h
 # docker login
 docker login hub.company.com
 
+# 不指定 namespace, 设置 default
 kubectl create secret generic regcred \
     --from-file=.dockerconfigjson=~/.docker/config.json \
     --type=kubernetes.io/dockerconfigjson
-    
+
+# 每个 namespace 需要单独设置
+kubectl create secret generic regcred \
+    --from-file=.dockerconfigjson=~/.docker/config.json \
+    --type=kubernetes.io/dockerconfigjson \
+    --namespace=ace
+
 # 修改 deployment
 apiVersion: v1
 kind: Pod
@@ -77,5 +84,12 @@ spec:
   # 添加 imagePullSecrets
   imagePullSecrets:
   - name: regcred
+```
+
+# Namespace
+
+```shell
+# 创建命名空间
+kubectl create namespace <space-name>
 ```
 

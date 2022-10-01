@@ -58,6 +58,12 @@ helm repo list
 
 # 移除 repo
 helm repo remove <repo-name>
+
+# 打包 repo
+helm package <relative-path-to-chart>
+
+# 生成 index
+helm repo index
 ```
 
 ## Chart
@@ -115,5 +121,12 @@ helm rollback <release-name> <REVISION> --timeout <timeout> --wait
 
 # 查看 revision
 helm history <release-name>
+```
+
+## 模板
+
+```shell
+# 查看生成 Manifest
+helm template --debug <relative-path-to-chart>
 ```
 

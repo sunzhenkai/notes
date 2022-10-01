@@ -53,6 +53,8 @@ curl -XPUT http://localhost:8500/v1/agent/force-leave/:node_name
 ```shell
 consul kv export > data.json         # 导出所有
 consul kv export online/ > data.json # 导出 online 前缀
+# 指定 consul 地址
+consul kv export -http-addr=http://10.20.10.3:8500 > data.json
 ```
 
 ```shell

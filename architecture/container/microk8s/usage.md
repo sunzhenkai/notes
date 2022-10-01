@@ -24,6 +24,10 @@ update: 2022/08/21 00:00:00
 # ~/.bash_aliases
 alias k='microk8s kubectl'
 alias mk='microk8s'
+
+# 或者 ~/.local/bin/kubectl, 适配 k9s
+#!/bin/bash
+exec microk8s.kubectl $(echo "$*" | sed 's/-- sh.*/sh/')
 ```
 
 **加入用户组**

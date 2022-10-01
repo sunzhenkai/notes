@@ -15,3 +15,9 @@ syntax = "proto2";
 package a.b;
 ```
 
+# 命令行
+
+```shell
+protoc --go_out=<gen-output-path> -I<deps-path> <src-protocols>
+```
+
