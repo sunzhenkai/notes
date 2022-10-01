@@ -17,11 +17,16 @@ options edns0 trust-ad
 search .
 ```
 
-导致 Pod 里面的 `/etc/resolve.conf` 配置也是如此，无法正常解析域名。先删除 `/etc/resolve.conf`（`/run/systemd/resolve/stub-resolv.conf` 的软链） ，再创建并写入如下内容。
+导致 Pod 里面的 `/etc/resolv.conf` 配置也是如此，无法正常解析域名。先删除 `/etc/resolv.conf`（`/run/systemd/resolve/stub-resolv.conf` 的软链） ，再创建并写入如下内容。
 
 ```shell
 nameserver 223.5.5.5
 nameserver 8.8.8.8
+```
+
+```shell
+sudo rm /etc/resolv.conf
+sudo vim /etc/resolv.conf
 ```
 
 重启 Pods。
