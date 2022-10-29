@@ -8,6 +8,8 @@ date: 2020/12/30 12:00:00
 update: 2020/12/30 12:00:00
 ---
 
+[TOC]
+
 # 安装
 
 ```shell
@@ -127,7 +129,20 @@ $ go env -u GOPROXY
 $ go env -w GOPROXY="..."
 
 # 不使用 proxy 的仓库
-$ go env -w "git.a.com,git.b.com,..."
+$ go env -w GOPRIVATE "git.a.com,git.b.com,..."
+```
+
+# Mod
+
+```shell
+# 下载依赖
+go mod download
+
+# 整理依赖
+go mod tidy
+
+# 清楚缓存（删除所有下载的库，谨慎操作）
+go clean -modcache
 ```
 
 # 参考

@@ -84,6 +84,9 @@ $ cat script/config.sh
 workers=9
 threads_compute=10
 threads=101
+
+# group
+sed -i "s/workers=([0-9]+)/\1/" /path/to/file
 ```
 
 # 替换子串

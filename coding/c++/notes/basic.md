@@ -322,7 +322,7 @@ int main() {
 }
 ```
 
-## define
+## 宏定义 define
 
 ### `##`
 
@@ -335,6 +335,21 @@ int ab = 1, ax = 2, xa = 3;
 std::cout << Concat(a, b) << std::endl; // output: 1
 std::cout << AppendX(a) << std::endl; // output: 2
 std::cout << XAppend(a) << std::endl; // output: 3
+```
+
+```c++
+// not ok
+#define select(m, key) m##[#key]
+// ok
+#define select(m, key) (m)[#key]
+
+
+// 使用
+std::map<std::string, std::string> m;
+m["a"] = "0";
+auto v = select(m, a);
+
+// 在使用宏变量时，外加小括号, 比如 #define add(a, b) (a) + (b)
 ```
 
 ### `#@`

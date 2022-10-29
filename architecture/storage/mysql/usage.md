@@ -233,6 +233,6 @@ $ firewall-cmd --reload
 ```shell
 $ mysqldump -uroot -p<password> -h 'host' -P port <database>  # 导出数据库
 $ mysqldump -uroot -p<password> -h 'host' -P port <database> <table>  # 导出表
-$ mysqldump -uroot -p<password> -B --events --routines --triggers <database>
+$ mysqldump -uroot -p<password> d <database>
 ```
 
