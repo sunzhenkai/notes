@@ -8,7 +8,7 @@ date: 2022/06/09 00:00:00
 update: 2022/06/09 00:00:00
 ---
 
-> k = kubectl
+[toc]
 
 # 节点管理
 
@@ -86,10 +86,33 @@ spec:
   - name: regcred
 ```
 
+# Secret
+
+```shell
+# 创建
+kubectl create secret generic regcred \
+    --from-file=.dockerconfigjson=$HOME/.docker/config.json \
+    --type=kubernetes.io/dockerconfigjson \
+    --namespace=default
+
+# 查看
+kubectl get secrets
+kubectl get secretss <secret> --output=yaml
+
+# 删除
+kubectl delete secret <secret>
+```
+
 # Namespace
 
 ```shell
 # 创建命名空间
 kubectl create namespace <space-name>
+```
+
+# 登录容器
+
+```shell
+kubectl exec --stdin --tty <pod-instance> -- /bin/bash
 ```
 

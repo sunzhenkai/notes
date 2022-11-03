@@ -24,7 +24,7 @@ sudo chown -f -R $USER ~/.kube
 su - $USER
 ```
 
-# 配置镜像地址
+# 配置 k8s.gcr.io 镜像地址
 ```shell
 # create a directory with the registry name
 sudo mkdir -p /var/snap/microk8s/current/args/certs.d/k8s.gcr.io
@@ -33,9 +33,9 @@ sudo mkdir -p /var/snap/microk8s/current/args/certs.d/k8s.gcr.io
 echo '
 server = "https://k8s.gcr.io"
 
-[host."https://registry.cn-hangzhou.aliyuncs.com/google_containers"]
-capabilities = ["pull", "resolve"]
-
+[host."https://registry.aliyuncs.com/v2/google_containers"]
+  capabilities = ["pull", "resolve"]
+  override_path = true
 ' | sudo tee -a /var/snap/microk8s/current/args/certs.d/k8s.gcr.io/hosts.toml
 ```
 
@@ -45,8 +45,39 @@ capabilities = ["pull", "resolve"]
 microk8s status --wait-ready
 ```
 
-# 设置别名
+# 配置
+
+## 配置 kubectl 命令
+
+```shell
+mkdir -p ~/.local/bin/
+vim ~/.local/bin/kubectl
+# 输入如下内容
+#!/bin/bash
+exec /snap/bin/microk8s.kubectl $(echo "$*" | sed 's/-- sh.*/sh/')
+```
+
+## 配置别名
+
 ```shell
 # vim ~/.bash_aliases
+alias kubectl='microk8s kubectl'
 alias k='microk8s kubectl'
+alias mk='microk8s'
+alias helm='microk8s helm3'
 ```
+
+# k8s.gcr.io 无法拉取镜像
+
+配置 k8s.gcr.io 理论上可以解决问题。
+
+```shell
+# pause
+## 从阿里云镜像拉取
+docker pull registry.aliyuncs.com/google_containers/pause:3.7
+## 重命名
+docker tag registry.aliyuncs.com/google_containers/pause:3.7 k8s.gcr.io/pause:3.7
+```
+
+
+

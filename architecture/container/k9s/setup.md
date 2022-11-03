@@ -10,7 +10,11 @@ date: 2022/08/22 00:00:00
 # Install
 
 ```shell
+# brew
 brew install derailed/k9s/k9s
+
+# snap
+sudo snap install k9s
 ```
 
 # 连接集群

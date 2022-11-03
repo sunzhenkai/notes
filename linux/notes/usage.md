@@ -371,6 +371,12 @@ chgrp <group> ~/.ssh/authorized_keys
 lsof -iTCP -sTCP:LISTEN | grep <pid/pname>
 ```
 
+### 查看所有监听的端口
+
+```shell
+sudo netstat -tunlp
+```
+
 ## 网络速度
 
 - iftop
