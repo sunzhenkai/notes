@@ -48,4 +48,15 @@ microk8s status --wait-ready
 ```shell
 # vim ~/.bash_aliases
 alias k='microk8s kubectl'
+alias mk='microk8s'
+```
+
+# 组建集群
+
+# 安装 dashboard
+
+```shell
+microk8s enable dns dashboard
+# 生成 token
+microk8s kubectl create token -n kube-system default --duration=8544h
 ```
