@@ -22,9 +22,12 @@ Docker 是一个开源的应用容器引擎，让开发者可以打包他们的�
 
 ```shell
 $ docker run -it -d --restart=always --name=ubuntu-18.04 ubuntu:18.04 
+
+# 指定端口
+$ docker run --restart=always -p 8080:8080 <image-name>
 ```
 
-## 启动容器
+## 启动已创建容器
 
 ```shell
 $ docker start container_id/container_name

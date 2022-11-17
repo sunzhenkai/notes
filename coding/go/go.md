@@ -21,6 +21,17 @@ package main
 package config
 ```
 
+## 版本
+
+```shell
+# 格式
+v<major>.<minor>.<patch>-<pre-release>.<patch>
+# 实例
+v1.2.23
+v1.4.0-beta.2
+v2.3.4-alpha.3
+```
+
 # 数据类型
 
 ## 类型
@@ -160,6 +171,7 @@ var variable_name [SIZE1][SIZE2]...[SIZEN] variable_type  // 多维数组
 ```go
 var balance = [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
 balance := [5]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
+il := []int{1, 2}
 
 // ... 代替长度
 var balance = [...]float32{1000.0, 2.0, 3.4, 7.0, 50.0}
@@ -228,12 +240,11 @@ l.Remove(1)
 l.Len()
 ```
 
-
-
 ## 集合
 
 ```go
 var m map[string]string = map[string]string{"France": "Paris", "Italy": "Rome", "Japan": "Tokyo"}
+m := make(map[int]int)
 
 // 遍历参考章节 循环
 ```

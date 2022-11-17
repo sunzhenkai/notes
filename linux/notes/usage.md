@@ -231,7 +231,24 @@ ssh -n user@host3 'tail -f /path/to/file' &
 # 当前年月日
 $ date '+%Y-%m-%d'
 2021-11-06
+$ date '+%Y%m%d-%H%M%S'
+20220916-110256
 ```
+
+- **`%D`** – Display date as mm/dd/yy
+- **`%Y`** – Year (e.g., 2020)
+- **`%m`** – Month (01-12)
+- **`%B`** – Long month name (e.g., November)
+- **`%b`** – Short month name (e.g., Nov)
+- **`%d`** – Day of month (e.g., 01)
+- **`%j`** – Day of year (001-366)
+- **`%u`** – Day of week (1-7)
+- **`%A`** – Full weekday name (e.g., Friday)
+- **`%a`** – Short weekday name (e.g., Fri)
+- **`%H`** – Hour (00-23)
+- **`%I`** – Hour (01-12)
+- **`%M`** – Minute (00-59)
+- **`%S`** – Second (00-60)
 
 # Tips
 
@@ -354,6 +371,26 @@ chgrp <group> ~/.ssh/authorized_keys
 lsof -iTCP -sTCP:LISTEN | grep <pid/pname>
 ```
 
+### 查看所有监听的端口
+
+```shell
+sudo netstat -tunlp
+```
+
+## 网络速度
+
+- iftop
+- nload
+- cbm
+- ifstat
+
+```shell
+sudo iftop
+
+# 安装
+sudo apt install iftop
+```
+
 # 自启动
 
 ```shell
@@ -421,5 +458,11 @@ $ uname -r  # OR -a
 journalctl -u <service> -f
 ```
 
+# 需求
 
+## 同步文件夹
+
+```shell
+async -auz <path-to-local> user@host:/path/to/remote
+```
 

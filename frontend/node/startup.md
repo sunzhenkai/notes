@@ -21,6 +21,7 @@ $ nvm ls-remote --lts  # 仅列长期支持版本
 
 # install
 $ nvm install v12.20.0
+$ nvm install 16  # 安装最新的 16 主版本的最新稳定版
 
 # use
 $ nvm use v12.20.0

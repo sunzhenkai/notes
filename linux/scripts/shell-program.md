@@ -45,6 +45,9 @@ $(dirname "/path/to/file")   # /path/to
 
 # 获取绝对路径
 $(pwd)/$(dirname "./path/to/file")
+
+# 脚本路径
+BASE=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 ```
 
 # 数组

@@ -11,6 +11,17 @@ update: 2021/09/04 00:00:00
 
 # ubuntu
 
+## 22.04
+
+**清华源**
+
+```shell
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+```
+
 ## 20.04
 
 **清华源**

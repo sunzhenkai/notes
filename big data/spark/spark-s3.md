@@ -23,7 +23,8 @@ pip3 install pyspark
 from pyspark.sql import SparkSession
 import os
 os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages com.amazonaws:aws-java-sdk-pom:1.12.153,org.apache.hadoop:hadoop-aws:3.2.2,org.apache.hadoop:hadoop-client:3.2.2 pyspark-shell'
-spark = SparkSession.builder.master("local[1]").appName("sample").getOrCreate()
+spark = SparkSession.builder.master("local[*]").config("spark.executor.memory", "24g").config("spark.driver.memory", "24g").appName("sample").getOrCreate()
+# "local[1]" 使用单个数字，最多使用一个 core
 
 # 从本地读取 aws 认证信息
 import configparser

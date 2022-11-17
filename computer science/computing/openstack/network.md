@@ -1,7 +1,7 @@
 ---
 title: openstack network
 categories: 
-	- [computer science, computing, network]
+	- [computer science, computing, openstack]
 tags:
 	- openstack
 date: 2021/09/04 00:00:00
@@ -93,6 +93,12 @@ l2_population = true
 在 `linuxbridge_agent.ini` 配置的 `physical_interface_mappings = provider:enp4s0` 中的 `provider:enp4s0` ，冒号前面是新增的接口名称，enp4s0 为系统显示的硬件网络接口。
 
 在 `ml2_conf.ini` 中配置 `flat_networks = provider` ，指定 flat 类型接口使用的网络接口。
+
+> 设置多值
+>
+> physical_interface_mappings = provider:enp4s0,providervpn:enp5s0
+>
+> flat_networks = provider,providervpn
 
 ### sysctl.conf
 

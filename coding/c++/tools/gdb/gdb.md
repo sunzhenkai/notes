@@ -50,6 +50,9 @@ info locals
 info variables
 # 查看参数
 info args
+
+# 打印变量
+display <variable-name>
 ```
 
 # 常见问题

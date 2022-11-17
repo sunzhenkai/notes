@@ -18,7 +18,6 @@ update: 2020/10/27 19:00:00
 | Redis   |      |
 | HBase   |      |
 | Pegasus |      |
-| Presto  |      |
 
 ## 关系型数据库
 
@@ -33,9 +32,14 @@ update: 2020/10/27 19:00:00
 | TDengine |      |
 | InfluxDB |      |
 
+# 查询引擎
 
+- Impala
+- Presto
 
-# OLAP & OLTP
+# 其他
+
+## OLAP & OLTP
 
 |          | OLTP                                   | OLAP                                   |
 | -------- | -------------------------------------- | -------------------------------------- |
@@ -58,6 +62,9 @@ update: 2020/10/27 19:00:00
 - Impala
 - Druid
 - ClickHouse
+- Hive
+- Impala
+- InfluxDB
 
 # 参考
 
