@@ -36,7 +36,7 @@ rustscan -a 192.168.6.100 --ulimit 5000
 rustscan -a 192.168.6.100 --ulimit 5000 -p 21,22,80
 
 # 指定范围
-rustscan -a 192.168.6.100 --ulimit 5000 -p 1-65535
+rustscan -a 192.168.6.2 --ulimit 500 -r 1-65535
 ```
 
 # 查看监听的端口
