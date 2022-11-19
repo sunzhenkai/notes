@@ -139,7 +139,10 @@ scp openwrt-x86-64-generic-squashfs-combined-efi.qcow2 root@192.168.6.60:
 **3. 挂载镜像为磁盘**
 
 ```shell
+# qcow2
 qm importdisk 100 openwrt-x86-64-generic-squashfs-combined-efi.qcow2 local-lvm
+# img
+qm importdisk 100 openwrt-x86-64-generic-squashfs-combined-efi.img local-lvm
 ```
 
 > 这里的 100 是虚拟机 ID
