@@ -64,6 +64,17 @@ exec /snap/bin/microk8s.kubectl $(echo "$*" | sed 's/-- sh.*/sh/')
 alias kubectl='microk8s kubectl'
 alias k='microk8s kubectl'
 alias mk='microk8s'
+```
+
+# 组建集群
+
+# 安装 dashboard
+
+```shell
+microk8s enable dns dashboard
+# 生成 token
+microk8s kubectl create token -n kube-system default --duration=8544h
+```
 alias helm='microk8s helm3'
 ```
 
@@ -78,6 +89,3 @@ docker pull registry.aliyuncs.com/google_containers/pause:3.7
 ## 重命名
 docker tag registry.aliyuncs.com/google_containers/pause:3.7 k8s.gcr.io/pause:3.7
 ```
-
-
-
