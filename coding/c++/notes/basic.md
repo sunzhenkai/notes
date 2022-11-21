@@ -322,6 +322,50 @@ int main() {
 }
 ```
 
+### 类型推演
+
+**重用方法**
+
+```shell
+std::is_same<TA, TB>
+typeid()
+std::is_same_v<TA, TB>  #include <variant>
+```
+
+**类型读取及定义**
+
+```c++
+template<auto object, class T=std::decay_t<decltype(*object)>>
+int Function();
+```
+
+**类型判断**
+
+```c++
+#include <concepts>
+
+ template<typename Type>
+ concept CharTypes = std::is_same<Type, char>::value ||
+                        std::is_same<Type, wchar_t>::value || std::is_same<Type, char8_t>::value ||
+                        std::is_same<Type, char16_t>::value || std::is_same<Type, char32_t>::value;
+
+template<CharTypes T>
+    class Some{};
+```
+
+```c++
+#include <variant>
+
+template<class T>
+void f(T t) {
+  if (std::is_same_v<T, std::string>) {
+    // DO SOMETHING
+  }
+}
+```
+
+
+
 ## 宏定义 define
 
 ### `##`

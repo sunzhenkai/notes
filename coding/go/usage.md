@@ -173,7 +173,7 @@ go tool pprof -alloc_space -http=:8082 ~/heap.at
 
 # 类型转换
 
-## String 转数字s
+## String 转数字
 
 ```shell
 # string -> int32
