@@ -157,8 +157,26 @@ git push origin --delete <branch>
 # 配置
 
 ```shell
+# 打印配置
+git config -l
 # 打印全局配置
-git config --list --global
+git config --global -l	# 当前用户的配置
+git config --sysmte -l	# 系统配置
+```
+
+## 作用域 
+
+```shell
+          默认仓库级别
+--system  系统
+--global  用户目录
+```
+
+## 配置项
+
+```shell
+git config user.name '...'
+git config user.email '...'
 ```
 
 ## 代理
@@ -173,3 +191,17 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
+# 命令
+
+```shell
+# init
+git init
+
+# add, 添加改动
+git add file
+
+# commit
+git commit -m 'comment' --author='sample@x.com' 
+## 修改刚刚 commit 的内容
+git commit --amend -m 'comment' ...
+```

@@ -209,6 +209,15 @@ mount -t auto /dev/vdb1 /data
 echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0" >> /etc/fstab
 ```
 
+# 查看接口
+
+```shell
+sudo dmidecode --type connector
+# 可以查看 USB、SATA、M.2 接口
+```
+
+
+
 # 参考
 
 - https://phoenixnap.com/kb/linux-create-partition

@@ -466,3 +466,18 @@ journalctl -u <service> -f
 async -auz <path-to-local> user@host:/path/to/remote
 ```
 
+# 节点间测速
+
+```shell
+# 安装 iperf
+apt install iperf3
+
+# node A
+iperf3 -s
+
+# node B
+iperf3 -c <node-b>
+```
+
+# 磁盘测速
+
