@@ -115,6 +115,27 @@ lmb(f);
 lmb2(f);
 ```
 
+## reinterpret_cast
+
+```c++
+void const *const data;
+const Record *record = reinterpret_cast<Record*>(data);
+```
+
+## static_cast
+
+```c++
+void const *const data;
+const Record *record = static_cast<Record*>(data);
+```
+
+## const_cast
+
+```c++
+const Record *data;
+Record *record = reinterpret_cast<Record*>(data);
+```
+
 # 获取变量类型
 
 ```c++

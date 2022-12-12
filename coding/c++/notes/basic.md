@@ -407,6 +407,10 @@ auto v = select(m, a);
 ```c++
 #define ToString(a) #a
 std::cout << ToString(abc) << std::endl;  // abc
+
+// 拼接
+#define ToSV(member) #member##sv
+ToSV(time)  // 等价于 "time"sv
 ```
 
 ## Parameter pack
