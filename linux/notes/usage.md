@@ -159,8 +159,13 @@ sudo su         Y               N[1]                 Y
 ```shell
 # 修改权限
 sudo chmod u+w /etc/sudoers
+# 或
+sudo visudo
 
 # 修改 /etc/sudoers，添加下面内容
+## 注意: 
+### 1. 先把用户加到 wheel 组 (命令: sudo usermod -aG wheel <username>)
+### 2. 放到 "%wheel  ALL=(ALL)       ALL " 的下面, 所以: 最好放到文件最后
 <username>    ALL=(ALL) NOPASSWD: ALL
 ```
 

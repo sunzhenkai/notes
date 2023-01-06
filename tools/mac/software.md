@@ -31,3 +31,6 @@ glsetkey <key>
 https://<host>/api/v4/projects
 ```
 
+# 键位修改工具
+
+- https://karabiner-elements.pqrs.org/

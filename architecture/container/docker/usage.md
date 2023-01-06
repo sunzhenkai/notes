@@ -168,6 +168,13 @@ $ docker image prune    # 删除危险镜像
 $ docker image prune -a # 删除所有镜像
 ```
 
+## 导出/加载容器
+
+```shell
+docker export container-name > latest.tar
+docker export --output="latest.tar" container-name
+```
+
 # 非 root 用户使用 docker
 
 ## ubuntu
@@ -243,5 +250,29 @@ sudo systemctl restart kubelet
 ## centos
 
 ```shell
+```
+
+# 修改 `/var/lib/docker` 路径
+
+```shell
+sudo vim /lib/systemd/system/docker.service
+
+```
+
+**参考**
+
+- [1](https://www.digitalocean.com/community/questions/how-to-move-the-default-var-lib-docker-to-another-directory-for-docker-on-linux)
+
+# 异常
+
+## `failed to start daemon: Devices cgroup isn't mounted`
+
+```shell
+yum install libcgroup libcgroup-tools libcgroup-pam
+systemctl enable cgconfig
+systemctl start cgconfig
+
+# 重启
+reboot
 ```
 

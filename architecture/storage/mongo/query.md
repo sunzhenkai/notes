@@ -33,6 +33,9 @@ test     0.000GB
 
 # 统计数量
 > db.test.count({...})
+
+# 指定字段
+db.user.find({"status": 1, "updated": {"$gt" : 1672831786 }}, {updated: 1})
 ```
 
 > 和关系型数据库对应，collections - table，doc - row。
