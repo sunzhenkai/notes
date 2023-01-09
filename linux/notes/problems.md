@@ -72,3 +72,30 @@ intercept 14265                 root    3u      REG              259,1 227432595
 # 使用不同网关导致配合端口转发失效
 
 - [这里](https://unix.stackexchange.com/questions/664757/port-forwarding-does-not-work-using-different-gateway)
+
+# Shell 登录慢
+
+```shell
+# 调试
+$ bash --login --verbose
+...
+export PS1="[\u@${Green}\H${ENDCOLOR}:${Brown}$(ips)${ENDCOLOR} \W]\\$" # 在这个位置卡很久
+
+# 原因
+## ips 命令卡住的可能性比较大, 手动执行 ips
+## 果然会卡住
+
+$ which ips
+ips ()
+{
+    curl -s http://169.254.169.254/latest/meta-data/public-ipv4
+}
+
+# 用的阿里云机器, 修改为下面的命令
+$ sudo vim /etc/profile
+# 修改 function ips() ... 为如下
+function ips() {
+    GET http://100.100.100.200/latest/meta-data/eipv4
+}
+```
+

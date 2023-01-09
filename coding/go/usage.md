@@ -171,3 +171,17 @@ curl http://127.0.0.1:12067/debug/pprof/heap > heap.dat
 go tool pprof -alloc_space -http=:8082 ~/heap.at
 ```
 
+# 类型转换
+
+## String 转数字
+
+```shell
+# string -> int32
+if tr, err := strconv.ParseInt("9207", 10, 32); err != nil {
+	res = int32(tr)
+}
+
+# string -> int64
+res, err := strconv.ParseInt("9207", 10, 64)
+```
+

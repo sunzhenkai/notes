@@ -322,7 +322,51 @@ int main() {
 }
 ```
 
-## define
+### 类型推演
+
+**重用方法**
+
+```shell
+std::is_same<TA, TB>
+typeid()
+std::is_same_v<TA, TB>  #include <variant>
+```
+
+**类型读取及定义**
+
+```c++
+template<auto object, class T=std::decay_t<decltype(*object)>>
+int Function();
+```
+
+**类型判断**
+
+```c++
+#include <concepts>
+
+ template<typename Type>
+ concept CharTypes = std::is_same<Type, char>::value ||
+                        std::is_same<Type, wchar_t>::value || std::is_same<Type, char8_t>::value ||
+                        std::is_same<Type, char16_t>::value || std::is_same<Type, char32_t>::value;
+
+template<CharTypes T>
+    class Some{};
+```
+
+```c++
+#include <variant>
+
+template<class T>
+void f(T t) {
+  if (std::is_same_v<T, std::string>) {
+    // DO SOMETHING
+  }
+}
+```
+
+
+
+## 宏定义 define
 
 ### `##`
 
@@ -337,6 +381,21 @@ std::cout << AppendX(a) << std::endl; // output: 2
 std::cout << XAppend(a) << std::endl; // output: 3
 ```
 
+```c++
+// not ok
+#define select(m, key) m##[#key]
+// ok
+#define select(m, key) (m)[#key]
+
+
+// 使用
+std::map<std::string, std::string> m;
+m["a"] = "0";
+auto v = select(m, a);
+
+// 在使用宏变量时，外加小括号, 比如 #define add(a, b) (a) + (b)
+```
+
 ### `#@`
 
 字符化形参。
@@ -348,6 +407,10 @@ std::cout << XAppend(a) << std::endl; // output: 3
 ```c++
 #define ToString(a) #a
 std::cout << ToString(abc) << std::endl;  // abc
+
+// 拼接
+#define ToSV(member) #member##sv
+ToSV(time)  // 等价于 "time"sv
 ```
 
 ## Parameter pack
