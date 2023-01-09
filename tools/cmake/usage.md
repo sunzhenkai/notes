@@ -334,6 +334,11 @@ FetchContent_Declare(
 )
 ```
 
+## Configure 阶段让 Target 可用
+
+- [ref 1](https://stackoverflow.com/questions/36084785/building-a-tool-immediately-so-it-can-be-used-later-in-same-cmake-run)
+- [ref 2](https://stackoverflow.com/questions/17446981/cmake-externalproject-add-and-findpackage/23570741#23570741)
+
 # 方法 (function)
 
 ```cmake

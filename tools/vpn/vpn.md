@@ -238,6 +238,10 @@ auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
 auth_param basic realm proxy
 acl authenticated proxy_auth REQUIRED
 http_access allow authenticated
+# 放在 http_access deney all 之前
+
+# 其他配置
+tcp_outgoing_address    198.18.192.194		# 设置出网端口(网络端口分配的ip)
 
 # 启动服务
 sudo systemctl start squid.service

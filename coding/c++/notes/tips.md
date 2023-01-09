@@ -115,6 +115,15 @@ lmb(f);
 lmb2(f);
 ```
 
+## 对比
+
+```shell
+dynamic_pointer_cast
+static_pointer_cast
+```
+
+
+
 # 获取变量类型
 
 ```c++
