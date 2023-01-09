@@ -396,12 +396,55 @@ sudo iftop
 sudo apt install iftop
 ```
 
+## 抓包
+
+### tcpdump
+
+```shell
+tcpdump -i <interface> port <port> 
+tcpdump -i <interface> port <port> -w output.cap
+
+# 其他用法
+tcpdump -nS         # 监听所有端口
+tcpdump -nnvvS      # 显示更详细的数据报文，包括 tos, ttl, checksum 等
+tcpdump host <host> # 过滤主机
+tcpdump src <host>  # 过滤源主机
+tcpdump dst <host>  # 过滤目的主机
+tcpdump net 0.0.0.0/24  # 过滤网络
+tcpdump portrange <port-start>-<port-end> # 指定端口范围
+```
+
+**输出日志说明**
+
+```shell
+[S]： SYN（开始连接）
+[.]: 没有 Flag
+[P]: PSH（推送数据）
+[F]: FIN （结束连接）
+[R]: RST（重置连接）
+```
+
 # 自启动
 
 ```shell
 crontab -e
 # 添加如下内容
 @reboot /path/to/program
+```
+
+## 查看进程网络链接
+
+```shell
+# 1. strace
+strace -p $PID -f -e trace=network -s 10000
+
+# 2. lsof
+lsof -i -a -p $(pidof <process>)
+## 持续观察
+watch -n 1 lsof -i -a -p $(pidof <process>)
+
+# 3. ss
+ss -nap | grep $(pidof <process>)
 ```
 
 # 查看系统信息
