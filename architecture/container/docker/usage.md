@@ -114,6 +114,25 @@ $ docker ps -a
 $ docker docker rm container-name
 ```
 
+## 迁移容器
+
+```shell
+# 为 container 创建镜像
+$ sudo docker commit <container-name> <image-name>
+# 导出镜像
+$ sudo docker save <image-name> > image-name.tar
+# 或 sudo docker save <image-name> -o image-name.tar
+
+#####
+
+# 导入镜像
+$ sudo docker load < image-name.tar
+# 创建 container
+$ sudo docker run -d --name <container-name> ... <image-name>
+```
+
+- [参考](https://www.linuxandubuntu.com/home/migrate-docker-containers-to-new-server)
+
 # 镜像
 
 ## 导出镜像

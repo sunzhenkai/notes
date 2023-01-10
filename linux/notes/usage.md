@@ -471,3 +471,76 @@ journalctl -u <service> -f
 async -auz <path-to-local> user@host:/path/to/remote
 ```
 
+# Swap 分区
+
+## 开启
+
+```shell
+# 1. 为 swap 分区创建空间
+sudo fallocate -l 1G /swapfile
+# 或使用 dd
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=1048576
+
+# 2. 修改权限
+sudo chmod 600 /swapfile
+
+# 3. 创建 swap area
+sudo mkswap /swapfile
+
+# 4. 开启 swap
+sudo swapon /swapfile
+
+# 5. 显示状态
+sudo swapon --show
+
+# 6. 配置开机挂载
+sudo vim /etc/fstab
+## 输入如下内容
+/swapfile swap swap defaults 0 0
+```
+
+## 关闭
+
+```shell
+# 1. 关闭 swap
+sudo swapoff -v /swapfile
+
+# 2. 移除 /etc/fstab 中的 swap 配置
+
+# 3. 删除 /swapfile
+```
+
+# alternatives
+
+> 以 python 为例
+
+```shell
+# 更新
+sudo update-alternatives --config python
+
+# 添加选项
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.4 2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 3
+
+# 直接设置
+sudo update-alternatives  --set python /usr/bin/python3.6
+```
+
+# core dump
+
+```shell
+# 生成 core 文件
+ulimit -c unlimited
+
+# 默认路径
+/var/lib/systemd/coredump
+
+# 列出所有 coredump
+coredumpctl list
+
+# 修改 core 文件路径
+echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern  # 放到 /tmp 路径下
+echo 'core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern       # 放到 working directory 下
+```
+
