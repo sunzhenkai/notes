@@ -206,3 +206,52 @@ systemctl status shadowsocks-libev.service
 
 ```
 
+# Http
+
+## squid
+
+### ubuntu
+
+- [ubuntu](https://ubuntu.com/server/docs/proxy-servers-squid)
+
+```shell
+# 安装
+sudo apt install squid
+
+# 配置
+sudo vim /etc/squid/squid.conf
+## 配置项
+http_port <port>
+dns_nameservers 8.8.8.8 8.8.4.4
+
+# 认证
+sudo apt install apache2-utils
+# 生成账号 & 密码并写入文件
+sudo touch /etc/squid/passwords
+sudo htpasswd /etc/squid/passwords <user-name>  
+# htpasswd -c 选项会重新生成文件
+
+# 修改配置
+sudo vim /etc/squid/squid.conf
+## 添加如下内容
+auth_param basic program /usr/lib/squid/basic_ncsa_auth /etc/squid/passwords
+auth_param basic realm proxy
+acl authenticated proxy_auth REQUIRED
+http_access allow authenticated
+# 放在 http_access deney all 之前
+
+# 其他配置
+tcp_outgoing_address    198.18.192.194		# 设置出网端口(网络端口分配的ip)
+
+# 启动服务
+sudo systemctl start squid.service
+# 或重启服务
+sudo systemctl restart squid.service
+
+# 开机启动
+sudo systemctl enable squid.service
+
+# 测试
+curl -v -x http://<user-name>:<password>@<host>:3128 https://www.google.com/
+```
+

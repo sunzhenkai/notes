@@ -157,8 +157,26 @@ git push origin --delete <branch>
 # 配置
 
 ```shell
+# 打印配置
+git config -l
 # 打印全局配置
-git config --list --global
+git config --global -l	# 当前用户的配置
+git config --sysmte -l	# 系统配置
+```
+
+## 作用域 
+
+```shell
+          默认仓库级别
+--system  系统
+--global  用户目录
+```
+
+## 配置项
+
+```shell
+git config user.name '...'
+git config user.email '...'
 ```
 
 ## 代理
@@ -184,4 +202,17 @@ git config --global i18n.commit.encoding utf-8	# 提交信息编码
 git config --global i18n.logoutputencoding utf-8	# 输出 log 编码
 export LESSCHARSET=utf-8
 # 最后一条命令是因为 git log 默认使用 less 分页，所以需要 bash 对 less 命令进行 utf-8 编码
+# 命令
+
+```shell
+# init
+git init
+
+# add, 添加改动
+git add file
+
+# commit
+git commit -m 'comment' --author='sample@x.com' 
+## 修改刚刚 commit 的内容
+git commit --amend -m 'comment' ...
 ```

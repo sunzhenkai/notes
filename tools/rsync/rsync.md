@@ -15,6 +15,15 @@ update: 2021/06/01 00:00:00
 $ brew install rsync
 ```
 
+# 参数
+
+```shell
+P	等价于 --partial --progress
+a	archive 模式
+```
+
+
+
 # 同步文件夹
 
 ```shell
@@ -22,6 +31,7 @@ $ rsync -Pav <local> <user@ip:remote-dist>
 
 # 使用特定 id_rsa
 $ rsync -Pav -e "ssh -i ~/.ssh/id_rsa_sensors" <local> <user@ip:remote-dist>
+
 ```
 
 # 实时同步

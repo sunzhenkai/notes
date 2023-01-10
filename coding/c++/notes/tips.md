@@ -115,6 +115,14 @@ lmb(f);
 lmb2(f);
 ```
 
+## 对比
+
+```shell
+dynamic_pointer_cast
+static_pointer_cast
+```
+
+
 ## reinterpret_cast
 
 ```c++
@@ -521,4 +529,14 @@ class ... {};
 ## this->template
 
 [参考](https://stackoverflow.com/questions/5533354/what-does-a-call-to-this-template-somename-do)，[这里](https://www.zhihu.com/question/37990298)。
+
+# 文件及目录
+
+## 当前文件夹
+
+```c++
+char cwd[512];
+getcwd(cwd, 512);
+std::cout << cwd << std::endl;
+```
 

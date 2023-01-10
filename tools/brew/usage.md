@@ -35,6 +35,12 @@ brew tap homebrew/cask-versions
 ## jdk
 
 ```shell
+# openjdk
+brew search jdk
+brew install openjdk@8
+# adoptopenjdk
+brew tap adoptopenjdk/openjdk
+brew search adoptopenjdk
 brew install adoptopenjdk8
 brew install adoptopenjdk   # 最新 jdk
 ```

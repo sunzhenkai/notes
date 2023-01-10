@@ -41,3 +41,15 @@ echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 echo "nameserver 4.4.4.4" >> /etc/resolv.conf
 ```
 
+# 下载 App 网络错误
+
+**查找 IP**
+
+- [店长之家](https://ping.chinaz.com/raw.githubusercontent.com)
+
+```shell
+# vim /etc/hosts
+# 添加如下内容
+<ip>	raw.githubusercontent.com
+```
+

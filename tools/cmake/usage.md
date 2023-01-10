@@ -136,10 +136,21 @@ foreach(ITEM IN LISTS L)
 endforeach()
 ```
 
+## 循环
+
+```cmake
+set (L A B C)
+foreach (V IN LISTS L)
+	... ${V}
+endforeach()
+```
+
+# 变量
+
 ## 判断变量是否定义
 
 ```cmake
-if (DEFINED VAR_NAME) 
+if (DEFINED VAR_NAME) # NOT DEFINED VAR_NAME
 	...
 endif()
 ```
@@ -158,16 +169,16 @@ if (${V} STREQUAL "")
 endif()
 ```
 
-## 循环
+## 变量默认值
 
 ```cmake
-set (L A B C)
-foreach (V IN LISTS L)
-	... ${V}
-endforeach()
+# option, 只对 BOOL 类型, 默认 OFF
+option(BUILD_THIRD_PARTY "build third party library" ON)
+
+# cache
+SET(BUILD_THIRD_PARTY ON CACHE BOOL "build third party library")
+set(DEPS_DIR "/tmp/cpp-external-lib" CACHE STRING "library install prefix" )
 ```
-
-
 
 # 修改库搜索路径
 
@@ -275,6 +286,16 @@ ExternalProject_Add(
 
 # 指定 libary 安装文件夹，统一在 lib/lib64
 -DCMAKE_INSTALL_LIBDIR=lib
+
+# 参数
+ExternalProject_Add(
+        <target-name>
+        GIT_REPOSITORY <git-repo-address>
+        GIT_TAG <git-tag>
+        PREFIX <prefix-path>        # 创建 build、src 等目录所在的位置, 不是安装的路径
+        INSTALL_DIR <install_dir>		# 不是安装的位置，作为属性，可用 ExternalProject_Get_Property 获取，在 CONFIGURE_COMMAND 等中指定 prefix
+        CMAKE_ARGS ${CMAKE_ARGS}
+)
 ```
 
 ## AddLibrary
@@ -290,6 +311,33 @@ set_target_properties(${TGT} PROPERTIES
 # INTERFACE_INCLUDE_DIRECTORIES
 set_target_propterties 添加 INTERFACE_INCLUDE_DIRECTORIES, 在 target_link_libraries 时，不需要再 include 库的头文件
 ```
+
+## FetchContent_Declare
+
+FetchContent_Declare 通常和 FetchContent_MakeAvailable 一块使用。
+
+FetchContent_MakeAvailable 是 cmake 3.14 引入的。
+
+FetchContent_Declare 的参数参考 ExternalProject_Add，和 ExternalProject_Add 相比，屏蔽了下面的命令。
+
+- `CONFIGURE_COMMAND`
+- `BUILD_COMMAND`
+- `INSTALL_COMMAND`
+- `TEST_COMMAND`
+
+### URL 指定本地文件
+
+```shell
+FetchContent_Declare(
+        boost
+        URL file:///tmp/boost-submodule-boost-1.80.0-1.tar.gz
+)
+```
+
+## Configure 阶段让 Target 可用
+
+- [ref 1](https://stackoverflow.com/questions/36084785/building-a-tool-immediately-so-it-can-be-used-later-in-same-cmake-run)
+- [ref 2](https://stackoverflow.com/questions/17446981/cmake-externalproject-add-and-findpackage/23570741#23570741)
 
 # 方法 (function)
 
