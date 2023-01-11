@@ -16,6 +16,12 @@ $ vim /etc/resolve.conf
 nameserver 192.168.6.1 # 或其他
 ```
 
+## resolveconf
+
+```shell
+
+```
+
 # 修改网络配置
 
 ```shell

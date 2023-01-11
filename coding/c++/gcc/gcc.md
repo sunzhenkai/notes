@@ -45,3 +45,25 @@ gcc -o sample.exe sample.cpp
 gcc -std=c++17 -o sample.exe sample.cpp
 ```
 
+# Flags
+
+```shell
+# warning
+-Wall			开启警告（all: 应该开启的最小警告集合）
+-Wextra		开启扩展警告
+-Werror 	所有警告视为错误
+-Wno-error=...	关闭某项警告视为错误
+-Wno-<...>			关闭某项警告视为错误
+```
+
+**示例**
+
+```shell
+export CFLAGS='-g -O3'
+export CXXFLAGS='-ggdb3 -O0 -Wno-narrowing'
+export CPPFLAGS='-DX=1 -DY=2 -Wno-narrowing'
+export CCFLAGS='--asdf -Wno-narrowing'
+
+make CXXFLAGS='-ggdb3 -O0 -Wno-narrowing' CPPFLAGS='-DX=1 -DY=2 -Wno-narrowing' CCFLAGS='--asdf -Wno-narrowing' all -j
+```
+
