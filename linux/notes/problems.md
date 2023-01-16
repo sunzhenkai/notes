@@ -120,8 +120,10 @@ get-feature:0xc (Autonomous Power State Transition), Current value:00000000
 	
 # 持久化
 $ vim /etc/default/grub
-# 写入如下内容
-nvme_core.default_ps_max_latency_us=0
+# 修改 GRUB_CMDLINE_LINUX_DEFAULT
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nvme_core.default_ps_max_latency_us=0"   # 多个值用空格分隔
+# 更新 grub, 重启生效
+$ sudo update-grub
 ```
 
 **参考**
