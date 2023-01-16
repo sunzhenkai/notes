@@ -540,3 +540,19 @@ getcwd(cwd, 512);
 std::cout << cwd << std::endl;
 ```
 
+## 读取文件
+
+```c++
+#include <fstream>
+
+std::ifstream file(FILENAME);
+if (file.is_open()) {
+    std::string line;
+    while (std::getline(file, line)) {
+        // using printf() in all tests for consistency
+        printf("%s", line.c_str());
+    }
+    file.close();
+}
+```
+
