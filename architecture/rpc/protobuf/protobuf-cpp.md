@@ -61,3 +61,6 @@ std::string input;
 google::protobuf::util::MessageToJsonString(input, &msg);
 ```
 
+# cmake
+
+- https://stackoverflow.com/questions/63309544/cmake-protobuf-external-to-application-code

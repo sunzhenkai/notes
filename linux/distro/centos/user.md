@@ -17,5 +17,8 @@ $ groupadd wii
 $ useradd -d /home/wii -m -s /bin/bash -g wii wii
 # 添加至 sudoers
 $ sudo usermod -aG wheel wii
+
+# sudo 无需密码
+$ sudo visudo
 ```
 

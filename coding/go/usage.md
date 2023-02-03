@@ -185,3 +185,15 @@ if tr, err := strconv.ParseInt("9207", 10, 32); err != nil {
 res, err := strconv.ParseInt("9207", 10, 64)
 ```
 
+# 问题
+
+## `GLIBC_2.32' not found`
+
+```shell
+# 错误
+./main: /lib64/libc.so.6: version `GLIBC_2.32' not found (required by ./main)
+
+# 解决: 编译的时候 CGO_ENABLED 设置为 0
+CGO_ENABLED=0 go build
+```
+

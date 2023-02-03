@@ -11,6 +11,10 @@ update: 2022/1/10 00:00:00
 
 # 忽略 SIGNAL
 
+```shell
+Signal: SIG34 (Real-time event 34)
+```
+
 在使用 gdb 调试时，如果频繁被信号中断，可屏蔽对应信号，以 SIG34 为例。
 
 ```shell

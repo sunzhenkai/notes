@@ -209,6 +209,19 @@ kill -USR1 <pid>
 $ dmesg -T| grep -E -i -B100 'killed process'
 ```
 
+## 查看进程工作路径
+
+```shell
+# pwdx
+pwdx <pid>
+
+# lsof
+lsof -p <PID> | grep cwd
+
+# proc
+readlink -e /proc/<PID>/cwd
+```
+
 # 磁盘读写
 
 ```shell
@@ -394,6 +407,23 @@ sudo iftop
 
 # 安装
 sudo apt install iftop
+```
+
+## nethogs
+
+```shell
+# 安装
+sudo apt-get install nethogs
+sudo yum install nethogs
+```
+
+**使用**
+
+```shell
+nethogs
+nethogs eth1
+nethogs [option] eth0 eth1
+nethogs [option] eth0 eth1 ppp0
 ```
 
 ## 抓包
@@ -582,9 +612,12 @@ ulimit -c unlimited
 # 列出所有 coredump
 coredumpctl list
 
+# core_pattern
 # 修改 core 文件路径
 echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern  # 放到 /tmp 路径下
 echo 'core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern       # 放到 working directory 下
+# 查看 core_pattern
+cat /proc/sys/kernel/core_pattern 
 ```
 # 节点间测速
 
@@ -601,3 +634,10 @@ iperf3 -c <node-b>
 
 # 磁盘测速
 
+# dmesg 
+
+```shell
+$ dmesg
+```
+
+错误信息原因参考[这里](https://utcc.utoronto.ca/~cks/space/blog/linux/KernelSegfaultErrorCodes)。

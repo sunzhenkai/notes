@@ -334,6 +334,20 @@ FetchContent_Declare(
 )
 ```
 
+## 指定 CMakeLists.txt 路径
+
+如果 `CMakeLists.txt` 文件不在仓库根目录下，可以用 `SOURCE_SUBDIR` 来指定子路径。
+
+```cmake
+include(FetchContent)
+FetchContent_Declare(
+  protobuf
+  GIT_REPOSITORY https://github.com/protocolbuffers/protobuf.git
+  GIT_TAG        ae50d9b9902526efd6c7a1907d09739f959c6297 # v3.15.0
+  SOURCE_SUBDIR  cmake
+)
+```
+
 ## Configure 阶段让 Target 可用
 
 - [ref 1](https://stackoverflow.com/questions/36084785/building-a-tool-immediately-so-it-can-be-used-later-in-same-cmake-run)
@@ -414,3 +428,16 @@ Macro 和 function 比较相似，区别如下。
 # 参考
 
 - https://github.com/snikulov/cmake-modules/blob/master/FindThrift.cmake
+
+# 编译优化
+
+## ccache
+
+```shell
+# 安装
+sudo yum install ccache
+
+# 配置
+-DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+```
+
