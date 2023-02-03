@@ -99,3 +99,33 @@ function ips() {
 }
 ```
 
+# NVME 磁盘控制器挂掉
+
+**错误**
+
+```shell
+nvme nvme0: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0x10
+```
+
+**解决**
+
+```shell
+# 临时
+$ sudo apt install nvme-cli
+$ sudo nvme set-feature -f 0x0c -v=0 /dev/nvme0
+# 验证
+$ sudo nvme get-feature -f 0x0c -H /dev/nvme0
+get-feature:0xc (Autonomous Power State Transition), Current value:00000000
+	Autonomous Power State Transition Enable (APSTE): Disabled
+	
+# 持久化
+$ vim /etc/default/grub
+# 修改 GRUB_CMDLINE_LINUX_DEFAULT
+GRUB_CMDLINE_LINUX_DEFAULT="quiet nvme_core.default_ps_max_latency_us=0"   # 多个值用空格分隔
+# 更新 grub, 重启生效
+$ sudo update-grub
+```
+
+**参考**
+
+- [link 1](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1699004)
