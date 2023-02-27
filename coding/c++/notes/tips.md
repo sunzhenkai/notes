@@ -556,3 +556,22 @@ if (file.is_open()) {
 }
 ```
 
+**读取整个文件到 string**
+
+更多参考 [这里](https://insanecoding.blogspot.com/2011/11/how-to-read-in-file-in-c.html)。
+
+```c++
+#include <fstream>
+#include <iostream>
+#include <sstream> //std::stringstream
+
+std::ifstream ins("file.name", std::ios::in | std::ios::binary);
+std::string result;
+if (ins) {
+    std::ostringstream contents;
+    contents << in.rdbuf();
+    in.close();
+    result = contents.str();
+}
+```
+

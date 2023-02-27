@@ -219,3 +219,25 @@ git commit -m 'comment' --author='sample@x.com'
 ## 修改刚刚 commit 的内容
 git commit --amend -m 'comment' ...
 ```
+
+# git-remote-http libcurl-httpd24.so.4 不存在
+
+**错误信息**
+
+```shell
+/opt/rh/rh-git218/root/usr/libexec/git-core/git-remote-http: error while loading shared libraries: libcurl-httpd24.so.4: cannot open shared object file: No such file or directory
+```
+
+**解决**
+
+```shell
+find / -name 'libcurl-httpd24.so.4'
+/opt/rh/httpd24/root/usr/lib64/libcurl-httpd24.so.4
+
+# 修改 LD_LIBRARY_PATH 环境变量
+# vim ~/.bashrc
+export LD_LIBRARY_PATH=/opt/rh/httpd24/root/usr/lib64:$LD_LIBRARY_PATH
+
+source ~/.bashrc
+```
+

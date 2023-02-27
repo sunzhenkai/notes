@@ -16,6 +16,16 @@ update: 2020/12/21 19:00:00
 
 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 [Linux](http://baike.baidu.com/item/Linux) 机器上，也可以实现[虚拟化](http://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%8C%96)。容器是完全使用[沙箱](http://baike.baidu.com/item/%E6%B2%99%E7%AE%B1/393318)机制，相互之间不会有任何接口。
 
+# 安装
+
+## amazon linux 2
+
+```shell
+sudo amazon-linux-extras install epel -y
+sudo amazon-linux-extras enable docker
+sudo yum install -y docker
+```
+
 # 容器
 
 ## 从镜像创建新容器
