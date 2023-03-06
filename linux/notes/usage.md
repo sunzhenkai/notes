@@ -108,6 +108,15 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 ls -lhL
 ```
 
+## 从文件中提取指定行
+
+```shell
+sed '{NUM}q;d' file
+
+# 实例
+sed '10q;d' file
+```
+
 # 用户
 
 ## 创建用户
