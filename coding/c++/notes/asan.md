@@ -39,15 +39,26 @@ ASAN_OPTIONS是Address-Sanitizier的运行选项环境变量。
 
 ```shell
 halt_on_error=0 					# 检测内存错误后继续运行
+abort_on_error=0					# 遇到错误后调用 abort() 而不是 _exit()
 detect_leaks=1 						# 使能内存泄露检测
 malloc_context_size=15 		# 内存错误发生时，显示的调用栈层数为15
 log_path=/tmp/asan.log 		# 内存检查问题日志存放文件路径
 suppressions=$SUPP_FILE		# 屏蔽打印某些内存错误
+symbolize=1
+disable_coredump=0
+disable_core=0
+unmap_shadow_on_exit=1
+sleep_before_dying=60
 ```
+
+**更多**
+
+- https://github.com/google/sanitizers/wiki/SanitizerCommonFlags
+- https://github.com/google/sanitizers/wiki/AddressSanitizerFlags
 
 **示例**
 
 ```shell
+export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 export ASAN_OPTIONS=halt_on_error=0:use_sigaltstack=0:detect_leaks=1:malloc_context_size=15:log_path=/tmp/asan.log:suppressions=$SUPP_FILE
 ```
-
