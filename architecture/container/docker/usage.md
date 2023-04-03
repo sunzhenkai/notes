@@ -26,6 +26,17 @@ sudo amazon-linux-extras enable docker
 sudo yum install -y docker
 ```
 
+# 配置
+
+## 修改 data 目录
+
+```shell
+# vim /etc/docker/daemon.json
+{
+   "data-root": "/data/docker"
+}
+```
+
 # 容器
 
 ## 从镜像创建新容器
@@ -303,5 +314,12 @@ systemctl start cgconfig
 
 # 重启
 reboot
+```
+
+# 查看磁盘占用
+
+```shell
+docker system df -v
+# 会打印 image、container 的磁盘占用
 ```
 

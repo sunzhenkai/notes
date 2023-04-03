@@ -59,6 +59,11 @@ sleep_before_dying=60
 **示例**
 
 ```shell
+# 1
 export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 export ASAN_OPTIONS=halt_on_error=0:use_sigaltstack=0:detect_leaks=1:malloc_context_size=15:log_path=/tmp/asan.log:suppressions=$SUPP_FILE
+
+# 2
+export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
+export ASAN_OPTIONS=symbolize=true:halt_on_error=false:abort_on_error=false:disable_coredump=false:unmap_shadow_on_exit=true:disable_core=false:sleep_before_dying=15:log_path=asan_log
 ```
