@@ -387,6 +387,13 @@ std::cout << XAppend(a) << std::endl; // output: 3
 // ok
 #define select(m, key) (m)[#key]
 
+//--- .
+// not ok
+#define select(m, key) m##.##key
+#define select(m, key) m.##key
+// ok
+#define select(m, key) m.key
+
 
 // 使用
 std::map<std::string, std::string> m;
@@ -433,5 +440,22 @@ INT_MAX
 INT_MIN
 ```
 
+# 进阶
 
+## C++ 程序质量保障
 
+- 代码覆盖率（code coverage）
+- 内存检查
+  - asan
+  - valgrind
+- CPU Profiler﻿
+
+## malloc
+
+常用的 malloc 库，及实践。
+
+- jemalloc
+- tcmalloc
+  - 性能要好于 jemalloc
+- mimalloc
+  - 偶尔会 core
