@@ -134,6 +134,18 @@ int j[][1] = {{1}, {2}, {3}};
 int k[2][2] = {{1, 2}, {3}};
 1 2
 3 0
+  
+// 静态数组
+int i[5] = {0};     // 创建静态数组, 并初始化, 没设置的元素被重置为 0
+std::cout << sizeof(i) << std::endl;		// 20, 5 * 4. 5 个元素, 每个占用 4 字节空间
+int b[3][3] = {0};	// 多维数组
+
+// 动态数组
+int size = 3;
+int *c = new int[size];		// 创建动态数组
+std::cout << sizeof(c) << " - " << sizeof(*c) << std::endl;		// 8 - 4. 8: 64位机器, 指针大小, 4: int 元素大小
+memset(c, 0, size * sizeof(*c));			// 必须要乘 size 才能算出总的占用内存
+delete[] c;
 ```
 
 ## 列表
