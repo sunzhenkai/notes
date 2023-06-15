@@ -42,7 +42,9 @@ $ blkid /dev/sda1
 ## 列出设备及分区信息
 
 ```shell
-$ sudo parted -l
+$ parted -l
+# 或
+$ fdisk -l
 ```
 
 ## 格式化
@@ -62,6 +64,13 @@ $ sudo mkfs -t ext4 /dev/sda
 - ext4
 - FAT32
 - NTFS
+
+**使用中无法格式化**
+
+```shell
+$ dmsetup status
+$ dmsetup remove_all # 清楚所有, 谨慎使用, 最好挨个删除
+```
 
 ## 创建分区表
 
@@ -136,7 +145,7 @@ $ sudo mount -t auto /dev/sda1 /data
 ### 示例
 
 ```shell
-sudo parted /dev/sda
+$ sudo parted /dev/sda
 GNU Parted 3.1
 Using /dev/sda
 Welcome to GNU Parted! Type 'help' to view a list of commands.
@@ -215,8 +224,6 @@ echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0" >
 sudo dmidecode --type connector
 # 可以查看 USB、SATA、M.2 接口
 ```
-
-
 
 # 参考
 

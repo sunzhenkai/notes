@@ -209,10 +209,32 @@ if (it != mp.end())
 
 ### 特殊成员函数
 
-- 构造函数
-- 析构函数
-- 拷贝构造函数
-- 拷贝赋值运算符
+```c++
+// 默认构造函数 (Default constructor)
+classname ()
+// 非默认函数
+explicit classname(type param)
+// 拷贝构造函数 (Copy constructor)
+classname(const classname &other) 
+// 赋值构造 (Copy assignment operator)
+classname& operator=(const classname &other)
+// move 构造 (Move constructor)
+classname(classname &&other)
+// 赋值 move 构造 (Move assignment operator)
+classname& operator=(classname &&other)
+
+// 析构函数 Destructor
+~classname()
+```
+
+|         Function         |            syntax for class MyClass             |
+| :----------------------: | :---------------------------------------------: |
+|   Default constructor    |                  `MyClass();`                   |
+|     Copy constructor     |        `MyClass(const MyClass& other);`         |
+|     Move constructor     |      `MyClass(MyClass&& other) noexcept;`       |
+| Copy assignment operator |   `MyClass& operator=(const MyClass& other);`   |
+| Move assignment operator | `MyClass& operator=(MyClass&& other) noexcept;` |
+|        Destructor        |                  `~MyClass();`                  |
 
 # 特性
 
@@ -429,6 +451,53 @@ ToSV(time)  // 等价于 "time"sv
 > A template with at least one parameter pack is called a *variadic template*.
 
 包含至少一个参数包的模板称为可变模板。
+
+## 右值引用`&&`
+
+C++ 11 引入右值引用主要是为了解决以下几个问题：
+
+1. **优化复制大对象的性能问题。**
+
+在传递一个对象时，如果使用常规的左值引用，就需要进行拷贝构造函数的调用，这会导致复制大对象的时候开销很大。而右值引用可以避免这种情况的发生。因为右值引用本身不会进行对象的拷贝操作，只是将对象所在的内存地址绑定到右值引用上，从而提高代码执行效率。
+
+2. **实现移动语义，支持转移资源所有权。**
+
+在C++11中，新增了std::move函数，可以将一个对象的资源所有权转移到另一个对象中，这就是移动语义。通过将对象的内部数据指针从源对象转移到目标对象，可以避免创建和销毁临时对象，从而提高代码执行效率。而实现移动语义，需要使用右值引用的特性。
+
+总之，右值引用的引入，旨在提高C++代码的性能和效率，支持更加高效的对象传递和资源管理方式，并且为C++编程带来更多的灵活性和扩展性。
+
+其他优化场景。
+
+- 函数中返回一个临时变量时，编译器会自动调用移动构造函数，并将临时变量的资源所有权移动到函数的返回值中，从而避免进行数据拷贝
+
+```c++
+// 示例 1
+std::string GetString() {
+    std::string t = "abc";
+    std::string res = t + "def";
+    std::cout << "A " << static_cast<void *>(res.data()) << std::endl;
+    return res; // 函数返回临时变量, 未进行对象拷贝
+}
+
+int main() {
+    auto r = GetString(); // 右值引用赋值给左值变量, 不进行对象拷贝
+    std::cout << "B " << static_cast<void *>(r.data()) << std::endl;
+    std::cout << "---" << std::endl;
+    auto r2 = std::move(GetString());
+    std::cout << "B " << static_cast<void *>(r2.data()) << std::endl;
+    return 0;
+} /* output
+A 0x16eeeb100
+B 0x16eeeb100
+---
+A 0x16eeeb0c0
+B 0x16eeeb0d8
+*/
+```
+
+### 注意
+
+- 对右值调用 `std::move` 没有作用
 
 # 其他
 

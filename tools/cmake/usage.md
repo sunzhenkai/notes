@@ -263,6 +263,22 @@ mark_as_advanced(THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
 > # Curl_INCLUDE_DIR、Curl_LIBRARIES、Curl_FOUND 会被设置
 > ```
 
+## 使用 PkgConfig 文件添加库
+
+**简版**
+
+```shell
+# 查找库
+pkg_search_module(PKG_${DEP_UNAME} REQUIRED IMPORTED_TARGET ${DEP_NAME})
+
+# link 库
+target_link_libraries(target PkgConfig::PKG_${DEP_UNAME})
+```
+
+**自己添加 target**
+
+- https://github.com/scylladb/seastar/blob/master/cmake/Findhwloc.cmake
+
 # 库管理
 
 ## ExternalProject_Add
