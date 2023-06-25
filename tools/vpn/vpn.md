@@ -4,6 +4,7 @@ categories:
 	- [工具,vpn]
 tags:
 	- vpn
+	- wireguard
 date: 2022/10/29 00:00:00
 update: 2022/10/29 00:00:00
 ---
