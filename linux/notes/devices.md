@@ -69,6 +69,7 @@ $ sudo mkfs -t ext4 /dev/sda
 
 ```shell
 $ dmsetup status
+$ dmsetup remove <>
 $ dmsetup remove_all # 清楚所有, 谨慎使用, 最好挨个删除
 ```
 

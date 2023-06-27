@@ -10,7 +10,7 @@ update: 2021/08/29 00:00:00
 
 # 安装
 
-安装教程仅供个人学习用，请谨慎用于生产环境。对于 Ubuntu 安装 openstack，推荐按照官网指引操作，[这里](https://www.server-world.info/en/note?os=Ubuntu_20.04&p=openstack_wallaby&f=1) 是一个不错的辅助。
+安装教程仅供个人学习用，请谨慎用于生产环境。对于 Ubuntu 安装 openstack，推荐按照[官网指引](https://docs.openstack.org/install-guide/)操作，[这里](https://www.server-world.info/en/note?os=Ubuntu_20.04&p=openstack_wallaby&f=1) 是一个不错的辅助。
 
 ## 环境检查
 
@@ -182,13 +182,198 @@ filter = [ "a/sda/", "a/nvme/", "r/.*/" ]
 
 # Ubuntu 安装
 
-**prepare**
+参考[安装指南](https://docs.openstack.org/install-guide/)，下面是在单机安装，IP 为 `192.168.6.55`。
+
+## 版本信息
+
+| 软件/系统 | 版本     |
+| --------- | -------- |
+| Ubuntu    | 22.04.2  |
+| Openstack | antelope |
+
+## **安装依赖**
 
 ```shell
-$ apt install apache2 libapache2-mod-wsgi tgt
+# apt install apache2 libapache2-mod-uwsgi tgt 
 ```
 
-**tgt 配置**
+## 环境配置
+
+## Hosts
+
+```shell
+# vim /etc/hosts
+## 添加如下内容, 注意替换 ip
+192.168.6.55 controller
+```
+
+### 安装仓库
+
+参考[这里](https://docs.openstack.org/install-guide/environment-packages-ubuntu.html)，选择一个版本即可，比如。
+
+```shell
+# add-apt-repository cloud-archive:antelope
+# apt install nova-compute
+# apt install python3-openstackclient
+```
+
+### SQL Database
+
+```shell
+# apt install mariadb-server python3-pymysql
+```
+
+**配置**
+
+```shell
+# vim /etc/mysql/mariadb.conf.d/99-openstack.cnf
+## 添加如下内容
+[mysqld]
+bind-address = 192.168.6.55
+
+default-storage-engine = innodb
+innodb_file_per_table = on
+max_connections = 4096
+collation-server = utf8_general_ci
+character-set-server = utf8
+```
+
+> bind-address 为 Controller Node 的 ip
+
+**重启服务**
+
+```shell
+# service mysql restart
+```
+
+**初始化 mariadb**
+
+```shell
+# mysql_secure_installation
+```
+
+## Message Queue
+
+> **注意**
+>
+> - 替换掉命令中的 RABBIT_PASS
+
+```shell
+# apt install rabbitmq-server
+# rabbitmqctl add_user openstack RABBIT_PASS
+# rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+```
+
+## Memcached
+
+```shell
+# apt install memcached python3-memcache
+# vim /etc/memcached.conf
+## 将 -l 127.0.0.1 替换为 Controller 的 ip
+-l 192.168.6.55
+```
+
+## Etcd
+
+```shell
+# apt install etcd
+# vim /etc/default/etcd
+## 参考如下内容修改
+ETCD_NAME="controller"
+ETCD_DATA_DIR="/var/lib/etcd"
+ETCD_INITIAL_CLUSTER_STATE="new"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-01"
+ETCD_INITIAL_CLUSTER="controller=http://192.168.6.55:2380"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="http://192.168.6.55:2380"
+ETCD_ADVERTISE_CLIENT_URLS="http://192.168.6.55:2379"
+ETCD_LISTEN_PEER_URLS="http://0.0.0.0:2380"
+ETCD_LISTEN_CLIENT_URLS="http://192.168.6.55:2379"
+# systemctl enable etcd
+# systemctl restart etcd
+```
+
+## 安装 Openstack 服务
+
+参考[这里](https://docs.openstack.org/install-guide/openstack-services.html#minimal-deployment-for-yoga)，我们选择最小部署。
+
+### Identity service
+
+```shell
+# mysql
+MariaDB [(none)]> CREATE DATABASE keystone;
+## 注意替换掉下面的 KEYSTONE_DBPASS
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' \
+IDENTIFIED BY 'KEYSTONE_DBPASS';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' \
+IDENTIFIED BY 'KEYSTONE_DBPASS';
+MariaDB [(none)]> exit
+
+# apt install keystone
+# vim /etc/keystone/keystone.conf
+## 修改如下内容, 注意替换 KEYSTONE_DBPASS
+[database]
+# ...
+connection = mysql+pymysql://keystone:KEYSTONE_DBPASS@controller/keystone
+[token]
+# ...
+provider = fernet
+
+# su -s /bin/sh -c "keystone-manage db_sync" keystone
+# keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
+# keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
+# keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
+  --bootstrap-admin-url http://controller:5000/v3/ \
+  --bootstrap-internal-url http://controller:5000/v3/ \
+  --bootstrap-public-url http://controller:5000/v3/ \
+  --bootstrap-region-id RegionOne
+# vim /etc/apache2/apache2.conf
+## 添加如下内容
+ServerName controller
+
+## 环境变量中添加如下内容
+$ export OS_USERNAME=admin, 注意替换 ADMIN_PASS
+$ export OS_PASSWORD=ADMIN_PASS
+$ export OS_PROJECT_NAME=admin
+$ export OS_USER_DOMAIN_NAME=Default
+$ export OS_PROJECT_DOMAIN_NAME=Default
+$ export OS_AUTH_URL=http://controller:5000/v3
+$ export OS_IDENTITY_API_VERSION=3
+```
+
+### Glance
+
+```shell
+# mysql
+## 注意修改 GLANCE_DBPASS
+MariaDB [(none)]> CREATE DATABASE glance;
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' \
+  IDENTIFIED BY 'GLANCE_DBPASS';
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' \
+  IDENTIFIED BY 'GLANCE_DBPASS';
+MariaDB [(none)]> exit
+## 注意保持上面设置的环境变量
+$ openstack user create --domain default --password-prompt glance
+$ openstack role add --project service --user glance admin
+$ openstack service create --name glance \
+  --description "OpenStack Image" image
+$ openstack endpoint create --region RegionOne \
+  image public http://controller:9292
+# apt install glance
+```
+
+### Placement
+
+### Compute
+
+### Networking
+
+### Dashboard
+
+### Block Storage
+
+## 其他配置
+
+#### **tgt 配置**
 
 ```shell
 $ vim /etc/tgt/targets.conf
