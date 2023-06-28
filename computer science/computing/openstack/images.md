@@ -12,6 +12,8 @@ update: 2021/09/02 00:00:00
 
 [Openstack 官方镜像文档](https://docs.openstack.org/image-guide/obtain-images.html)。
 
+- 优先下载 img 镜像，导入时类型选择 qcow2
+
 ## ubuntu
 
 对于 ubuntu cloud 的初始化文档参考[这里](https://help.ubuntu.com/community/CloudInit)，对于 cloud init 参考[这里](https://cloud-init.io/) 还有[这里](https://cloudinit.readthedocs.io/en/latest/topics/examples.html)。
