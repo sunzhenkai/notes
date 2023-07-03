@@ -112,6 +112,19 @@ $ sudo ufw disable
 
 # Netplan
 
+- gateway4 弃用，使用 route 代替
+
+```shell
+# 弃用版本
+gateway4: 192.168.6.1
+# 新版设置
+routes:
+	- to: default
+		via: 192.168.6.1
+```
+
+
+
 ## 设置路由
 
 ```yaml

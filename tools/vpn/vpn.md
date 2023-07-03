@@ -74,6 +74,10 @@ socks pass {
 # 安装
 apt install wireguard -y
 
+# 添加网络接口
+ip link add dev wg0 type wireguard
+ip address add dev wg0 10.0.2.1/24
+
 # 生成密钥
 wg genkey | tee server-private.key | wg pubkey | tee server-public.key
 ```
