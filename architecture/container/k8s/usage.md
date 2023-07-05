@@ -18,6 +18,68 @@ update: 2022/06/09 00:00:00
 $ sudo kubeadm reset cleanup-node  # master 节点也可以清除
 ```
 
+## 标签
+
+```shell
+# 查看 node 标签
+$ kubectl get nodes --show-labels
+
+# 打标签
+$ kubectl label nodes <your-node-name> disktype=ssd
+```
+
+ 设置 pod 的 node 标签选择（nodeSelector）
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    env: test
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    disktype: ssd
+```
+
+设置 deployment node 标签选择
+
+```yaml
+spec:
+	template:
+    # 按标签选择机器
+    nodeSelector:
+      <label-name>: <label-value>
+    # 设置机器亲和性
+    affinity:
+      # 设置 node 亲和性
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: <label-name>
+                  operator: In
+                  values:
+                    - <label-value>
+      # 设置 pod 亲和性
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - <pod-name>
+                    - <pod-name>
+            topologyKey: kubernetes.io/hostname
+```
+
+
+
 # Deployment 管理
 
 ```shell

@@ -37,6 +37,17 @@ server = "https://k8s.gcr.io"
   capabilities = ["pull", "resolve"]
   override_path = true
 ' | sudo tee -a /var/snap/microk8s/current/args/certs.d/k8s.gcr.io/hosts.toml
+
+
+# 2
+sudo mkdir -p /var/snap/microk8s/current/args/certs.d/registry.k8s.io
+echo '
+server = "https://k8s.gcr.io"
+
+[host."https://registry.aliyuncs.com/v2/google_containers"]
+  capabilities = ["pull", "resolve"]
+  override_path = true
+' | sudo tee -a /var/snap/microk8s/current/args/certs.d/registry.k8s.io/hosts.toml
 ```
 
 # 检查状态
@@ -64,6 +75,7 @@ exec /snap/bin/microk8s.kubectl $(echo "$*" | sed 's/-- sh.*/sh/')
 alias kubectl='microk8s kubectl'
 alias k='microk8s kubectl'
 alias mk='microk8s'
+alias helm='microk8s helm3'
 ```
 
 # 组建集群
@@ -74,8 +86,6 @@ alias mk='microk8s'
 microk8s enable dns dashboard
 # 生成 token
 microk8s kubectl create token -n kube-system default --duration=8544h
-```
-alias helm='microk8s helm3'
 ```
 
 # k8s.gcr.io 无法拉取镜像
@@ -88,4 +98,29 @@ alias helm='microk8s helm3'
 docker pull registry.aliyuncs.com/google_containers/pause:3.7
 ## 重命名
 docker tag registry.aliyuncs.com/google_containers/pause:3.7 k8s.gcr.io/pause:3.7
+
+# metric server
+docker pull registry.aliyuncs.com/google_containers/metrics-server:v0.5.2
+docker tag registry.aliyuncs.com/google_containers/metrics-server:v0.5.2 k8s.gcr.io/metrics-server/metrics-server:v0.5.2
 ```
+
+## Join 集群
+
+```shell
+# master 节点运行
+$ microk8s add-node
+From the node you wish to join to this cluster, run the following:
+microk8s join 192.168.1.230:25000/92b2db237428470dc4fcfc4ebbd9dc81/2c0cb3284b05
+
+Use the '--worker' flag to join a node as a worker not running the control plane, eg:
+microk8s join 192.168.1.230:25000/92b2db237428470dc4fcfc4ebbd9dc81/2c0cb3284b05 --worker
+
+If the node you are adding is not reachable through the default interface you can use one of the following:
+microk8s join 192.168.1.230:25000/92b2db237428470dc4fcfc4ebbd9dc81/2c0cb3284b05
+microk8s join 10.23.209.1:25000/92b2db237428470dc4fcfc4ebbd9dc81/2c0cb3284b05
+microk8s join 172.17.0.1:25000/92b2db237428470dc4fcfc4ebbd9dc81/2c0cb3284b05
+
+# slave 节点运行
+$ microk8s join 172.17.0.1:25000/92b2db237428470dc4fcfc4ebbd9dc81/2c0cb3284b05
+```
+
