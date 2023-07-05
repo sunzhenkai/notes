@@ -113,3 +113,65 @@ mk config > ~/.kube/config
 k get events --sort-by=.metadata.creationTimestamp --namespace=kube-system
 ```
 
+## 异常
+
+### Failed create pod sandbox
+
+**错误信息**
+
+```shell
+Failed create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container ... error getting ClusterInformation: Get ... https://10.152.183.1:443 ...
+```
+
+**原因**
+
+```shell
+NAMESPACE↑                 NAME                      TYPE                     CLUSTER-IP     
+default                    kubernetes                ClusterIP                10.152.183.1
+```
+
+错误信息提示请求 ClusterIP 异常，检查节点 IP。
+
+```shell
+$ k get nodes -o wide
+NAME STATUS   ROLES    AGE   VERSION   INTERNAL-IP   ... KERNEL-VERSION      CONTAINER-RUNTIME
+a    Ready    <none>   16h   v1.27.2   172.21.0.3    ... 5.4.0-126-generic   containerd://1.6.15
+b    Ready    <none>   16h   v1.27.2   192.168.6.201 ... 5.15.0-76-generic   containerd://1.6.15
+```
+
+**解决**
+在 b 节点无法通过 a 的 INTERNAL-IP 访问 a（controller） 节点，修改两个节点的 `--node-ip` 为可以访问的 ip。
+
+```shell
+microk8s stop
+# or for workers: sudo snap stop microk8s
+
+sudo vim.tiny /var/snap/microk8s/current/args/kubelet
+# Add this to bottom: --node-ip=<this-specific-node-lan-ip>
+
+sudo vim.tiny /var/snap/microk8s/current/args/kube-apiserver
+# Add this to bottom: --advertise-address=<this-specific-node-lan-ip>
+
+microk8s start
+# or for workers: sudo snap start microk8s
+```
+
+### certificate is valid for kubernetes ... not for mydomain.com
+
+参考 [这里](https://microk8s.io/docs/services-and-ports)。
+
+```shell
+$ vim /var/snap/microk8s/current/certs/csr.conf.template
+# 添加域名
+[ alt_names ]
+DNS.1 = kubernetes
+DNS.2 = kubernetes.default
+DNS.3 = kubernetes.default.svc
+DNS.4 = kubernetes.default.svc.cluster
+DNS.5 = kubernetes.default.svc.cluster.local
+DNS.6 = mydomain.com  # 添加一行
+
+# 生效
+$ sudo microk8s refresh-certs --cert server.crt
+```
+
