@@ -20,6 +20,30 @@ update: 2021/11/02 00:00:00
 
 # 操作
 
+## 初始化硬盘
+
+```shell
+# lsblk
+...
+nvme1n1                                         259:0    0 931.5G  0 disk
+└─nvme1n1p1                                     259:1    0 931.5G  0 part /data
+...
+
+## 使用 nvme1n1 来创建 lvm 卷，卷组为 cinder-nvme
+# umount /dev/nvme1n1p1
+# vim /etc/lvm/lvm.conf
+## 修改 devices.filter, 包含该设备
+filter = ["a|/dev/sda|", "a|/dev/nvme1n1|", "r|.*|"]
+## 创建 PV (Physical Volume)
+# pvcreate /dev/nvme1n1
+## 查看信息
+# pvdisplay /dev/nvme1n1
+## 创建 volumn group (VG)
+# vgcreate cinder-nvme /dev/nvme1n1
+## 再次查看信息
+# pvdisplay /dev/nvme1n1
+```
+
 ## 配置多存储
 
 openstack cinder 支持一台机器上配置多块存储（multiple backends），编辑 `/etc/cinder/cinder.conf`。
@@ -33,7 +57,7 @@ enabled_backends = lvm-nvme,lvm-sda
 
 [lvm-nvme]
 volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
-volume_group = ubuntu-vg
+volume_group = cinder-nvme
 target_protocol = iscsi
 target_helper = tgtadm
 volume_backend_name = LVM_NVME
@@ -61,7 +85,7 @@ $ openstack --os-username admin --os-tenant-name admin volume type set 存储 \
   
 # 同样的方式，绑定另一块盘
 $ openstack --os-username admin --os-tenant-name admin volume type create 高性能
-$ openstack --os-username admin --os-tenant-name admin volume type set 存储 \
+$ openstack --os-username admin --os-tenant-name admin volume type set 高性能 \
   --property volume_backend_name=LVM_NVME
 ```
 

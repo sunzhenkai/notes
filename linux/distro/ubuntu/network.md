@@ -112,6 +112,19 @@ $ sudo ufw disable
 
 # Netplan
 
+- gateway4 弃用，使用 route 代替
+
+```shell
+# 弃用版本
+gateway4: 192.168.6.1
+# 新版设置
+routes:
+	- to: default
+		via: 192.168.6.1
+```
+
+
+
 ## 设置路由
 
 ```yaml
@@ -163,3 +176,31 @@ tshark -i <entwork-interface>
 tshark -i enp0 -f "src port 30800"
 ```
 
+# Wake On Lan
+
+```shell
+# 配置
+$ cat /etc/netplan/*_config.yaml
+# Let NetworkManager manage all devices on this system
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    enp4s0:
+      match:
+        macaddress: 2a:04:a0:46:08:38
+      dhcp4: true
+      wakeonlan: true
+    enp5s0:
+      match:
+        macaddress: 2a:04:a0:46:08:39
+      dhcp4: true
+      wakeonlan: true
+        
+# 生效
+$ sudo netplan apply
+```
+
+> **注意**
+>
+> 1. 如果不生效，尝试添加 macaddress match

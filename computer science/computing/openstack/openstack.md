@@ -365,6 +365,10 @@ $ openstack endpoint create --region RegionOne \
 
 ### Compute
 
+> **注意**
+>
+> - `nova.conf` 中 `auth_url` 填写 `http://controller:5000/v3`
+
 ### Networking
 
 ### Dashboard

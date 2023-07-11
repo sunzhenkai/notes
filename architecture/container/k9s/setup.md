@@ -23,6 +23,6 @@ sudo snap install k9s
 # microk8s
 # 保存内容至 ~/.kube/config 
 # k9s 会读取配置并连接集群
-microk8s config 
+microk8s config > ~/.kube/config 
 ```
 

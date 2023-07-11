@@ -27,7 +27,7 @@ metadata:
   # 部署的名字
   name: nginx-deployment
 spec:
-	# 用来查找关联的 pod, 所有标签都匹配才行
+	# 用于选择要管理的Pod对象，该选择器匹配与Deployment相关联的Pod, 所有标签都匹配才行
   selector:
     matchLabels:
       app: nginx
@@ -47,6 +47,31 @@ spec:
         env:
         	- name: ENV_NAME
         		value: ENV_VALUE
+      # 按标签选择机器
+      nodeSelector:
+      	<label-name>: <label-value>
+      # 设置机器亲和性
+      affinity:
+        # 设置 node 亲和性
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: <label-name>
+                    operator: In
+                    values:
+                      - <label-value>
+        # 设置 pod 亲和性
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - <pod-name>
+                      - <pod-name>
+              topologyKey: kubernetes.io/hostname
 ```
 
 ### 需要的字段
