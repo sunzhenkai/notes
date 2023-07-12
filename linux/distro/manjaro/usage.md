@@ -14,6 +14,15 @@ date: 2023/06/20 00:00:00
 - snap
 - flatpak
 
+# 初始化
+
+```shell
+# 安装并启用 sshd.service
+$ sudo pacman install openssl openssh
+$ sudo systemctl enable sshd.service
+$ sudo systemctl start sshd.service
+```
+
 # pacman
 
 ## 查看帮助
