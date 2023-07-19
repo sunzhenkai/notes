@@ -78,4 +78,3 @@ rate(label_replace(up{job="node-exporter"}, "foo", "bar-$1", "job", "node-(.+)")
 sum(rate(label_replace(no_fail_request{job=~"${cluster}"}, "private_ip_address", "$1", "instance", "(.*):8000$")[1m:]) * on (private_ip_address) group_left(zone) agent_status{instance_state="running",region="${cluster}"}) by (zone) / 
 sum(rate(label_replace(total_request{job=~"${cluster}"}, "private_ip_address", "$1", "instance", "(.*):8000$")[1m:]) * on (private_ip_address) group_left(zone) agent_status{instance_state="running",region="${cluster}"}) by (zone)
 ```
-

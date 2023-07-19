@@ -93,9 +93,7 @@ k8s01-3   Ready    <none>   5m10s   v1.24.3-2+63243a96d1c393   10.1.0.242    <no
 
 ```shell
 # 主节点
-mk enable dns storage dashboard
-# helm3
-mk enable helm3
+mk enable dns storage dashboard helm3
 ```
 
 # 获取 k8s 配置

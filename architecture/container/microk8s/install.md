@@ -42,7 +42,7 @@ server = "https://k8s.gcr.io"
 # 2
 sudo mkdir -p /var/snap/microk8s/current/args/certs.d/registry.k8s.io
 echo '
-server = "https://k8s.gcr.io"
+server = "registry.k8s.io"
 
 [host."https://registry.aliyuncs.com/v2/google_containers"]
   capabilities = ["pull", "resolve"]
@@ -50,7 +50,14 @@ server = "https://k8s.gcr.io"
 ' | sudo tee -a /var/snap/microk8s/current/args/certs.d/registry.k8s.io/hosts.toml
 ```
 
+需要重启
+
+```shell
+sudo snap restart microk8s
+```
+
 # 检查状态
+
 ```shell
 # 如果不翻墙/替换镜像, 会在这里卡住
 microk8s status --wait-ready
@@ -78,6 +85,16 @@ alias mk='microk8s'
 alias helm='microk8s helm3'
 ```
 
+# 设置私有镜像仓库
+
+```shell
+$ docker login ... # 登录私有镜像仓库
+$ kubectl create secret generic regcred \
+    --from-file=.dockerconfigjson=$HOME/.docker/config.json \
+    --type=kubernetes.io/dockerconfigjson \
+    --namespace=default
+```
+
 # 组建集群
 
 # 安装 dashboard
@@ -98,10 +115,12 @@ microk8s kubectl create token -n kube-system default --duration=8544h
 docker pull registry.aliyuncs.com/google_containers/pause:3.7
 ## 重命名
 docker tag registry.aliyuncs.com/google_containers/pause:3.7 k8s.gcr.io/pause:3.7
+docker tag registry.aliyuncs.com/google_containers/pause:3.7 registry.k8s.io/pause:3.7
 
 # metric server
 docker pull registry.aliyuncs.com/google_containers/metrics-server:v0.5.2
 docker tag registry.aliyuncs.com/google_containers/metrics-server:v0.5.2 k8s.gcr.io/metrics-server/metrics-server:v0.5.2
+docker tag registry.aliyuncs.com/google_containers/metrics-server:v0.5.2 registry.k8s.io/metrics-server/metrics-server:v0.5.2
 ```
 
 ## Join 集群

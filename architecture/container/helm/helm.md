@@ -21,6 +21,9 @@ sudo snap install helm --classic
 microk8s enable helm3
 ## 使用
 microk8s helm3 ...
+
+# arch
+sudo pamac install helm
 ```
 
 # 概念
