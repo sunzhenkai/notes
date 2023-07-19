@@ -88,3 +88,13 @@ ip rule show
 ip rule add from 192.168.6.0/24 table 10 priority 1
 ```
 
+## gateway
+
+```shell
+# 添加
+ip route add default via 192.168.1.1 dev eth0
+
+# 更新 (所有配置都要添加vc)
+ip route replace default via 192.168.1.1 dev eth0
+```
+

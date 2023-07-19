@@ -26,3 +26,14 @@ $ git clone https://github.com/Microsoft/vcpkg.git
 $ ./vcpkg/bootstrap-vcpkg.sh
 ```
 
+# 使用
+
+## 软件包搜索
+
+- [Browse packages](https://vcpkg.io/en/packages)
+
+## Manifest 模式
+
+- [Manifest Mode](https://learn.microsoft.com/en-us/vcpkg/users/manifests)
+- [Manifest mode: CMake example](https://learn.microsoft.com/en-us/vcpkg/examples/manifest-mode-cmake)
+
