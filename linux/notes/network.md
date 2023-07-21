@@ -98,3 +98,10 @@ ip route add default via 192.168.1.1 dev eth0
 ip route replace default via 192.168.1.1 dev eth0
 ```
 
+## 静态路由
+
+```shell
+# github ip 走网关 192.168.6.68 
+sudo ip route add 20.205.243.166 via 192.168.6.68 
+```
+
