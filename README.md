@@ -1,6 +1,6 @@
 ---
 title: README
-categories: 
+categories:
 	- [关于]
 tags:
 	- 关于
