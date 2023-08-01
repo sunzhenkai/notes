@@ -1,10 +1,13 @@
 ---
 title: helm
 categories: 
-	- [架构,container,k8s,helm]
+  - 架构
+  - container
+  - k8s
+  - helm
 tags:
-	- k8s
-    - helm
+  - k8s
+  - helm
 date: 2022/09/07 00:00:00
 ---
 
