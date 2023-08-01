@@ -1,14 +1,13 @@
 ---
-title: 学习编程语言指南
+title: 编程语言学习指南
 categories: 
-	- [coding]
+    - coding
 tags:
-	- coding
+    - coding
 date: 2021/01/09 19:00:00
 update: 2021/01/09 19:00:00
 ---
-
-[toc]
+> 编程语言学习指南
 
 # 组织
 
