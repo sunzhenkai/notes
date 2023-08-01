@@ -1,23 +1,20 @@
 ---
 title: Docker应用
 categories: 
-	- [play,unraid]
+    - play
+    - unraid
 tags:
-	- unriad
-	- Docker应用
+    - unriad
 date: 2020/11/14 00:00:00
 update: 2020/11/14 00:00:00
 ---
 
-# 目录
-
-## 影音娱乐
+# 影音娱乐
 
 - Plex
 - jellyfin
 
-## 办公下载
-
+# 办公下载
 - FileBrowser
 - Krusader (binhex-krusader)
 - Nextcloud

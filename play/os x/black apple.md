@@ -65,4 +65,4 @@ SSDT-HPET.dsl
 
 **接下来，需要做的是拷贝文件和Patch**，把 SSDT-HPET.aml 拷贝至 `EFI/OC/ACPI` 文件夹下，并用 OpenCore Configurator 打开 `patches_OC.plist`，把 ACPI 项内的数据复制至我们自己的 config.plist 中。
 
-至此，打工搞成。可解决 ALC255/ALC3243 声卡无法识别问题。
+至此，大功告成。可解决 ALC255/ALC3243 声卡无法识别问题。
