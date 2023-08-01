@@ -11,3 +11,6 @@ date: 2021/2/23 00:00:00
 
 - [WeDataSphere](https://github.com/WeBankFinTech/WeDataSphere)
 - [LakeSoul](https://github.com/lakesoul-io/LakeSoul)
+
+# 查询工具
+- [Zeppelin](https://zeppelin.apache.org/)

@@ -1,22 +1,22 @@
 ---
 title: docker 使用
 categories: 
-	- [计算机科学,虚拟化,docker]
+  - 算机科学
+  - 虚拟化
+  - docker
 tags:
-	- docker
+  - docker
 date: 2020/12/21 19:00:00
 update: 2020/12/21 19:00:00
 ---
 
-[toc]
-
 # Docker
-
-## 简介
 
 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 [Linux](http://baike.baidu.com/item/Linux) 机器上，也可以实现[虚拟化](http://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%8C%96)。容器是完全使用[沙箱](http://baike.baidu.com/item/%E6%B2%99%E7%AE%B1/393318)机制，相互之间不会有任何接口。
 
 # 安装
+## ubuntu
+参考[官网文档](https://docs.docker.com/engine/install/ubuntu/)。
 
 ## amazon linux 2
 
@@ -215,10 +215,9 @@ docker export container-name > latest.tar
 docker export --output="latest.tar" container-name
 ```
 
+
 # 非 root 用户使用 docker
-
 ## ubuntu
-
 https://www.jianshu.com/p/35cdb71a32d3
 
 ```shell
