@@ -1,9 +1,9 @@
 ---
 title: microk8s usage
 categories: 
-	- [架构,container,microk8s]
+  - [架构,container,microk8s]
 tags:
-	- microk8s
+  - microk8s
 date: 2022/08/21 00:00:00
 update: 2022/08/21 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: centos network
 categories: 
-	- [linux,distro,centos]
+  - [linux,distro,centos]
 tags:
-	- distro
+  - distro
 date: 2021/09/04 00:00:00
 update: 2021/09/04 00:00:00
 ---

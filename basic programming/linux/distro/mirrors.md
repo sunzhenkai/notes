@@ -1,9 +1,9 @@
 ---
 title: distro mirrors
 categories: 
-	- [linux,distro]
+  - [linux,distro]
 tags:
-	- distro
+  - distro
     - mirrors
 date: 2021/09/04 00:00:00
 update: 2021/09/04 00:00:00

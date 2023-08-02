@@ -1,9 +1,9 @@
 ---
 title: spark read s3
 categories: 
-	- [big data, spark]
+  - [big data, spark]
 tags:
-	- spark
+  - spark
 date: 2022/06/04 00:00:00
 update: 2022/06/04 00:00:00
 ---

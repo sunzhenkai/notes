@@ -1,10 +1,10 @@
 ---
 title: vue startup
 categories: 
-	- [前端,vue]
+  - [前端,vue]
 tags:
-	- 前端
-	- vue
+  - 前端
+  - vue
 date: 2020/12/24 00:00:00
 update: 2020/12/24 00:00:00
 ---

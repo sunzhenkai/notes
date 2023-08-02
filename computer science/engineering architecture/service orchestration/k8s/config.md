@@ -1,9 +1,9 @@
 ---
 title: k8s 配置
 categories: 
-	- [架构,container,k8s]
+  - [架构,container,k8s]
 tags:
-	- k8s
+  - k8s
 date: 2022/08/15 00:00:00
 update: 2022/08/15 00:00:00
 ---
@@ -45,7 +45,7 @@ spec:
         ports:
         - containerPort: 80
         env:
-        	- name: ENV_NAME
+          - name: ENV_NAME
         		value: ENV_VALUE
       # 按标签选择机器
       nodeSelector:

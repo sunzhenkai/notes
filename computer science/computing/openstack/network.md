@@ -1,9 +1,9 @@
 ---
 title: openstack network
 categories: 
-	- [computer science, computing, openstack]
+  - [computer science, computing, openstack]
 tags:
-	- openstack
+  - openstack
 date: 2021/09/04 00:00:00
 update: 2021/09/04 00:00:00
 ---

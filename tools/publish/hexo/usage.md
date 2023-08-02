@@ -1,9 +1,9 @@
 ---
 title: hexo usage
 categories:
-	- [tools, publish]
+  - [tools, publish]
 tags:
-	- hexo
+  - hexo
 comments: true
 date: 2020/10/26 18:00:00
 pdate: 2020/10/26 18:00:00

@@ -1,9 +1,9 @@
 ---
 title: plantuml 类图
 categories: 
-	- [tools, plantuml]
+  - [tools, plantuml]
 tags:
-	- plantuml
+  - plantuml
 date: 2021/01/13 19:00:00
 update: 2021/01/13 19:00:00
 ---

@@ -1,10 +1,10 @@
 ---
 title: ant design
 categories: 
-	- [前端,antd]
+  - [前端,antd]
 tags:
-	- 前端
-	- antd
+  - 前端
+  - antd
 date: 2022/08/06 00:00:00
 ---
 

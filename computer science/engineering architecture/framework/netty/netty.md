@@ -1,9 +1,9 @@
 ---
 title: netty
 categories: 
-	- [架构,java,框架,netty]
+  - [架构,java,框架,netty]
 tags:
-	- netty
+  - netty
 date: 2021/03/13 00:00:00
 update: 2021/03/13 00:00:00
 ---

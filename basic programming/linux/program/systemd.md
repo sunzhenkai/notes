@@ -1,10 +1,10 @@
 ---
 title: systemd使用
 categories: 
-	- [linux,software]
+  - [linux,software]
 tags:
-	- linux
-	- systemd
+  - linux
+  - systemd
 date: 2020/11/13 22:30:00
 update: 2020/11/13 22:30:00
 ---

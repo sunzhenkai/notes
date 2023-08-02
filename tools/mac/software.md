@@ -1,9 +1,9 @@
 ---
 title: mac 软件
 categories: 
-	- [工具, mac]
+  - [工具, mac]
 tags:
-	- mac
+  - mac
 date: 2020/12/29 00:00:00
 update: 2020/12/29 00:00:00
 ---

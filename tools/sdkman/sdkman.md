@@ -1,9 +1,9 @@
 ---
 title: sdkman
 categories: 
-	- [工具,sdkman]
+  - [工具,sdkman]
 tags:
-	- sdkman
+  - sdkman
 date: 2022/06/02 00:00:00
 update: 2022/06/02 00:00:00
 ---

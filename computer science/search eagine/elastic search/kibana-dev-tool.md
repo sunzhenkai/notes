@@ -1,11 +1,11 @@
 ---
 title: elastic search dev tool
 categories: 
-	- [架构, 搜索引擎]
+  - [架构, 搜索引擎]
 tags:
-	- 架构
-	- 搜索引擎
-	- es
+  - 架构
+  - 搜索引擎
+  - es
 date: 2021/10/08 00:00:00
 update: 2021/10/08 00:00:00
 ---

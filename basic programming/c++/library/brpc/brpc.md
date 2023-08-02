@@ -1,10 +1,10 @@
 ---
 title: brpc
 categories: 
-	- [coding, c++, library]
+  - [coding, c++, library]
 tags:
-	- c++
-	- brpc
+  - c++
+  - brpc
 date: 2021/01/06 21:00:00
 ---
 

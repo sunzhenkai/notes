@@ -1,9 +1,9 @@
 ---
 title: c++ 最佳实践
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2022/02/10 00:00:00
 update: 2022/02/10 00:00:00
 ---

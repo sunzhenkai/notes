@@ -1,9 +1,9 @@
 ---
 title: rsync
 categories:
-	- [tools, rsync]
+  - [tools, rsync]
 tags:
-	- rsync
+  - rsync
 comments: true
 date: 2021/06/01 00:00:00
 update: 2021/06/01 00:00:00

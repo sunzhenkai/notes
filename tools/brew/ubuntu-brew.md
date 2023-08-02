@@ -1,9 +1,9 @@
 ---
 title: brew - ubuntu
 categories: 
-	- [工具,brew]
+  - [工具,brew]
 tags:
-	- brew
+  - brew
 date: 2022/05/08 00:00:00
 update: 2022/05/08 00:00:00
 ---

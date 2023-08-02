@@ -1,9 +1,9 @@
 ---
 title: spring boot 常见问题
 categories: 
-	- [架构,java,框架,spring boot]
+  - [架构,java,框架,spring boot]
 tags:
-	- spring boot
+  - spring boot
 date: 2020/12/29 00:00:00
 update: 2020/12/29 00:00:00
 ---

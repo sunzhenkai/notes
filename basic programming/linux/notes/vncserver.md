@@ -1,9 +1,9 @@
 ---
 title: vncserver
 categories: 
-	- [linux,notes]
+  - [linux,notes]
 tags:
-	- Linux
+  - Linux
 date: 2021/08/25 00:00:00
 update: 2021/08/25 00:00:00
 ---

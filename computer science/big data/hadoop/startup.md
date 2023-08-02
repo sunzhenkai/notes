@@ -1,9 +1,9 @@
 ---
 title: hadoop startup
 categories: 
-	- [big data, hadoop]
+  - [big data, hadoop]
 tags:
-	- hadoop
+  - hadoop
 date: 2022/06/02 00:00:00
 update: 2022/06/02 00:00:00
 ---
@@ -240,7 +240,7 @@ org.apache.hadoop.net.ConnectTimeoutException: 60000 millis timeout while waitin
 
 可以看到，会直接访问 10.1.0.191 ，显然是有问题的，因为外部网络没办法直接访问 openstack 的 internal network，解决方案是设置一下路由，下面是 openstack 的网络拓扑。
 
-<img src="startup/image-20220604233121569.png" alt="image-20220604233121569" style="zoom:50%;" />
+<img src="./startup/image-20220604233121569.png" alt="image-20220604233121569" style="zoom:50%;" />
 
 内部网络是通过一个路由（192.168.6.129）和外部网络连接，下面是在本地添加静态路由的代码。
 
@@ -252,7 +252,7 @@ sudo route -v delete -net 10.1.0.0 -gateway 192.168.6.129
 
 也可以在路由器配置。
 
-<img src="startup/image-20220604233802672.png" alt="image-20220604233802672" style="zoom:50%;" />
+<img src="./startup/image-20220604233802672.png" alt="image-20220604233802672" style="zoom:50%;" />
 
 再去 ping 就可以了。
 

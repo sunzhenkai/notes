@@ -1,10 +1,10 @@
 ---
 title: markdown语法
 categories: 
-	- [工具,markdown]
+  - [工具,markdown]
 tags:
-	- 工具
-	- markdown
+  - 工具
+  - markdown
 date: 2020/11/17 22:50:00
 update: 2020/11/17 22:50:00
 ---

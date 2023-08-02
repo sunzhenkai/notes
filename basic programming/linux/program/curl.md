@@ -1,9 +1,9 @@
 ---
 title: curl
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- linux
+  - linux
     - curl
 date: 2021/09/14 00:00:00
 update: 2021/09/14 00:00:00

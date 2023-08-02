@@ -1,9 +1,9 @@
 ---
 title: ubuntu setup
 categories: 
-	- [linux,distro,ubuntu]
+  - [linux,distro,ubuntu]
 tags:
-	- distro
+  - distro
 date: 2022/08/28 00:00:00
 ---
 

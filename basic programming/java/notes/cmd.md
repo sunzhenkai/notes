@@ -1,9 +1,9 @@
 ---
 title: java function
 categories: 
-	- [coding,java,notes]
+  - [coding,java,notes]
 tags:
-	- java
+  - java
 date: 2021/06/16 00:00:00
 update: 2021/06/16 00:00:00
 ---

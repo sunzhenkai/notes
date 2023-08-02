@@ -1,9 +1,9 @@
 ---
 title: spring boot - log4j
 categories: 
-	- [架构,框架,spring boot]
+  - [架构,框架,spring boot]
 tags:
-	- log4j
+  - log4j
     - spring boot
 date: 2021/05/12 00:00:00
 update: 2021/05/12 00:00:00

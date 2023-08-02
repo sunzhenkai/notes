@@ -1,9 +1,9 @@
 ---
 title: getopts
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- linux
+  - linux
     - getopts
 date: 2021/12/14 00:00:00
 update: 2021/12/14 00:00:00

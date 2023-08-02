@@ -1,9 +1,9 @@
 ---
 title: pyenv
 categories: 
-	- [python, notes]
+  - [python, notes]
 tags:
-	- python
+  - python
 date: 2021/12/08 00:00:00
 update: 2021/12/08 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: ubuntu network
 categories: 
-	- [linux,distro,ubuntu]
+  - [linux,distro,ubuntu]
 tags:
-	- distro
+  - distro
 date: 2021/08/28 00:00:00
 update: 2021/08/28 00:00:00
 ---
@@ -119,7 +119,7 @@ $ sudo ufw disable
 gateway4: 192.168.6.1
 # 新版设置
 routes:
-	- to: default
+  - to: default
 		via: 192.168.6.1
 ```
 

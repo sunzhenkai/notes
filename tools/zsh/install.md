@@ -1,9 +1,9 @@
 ---
 title: on my zsh - install
 categories: 
-	- [工具,zsh]
+  - [工具,zsh]
 tags:
-	- zsh
+  - zsh
 date: 2021/05/10 00:00:00
 update: 2021/05/10 00:00:00
 ---

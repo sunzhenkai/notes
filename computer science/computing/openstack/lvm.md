@@ -1,9 +1,9 @@
 ---
 title: linux lvm
 categories: 
-	- [computer science, computing, storage]
+  - [computer science, computing, storage]
 tags:
-	- openstack
+  - openstack
 date: 2021/11/02 00:00:00
 update: 2021/11/02 00:00:00
 ---

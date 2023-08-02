@@ -1,9 +1,9 @@
 ---
 title: etcd
 categories: 
-	- [架构,存储,etcd]
+  - [架构,存储,etcd]
 tags:
-	- etcd
+  - etcd
 date: 2021/09/09 00:00:00
 update: 2021/09/09 00:00:00
 ---

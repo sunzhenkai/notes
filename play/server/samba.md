@@ -1,9 +1,9 @@
 ---
 title: samba server
 categories: 
-	- [play,samb]
+  - [play,samb]
 tags:
-	- samb
+  - samb
 date: 2022/08/21 00:00:00
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: grafana
 categories: 
-	- [架构, 监控, grafana]
+  - [架构, 监控, grafana]
 tags:
-	- grafana
+  - grafana
 date: 2022/03/18 00:00:00
 update: 2022/03/18 00:00:00
 ---

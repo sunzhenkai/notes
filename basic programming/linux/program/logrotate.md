@@ -1,9 +1,9 @@
 ---
 title: logrotate
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- linux
+  - linux
     - logrotate
 date: 2022/03/31 00:00:00
 update: 2022/03/31 00:00:00

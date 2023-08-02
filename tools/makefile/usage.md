@@ -1,9 +1,9 @@
 ---
 title: makefile 使用
 categories: 
-	- [工具,makefile]
+  - [工具,makefile]
 tags:
-	- makefile
+  - makefile
 date: 2021/02/03 00:00:00
 update: 2021/02/03 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: manjaro usage
 categories: 
-	- [linux,distro,manjaro]
+  - [linux,distro,manjaro]
 tags:
-	- distro
+  - distro
 date: 2023/06/20 00:00:00
 ---
 

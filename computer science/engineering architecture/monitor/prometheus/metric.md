@@ -1,9 +1,9 @@
 ---
 title: prometheus metric
 categories: 
-	- [架构, 监控, prometheus]
+  - [架构, 监控, prometheus]
 tags:
-	- prometheus
+  - prometheus
 date: 2021/10/14 00:00:00
 update: 2021/10/14 00:00:00
 ---

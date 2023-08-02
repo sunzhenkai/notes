@@ -1,9 +1,9 @@
 ---
 title: pandas usage
 categories: 
-	- [python, library, pandas]
+  - [python, library, pandas]
 tags:
-	- pandas
+  - pandas
 date: 2022/06/05 00:00:00
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: linux - crontab
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- linux
+  - linux
     - crontab
 date: 2022/06/22 00:00:00
 update: 2022/06/22 00:00:00

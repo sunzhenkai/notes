@@ -1,9 +1,9 @@
 ---
 title: seastar with docker
 categories: 
-	- [架构,框架,seastar]
+  - [架构,框架,seastar]
 tags:
-	- seastar
+  - seastar
 date: 2022/03/11 00:00:00
 update: 2022/03/11 00:00:00
 ---

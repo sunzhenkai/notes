@@ -1,9 +1,9 @@
 ---
 title: linux usage
 categories: 
-	- [linux,notes]
+  - [linux,notes]
 tags:
-	- Linux
+  - Linux
 date: 2020/12/21 9:40:00
 update: 2020/12/21 9:40:00
 ---

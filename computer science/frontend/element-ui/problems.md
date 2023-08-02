@@ -1,10 +1,10 @@
 ---
 title: element ui
 categories: 
-	- [前端,element ui]
+  - [前端,element ui]
 tags:
-	- 前端
-	- element ui
+  - 前端
+  - element ui
 date: 2020/12/25 00:00:00
 update: 2020/12/25 00:00:00
 ---

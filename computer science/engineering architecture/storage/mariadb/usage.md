@@ -1,9 +1,9 @@
 ---
 title: mariadb usage
 categories: 
-	- [架构, 存储, mariadb]
+  - [架构, 存储, mariadb]
 tags:
-	- mariadb
+  - mariadb
 date: 2022/10/01 00:00:00
 ---
 

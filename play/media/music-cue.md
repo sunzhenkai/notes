@@ -1,9 +1,9 @@
 ---
 title: music - cue
 categories: 
-	- [play, media]
+  - [play, media]
 tags:
-	- media
+  - media
 date: 2020/12/17 00:00:00
 update: 2020/12/17 00:00:00
 ---

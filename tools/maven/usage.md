@@ -1,9 +1,9 @@
 ---
 title: maven 使用
 categories:  
-	- [工具,maven]
+  - [工具,maven]
 tags:
-	- maven
+  - maven
 date: 2021/01/29 00:00:00
 update: 2021/01/29 00:00:00
 ---

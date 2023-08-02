@@ -1,11 +1,11 @@
 ---
 title: Spring注解
 categories: 
-	- [架构,Java,框架,Spring]
+  - [架构,Java,框架,Spring]
 tags:
-	- Spring
-	- 注解
-	- Java
+  - Spring
+  - 注解
+  - Java
 date: 2020/11/20 00:00:00
 update: 2020/11/20 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: Thrift
 categories: 
-	- [架构, rpc, dsl]
+  - [架构, rpc, dsl]
 tags:
-	- Thrift
+  - Thrift
 date: 2021/3/5 00:00:00
 update: 2021/3/5 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: iterm2
 categories: 
-	- [工具, iterm2]
+  - [工具, iterm2]
 tags:
-	- iterm2
+  - iterm2
 date: 2021/08/25 00:00:00
 update: 2021/08/25 00:00:00
 ---

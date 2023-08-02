@@ -1,9 +1,9 @@
 ---
 title: c++ threads
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
     - threads
 date: 2022/03/30 00:00:00
 ---

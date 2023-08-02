@@ -1,9 +1,9 @@
 ---
 title: c++ 复杂对象
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2022/05/18 00:00:00
 ---
 

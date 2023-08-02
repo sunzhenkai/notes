@@ -1,9 +1,9 @@
 ---
 title: consul trouble shooting
 categories: 
-	- [架构,注册发现,consul]
+  - [架构,注册发现,consul]
 tags:
-	- consul
+  - consul
 date: 2021/03/15 00:00:00
 update: 2021/03/15 00:00:00
 ---

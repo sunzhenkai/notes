@@ -1,9 +1,9 @@
 ---
 title: kudu - usage
 categories: 
-	- [架构,存储,kudu]
+  - [架构,存储,kudu]
 tags:
-	- kudu
+  - kudu
 date: 2022/06/29 00:00:00
 update: 2022/06/29 00:00:00
 ---

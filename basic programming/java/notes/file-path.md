@@ -1,9 +1,9 @@
 ---
 title: file & path
 categories: 
-	- [coding,java,notes]
+  - [coding,java,notes]
 tags:
-	- java
+  - java
 date: 2021/11/17 00:00:00
 update: 2021/11/17 00:00:00
 ---

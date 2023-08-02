@@ -1,9 +1,9 @@
 ---
 title: yarn
 categories: 
-	- [big data, yarn]
+  - [big data, yarn]
 tags:
-	- yarn
+  - yarn
 date: 2021/08/27 00:00:00
 update: 2021/08/27 00:00:00
 ---

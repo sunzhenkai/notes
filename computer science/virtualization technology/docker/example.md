@@ -1,9 +1,9 @@
 ---
 title: docker example
 categories: 
-	- [计算机科学,虚拟化,docker]
+  - [计算机科学,虚拟化,docker]
 tags:
-	- docker
+  - docker
 date: 2022/07/28 00:00:00
 ---
 

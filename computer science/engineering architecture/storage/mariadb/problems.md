@@ -1,9 +1,9 @@
 ---
 title: mariadb 常见问题
 categories: 
-	- [架构, 存储, mariadb]
+  - [架构, 存储, mariadb]
 tags:
-	- mariadb
+  - mariadb
 date: 2021/08/30 00:00:00
 update: 2021/08/30 00:00:00
 ---

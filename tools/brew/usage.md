@@ -1,9 +1,9 @@
 ---
 title: brew
 categories: 
-	- [工具,brew]
+  - [工具,brew]
 tags:
-	- brew
+  - brew
 date: 2021/08/06 00:00:00
 update: 2021/08/06 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: Linux之查看设备
 categories: 
-	- [linux,notes]
+  - [linux,notes]
 tags:
-	- Linux
+  - Linux
 date: 2020/12/05 18:40:00
 update: 2020/12/05 18:40:00
 ---

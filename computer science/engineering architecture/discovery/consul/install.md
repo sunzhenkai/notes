@@ -1,9 +1,9 @@
 ---
 title: consul 部署
 categories: 
-	- [架构,注册发现,consul]
+  - [架构,注册发现,consul]
 tags:
-	- consul
+  - consul
 date: 2020/12/28 00:00:00
 update: 2020/12/28 00:00:00
 ---

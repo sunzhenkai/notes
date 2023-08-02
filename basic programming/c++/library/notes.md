@@ -1,9 +1,9 @@
 ---
 title: c++ library
 categories: 
-	- [coding, c++, library]
+  - [coding, c++, library]
 tags:
-	- c++
+  - c++
 date: 2021/01/12 00:00:00
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: k8s 安装
 categories: 
-	- [架构,container,k8s]
+  - [架构,container,k8s]
 tags:
-	- k8s
+  - k8s
 date: 2021/08/25 00:00:00
 update: 2021/08/25 00:00:00
 ---

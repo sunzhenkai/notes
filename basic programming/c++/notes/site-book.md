@@ -1,9 +1,9 @@
 ---
 title: c++ site & books
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2022/02/09 00:00:00
 ---
 

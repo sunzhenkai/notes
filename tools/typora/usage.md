@@ -1,9 +1,9 @@
 ---
 title: typora
 categories: 
-	- [工具,typora]
+  - [工具,typora]
 tags:
-	- typora
+  - typora
 date: 2021/08/18 00:00:00
 update: 2021/08/18 00:00:00
 ---

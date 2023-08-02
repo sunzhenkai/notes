@@ -1,9 +1,9 @@
 ---
 title: openstack config
 categories: 
-	- [computer science, computing, openstack]
+  - [computer science, computing, openstack]
 tags:
-	- openstack
+  - openstack
 date: 2021/10/29 00:00:00
 update: 2021/10/29 00:00:00
 ---

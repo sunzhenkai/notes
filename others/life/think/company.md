@@ -1,9 +1,9 @@
 ---
 title: 企业的价值观
 categories: 
-	- [life]
+  - [life]
 tags:
-	- life
+  - life
 date: 2021/11/23 00:00:00
 update: 2021/11/23 00:00:00
 ---

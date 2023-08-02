@@ -1,9 +1,9 @@
 ---
 title: python problems
 categories: 
-	- [python, notes]
+  - [python, notes]
 tags:
-	- python
+  - python
 date: 2022/07/20 00:00:00
 update: 2022/07/20 00:00:00
 ---

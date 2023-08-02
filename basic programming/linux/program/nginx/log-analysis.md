@@ -1,10 +1,10 @@
 ---
 title: nginx 日志分析
 categories: 
-	- [linux,software]
+  - [linux,software]
 tags:
-	- linux
-	- nginx
+  - linux
+  - nginx
 date: 2021/09/08 00:00:00
 update: 2021/09/08 00:00:00
 ---

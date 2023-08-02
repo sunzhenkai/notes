@@ -1,9 +1,9 @@
 ---
 title: go - strange
 categories: 
-	- [coding, go]
+  - [coding, go]
 tags:
-	- go
+  - go
 date: 2021/05/13 00:00:00
 update: 2021/05/13 00:00:00
 ---

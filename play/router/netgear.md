@@ -1,9 +1,9 @@
 ---
 title: netgear
 categories: 
-	- [play,router]
+  - [play,router]
 tags:
-	- router
+  - router
 date: 2022/10/16 00:00:00
 ---
 

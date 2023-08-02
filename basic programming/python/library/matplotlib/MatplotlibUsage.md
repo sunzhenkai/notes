@@ -1,9 +1,9 @@
 ---
 title: matplotlib usage
 categories: 
-	- [python, library, matplotlib]
+  - [python, library, matplotlib]
 tags:
-	- matplotlib
+  - matplotlib
 date: 2022/06/05 00:00:00
 ---
 

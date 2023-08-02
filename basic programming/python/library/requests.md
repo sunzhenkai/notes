@@ -1,9 +1,9 @@
 ---
 title: python requests
 categories: 
-	- [python, library]
+  - [python, library]
 tags:
-	- python
+  - python
 date: 2020/12/08 19:00:00
 ---
 

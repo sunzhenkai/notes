@@ -1,10 +1,10 @@
 ---
 title: nginx配置
 categories: 
-	- [linux,software]
+  - [linux,software]
 tags:
-	- linux
-	- nginx
+  - linux
+  - nginx
 date: 2020/11/13 22:00:00
 update: 2020/11/13 22:00:00
 ---

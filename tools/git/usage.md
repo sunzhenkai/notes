@@ -1,9 +1,9 @@
 ---
 title: git 使用
 categories: 
-	- [工具,git]
+  - [工具,git]
 tags:
-	- git
+  - git
 date: 2020/11/20 00:00:00
 update: 2020/11/20 00:00:00
 ---

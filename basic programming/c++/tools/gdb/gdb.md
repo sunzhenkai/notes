@@ -1,9 +1,9 @@
 ---
 title: gdb
 categories: 
-	- [coding, c++, tools, gdb]
+  - [coding, c++, tools, gdb]
 tags:
-	- c++
+  - c++
     - gdb
 date: 2022/1/10 00:00:00
 update: 2022/1/10 00:00:00

@@ -1,9 +1,9 @@
 ---
 title: linux sre
 categories: 
-	- [linux,notes]
+  - [linux,notes]
 tags:
-	- Linux
+  - Linux
 date: 2021/11/22 00:00:00
 update: 2021/11/22 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: vector
 categories: 
-	- [架构]
+  - [架构]
 tags:
-	- 架构
+  - 架构
 date: 2023/05/30 00:00:00
 update: 2023/05/30 00:00:00
 ---

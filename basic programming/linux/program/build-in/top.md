@@ -1,10 +1,10 @@
 ---
 title: top
 categories: 
-	- [linux,software]
+  - [linux,software]
 tags:
-	- linux
-	- top
+  - linux
+  - top
 date: 2021/07/13 00:00:00
 update: 2021/07/13 00:00:00
 ---

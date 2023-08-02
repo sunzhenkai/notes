@@ -1,10 +1,10 @@
 ---
 title: django viewset
 categories: 
-	- [python, library, django, django rest framework]
+  - [python, library, django, django rest framework]
 tags:
-	- django rest framework
-	- django rest framework
+  - django rest framework
+  - django rest framework
 date: 2020/12/25 19:00:00
 ---
 

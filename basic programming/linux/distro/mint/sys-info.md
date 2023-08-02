@@ -1,9 +1,9 @@
 ---
 title: 系统信息
 categories: 
-	- [linux,distro,mint]
+  - [linux,distro,mint]
 tags:
-	- distro
+  - distro
 date: 2021/08/24 00:00:00
 update: 2021/08/24 00:00:00
 ---

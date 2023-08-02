@@ -1,9 +1,9 @@
 ---
 title: openwrt
 categories: 
-	- [play,soft router]
+  - [play,soft router]
 tags:
-	- soft router
+  - soft router
 date: 2022/10/16 00:00:00
 ---
 

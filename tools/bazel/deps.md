@@ -1,9 +1,9 @@
 ---
 title: bazel - deps
 categories: 
-	- [工具,bazel]
+  - [工具,bazel]
 tags:
-	- bazel
+  - bazel
 date: 2021/07/01 00:00:00
 update: 2021/07/01 00:00:00
 ---

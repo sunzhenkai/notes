@@ -1,9 +1,9 @@
 ---
 title: Jetbrains
 categories: 
-	- [tools, jetbrains]
+  - [tools, jetbrains]
 tags:
-	- jetbrains
+  - jetbrains
 date: 2021/3/3 00:00:00
 update: 2021/3/3 00:00:00
 ---

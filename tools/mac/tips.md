@@ -1,9 +1,9 @@
 ---
 title: mac os tips
 categories: 
-	- [tools, mac]
+  - [tools, mac]
 tags:
-	- mac
+  - mac
 date: 2020/12/29 00:00:00
 update: 2020/12/29 00:00:00
 ---

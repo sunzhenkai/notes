@@ -1,9 +1,9 @@
 ---
 title: c++ compiler
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2022/06/13 00:00:00
 ---
 

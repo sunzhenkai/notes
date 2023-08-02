@@ -1,9 +1,9 @@
 ---
 title: 人生
 categories: 
-	- [life]
+  - [life]
 tags:
-	- life
+  - life
 date: 2021/09/18 00:00:00
 update: 2021/09/18 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: centos 常见问题
 categories: 
-	- [linux,distro,centos]
+  - [linux,distro,centos]
 tags:
-	- distro
+  - distro
 date: 2021/08/28 00:00:00
 update: 2021/08/28 00:00:00
 ---

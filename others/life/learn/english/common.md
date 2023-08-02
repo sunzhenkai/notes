@@ -1,9 +1,9 @@
 ---
 title: 英语常识
 categories: 
-	- [life, learn]
+  - [life, learn]
 tags:
-	- life
+  - life
 date: 2021/01/12 00:00:00
 update: 2021/01/12 00:00:00
 ---

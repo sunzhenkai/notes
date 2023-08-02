@@ -1,10 +1,10 @@
 ---
 title: redis usage
 categories: 
-	- [架构, 存储, redis]
+  - [架构, 存储, redis]
 tags:
-	- 架构
-	- 存储
+  - 架构
+  - 存储
 date: 2022/02/23 00:00:00
 update: 2022/02/23 00:00:00
 ---

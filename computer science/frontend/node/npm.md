@@ -1,9 +1,9 @@
 ---
 title: node - npm
 categories: 
-	- [前端, node]
+  - [前端, node]
 tags:
-	- npm
+  - npm
 date: 2021/05/13 00:00:00
 update: 2021/05/13 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: c++ - segmentation fault
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2022/1/13 00:00:00
 update: 2022/1/13 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: pom example
 categories:  
-	- [工具,maven]
+  - [工具,maven]
 tags:
-	- maven
+  - maven
 date: 2021/08/23 00:00:00
 update: 2021/08/23 00:00:00
 ---

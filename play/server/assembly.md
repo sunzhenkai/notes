@@ -1,9 +1,9 @@
 ---
 title: 组装
 categories: 
-	- [play,server]
+  - [play,server]
 tags:
-	- server
+  - server
 date: 2021/08/24 00:00:00
 update: 2021/08/24 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: centos jdk
 categories: 
-	- [linux,distro,centos]
+  - [linux,distro,centos]
 tags:
-	- distro
+  - distro
 date: 2021/10/19 00:00:00
 update: 2021/10/19 00:00:00
 ---

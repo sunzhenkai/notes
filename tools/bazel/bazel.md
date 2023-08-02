@@ -1,9 +1,9 @@
 ---
 title: bazel
 categories: 
-	- [工具,bazel]
+  - [工具,bazel]
 tags:
-	- bazel
+  - bazel
 date: 2021/05/22 00:00:00
 update: 2021/05/22 00:00:00
 ---

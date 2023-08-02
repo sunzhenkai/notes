@@ -1,9 +1,9 @@
 ---
 title: instance init
 categories: 
-	- [computer science, computing, instance]
+  - [computer science, computing, instance]
 tags:
-	- openstack
+  - openstack
 date: 2022/06/02 00:00:00
 update: 2022/06/02 00:00:00
 ---

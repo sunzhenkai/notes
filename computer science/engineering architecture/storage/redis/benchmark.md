@@ -1,10 +1,10 @@
 ---
 title: redis benchmark
 categories: 
-	- [架构, 存储, redis]
+  - [架构, 存储, redis]
 tags:
-	- 架构
-	- 存储
+  - 架构
+  - 存储
 date: 2021/03/23 00:00:00
 update: 2020/03/23 00:00:00
 ---

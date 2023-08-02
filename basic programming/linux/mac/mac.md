@@ -1,9 +1,9 @@
 ---
 title: mac usage
 categories: 
-	- [linux, Mac]
+  - [linux, Mac]
 tags:
-	- usage
+  - usage
 date: 2020/10/27 19:00:00
 update: 2020/10/27 19:00:00
 ---

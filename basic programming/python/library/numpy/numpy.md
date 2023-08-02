@@ -1,9 +1,9 @@
 ---
 title: numpy
 categories: 
-	- [python, library, numpy]
+  - [python, library, numpy]
 tags:
-	- numpy
+  - numpy
 date: 2021/08/31 20:00:00
 ---
 

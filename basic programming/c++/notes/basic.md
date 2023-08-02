@@ -1,9 +1,9 @@
 ---
 title: c++基础
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2020/11/10 21:00:00
 ---
 

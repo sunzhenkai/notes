@@ -1,9 +1,9 @@
 ---
 title: C++ 收藏
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2023/07/27 00:00:00
 ---
 

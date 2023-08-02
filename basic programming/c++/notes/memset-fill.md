@@ -1,9 +1,9 @@
 ---
 title: memset & fill
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2020/11/21 12:00:00
 ---
 

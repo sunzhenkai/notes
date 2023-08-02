@@ -1,9 +1,9 @@
 ---
 title: django startup
 categories: 
-	- [python, library, django]
+  - [python, library, django]
 tags:
-	- django
+  - django
 date: 2020/12/10 19:00:00
 ---
 

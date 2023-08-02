@@ -1,10 +1,10 @@
 ---
 title: vsftpd usage
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- ftp
-	- vsftpd
+  - ftp
+  - vsftpd
 date: 2020/10/26 18:00:00
 update: 2020/10/26 18:00:00
 ---

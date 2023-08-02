@@ -1,9 +1,9 @@
 ---
 title: 自驾游 - 乌兰察布
 categories: 
-	- [life, travel]
+  - [life, travel]
 tags:
-	- 自驾游
+  - 自驾游
 date: 2021/01/12 00:00:00
 update: 2021/01/12 00:00:00
 ---

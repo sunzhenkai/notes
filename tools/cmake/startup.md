@@ -1,9 +1,9 @@
 ---
 title: cmake 使用
 categories: 
-	- [工具,cmake]
+  - [工具,cmake]
 tags:
-	- cmake
+  - cmake
 date: 2020/12/31 00:00:00
 update: 2020/12/31 00:00:00
 ---

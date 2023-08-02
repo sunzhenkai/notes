@@ -1,9 +1,9 @@
 ---
 title: vcpkg
 categories: 
-	- [coding, c++, tools, vcpkg]
+  - [coding, c++, tools, vcpkg]
 tags:
-	- c++
+  - c++
     - vcpkg
 date: 2023/07/19 00:00:00
 ---

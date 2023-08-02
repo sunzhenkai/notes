@@ -1,9 +1,9 @@
 ---
 dtitle: vue 常见问题
 categories: 
-	- [前端,vue]
+  - [前端,vue]
 tags:
-	- vue
+  - vue
 date: 2020/12/24 19:00:00
 ---
 

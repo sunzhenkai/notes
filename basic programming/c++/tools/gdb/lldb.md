@@ -1,9 +1,9 @@
 ---
 title: lldb
 categories: 
-	- [coding, c++, tools, lldb]
+  - [coding, c++, tools, lldb]
 tags:
-	- c++
+  - c++
     - lldb
 date: 2022/1/10 00:00:00
 update: 2022/1/10 00:00:00

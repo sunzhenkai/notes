@@ -1,9 +1,9 @@
 ---
 title: centos user manager
 categories: 
-	- [linux,distro,centos]
+  - [linux,distro,centos]
 tags:
-	- distro
+  - distro
 date: 2021/10/17 00:00:00
 update: 2021/10/17 00:00:00
 ---

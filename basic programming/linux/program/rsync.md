@@ -1,9 +1,9 @@
 ---
 title: rsync
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- linux
+  - linux
     - rsync
 date: 2022/10/21 00:00:00
 ---

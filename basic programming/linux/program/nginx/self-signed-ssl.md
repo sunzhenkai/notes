@@ -1,10 +1,10 @@
 ---
 title: nginx creat self-signed SSL certificate 
 categories: 
-	- [linux,software]
+  - [linux,software]
 tags:
-	- linux
-	- nginx
+  - linux
+  - nginx
 date: 2022/06/11 00:00:00
 update: 2022/06/11 00:00:00
 ---

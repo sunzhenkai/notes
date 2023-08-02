@@ -1,9 +1,9 @@
 ---
 title: spring cacheable 
 categories: 
-	- [架构,Java,框架,spring]
+  - [架构,Java,框架,spring]
 tags:
-	- spring
+  - spring
 date: 2021/09/19 00:00:00
 update: 2021/09/19 00:00:00
 ---

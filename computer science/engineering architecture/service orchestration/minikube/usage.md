@@ -1,9 +1,9 @@
 ---
 title: minikube usage
 categories: 
-	- [架构,container,minikube]
+  - [架构,container,minikube]
 tags:
-	- minikube
+  - minikube
 date: 2023/07/12 00:00:00
 ---
 

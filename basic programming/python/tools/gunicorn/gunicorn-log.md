@@ -1,9 +1,9 @@
 ---
 title: gunicorn logging
 categories: 
-	- [python, tools, gunicorn]
+  - [python, tools, gunicorn]
 tags:
-	- python
+  - python
     - gunicorn
 date: 2022/03/30 00:00:00
 ---

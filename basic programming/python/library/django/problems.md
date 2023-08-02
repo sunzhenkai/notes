@@ -1,9 +1,9 @@
 ---
 title: django 常见问题
 categories: 
-	- [python, library, django]
+  - [python, library, django]
 tags:
-	- django
+  - django
 date: 2020/12/24 19:00:00
 ---
 

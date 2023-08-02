@@ -1,9 +1,9 @@
 ---
 title: jvm command line
 categories: 
-	- [coding, java, jvm]
+  - [coding, java, jvm]
 tags:
-	- jvm
+  - jvm
 date: 2021/11/09 00:00:00
 ---
 

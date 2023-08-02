@@ -1,9 +1,9 @@
 ---
 title: linux commands misc
 categories:
-	- [linux, software]
+  - [linux, software]
 tags:
-	- linux
+  - linux
 date: 2021/06/28 00:00:00
 update: 2021/06/28 00:00:00
 ---

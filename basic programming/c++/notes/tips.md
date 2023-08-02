@@ -1,9 +1,9 @@
 ---
 title: c++ tips
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2021/12/21 00:00:00
 ---
 

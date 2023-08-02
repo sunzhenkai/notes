@@ -1,9 +1,9 @@
 ---
 title: cuda
 categories: 
-	- [architecture, gpu, cuda]
+  - [architecture, gpu, cuda]
 tags:
-	- cuda
+  - cuda
 date: 2023/06/30 00:00:00
 update: 2023/06/30 00:00:00
 ---

@@ -1,10 +1,10 @@
 ---
 title: kaggle入门
 categories: 
-	- [机器学习,kaggle]
+  - [机器学习,kaggle]
 tags:
-	- 机器学习
-	- kaggle
+  - 机器学习
+  - kaggle
 date: 2020/11/17 23:00:00
 update: 2020/11/17 23:00:00
 ---

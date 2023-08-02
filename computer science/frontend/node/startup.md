@@ -1,9 +1,9 @@
 ---
 title: node startup
 categories: 
-	- [前端, node]
+  - [前端, node]
 tags:
-	- usage
+  - usage
 date: 2020/12/30 00:00:00
 update: 2020/12/30 00:00:00
 ---

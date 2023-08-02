@@ -1,10 +1,10 @@
 ---
 title: JVM 参数
 categories: 
-	- [coding, java, jvm]
+  - [coding, java, jvm]
 tags:
-	- jvm
-	- gc
+  - jvm
+  - gc
 date: 2020/12/04 12:00:00
 ---
 

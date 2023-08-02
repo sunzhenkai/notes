@@ -1,9 +1,9 @@
 ---
 title: python virtualenv
 categories: 
-	- [python, library]
+  - [python, library]
 tags:
-	- virtualenv
+  - virtualenv
 date: 2020/12/10 19:00:00
 ---
 

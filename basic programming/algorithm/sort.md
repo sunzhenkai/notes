@@ -1,9 +1,9 @@
 ---
 title: 排序
 categories: 
-	- [coding, 算法]
+  - [coding, 算法]
 tags:
-	- 算法
+  - 算法
 date: 2021/04/12 00:00:00
 update: 2021/04/12 00:00:00
 ---

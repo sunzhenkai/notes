@@ -1,9 +1,9 @@
 ---
 title: python argparse
 categories: 
-	- [python, notes]
+  - [python, notes]
 tags:
-	- python
+  - python
 date: 2021/09/29 00:00:00
 update: 2021/09/29 00:00:00
 ---

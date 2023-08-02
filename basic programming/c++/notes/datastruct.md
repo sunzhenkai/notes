@@ -1,9 +1,9 @@
 ---
 title: c++ 数据结构
 categories: 
-	- [coding, c++]
+  - [coding, c++]
 tags:
-	- c++
+  - c++
 date: 2021/03/11 00:00:00
 update: 2021/03/11 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: mongo - cxx driver
 categories: 
-	- [架构, 存储, mongodb]
+  - [架构, 存储, mongodb]
 tags:
-	- mongodb
+  - mongodb
 date: 2022/3/23 00:00:00
 update: 2022/3/23 00:00:00
 ---

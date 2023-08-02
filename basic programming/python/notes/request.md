@@ -1,9 +1,9 @@
 ---
 title: python - request
 categories: 
-	- [python, notes]
+  - [python, notes]
 tags:
-	- python
+  - python
 date: 2022/06/20 00:00:00
 update: 2022/06/20 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: maven project
 categories:  
-	- [工具,maven]
+  - [工具,maven]
 tags:
-	- maven
+  - maven
 date: 2021/08/23 00:00:00
 update: 2021/08/23 00:00:00
 ---
@@ -14,8 +14,8 @@ Maven项目实践。
 
 ```shell
 project-parent
-	- project-foo
-	- project-bar
+  - project-foo
+  - project-bar
 pom.xml
 ```
 

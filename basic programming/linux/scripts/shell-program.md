@@ -1,10 +1,10 @@
 ---
 title: shell 编程
 categories: 
-	- [linux, shell]
+  - [linux, shell]
 tags:
-	- linux
-	- shell
+  - linux
+  - shell
 date: 2020/10/27 19:00:00
 update: 2020/10/27 19:00:00
 ---

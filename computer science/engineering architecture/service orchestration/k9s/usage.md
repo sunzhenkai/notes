@@ -1,9 +1,9 @@
 ---
 title: k9s usage
 categories: 
-	- [架构,container,k8s,k9s]
+  - [架构,container,k8s,k9s]
 tags:
-	- k9s
+  - k9s
 date: 2022/08/30 00:00:00
 ---
 

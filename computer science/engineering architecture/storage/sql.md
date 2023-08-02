@@ -1,9 +1,9 @@
 ---
 title: SQL
 categories: 
-	- [架构, 存储]
+  - [架构, 存储]
 tags:
-	- SQL
+  - SQL
 date: 2021/01/12 00:00:00
 update: 2021/01/12 00:00:00
 ---

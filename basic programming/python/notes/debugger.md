@@ -1,9 +1,9 @@
 ---
 title: python debugger
 categories: 
-	- [python, notes]
+  - [python, notes]
 tags:
-	- python
+  - python
 date: 2021/10/02 00:00:00
 update: 2021/10/02 00:00:00
 ---

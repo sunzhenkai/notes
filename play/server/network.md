@@ -1,9 +1,9 @@
 ---
 title: network
 categories: 
-	- [play,network]
+  - [play,network]
 tags:
-	- server
+  - server
 date: 2022/08/21 00:00:00
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: vim usage
 categories: 
-	- [工具,vim]
+  - [工具,vim]
 tags:
-	- vim
+  - vim
 date: 2020/12/30 19:00:00
 update: 2020/12/30 19:00:00
 ---

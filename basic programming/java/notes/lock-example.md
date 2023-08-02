@@ -1,9 +1,9 @@
 ---
 title: java lock example
 categories: 
-	- [coding,java,notes]
+  - [coding,java,notes]
 tags:
-	- java
+  - java
 date: 2021/09/25 00:00:00
 update: 2021/09/25 00:00:00
 ---

@@ -1,10 +1,10 @@
 ---
 title: dpdk docs
 categories: 
-	- [linux,software]
+  - [linux,software]
 tags:
-	- linux
-	- dpdk
+  - linux
+  - dpdk
 date: 2021/12/15 00:00:00
 update: 2021/12/15 00:00:00
 ---

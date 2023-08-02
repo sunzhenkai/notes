@@ -1,9 +1,9 @@
 ---
 title: data struct
 categories: 
-	- [data struct]
+  - [data struct]
 tags:
-	- data struct
+  - data struct
 date: 2023/05/10 00:00:00
 ---
 

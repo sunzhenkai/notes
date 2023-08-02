@@ -1,9 +1,9 @@
 ---
 title: go 类型
 categories: 
-	- [coding, go]
+  - [coding, go]
 tags:
-	- go
+  - go
 date: 2020/12/30 12:00:00
 update: 2020/12/30 12:00:00
 ---

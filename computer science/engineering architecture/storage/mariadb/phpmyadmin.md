@@ -1,9 +1,9 @@
 ---
 title: phpmyadmin
 categories: 
-	- [架构, 存储, mariadb]
+  - [架构, 存储, mariadb]
 tags:
-	- phpmyadmin
+  - phpmyadmin
     - mariadb
 date: 2022/08/27 00:00:00
 ---

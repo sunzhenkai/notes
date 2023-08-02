@@ -1,9 +1,9 @@
 ---
 title: unraid 插件
 categories: 
-	- [play,unraid]
+  - [play,unraid]
 tags:
-	- unriad
+  - unriad
 date: 2020/12/11 00:00:00
 update: 2020/12/11 00:00:00
 ---

@@ -1,9 +1,9 @@
 ---
 title: emacs
 categories: 
-	- [工具,emacs]
+  - [工具,emacs]
 tags:
-	- emacs
+  - emacs
 date: 2022/09/17 00:00:00
 ---
 

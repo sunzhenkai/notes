@@ -1,9 +1,9 @@
 ---
 title: cassandra - cqlsh
 categories: 
-	- [架构,存储,cassandra]
+  - [架构,存储,cassandra]
 tags:
-	- cassandra
+  - cassandra
 date: 2022/07/06 00:00:00
 ---
 
