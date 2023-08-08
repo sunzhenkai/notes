@@ -284,6 +284,50 @@ round-trip min/avg/max/stddev = 2.651/3.474/4.142/0.619 ms
 </property>
 ```
 
+# 使用 docker compose 安装
+
+docker hub 文档参考[这里](https://hub.docker.com/r/apache/hadoop)，docker compose 配置参考[这里](https://github.com/sunzhenkai/containers/tree/master/hadoop) 。
+
+## 配置 Client
+
+```shell
+# 从容器拷贝 hadoop 程序
+docker cp hadoop_namenode_1:/opt/hadoop /usr/local/
+
+# 添加到 path
+export PATH=/usr/local/hadoop/bin:$PATH
+
+# 获取 nodename 节点 ip
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hadoop_namenode_1
+## 172.18.0.4
+
+# 修改 hosts
+## sudo vim /etc/hosts
+## 添加如下内容
+172.18.0.4 namenode
+```
+
+> 注意：提前配置 JAVA_HOME
+
+**测试**
+
+```shell
+$ hdfs dfs -ls /
+$ hdfs dfs -mkdir /data
+$ hdfs dfs -ls /
+drwxr-xr-x   - hadoop supergroup          0 2023-08-02 10:25 /data
+```
+
+## 关闭权限控制
+
+```xml
+<!-- hdfs-site.xml -->
+<property>
+  <name>dfs.permissions.enabled</name>
+  <value>false</value>
+</property>
+```
+
 # MR 作业
 
 ## 配置
@@ -369,5 +413,8 @@ fs.delete(path, true);	# (path, recursive)
 ```shell
 # 创建目录
 hdfs dfs -mkdir -p /path/to/dir/
+
+# 上传文件
+hdfs dfs -put /path/to/file /path
 ```
 

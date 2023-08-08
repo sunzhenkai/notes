@@ -103,6 +103,8 @@ f: /home/wii/share/
 
 ```shell
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+# or
+SCRIPT_DIR=$(readlink -f $0 | xargs dirname)
 ```
 
 ## 查看软连文件大小
@@ -235,7 +237,11 @@ lsof -p <PID> | grep cwd
 readlink -e /proc/<PID>/cwd
 ```
 
-# 磁盘读写
+# 设备
+
+## 磁盘
+
+### 磁盘读写监控
 
 ```shell
 $ iotop -o 
@@ -245,6 +251,12 @@ $ iotop -o
 
 ```shell
 -o 仅显示有速度的进程
+```
+
+### 磁盘测速
+
+```shell
+$ sudo hdparm -Tt /dev/sda
 ```
 
 # tail 多个远程文件
@@ -644,8 +656,6 @@ iperf3 -s
 # node B
 iperf3 -c <node-b>
 ```
-
-# 磁盘测速
 
 # dmesg 
 
