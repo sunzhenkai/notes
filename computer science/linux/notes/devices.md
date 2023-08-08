@@ -357,8 +357,13 @@ sudo vgextend <volume-group-name> /dev/sdb
 #### 增加 Logical Volume 的空间
 
 ```shell
-sudo lvresize -L +5G --resizefs <lvm-vg-name>/<lvm-lv-name>
+sudo lvresize -L +5G --resizefs <lvm-vg-name>/<lvm-lv-name>  # 调整 lvm size
+sudo lvresize -l +100%FREE /dev/<lvm-vg-name>/<lvm-lv-name>  # 使用所有剩余空间
+# sudo lvdisplay; 找到 Logical Volume 的 LV Path
+sudo resize2fs <lv-path>	# 生效
 ```
+
+> 注意: lvresize 之后通过 df -h 查看空间，并不会生效，需要再运行 resize2fs 
 
 #### 删除 Logical Volume 
 

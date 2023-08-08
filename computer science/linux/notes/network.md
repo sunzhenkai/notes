@@ -56,7 +56,7 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
-# IP
+# CMD ip
 
 ```shell
 via : [FAMILY] ADDRESS, 指定下一跳地址
@@ -103,5 +103,20 @@ ip route replace default via 192.168.1.1 dev eth0
 ```shell
 # github ip 走网关 192.168.6.68 
 sudo ip route add 20.205.243.166 via 192.168.6.68 
+```
+
+# CMD route
+
+```shell
+# 添加路由
+route -q -n add -inet 192.168.6.0/24 -interface utun3
+```
+
+# Route Trace
+
+```shell
+$ traceroute -4 baidu.com
+$ traceroute -6 baidu.com  # ipv6
+$ traceroute -g 192.168.6.1 # 指定 gateway
 ```
 

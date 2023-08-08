@@ -1,5 +1,10 @@
 ---
-
+title: postgresql - startup
+categories: 
+  - [架构, 存储, postgresql]
+tags:
+  - mysql
+date: 2023/08/08 00:00:00
 ---
 
 # 命令
