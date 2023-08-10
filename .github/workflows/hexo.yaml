@@ -52,8 +52,9 @@ jobs:
           npm run build
           ls
           ls public
+          mv public ..
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./hexo/public
+          publish_dir: ./public
