@@ -4,7 +4,7 @@ name: HexoPages
 on:
   push:
     branches:
-      - master  # default branch
+      - master # default branch
 
 jobs:
   pages:
@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          repository: 'sunzhenkai/blog'
+          repository: "sunzhenkai/blog"
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
       - name: Checkout Blog Docs
@@ -25,13 +25,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
-          path: 'docs'
-      - name: Show Directories
-        run: ls
+          path: "docs"
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
       - name: Cache NPM dependencies
         uses: actions/cache@v2
         with:
@@ -42,20 +40,17 @@ jobs:
       - name: Install Dependencies
         working-directory: hexo
         run: |
-          pwd
-          ls
           npm install
       - name: Build
         working-directory: hexo
         run: |
-          pwd
+          echo "> pwd" && pwd
           npm run build
-          ls
-          ls public
-          cp -r public ..
+          echo "> ls" && ls
+          echo "> ls public" && ls public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./hexo/public
           keep_files: true
