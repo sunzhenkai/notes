@@ -1,9 +1,9 @@
-name: Send submodule updates to parent repo
+name: TriggerParentRepoUpdate
 
 on:
   push:
     branches: 
-      - main
+      - master
 
 jobs:
   update:
