@@ -44,10 +44,10 @@ jobs:
       - name: Build
         working-directory: hexo
         run: |
-          echo "> pwd" && pwd
+          # echo "> pwd" && pwd
           npm run build
-          echo "> ls" && ls
-          echo "> ls public" && ls public
+          # echo "> ls" && ls
+          # echo "> ls public" && ls public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
