@@ -102,3 +102,6 @@ Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtr
 ![image-20210824204253078](assembly/image-20210824204253078.png)
 
 详细参考[这里](https://browser.geekbench.com/v5/cpu/9471222)。
+
+# 后记
+- 两个 CPU 1940, 一年后 800~900, 血亏
