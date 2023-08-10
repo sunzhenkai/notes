@@ -12,11 +12,22 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Hexo Blog
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: 'sunzhenkai/blog'
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Checkout Blog Docs
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
+          path: 'blog/docs'
+      - name: Show Directories
+        run: ls
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2
         with:
@@ -28,23 +39,13 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
-      - name: Checkout blog
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: 'sunzhenkai/blog'
-          # If your repository depends on submodule, please see: https://github.com/actions/checkout
-          submodules: recursive
-          path: blog
       - name: Install Dependencies
-        working-directory: ./blog
         run: |
           rm docs
           ln -s .. docs
           ls -l docs
           npm install
       - name: Build
-        working-directory: ./blog
         run: npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
