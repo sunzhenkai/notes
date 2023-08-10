@@ -25,7 +25,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
-          path: 'blog/docs'
+          path: 'docs'
       - name: Show Directories
         run: ls
       - name: Use Node.js 16.x
@@ -40,15 +40,11 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-npm-cache
       - name: Install Dependencies
-        run: |
-          rm docs
-          ln -s .. docs
-          ls -l docs
-          npm install
+        run: npm install
       - name: Build
         run: npm run build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./blog/public
+          publish_dir: ./public
