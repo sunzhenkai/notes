@@ -1,0 +1,71 @@
+# reference https://hexo.io/docs/github-pages.html
+name: HexoPages
+
+on:
+  push:
+    branches:
+      - master # default branch
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  pages:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Hexo Blog
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: "sunzhenkai/blog"
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Checkout Blog Docs
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+          path: "docs"
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        working-directory: hexo
+        run: |
+          npm install
+      - name: Build
+        working-directory: hexo
+        run: |
+          # echo "> pwd" && pwd
+          npm run build
+          # echo "> ls" && ls
+          # echo "> ls public" && ls public
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: hexo/public
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
