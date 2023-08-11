@@ -11,17 +11,17 @@ date: 2023/08/11 00:00:00
 
 ## **国际音标**
 
-![image-20230811083006524](./phonetic%20symbol.assets/image-20230811083006524.png)
+![image-20230811083006524](./phonetic symbol.assets/image-20230811083006524.png)
 
 ## **DJ 音标**
 
-![image-20230811083753871](./phonetic%20symbol.assets/image-20230811083753871.png)
+![image-20230811083753871](./phonetic symbol.assets/image-20230811083753871.png)
 
 ## **KK 音标**
 
 美式英语发音词典。
 
-![image-20230811083859911](./phonetic%20symbol.assets/image-20230811083859911.png)
+![image-20230811083859911](./phonetic symbol.assets/image-20230811083859911.png)
 
 ## 其他
 
@@ -32,23 +32,23 @@ date: 2023/08/11 00:00:00
 
 **DJ音标 VS KK 音标**
 
-![image-20230811084127628](./phonetic%20symbol.assets/image-20230811084127628.png)
+![image-20230811084127628](./phonetic symbol.assets/image-20230811084127628.png)
 
 **DJ 音标 VS KK 音标**
 
-![image-20230811084303750](./phonetic%20symbol.assets/image-20230811084303750.png)
+![image-20230811084303750](./phonetic symbol.assets/image-20230811084303750.png)
 
-![image-20230811084521375](./phonetic%20symbol.assets/image-20230811084521375.png)
+![image-20230811084521375](./phonetic symbol.assets/image-20230811084521375.png)
 
 # 音标分类
 
 ## 元音
 
-![image-20230811084935079](./phonetic%20symbol.assets/image-20230811084935079.png)
+![image-20230811084935079](./phonetic symbol.assets/image-20230811084935079.png)
 
 ## 辅音
 
-![image-20230811085004062](./phonetic%20symbol.assets/image-20230811085004062.png)
+![image-20230811085004062](./phonetic symbol.assets/image-20230811085004062.png)
 
 # 参考
 
