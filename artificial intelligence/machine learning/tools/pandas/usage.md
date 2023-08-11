@@ -84,6 +84,8 @@ data.<ColumnName>
 
 # 选取多列
 data[[<ColumnName>, <ColumnName>, <...>]]
+# 过滤列
+data.loc[:, df.columns != '<column_name>']
 
 # 通过索引选取
 df.iloc[:, 0]	# 第1列

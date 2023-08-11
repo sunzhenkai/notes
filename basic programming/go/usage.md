@@ -70,8 +70,8 @@ git config --global --add url."git@your-repo.com:".insteadOf "https://your-repo.
 # 通过 ~/.gitconfig 查看配置，如果还是有问题可检查下配置
 
 go env -w GO111MODULE=on
-go env -w  GOPROXY=direct
-go env -w  GOSUMDB=off
+go env -w GOPROXY=direct
+go env -w GOSUMDB=off
 ```
 
 ## 查看依赖版本
