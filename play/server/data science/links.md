@@ -10,10 +10,14 @@ update: 2023/07/27 00:00:00
 如果你搭建了 datascience 开发环境，并在 hosts 中配置了 datascience 解析，那么下面的链接你可能会用到。
 # UI
 - [Airflow](http://datascience:8208)
+    - `username: admin, password: admin`
+
 - [Azkaban](http://datascience:8261)
     - `username: azkaban, password: azkaban`
 - [Consul](http://datascience:8500)
 - [Dolphinscheduler](http://datascience:12345/dolphinscheduler/ui)
+    - `username: admin, password: dolphinscheduler123`
+
 - [Flink JobManager](http://datascience:8220)
 - [Gitlab](http://datascience:8929)
 - [Grafana](http://datascience:3000)
