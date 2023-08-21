@@ -92,6 +92,10 @@ df.iloc[:, 0]	# 第1列
 
 # 对列取 unique
 df[<ColumnName>].unique()
+
+# 按类型选取列
+df.select_dtypes(include=['float64', 'bool'])
+df.select_dtypes(include='number') # 选取所有数字类型的列
 ```
 
 **转换操作**
@@ -106,6 +110,13 @@ df[['a', 'b']] = df[['a', 'b']].apply(pd.to_numeric)
 
 # 一列转换为多列
 df[['a', 'b', 'c']] = df['label'].apply(lambda x: pd.Series(x.split(',')))
+```
+
+**Drop 列**
+
+```python
+# drop 有 nan 的列
+df.dropna(axis=1, how='any')
 ```
 
 ## 行操作
