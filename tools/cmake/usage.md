@@ -267,12 +267,17 @@ mark_as_advanced(THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
 
 **简版**
 
-```shell
-# 查找库
-pkg_search_module(PKG_${DEP_UNAME} REQUIRED IMPORTED_TARGET ${DEP_NAME})
+[文档](https://cmake.org/cmake/help/latest/module/FindPkgConfig.html#command:pkg_check_modules)。
 
-# link 库
-target_link_libraries(target PkgConfig::PKG_${DEP_UNAME})
+```shell
+# search
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SDL2 REQUIRED sdl2)
+
+# link
+target_link_libraries(testapp ${SDL2_LIBRARIES})
+target_include_directories(testapp PUBLIC ${SDL2_INCLUDE_DIRS})
+target_compile_options(testapp PUBLIC ${SDL2_CFLAGS_OTHER})
 ```
 
 **自己添加 target**

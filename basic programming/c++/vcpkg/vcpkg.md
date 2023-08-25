@@ -41,6 +41,19 @@ $ ./vcpkg/bootstrap-vcpkg.sh
 
 # 使用
 
+## 引入 CMAKE_TOOLCHAINE_FILE
+
+```shell
+# 命令行
+cmake ... -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+# CMakeLists.txt 内
+## NOTE: 要在 project 之前
+set(CMAKE_TOOLCHAIN_FILE /path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
+```
+
+
+
 ## 软件包搜索
 
 - [Browse packages](https://vcpkg.io/en/packages)
@@ -87,6 +100,10 @@ $ ./vcpkg/bootstrap-vcpkg.sh
 
 - `vcpkg.json`
 - `vcpkg-configuration.json`
+
+## 添加内部库
+
+- [参考一](https://zhuanlan.zhihu.com/p/642660026)
 
 # Registries
 
@@ -139,3 +156,21 @@ rm -r {VCPKG_HOME}/packages/{library}
   - 不要直接拷贝 patch 内容，要复制 patch 文件
     - 复制粘贴有可能导致不可见字符变更
     - 部分 IDE 会自动优化不可见字符，导致 patch 文件失效
+
+## pkg_check_modules 无法找到包
+
+**错误信息**
+
+```shell
+-- Checking for module 'cassandra_static'
+--   No package 'cassandra_static' found
+CMake Error at /snap/cmake/1328/share/cmake-3.27/Modules/FindPkgConfig.cmake:607 (message):
+  A required package was not found
+```
+
+**解决**
+
+正常来说，vcpkg 安装的包，如果有 pkgconfig 是可以通过 pkg_check_modules 找到的。出现问题的原因是 find_package 引入包时意外导致 pkg_check_modules 不可用，解决方案有两个。
+
+- 找到因为问题的 find_package 语句，并移到后面
+- 遍历 CMAKE_PREFIX_PATH 并追加 `lib/pkgconfig` 后加入到 `ENV{PKG_CONFIG_PATH}` 中

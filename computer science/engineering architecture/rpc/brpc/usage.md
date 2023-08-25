@@ -34,3 +34,14 @@ update: 2023/05/23 00:00:00
 - 回程
   - ParseMessage
   - ProcessResponse
+
+# bthread
+
+## timer_thread
+
+```shell
+#include "bthread/timer_thread.h"
+bthread::TimerThread timer;
+timer.schedule(ConfigData::load, this, {60}); // schedule every 60 seconds
+```
+
