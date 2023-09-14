@@ -69,3 +69,10 @@ cat data.json | consul kv import -  # 通过管道导入
 curl --location --request GET 'http://127.0.0.1:8500/v1/kv/?keys'
 ```
 
+**注意**
+
+
+
+## Blocking Query / Long Pull
+
+指定参数 `index={latest-index}`，latest-index 是相对于 kv prefix 而言，在 response 的 header 中 `X-Consul-Index` 返回。

@@ -1,5 +1,5 @@
 ---
-title: spark read s3
+title: spark
 categories: 
   - [big data, spark]
 tags:
@@ -8,15 +8,35 @@ date: 2022/06/04 00:00:00
 update: 2022/06/04 00:00:00
 ---
 
-# pyspark
+# 读 Json 
 
-## 安装
+```scala
+var srcData = spark.read.json(srcPath)
+
+// 获取 String vector Cell
+row.getAs[Seq[String]](idx)
+```
+
+# 查询
+
+## group by
+
+```shell
+df.groupBy("column-name").count().show(false)
+df.groupBy("column-name").agg(count("*").alias("count")).show(false)
+```
+
+# 读 S3 数据
+
+## pyspark
+
+### 安装
 
 ```shell
 pip3 install pyspark
 ```
 
-## 读取 s3 数据
+### 读取 s3 数据
 
 ```python
 # 创建 spark session
@@ -62,7 +82,7 @@ result = data.rdd.map(decode_pb).toDF(["value"])
 result.show(1, False)
 ```
 
-# scala
+## scala
 
 ```scala
 // 创建 Spark Session
@@ -98,7 +118,7 @@ val result = src.map(record => {
 println(result.first())
 ```
 
-## pom
+### pom
 
 ```xml
 <dependency>
