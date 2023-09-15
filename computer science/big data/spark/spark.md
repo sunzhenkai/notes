@@ -246,3 +246,18 @@ println(result.first())
 </build>
 ```
 
+# DataFrame 操作
+
+## 合并 DataFrame
+
+```python
+# 按列拼接 (行数不变)
+df1.crossJoin(df2)
+
+# 按行拼接 (列数不变)
+df1.union(df2)
+
+# 按条件拼接
+df1.join(df2, ...)
+```
+
