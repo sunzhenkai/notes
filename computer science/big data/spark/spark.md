@@ -251,13 +251,50 @@ println(result.first())
 ## 合并 DataFrame
 
 ```python
-# 按列拼接 (行数不变)
-df1.crossJoin(df2)
-
 # 按行拼接 (列数不变)
 df1.union(df2)
 
 # 按条件拼接
 df1.join(df2, ...)
+```
+
+**按行拼接**
+
+```python
+%pyspark # zeppelin
+from pyspark.sql.functions import col,monotonically_increasing_id
+
+online_data_renamed = online_data.withColumnRenamed('value', 'online')
+offline_data_renamed = offline_data.withColumnRenamed('value', 'offline')
+
+online_data_renamed = online_data_renamed.withColumn("id",monotonically_increasing_id())
+offline_data_renamed = offline_data_renamed.withColumn("id",monotonically_increasing_id())
+
+merged = online_data_renamed.join(offline_data_renamed, online_data_renamed.id == offline_data_renamed.id, how='inner')
+```
+
+## 列操作
+
+## 计算分布
+
+```shell
+ndf = df.groupBy('age').count()
+```
+
+## 创建 DataFrame
+
+```python3
+# schema 1
+dept = [("Finance",10), ("Marketing",20), ("Sales",30),  ("IT",40)]
+deptColumns = ["dept_name","dept_id"]
+deptDF = spark.createDataFrame(data=dept, schema = deptColumns)
+
+# schem 2
+my_list = [("John", 25), ("Alice", 30), ("Bob", 35)]
+schema = StructType([
+    StructField("name", StringType(), nullable=False),
+    StructField("age", StringType(), nullable=False)
+])
+df = spark.createDataFrame(my_list, schema)
 ```
 
