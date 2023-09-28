@@ -44,3 +44,7 @@ class S {
 int S::v = 0;
 ```
 
+# undefined reference to
+
+- 未连接库
+- 编译库的编译器版本不一致，ABI 不兼容

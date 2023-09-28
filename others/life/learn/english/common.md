@@ -19,8 +19,6 @@ update: 2021/01/12 00:00:00
 | 号   | No.*    | No.12         |
 |      |         |               |
 
-
-
 ```
 Ｘ室 Room Ｘ
 X 村 *** Vallage,如华西村 Huaxi Vallage.

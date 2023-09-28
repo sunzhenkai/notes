@@ -9,7 +9,7 @@ date: 2022/09/02 00:00:00
 
 # 推荐系统的典型架构
 
-
+![recommend-system-第 2 页.drawio](recommend-system/recommend-system-第 2 页.drawio.png)
 
 # 如何快速了解一个推荐系统
 
