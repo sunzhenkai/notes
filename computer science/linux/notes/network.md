@@ -120,3 +120,10 @@ $ traceroute -6 baidu.com  # ipv6
 $ traceroute -g 192.168.6.1 # 指定 gateway
 ```
 
+# tcpdump
+
+```shell
+# 客户端抓取向服务端发送的数据
+$ tcpdump dst host {dst-host} and  dst port {dst-port} -w out.pacp
+```
+
