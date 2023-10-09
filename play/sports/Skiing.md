@@ -1,5 +1,11 @@
 ---
 title: 滑雪
+categories:
+    - 运动
+tags:
+    - 运动
+date: 1993/1/1 00:00:00
+update: 1993/1/1 00:00:00
 ---
 
 [TOC]
