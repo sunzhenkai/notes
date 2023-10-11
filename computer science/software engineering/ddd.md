@@ -19,6 +19,15 @@ update: 2021/01/14 19:00:00
 
 ![contexts](ddd/ddd-diagram-objects.png)
 
+## 构成要素
+
+- 实体（Entity）
+- 值对象（Value Objects）
+- 领域服务（Domain Service）
+- 聚合根（Aggregate Root）
+- 工厂（Factories）
+- 仓储（Repository）
+
 ## Bounded Context
 
 ![contexts](ddd/contexts.png)
@@ -26,3 +35,5 @@ update: 2021/01/14 19:00:00
 # 参考
 
 - [Domain-driven design essentials - Key Concepts](https://penchev.com/posts/domain-driven-design-essentials/)
+
+- [什么是 DDD?](https://www.cnblogs.com/zcqiand/p/13686640.html)
