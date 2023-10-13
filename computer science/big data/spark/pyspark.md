@@ -25,3 +25,9 @@ data_rdd.coalesce(1).saveAsTextFile('hdfs://path')
 row.scores[0]
 ```
 
+## Join 时重复行保留一个
+
+```python
+df_a.join(df_b, on=[{column}]) # 使用 on
+```
+
