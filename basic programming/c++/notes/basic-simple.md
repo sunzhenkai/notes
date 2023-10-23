@@ -38,6 +38,17 @@ vec.resize();
 
 **双向链表 list**
 
-```shell
+```c++
+#include <list>
+// 初始化
+std::list<T> lst;
+std::list<T> lst = {1, 2, 3, 4, 5};
+std::list<T> lst(container.begin(), container.end());
+// 插入
+lst.push_back(element);
+lst.push_front(element);
+lst.insert(it, element);
+// 访问
+// 删除
 ```
 

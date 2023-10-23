@@ -175,8 +175,8 @@ endif()
 # option, 只对 BOOL 类型, 默认 OFF
 option(BUILD_THIRD_PARTY "build third party library" ON)
 
-# cache
-SET(BUILD_THIRD_PARTY ON CACHE BOOL "build third party library")
+# cache, STRING 类型等
+set(BUILD_THIRD_PARTY ON CACHE BOOL "build third party library")
 set(DEPS_DIR "/tmp/cpp-external-lib" CACHE STRING "library install prefix" )
 ```
 
@@ -262,6 +262,14 @@ mark_as_advanced(THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
 > pkg_check_modules(Curl libcurl REQUIRED)
 > # Curl_INCLUDE_DIR、Curl_LIBRARIES、Curl_FOUND 会被设置
 > ```
+
+**示例**
+
+```cmake
+include(FindPkgConfig)
+pkg_check_modules(brpc REQUIRED IMPORTED_TARGET brpc)
+target_link_libraries(target PkgConfig::brpc)
+```
 
 ## 使用 PkgConfig 文件添加库
 
