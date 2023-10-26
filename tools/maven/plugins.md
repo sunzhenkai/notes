@@ -45,6 +45,40 @@ update: 2021/08/23 00:00:00
 </plugin>
 ```
 
+## 目标 jar 包含指定包
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>2.3</version>
+    <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
+            <configuration>
+                <relocations>
+                    <relocation>
+                        <pattern>com.google.protobuf</pattern>
+                        <shadedPattern>shade.com.google.protobuf</shadedPattern>
+                    </relocation>
+                </relocations>
+              	<!-- 包含指定依赖, 注意: 包含的包也会被 relocation, 不能使用shade后的信息 shade.com.google.protobuf:protobuf-java -->
+                <artifactSet>
+                    <includes>
+                        <include>com.github.scopt:scopt_2.12</include>
+                        <include>com.google.protobuf:protobuf-java</include>
+                        <include>com.google.protobuf:protobuf-java-util</include>
+                    </includes>
+                </artifactSet>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
 ## 配置示例
 
 ```xml
@@ -137,6 +171,8 @@ update: 2021/08/23 00:00:00
                       <descriptor>src/assemble/assembly.xml</descriptor>
                   </descriptors>
                   <!-- ... -->
+                  <finalName>libs</finalName> <!-- 输出路径 -->
+                  <appendAssemblyId>false</appendAssemblyId> <!-- 输出路径不包含 id -->
               </configuration>
           </execution>
       </executions>

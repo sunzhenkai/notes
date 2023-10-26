@@ -223,3 +223,60 @@ Number  Start   End     Size    File system  Name  Flags
 qm importdisk 103 openwrt-22.03.2-x86-64-generic-squashfs-combined-efi.img local-lvm
 ```
 
+## 旁路由
+
+- 网络 / 接口 / LAN
+    - 基本设置
+        - ipv4 地址，修改为主路由局域网合法且未被占用地址（如 192.168.6.2~192.168.6.254）
+        - 网关，主路由 ip 地址（如 192.168.6.1）
+        - 广播地址，如 192.168.6.255
+        - DNS 服务器，主路由 ip 地址
+        - IPv6 分配长度，已禁用
+    - 高级设置
+        - 使用内置的 ipv6 管理，关闭
+    - 物理设置
+        - 关闭桥接
+    - DHCP 服务器，忽略此接口
+- 网络 / 防火墙
+    - ![image-20231026230034381](./soft-router/image-20231026230034381.png)
+- 运行 SSR 
+
+### 设备设置
+
+**Mac OS**
+
+![image-20231026230223222](./soft-router/image-20231026230223222.png)
+
+**Ubuntu Server**
+
+```shell
+$ cat /etc/netplan/00-installer-config.yaml
+# This is the network config written by 'subiquity'
+network:
+  ethernets:
+    enp5s0:
+      dhcp4: false
+      addresses: [192.168.6.55/24]
+      match:
+        macaddress: 2a:04:a0:xx:xx:xx
+      wakeonlan: true
+      nameservers:
+        addresses: [223.6.6.6, 8.8.8.8]
+      routes:
+        - to: default
+          via: 192.168.6.89
+          metric: 40
+    enp6s0:
+      dhcp4: true
+  version: 2
+```
+
+### 连通性校验
+
+- ping 使用 ICMP 协议，代理一般只支持 TCP 和 UDP，所以使用 ping 可能无法判断是否代理成功
+
+```shell
+# 可以尝试下面命令
+curl https://www.google.com
+```
+
