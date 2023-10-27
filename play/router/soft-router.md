@@ -184,7 +184,29 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
 $ update-grub
 ```
 
+## 修改网络地址
+
+```shell
+$ vim /etc/config/network 
+# 修改对应的网络接口地址, 比如 eth0
+$ /etc/init.d/network restart 
+```
+
+## 修改密码
+
+```shell
+$ passwd root
+```
+
 # Openwrt
+
+## 安装应用 
+
+```shell
+opkg install <package>
+opkg install <package.ipk>
+opkg install <http://path/to/package.ipk>
+```
 
 ## 扩容 overlay
 
@@ -222,4 +244,3 @@ Number  Start   End     Size    File system  Name  Flags
 # [pve] 加载镜像为虚拟机磁盘
 qm importdisk 103 openwrt-22.03.2-x86-64-generic-squashfs-combined-efi.img local-lvm
 ```
-
