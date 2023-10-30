@@ -312,6 +312,15 @@ std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 usleep(microseconds);
 ```
 
+```c++
+#include "thread"
+#include "chrono"
+
+using namespace std::chrono_literals;
+
+std::this_thread::sleep_for(20s);
+```
+
 ## mutex
 
 ### mutex

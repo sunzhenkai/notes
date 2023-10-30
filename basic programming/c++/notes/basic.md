@@ -561,3 +561,7 @@ INT_MIN
   - 性能要好于 jemalloc
 - mimalloc
   - 偶尔会 core
+
+## RAII
+
+RAII（Resource Acquisition Is Initialization，资源获取即初始化）使用局部变量来管理资源，是 C++ 中常用的资源管理方式。
