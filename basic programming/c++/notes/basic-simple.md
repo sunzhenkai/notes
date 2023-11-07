@@ -7,9 +7,28 @@ tags:
 date: 2020/11/10 21:00:00
 ---
 
-# 数据结构
+# 容器
 
-**可变容量数组 vector**
+**顺序容器**
+
+- [x] 可变数组 vector
+- [x] 双向链表 list
+- [ ] 单向链表 forward_list
+- [ ] 双端队列 deque
+- [ ] 固定数组 array
+
+**关联容器**
+
+- [ ] 集合 set、multiset
+- [ ] 映射 map、multimap
+
+**容器适配器**
+
+- [ ] 栈 stack
+- [ ] 队列 queue
+- [ ] 优先队列 priority_queue
+
+## **可变容量数组 vector**
 
 ```c++
 #include <vector>
@@ -36,7 +55,7 @@ vec.erase(start_iterator, end_iterator);
 vec.resize();
 ```
 
-**双向链表 list**
+## **双向链表 list**
 
 ```c++
 #include <list>
@@ -48,6 +67,37 @@ std::list<T> lst(container.begin(), container.end());
 lst.push_back(element);
 lst.push_front(element);
 lst.insert(it, element);
+lst.insert(it, n, element); // 在 it 插入 n 个 element
+lst.insert(it, begin, end); // 在 it 插入迭代器 [begin, end) 内元素
+// 赋值 (清空元素并重置为指定元素)
+assign(begin, end);  
+assign(n, element);
+// 访问
+l.begin(); // 返回迭代器
+l.end(); // 返回迭代器
+l.front(); // 返回元素
+l.back(); // 返回元素
+// 删除
+erase(begin, end);
+erase(it);
+remove(element);
+clear();
+pop_back();
+pop_front();
+```
+
+## 单向链表 forward_list
+
+```c++
+#include <forward_list>
+// 初始化
+std::forward_list<int> fl1;
+std::forward_list<int> fl2 {1, 2, 3};
+std::forward_list<int> fl3(n, element);
+std::forward_list<int> fl4(begin, end);
+// 插入
+
+// 赋值 (清空元素并重置为指定元素)
 // 访问
 // 删除
 ```

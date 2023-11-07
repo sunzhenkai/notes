@@ -11,27 +11,48 @@ date: 2022/03/10 00:00:00
 
 ```shell
 # 下载 
-从这里 https://mirrors.aliyun.com/gnu/gcc/ 选一个版本，或使用其他源。
-
+## 从这里 https://mirrors.aliyun.com/gnu/gcc/ 选一个版本，或使用其他源。
+VERSION=7.3.0
+wget https://mirrors.aliyun.com/gnu/gcc/gcc-${VERSION}/gcc-${VERSION}.tar.gz
 # 解压
-tar xzf gcc-<version>.tar.gz
-cd gcc-<version>
+tar xzf gcc-${VERSION}.tar.gz
+cd gcc-${VERSION}
 
 # 下载依赖
 ./contrib/download_prerequisites 
 
 # 配置
-./configure --prefix=/path/to/install/dir --enable-languages=c,c++ --disable-multilib
-
+./configure --prefix=/opt/gcc/${VERSION} --enable-languages=c,c++ --disable-multilib
 # 编译
-make -j <thread-number>
+make -j$(nproc)
 make install
 
 # 如果不想污染源文件
 mkdir gcc-build
 cd gcc-build
-$PWD/../gcc-<version>/configure --prefix=/path/to/install/dir --enable-languages=c,c++ --disable-multilib
+../configure --prefix=/opt/gcc/${VERSION} --enable-languages=c,c++ --disable-multilib
+## 另一个配置
+../configure --enable-bootstrap --enable-languages=c,c++,objc,obj-c++,fortran,go,lto --enable-shared --enable-threads=posix --enable-checking=release --enable-multilib --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-linker-build-id --with-gcc-major-version-only --with-linker-hash-style=gnu --enable-plugin --enable-initfini-array --with-isl --enable-libmpx --enable-libsanitizer --enable-gnu-indirect-function --enable-libcilkrts --enable-libatomic --enable-libquadmath --enable-libitm --with-tune=generic --with-arch_32=x86-64
 ```
+
+## 错误处理
+
+## 7.3.0
+
+```shell
+# 错误
+../../.././libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cc:157:10: fatal error: sys/ustat.h: No such file or directory
+ #include <sys/ustat.h>
+ 
+# 解决方案
+## 1. 不编译 sanitizer, configure 时添加参数 --disable-libsanitizer
+vim libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.cc
+## 2. 注释第 157、250 行
+// #include <sys/ustat.h>
+// unsigned struct_ustat_sz = sizeof(struct ustat);
+```
+
+
 
 # 编译
 
@@ -84,7 +105,6 @@ make CXXFLAGS='-ggdb3 -O0 -Wno-narrowing' CPPFLAGS='-DX=1 -DY=2 -Wno-narrowing' 
 
 ```c++
 // common.h
-
 ```
 
 - [link 1](https://stackoverflow.com/questions/6562403/i-dont-understand-wl-rpath-wl)
