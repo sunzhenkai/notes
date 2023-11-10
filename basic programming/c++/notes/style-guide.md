@@ -52,4 +52,6 @@ $ clang-format -style=Google -i t.cpp
 
 在 IDE 中使用 `.clang-format`
 
-- `CLion` 可以识别并应用项目根目录下的 `.clang-format` 文件
+- `CLion` 可以识别并应用项目根目录下的 `.clang-format` 文件，如果没有的话，可以点击右下角的 spaces 信息框，再点击 `Enable ClangFormat`
+
+![image-20231110182136072](style-guide/image-20231110182136072.png)
