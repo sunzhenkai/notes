@@ -327,6 +327,18 @@ ExternalProject_Add(
 )
 ```
 
+### 传入 CMAKE_C_FLAGS / CMAKE_CXX_FLAGS
+
+```shell
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lstdc++ -ldl")
+ExternalProject_Add(... CMAKE_ARGS -DCMAKE_C_FLAGS=${CMAKE_C_FLAGS})
+
+# 注意: 下面方式均不可
+ExternalProject_Add(... CMAKE_ARGS -DCMAKE_C_FLAGS=-lstdc++ -ldl)
+ExternalProject_Add(... CMAKE_ARGS -DCMAKE_C_FLAGS="-lstdc++ -ldl")
+ExternalProject_Add(... CMAKE_ARGS -DCMAKE_C_FLAGS='-lstdc++ -ldl')
+```
+
 ## AddLibrary
 
 ```cmake

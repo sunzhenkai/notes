@@ -66,3 +66,10 @@ sudo systemctl restart NetworkManager
 sudo yum install gcc72-c++
 ```
 
+# 软件包
+
+```shell
+# lcov
+yum install lcov.noarch
+```
+

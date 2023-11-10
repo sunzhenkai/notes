@@ -130,3 +130,22 @@ Error retrieving members: Get "http://127.0.0.1:8500/v1/agent/members?segment=_a
 ```
 
 至此，好了。
+
+# 启动失败
+
+## Failed to send gossip ... invalid argument
+
+**错误信息**
+
+```shell
+2023/11/10 14:48:23 [ERR] memberlist: Failed to send gossip to 172.31.153.158:9301: write udp 127.0.0.1:8301->192.168.6.8:9301: sendto: invalid argument
+...
+```
+
+**解决**
+
+修改绑定地址 `-bind=192.168.6.5`。
+
+```shell
+$ consul agent -config-dir=/etc/consul.d/ -data-dir=/var/lib/consul/ -bind=192.168.6.5
+```

@@ -33,3 +33,8 @@ nameserver 192.168.6.1 # 或其他
 # 开启 EPEL repository
 
 - [amz doc](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-enable-epel/)
+
+```shell
+sudo yum -y install epel-release
+```
+
