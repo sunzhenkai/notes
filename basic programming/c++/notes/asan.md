@@ -7,6 +7,17 @@ tags:
 date: 2020/11/10 21:00:00
 ---
 
+[AddressSanitizer](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizer) (ASan) C/C++ 程序的内存错误检测器，可以检查如下错误。
+
+- [Use after free](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerExampleUseAfterFree) (dangling pointer dereference)
+- [Heap buffer overflow](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerExampleHeapOutOfBounds)
+- [Stack buffer overflow](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerExampleStackOutOfBounds)
+- [Global buffer overflow](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerExampleGlobalOutOfBounds)
+- [Use after return](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerExampleUseAfterReturn)
+- [Use after scope](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerExampleUseAfterScope)
+- [Initialization order bugs](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerInitializationOrderFiasco)
+- [Memory leaks](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerLeakSanitizer)
+
 # 使用
 
 ## 编译选项
@@ -67,3 +78,58 @@ export ASAN_OPTIONS=halt_on_error=0:use_sigaltstack=0:detect_leaks=1:malloc_cont
 export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer
 export ASAN_OPTIONS=symbolize=true:halt_on_error=false:abort_on_error=false:disable_coredump=false:unmap_shadow_on_exit=true:disable_core=false:sleep_before_dying=15:log_path=asan_log
 ```
+
+## cmake 链接
+
+```shell
+#asan 链接sys
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
+SET(CMAKE_C_FLAGS_ASAN "-O2 -g -fsanitize=address -fno-omit-frame-pointer" CACHE STRING "Flags used by the C compiler during asan builds." FORCE)
+SET(CMAKE_C_FLAGS "-O2 -g -fsanitize=address -fno-omit-frame-pointer -lstdc++ -lasan" CACHE STRING "Flags used by the C compiler during asan builds." FORCE)
+```
+
+# Debug
+
+```shell
+==1867==ERROR: AddressSanitizer: heap-use-after-free on address 0x7f69c0e59823 at pc 0x000001f1f50c bp 0x7f69c02624e0 sp 0x7f69c02624d0
+...
+0x7f69c0e59823 is located 35 bytes inside of 8388608-byte region [0x7f69c0e59800,0x7f69c1659800)
+freed by thread T14 here:
+...
+previously allocated by thread T14 here:
+...
+SUMMARY: AddressSanitizer: heap-use-after-free /data/zhenkai.sun/ranker/cmake-build-debug/CMakeUnzipPackages/mongo-c-driver-1.19.1/src/libbson/src/bson/bson.c:1993 in bson_init_static
+Shadow bytes around the buggy address:
+  0x0fedb81c32b0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0fedb81c32c0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0fedb81c32d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0fedb81c32e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0fedb81c32f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0fedb81c3300: fd fd fd fd[fd]fd fd fd fd fd fd fd fd fd fd fd
+  0x0fedb81c3310: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0fedb81c3320: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0fedb81c3330: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0fedb81c3340: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0fedb81c3350: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==1867==ABORTING
+```
+

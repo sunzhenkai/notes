@@ -8,6 +8,12 @@ tags:
 date: 2022/06/05 00:00:00
 ---
 
+# 安装
+
+```shell
+pip3 install pandas
+```
+
 #  引入
 
 ```python
@@ -151,3 +157,11 @@ merge(left, right, how='inner', on=None, left_on=None, right_on=None,
 # 左连接
 merge(data_x, data_y, how='left', on='uid')
 ```
+
+# 示例
+
+```shell
+# 读取 Cell
+data['age'][6]  # 读取 data 的 age 列第 6 行数据
+```
+

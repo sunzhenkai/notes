@@ -7,6 +7,20 @@ tags:
 date: 2022/02/09 00:00:00
 ---
 
+# 容易 Core Dump 的情形
+
+## 容器重新分配内存导致的非法内存访问
+
+```c++
+// 定义结构
+struct Biz {...};
+// 定义容器
+std::vector<Biz> bizes;
+bizes.emplace_back();  // 添加一个元素
+auto p_biz = &bizes.back(); // 保存指针
+bizes.emplace_back(); // 添加一个元素. 该操作可能会使指针 p_biz 失效, 因为内存重新分配
+```
+
 # 模板
 
 - 模板类的定义和实现不能分隔

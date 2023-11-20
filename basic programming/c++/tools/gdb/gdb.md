@@ -100,6 +100,19 @@ gdb attach 10232 -x bp.info
 
 ```
 
+# 常见问题
+
+## value optimized out
+
+```shell
+# build type = debug
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_DEBUG} -O0")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_DEBUG} -O0")
+```
+
 # 参考
 
 - [打印变量](https://stackoverflow.com/questions/6261392/printing-all-global-variables-local-variables)
