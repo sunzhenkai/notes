@@ -135,14 +135,18 @@ done
 ## 范围
 
 ```shell
-$ for id in {1..3}; echo $id
-1
-2
-3
+$ for id in {1..3}; echo $id   # 1 2 3
 
 # 脚本
 for id in {1..3}; do
 	echo $id
 done
+
+# seq [首数] [增量] 尾数
+$ seq 1 3 # [1, 3]
+$ seq 3   # [1, 3]
+$ seq 1 2 5 # 1, 3, 5
+
+$ for i in `seq 3`; do echo $i; done  # 1 2 3
 ```
 
