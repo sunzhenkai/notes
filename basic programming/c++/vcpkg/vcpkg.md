@@ -172,5 +172,5 @@ CMake Error at /snap/cmake/1328/share/cmake-3.27/Modules/FindPkgConfig.cmake:607
 
 正常来说，vcpkg 安装的包，如果有 pkgconfig 是可以通过 pkg_check_modules 找到的。出现问题的原因是 find_package 引入包时意外导致 pkg_check_modules 不可用，解决方案有两个。
 
-- 找到因为问题的 find_package 语句，并移到后面
+- 找到出现问题的 find_package 语句，并移到后面
 - 遍历 CMAKE_PREFIX_PATH 并追加 `lib/pkgconfig` 后加入到 `ENV{PKG_CONFIG_PATH}` 中

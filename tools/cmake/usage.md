@@ -240,7 +240,7 @@ find_package_handle_standard_args(THRIFT DEFAULT_MSG THRIFT_LIBRARIES THRIFT_INC
 mark_as_advanced(THRIFT_LIBRARIES THRIFT_INCLUDE_DIR THRIFT_COMPILER)
 ```
 
-# Misc
+# 引入库
 
 ## 引入第三方库
 
@@ -291,6 +291,15 @@ target_compile_options(testapp PUBLIC ${SDL2_CFLAGS_OTHER})
 **自己添加 target**
 
 - https://github.com/scylladb/seastar/blob/master/cmake/Findhwloc.cmake
+
+## find_package
+
+### 设置变量
+
+```shell
+# 不管是否找到都会设置
+{PackageName}_FOUND
+```
 
 # 库管理
 

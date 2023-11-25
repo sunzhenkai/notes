@@ -107,6 +107,15 @@ $ git submodule update --remote --merge
 git submodule update --init
 ```
 
+## 清理
+
+```shell
+$ rm -rf path/to/submodule
+$ rm -rf .git/modules/{module}
+$ vim .gitmodules # 移除对应 module
+$ vim .git/config # 移除对应 module
+```
+
 # tags
 
 ```shell

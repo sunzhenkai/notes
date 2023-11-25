@@ -97,17 +97,18 @@ pop_back();
 pop_front();
 ```
 
-## 单向链表 forward_list
+## [单向链表 forward_list](https://en.cppreference.com/w/cpp/container/forward_list)
 
 ```c++
 #include <forward_list>
 // 初始化
-std::forward_list<int> fl1;
-std::forward_list<int> fl2 {1, 2, 3};
-std::forward_list<int> fl3(n, element);
-std::forward_list<int> fl4(begin, end);
+std::forward_list<int> fl;
+std::forward_list<int> fl {1, 2, 3};
+std::forward_list<int> fl(n, element);
+std::forward_list<int> fl(begin, end);
 // 插入
-
+fl.push_front(element);
+fl.insert_after(iter, element);
 // 赋值 (清空元素并重置为指定元素)
 // 访问
 // 删除

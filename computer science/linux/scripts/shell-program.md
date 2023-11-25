@@ -21,7 +21,9 @@ echo() {
 echo Hello
 ```
 
-# 条件判断
+# test
+
+`test ` 命令通常被 `[...]` 替代
 
 ```shell
 # [ ... ]
@@ -32,6 +34,66 @@ if [ expression ]
 then
 	...
 fi
+```
+
+## 参数
+
+### 字符串
+
+```shell
+-n 不为空
+-z 为空
+{string1} = {string2} string1 和 string2 相同
+{string1} != {string2} string1 和 string2 不相同
+{string1} < {string2} 基于 ASCII 码比较
+{string1} > {string2} 基于 ASCII 码比较
+```
+
+### 变量
+
+```shell
+-v 变量是否 set
+```
+
+### 数字比较
+
+```shell
+{number1} -eq/-ne/-lt/-le/-gt/-ge {number2}
+{number1} -eq {number2} 相等
+{number1} -ne {number2} 不相等
+{number1} -lt {number2} 小于
+{number1} -le {number2} 小于等于
+{number1} -gt {number2} 大于
+{number1} -ge {number2} 大于等于
+```
+
+### 文件
+
+```shell
+-a/-e 文件是否存在
+-b 文件存储在块存储设备
+-d 是否是文件夹
+-f 文件存在且是常规文件
+-h/-L 文件是符号链接
+-p 文件是否是使用 mkfifo 创建的命名管道
+-r 是否可读（运行命令的用户）
+-s 文件存在且不为空
+-S 是否是 Socket 文件
+-t fd (file descriptor) 是否在终端中打开
+-w 是否可写（运行命令的用户）
+-x 是否可执行（运行命令的用户）
+-O 运行命令的用户是否是文件 Owner
+-G 文件是否被运行命令的用户 Group 拥有
+{file1} -nt {file2} file1 是否比 file2 更新
+{file1} -nt {file2} file1 是否比 file2 更旧
+{file1} -ef {file2} file1 是否是 file2 的硬链接
+```
+
+### 多表达式
+
+```shell
+{expr1} -o {expr2} 或
+{expr1} -a {expr2} 且
 ```
 
 # 路径及文件
