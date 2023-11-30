@@ -294,6 +294,55 @@ target_compile_options(testapp PUBLIC ${SDL2_CFLAGS_OTHER})
 
 ## find_package
 
+```cmake
+# 完整签名
+find_package(<PackageName> [version] [EXACT] [QUIET]
+             [REQUIRED] [[COMPONENTS] [components...]]
+             [OPTIONAL_COMPONENTS components...]
+             [CONFIG|NO_MODULE]
+             [GLOBAL]
+             [NO_POLICY_SCOPE]
+             [BYPASS_PROVIDER]
+             [NAMES name1 [name2 ...]]
+             [CONFIGS config1 [config2 ...]]
+             [HINTS path1 [path2 ... ]]
+             [PATHS path1 [path2 ... ]]
+             [REGISTRY_VIEW  (64|32|64_32|32_64|HOST|TARGET|BOTH)]
+             [PATH_SUFFIXES suffix1 [suffix2 ...]]
+             [NO_DEFAULT_PATH]
+             [NO_PACKAGE_ROOT_PATH]
+             [NO_CMAKE_PATH]
+             [NO_CMAKE_ENVIRONMENT_PATH]
+             [NO_SYSTEM_ENVIRONMENT_PATH]
+             [NO_CMAKE_PACKAGE_REGISTRY]
+             [NO_CMAKE_BUILDS_PATH] # Deprecated; does nothing.
+             [NO_CMAKE_SYSTEM_PATH]
+             [NO_CMAKE_INSTALL_PREFIX]
+             [NO_CMAKE_SYSTEM_PACKAGE_REGISTRY]
+             [CMAKE_FIND_ROOT_PATH_BOTH |
+              ONLY_CMAKE_FIND_ROOT_PATH |
+              NO_CMAKE_FIND_ROOT_PATH])
+```
+
+### CONFIG 命令
+
+```cmake
+find_package(PackageName CONFIG)
+```
+
+`CONFIG` 命令会尝试搜索包提供的 `<PackageName>Config.cmake` 或 `<lowercasePackageName>-config.cmake` 文件，并把包含该文件的文件夹路径赋值给 `<PackageName>_DIR` ，`<PackageName>_CONFIG` 保存配置文件的完整路径。
+
+### 默认搜索路径
+
+
+
+### 指定搜索路径
+
+```shell
+find_package (<package> PATHS paths... NO_DEFAULT_PATH)
+# NO_DEFAULT_PATH: 不使用默认路径
+```
+
 ### 设置变量
 
 ```shell

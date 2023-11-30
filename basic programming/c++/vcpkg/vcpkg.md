@@ -8,6 +8,25 @@ tags:
 date: 2023/07/19 00:00:00
 ---
 
+# 使用模式
+
+## 项目使用 vcpkg 解决依赖问题
+
+参考[这里](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)。
+
+## 项目作为 port 供其他项目使用
+
+- 首先 [打包应用](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging?pivots=shell-cmd)
+- 将应用添加到 registry
+
+## 创建内部 registry 供组织内使用
+
+- [创建内部 registry](https://learn.microsoft.com/en-us/vcpkg/maintainers/registries)
+
+## 添加 port 到内部 registry
+
+- [为内部 registry 添加 ports 并更新版本数据库](https://learn.microsoft.com/en-us/vcpkg/produce/publish-to-a-git-registry)
+
 # 安装
 
 [参考](https://vcpkg.io/en/getting-started)
@@ -104,6 +123,10 @@ set(CMAKE_TOOLCHAIN_FILE /path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
 ## 添加内部库
 
 - [参考一](https://zhuanlan.zhihu.com/p/642660026)
+
+## 项目使用 vcpkg
+
+[官方文档](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
 
 # Registries
 
