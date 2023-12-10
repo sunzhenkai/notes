@@ -17,6 +17,12 @@ var srcData = spark.read.json(srcPath)
 row.getAs[Seq[String]](idx)
 ```
 
+## 设置大小写敏感
+
+```shell
+spark.conf.set("spark.sql.caseSensitive", "true")
+```
+
 # 查询
 
 ## group by

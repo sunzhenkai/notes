@@ -25,6 +25,12 @@ https://raw.githubusercontent.com/Squidly271/community.applications/master/plugi
 vfio-pci.ids=054c:0899
 ```
 
+# 备份 USB 内容
+
+Main -> Flash -> Flash Backup
+
+![image-20231207101821105](usage/image-20231207101821105.png)
+
 # Problems
 
 ## Requested operation is not valid: cannot undefine domain with nvram
