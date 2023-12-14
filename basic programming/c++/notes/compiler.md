@@ -7,6 +7,16 @@ tags:
 date: 2022/06/13 00:00:00
 ---
 
+# 指定编译器
+
+```shell
+export PATH=/opt/scylladb/bin:$PATH
+export LD_LIBRARY_PATH=/opt/scylladb/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/opt/scylladb/lib:$LD_LIBRARY_PATH
+export CC=/opt/scylladb/bin/gcc
+export CXX=/opt/scylladb/bin/g++
+```
+
 # 编译选项
 
 ```shell

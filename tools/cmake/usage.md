@@ -528,9 +528,20 @@ Macro 和 function 比较相似，区别如下。
 
 - https://github.com/snikulov/cmake-modules/blob/master/FindThrift.cmake
 
-# 编译优化
+# 编译
 
-## ccache
+## 指定 Target
+
+```shell
+# pwd: {project}/build
+cmake ..
+cmake --build . --target {target}
+cmake --build . --target mongoc_mongoc
+```
+
+## 优化
+
+### ccache
 
 ```shell
 # 安装

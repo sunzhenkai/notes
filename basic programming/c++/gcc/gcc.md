@@ -120,3 +120,10 @@ g++ -Xlinker -v
 - libraries 允许未定义的符号（undefined symbols）
 - executable 不允许有未定义的符号
 - 在代码中定义的符号（如函数名）还未使用到之前，链接器并不会把它加入到连接表中
+
+# 修改系统默认库查找路径
+
+```shell
+export LIBRARY_PATH={path}:{path}
+```
+

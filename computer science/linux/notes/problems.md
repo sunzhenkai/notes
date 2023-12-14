@@ -129,3 +129,21 @@ $ sudo update-grub
 **参考**
 
 - [link 1](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1699004)
+
+# 移动 /usr/lib64 导致命令失效
+
+操作 `mv /usr/lib64 /usr/lib64back` 后，几乎所有命令都失效。
+
+```shell
+#mv lib64back lib64
+-bash: /bin/mv: /lib64/ld-linux-x86-64.so.2: bad ELF interpreter: 没有那个文件或目录
+```
+
+使用如下命令恢复。
+
+```shell
+/usr/lib64back/ld-linux-x86-64.so.2 --library-path /usr/lib64back /usr/bin/cp /usr/lib64back /usr/lib64 -fr
+```
+
+
+

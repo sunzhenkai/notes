@@ -54,6 +54,12 @@ Hello World!
 $ go build hello.go
 ```
 
+## 添加依赖库实例
+
+```shell
+# main.go
+```
+
 # 依赖
 
 使用 `go get` 下载公开库，该命令会把依赖下载至第一个 `GOPATH` 下的 `src` 目录下。

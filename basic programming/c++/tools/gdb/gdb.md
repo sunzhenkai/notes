@@ -22,6 +22,11 @@ Signal: SIG34 (Real-time event 34)
 handle SIG34 nostop noprint pass noignore
 ```
 
+```shell
+handle SIG34 nostop noprint pass noignore
+handle SIG35 nostop noprint pass noignore
+```
+
 # 调试程序
 
 ```shell
