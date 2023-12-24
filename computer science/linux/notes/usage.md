@@ -643,6 +643,9 @@ echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern  # 放到 /tmp �
 echo 'core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern       # 放到 working directory 下
 # 查看 core_pattern
 cat /proc/sys/kernel/core_pattern 
+
+# 默认
+|/usr/lib/systemd/systemd-coredump %p %u %g %s %t %e"
 ```
 # 节点间测速
 
