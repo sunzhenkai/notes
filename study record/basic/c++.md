@@ -29,3 +29,93 @@ date: 2023/12/24 00:00:00
     - 基类不可以是虚函数，析构函数在有资源释放时必须是虚函数
         - 虚函数通过查找虚函数表调用的，而虚函数是内存中的一片区域，需要先构造对象并创建内存空间，才能完成虚函数的调用，所以构造函数不能为虚函数
         - 析构函数，在存在释放内存空间的代码时，必须设置为虚函数，负责会存在因虚构函数无法调用导致的内存泄露问题
+
+# 内存
+
+## 内存模型
+
+- 代码段
+- 数据段
+- 堆
+- 栈
+
+[参考一](https://blog.csdn.net/qq_35018427/article/details/125975621)
+
+## GLIBC 每次内存分配都会进行系统调用吗
+
+glibc 维护一个内存池，分配内存时优先从内存池获取，分配失败再向操作系统分配内存。
+
+**概念**
+
+- Chunk，glibc 对内存进行分配和管理的基本单元，chunk 是 glibc 维护的一块连续内存
+- Arena，一组相关的内存 Chunk 的集合，glibc 使用多个 Arena 来管理内存分配，其中至少有一个主 Arena（main arena），还可以包括线程特定的 Arena（thread arena）。每个 Arena 都有自己的 Chunk 空闲链表和其他数据结构，用于记录已分配和空闲的内存块。
+- Heap，是指进程可用的虚拟地址空间中用于动态内存分配的部分，Heap 由一系列的内存区域（region）组成，每个内存区域都是通过调用 brk 或 mmap 系统调用来获取
+
+Heap 是进程可用的虚拟地址空间中的动态内存区域，Arena 是 Heap 内部的内存池，Chunk 是 Arena 中的内存分配单元。
+
+**获取内存的系统调用**
+
+- brk，通过调整堆的结束地址来分配和释放内存，对于小型内存分配比较高效
+- mmap，通过请求操作系统分配新的虚拟内存区域，适合大块内存的分配
+
+**分配流程**
+
+- 线程首先需要获取一个 Arena。查找环形链表获取未加锁的 Arena，如果都已加锁则创建 Arena（总数有限制）
+- 搜索 Chunk。尝试 fastbin 等机制，查找合适的 Chunk
+- 创建 Chunk。如果未找到，则会调用 brk（主 Arena） 或 mmap（非主 Arena）向操作系统申请内存，扩充 Heap
+- 分割 Chunk。对获取的 Chunk 按照用户需要的大小进行内存切分，并返回起始内存指针
+- 内存对齐。glibc 确保返回的内存块满足特定的对齐要求 
+
+[参考一](https://zhuanlan.zhihu.com/p/560341532)
+
+[参考二](https://zhuanlan.zhihu.com/p/662320270)
+
+# STL
+
+## 常见数据结构及底层实现
+
+| 数据结构      | 底层实现 | 是否连续内存 | 备注                   |
+| ------------- | -------- | ------------ | ---------------------- |
+| vector        | 数组     | 是           |                        |
+| list          | 双向链表 | 否           |                        |
+| map / set     | 红黑树   | 否           | 平衡树，更新后进行平衡 |
+| unordered_map | 哈希表   | 否           |                        |
+
+# 并发控制
+
+- 互斥锁
+- 读写锁
+- atomic
+- thread local
+
+## 有哪些锁机制
+
+| 锁                           | 说明                 | 备注                         |
+| ---------------------------- | -------------------- | ---------------------------- |
+| std::mutex                   | 互斥锁               |                              |
+| std::shared_mutex            | 读写锁（共享互斥锁） |                              |
+| std::recursive_mutex         | 可重入锁（递归锁）   | 需要程序确保每次上锁都会释放 |
+| std::timed_mutex             | 计时互斥锁           |                              |
+| `std::recursive_timed_mutex` | 计时递归锁           | 需要程序确保每次上锁都会释放 |
+
+## 如何实现自旋锁
+
+可以通过原子操作和循环来实现自旋锁。
+
+```shell
+#include <atomic>
+class SpinLock {
+    std::atomic_flag flag;
+public:
+    SpinLock() : flag(ATOMIC_FLAG_INIT) {}
+    void lock() {
+        while (flag.test_and_set(std::memory_order_acquire)) {
+            // 自旋等待直到获取到锁
+        }
+    }
+    void unlock() {
+        flag.clear(std::memory_order_release);
+    }
+};
+```
+
