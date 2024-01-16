@@ -125,6 +125,95 @@ Heap 是进程可用的虚拟地址空间中的动态内存区域，Arena 是 He
 
 [参考二](https://zhuanlan.zhihu.com/p/662320270)
 
+## 特殊函数
+
+### 包含完整特殊函数的类
+
+```c++
+class SampleClass {
+public:
+    // 默认构造函数
+    SampleClass() {
+        std::cout << "Default constructor" << std::endl;
+    }
+
+    // 带参数的构造函数
+    explicit SampleClass(int value) : data(value) {
+        std::cout << "Parameterized constructor" << std::endl;
+    }
+
+    // 复制构造函数
+    SampleClass(const SampleClass &other) : data(other.data) {
+        std::cout << "Copy constructor" << std::endl;
+    }
+
+    // 移动构造函数
+    SampleClass(SampleClass &&other) noexcept: data(std::move(other.data)) {
+        std::cout << "Move constructor" << std::endl;
+    }
+
+    // 复制赋值操作符
+    SampleClass &operator=(const SampleClass &other) {
+        if (this != &other) {
+            data = other.data;
+        }
+        std::cout << "Copy assignment operator" << std::endl;
+        return *this;
+    }
+
+    // 移动赋值操作符
+    SampleClass &operator=(SampleClass &&other) noexcept {
+        if (this != &other) {
+            data = std::move(other.data);
+        }
+        std::cout << "Move assignment operator" << std::endl;
+        return *this;
+    }
+
+    // 析构函数
+    ~SampleClass() {
+        std::cout << "Destructor" << std::endl;
+    }
+
+private:
+    int data{0};
+};
+```
+
+### 初始化列表
+
+- 不能使用初始化列表来初始化 vector 的情况
+  - 当元素类型没有默认构造函数: 如果 `std::vector` 的元素类型没有默认构造函数或者是不可复制的类型
+  - 当元素类型是有状态的: 如果 `std::vector` 的元素类型是具有状态的类（即具有非平凡的构造函数和析构函数）
+  - 当元素类型是引用类型: `std::vector` 不能持有引用类型的元素
+
+**示例**
+
+```c++
+void run {
+    std::vector<SampleClass> scs{SampleClass(1)}; // 调用一次参数构造、一次拷贝构造
+    std::cout << "> initialized <" << std::endl;
+    std::vector<SampleClass> scs2;
+    scs2.emplace_back(1); // 调用一次参数构造
+    std::cout << "> initialized <" << std::endl;
+    scs2.reserve(10); // 重新分配内存, 调用一次移动构造函数
+    std::cout << "> done <" << std::endl;
+}
+/* Output
+Parameterized constructor
+Copy constructor
+Destructor
+> initialized <
+Parameterized constructor
+> initialized <
+Move constructor
+Destructor
+> done <
+Destructor
+Destructor
+*/
+```
+
 # STL
 
 ## 常见数据结构及底层实现
@@ -135,6 +224,16 @@ Heap 是进程可用的虚拟地址空间中的动态内存区域，Arena 是 He
 | list          | 双向链表 | 否           |                        |
 | map / set     | 红黑树   | 否           | 平衡树，更新后进行平衡 |
 | unordered_map | 哈希表   | 否           |                        |
+
+# thread
+
+```c++
+#include <thread>
+// 初始化 thread
+auto th = std::thread(func, args...);
+// thread 数组. thread 没有实现拷贝函数, vector 的部分初始化方法无法使用. 初始化列表也不能用
+
+```
 
 # 信号量
 
