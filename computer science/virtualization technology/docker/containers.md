@@ -76,3 +76,10 @@ docker stop redis-node1 redis-node2 redis-node3
 docker rm redis-node1 redis-node2 redis-node3
 ```
 
+# alpine
+
+```shell
+$ docker pull alpine:latest
+$ docker run -itd --name alpine-ins alpine:latest
+```
+

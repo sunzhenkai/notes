@@ -66,6 +66,17 @@ int main() {
 16 9 12 16 16
 ```
 
+## 内存屏障
+
+**写屏障（Store Barrier）**、**读屏障（Load Barrier）**和**全屏障（Full Barrier）**。
+
+- 防止指令之间的重排序
+- 保证数据的可见性
+
+[参考一](https://www.0xffffff.org/2017/02/21/40-atomic-variable-mutex-and-memory-barrier/)
+
+[参考二](https://gaomf.cn/2020/09/11/Cpp_Volatile_Atomic_Memory_barrier/)
+
 # 进程、线程、协程
 
 ## 操作系统由用户态切换至内核态的过程

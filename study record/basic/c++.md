@@ -7,6 +7,37 @@ tags:
 date: 2023/12/24 00:00:00
 ---
 
+# 容器
+
+## vector
+
+```c++
+v.at(index);
+v[index];
+v.front();
+v.back();
+v.push_back();
+v.emplace_back();
+v.pop_back();
+```
+
+## queue
+
+```c++
+q.front();
+q.back();
+q.push();
+q.pop();
+```
+
+## stack
+
+```shell
+s.top();
+s.push();
+s.pop();
+```
+
 # 关键词
 
 ## virtual
@@ -30,6 +61,12 @@ date: 2023/12/24 00:00:00
         - 虚函数通过查找虚函数表调用的，而虚函数是内存中的一片区域，需要先构造对象并创建内存空间，才能完成虚函数的调用，所以构造函数不能为虚函数
         - 析构函数，在存在释放内存空间的代码时，必须设置为虚函数，负责会存在因虚构函数无法调用导致的内存泄露问题
 
+## volatile
+
+提醒编译器使用 volatile 声明的变量随时可能改变，在编译期间不进行指令重排优化。C++ 标准保证 volatile 变量之间不会重排，不保证 volatile 和非 volatile 变量的重排优化。
+
+此外，还有硬件级别的指令重排，volatile 无法保证。
+
 # 内存
 
 ## 内存模型
@@ -40,6 +77,24 @@ date: 2023/12/24 00:00:00
 - 栈
 
 [参考一](https://blog.csdn.net/qq_35018427/article/details/125975621)
+
+# 语言
+
+## 四种强制转换
+
+- static_cast
+  - 编译时期的静态类型检查
+  - 相当于C语⾔中的强制转换
+  - 不能实现普通指针数据（空指针除外）的强制转换
+  - ⼀般⽤于⽗类和⼦类指针、引⽤间的相互转换
+  - 没有运⾏时类型检查来保证转换的安全性
+- dynamic_cast
+  - 运⾏时的检查
+  - 动态转换的类型和操作数必须是**完整类类型或空指针、空引⽤**
+- const_cast
+  - 强制去掉不能被修改的常数特性
+- reinterpret_cast
+  - 将指针或引⽤转换为⼀个⾜够⻓度的整型、将整型转换为指针或引⽤类型
 
 ## GLIBC 每次内存分配都会进行系统调用吗
 
@@ -80,6 +135,107 @@ Heap 是进程可用的虚拟地址空间中的动态内存区域，Arena 是 He
 | list          | 双向链表 | 否           |                        |
 | map / set     | 红黑树   | 否           | 平衡树，更新后进行平衡 |
 | unordered_map | 哈希表   | 否           |                        |
+
+# 信号量
+
+- [condition_variable](https://en.cppreference.com/w/cpp/thread/condition_variable)
+
+## mutex & shared_mutex
+
+```shell
+#include "mutex"
+#include "shared_mutex"
+#include "iostream"
+
+void test_shared_mutex() {
+    std::shared_mutex shared_mtx;
+    {
+        std::shared_lock lock(shared_mtx);
+    }
+    {
+        std::unique_lock lock(shared_mtx);
+    }
+}
+
+void test_mutex() {
+    std::mutex mtx;
+    std::lock_guard lock(mtx);
+}
+```
+
+## unique_lock & lock_guard
+
+`std::lock_guard` 是一个轻量级的互斥锁封装，它提供了一种方便的方式来管理互斥锁的锁定和释放。`std::unique_lock` 是一个更加灵活和功能强大的互斥锁封装，提供了与 `std::lock_guard` 类似的锁定和释放互斥锁的功能，但还可以进行更多的操作。`std::unique_lock` 允许在构造函数中选择锁定模式，包括延迟锁定、递归锁定和尝试锁定等。
+
+**Tips**
+
+- 为什么 condition_variable 的 wait 方法使用 unique_lock 
+  - lock_guard、scoped_lock 无法获取 mutex，unique_lock 可以
+
+## condition_variable
+
+```c++
+// wait
+cv.wait(std::unique_lock<std::mutex>) // 等待信号量
+cv.wait(std::unique_lock<std::mutex>, Predicate) // 等待信号量, 并且 Predicate 返回 true
+// wait_for
+cv.wait_for(std::unique_lock<std::mutex>, const duration&) // 等待信号量
+cv.wait_for(std::unique_lock<std::mutex>, const duration&, Predicate) // 等待信号量
+// wait_until
+cv.wait_until(std::unique_lock<std::mutex>, const time_point&)
+cv.wait_until(std::unique_lock<std::mutex>, const time_point&, Predicate) 
+// notify
+cv.notify_one()
+cv.notify_all()
+```
+
+**说明**
+
+- Predicate > mutex，即便获取信号量，不满足 Predicate，仍不退出 wait
+- duration/time_point > Predicate，即时不满足 Predicate，到达指定时间限制，仍会退出 wait
+
+**示例**
+
+```c++
+using namespace std::literals;
+std::mutex mtx;
+std::condition_variable cv;
+void run_wait() { // 等待 notify 后线程结束
+    std::unique_lock lock(mtx);
+    cv.wait(lock);
+    std::cout << __FUNCTION__ << " done" << std::endl;
+}
+void run_wait_predicate() { // 等待 notify 后, 由于不满足 Predicate, 继续 wait, 线程无法退出
+    std::unique_lock lock(mtx);
+    cv.wait(lock, []() { return false; });
+    std::cout << __FUNCTION__ << " done" << std::endl;
+}
+void run_wait_for() { // 一秒后超时, 未等待到 notify 及不满足 Predicate, 线程仍退出
+    std::unique_lock lock(mtx);
+    cv.wait_for(lock, 1s, []() { return false; });
+    std::cout << __FUNCTION__ << " done" << std::endl;
+}
+
+void test_run() {
+    std::vector<std::thread> ths;
+    ths.emplace_back(run_wait);
+    ths.emplace_back(run_wait_predicate);
+    ths.emplace_back(run_wait_for);
+
+    std::this_thread::sleep_for(2s);
+    {
+        std::lock_guard lock(mtx);
+        cv.notify_all();
+    }
+
+    for (auto &th: ths) th.join();
+}
+
+/* RUN test_run
+run_wait_for done
+run_wait done
+*/
+```
 
 # 并发控制
 

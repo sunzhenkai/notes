@@ -565,3 +565,37 @@ INT_MIN
 ## RAII
 
 RAII（Resource Acquisition Is Initialization，资源获取即初始化）使用局部变量来管理资源，是 C++ 中常用的资源管理方式。
+
+# 时间
+
+- time unit
+  - std::chrono::microseconds
+  - std::chrono::milliseconds
+  - std::chrono::second
+  - std::chrono::minutes
+  - std::chrono::hours
+  - std::chrono::days
+  - std::chrono::months
+  - std::chrono::years
+- clock
+  - steady_clock 单调递增时钟
+  - system_clock 系统时间时钟
+  - high_resolution_clock 高精度时钟
+- time_point
+- duration
+- duration_cast
+
+```c++
+std::chrono::time_point<Clock,Duration>::time_point
+```
+
+**sample**
+
+```c++
+using namespace std::chrono_literals; // 8h, 24m, 15s
+// 当前时间
+std::chrono::system_clock::now(); // return time_point
+// duration
+std::chrono::duration(10s); // 10 秒
+```
+

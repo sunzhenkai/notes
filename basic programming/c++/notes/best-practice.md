@@ -74,5 +74,11 @@ namespace ranker::utils {
         }
     }
 }
+
+/*
+满足泊松分布的随机数
+std::poisson_distribution<> d{/*mean=*/4};
+d(gRandomGenerator);
+*/
 ```
 

@@ -629,7 +629,11 @@ sudo update-alternatives  --set python /usr/bin/python3.6
 
 ```shell
 # 生成 core 文件
-ulimit -c unlimited
+ulimit -c unlimited # 临时
+## 永久
+vim /etc/security/limits.conf
+# 添加内容
+* soft core unlimited
 
 # 默认路径
 /var/lib/systemd/coredump
@@ -667,3 +671,13 @@ $ dmesg
 ```
 
 错误信息原因参考[这里](https://utcc.utoronto.ca/~cks/space/blog/linux/KernelSegfaultErrorCodes)。
+
+# 判断程序是否存在
+
+```shell
+command -v <program>
+
+# 示例
+command -v vim > /dev/null 2>&1  && echo "yes"
+```
+
