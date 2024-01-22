@@ -19,8 +19,8 @@ update: 2022/04/12 00:00:00
 - CPC，Cost Per Click，每次点击成本
 - CPM，Cost Per Mille，每千次展示成本
 - 双出价 / 深度转化出价
-- Target-CPE
-- Target-ROAS
+- Target-CPE，Target Cost Per Engagement，每次参与成本，按参与收费
+- Target-ROAS，Target Return on Advertising Spend，按回报率收费
 - CPA，Cost Per Acquisition，每次获客成本
 - CPV，Cost Per View，每次观看成本，主要用于视频广告
 
@@ -40,7 +40,7 @@ update: 2022/04/12 00:00:00
 
 > eCPM = ivr * price * 1000
 
-- LTV，Lifetime Value，指一个用户在其与企业之间的整个生命周期内产生的总价值或收益
+- LTV，Lifetime Value，生命周期总价值，指一个用户在其与企业之间的整个生命周期内产生的总价值或收益
 
 # 术语
 
@@ -69,3 +69,6 @@ update: 2022/04/12 00:00:00
 
 - [什么是广告支出回报率（ROAS）](https://zhuanlan.zhihu.com/p/472354040)
 - [一文读懂广告各种出价模式](https://zhuanlan.zhihu.com/p/452443071)
+
+- [（oCPC的）双出价（深度转化出价）是什么？为什么需要双出价？](https://zhuanlan.zhihu.com/p/115664708)
+- [申探社：深入互联网广告中的出价模式（中） — 智能出价模式](https://zhuanlan.zhihu.com/p/88522899)

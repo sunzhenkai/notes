@@ -1,5 +1,5 @@
 ---
-title: tmux
+wtitle: tmux
 categories: 
   - [工具,tmux]
 tags:
@@ -44,7 +44,8 @@ f   find windows
 " 	splite vertical
 %		splite horizon
 q   show pane numbers
-o   swap focued pane
+o   change focued pane
+ctrl+o  swap panes
 [space] 切换布局
 
 x		close panel (or exit)
@@ -54,5 +55,17 @@ arrow		change panel
 $  rename session
 s  list session
 d  detach (keep session alive)
+```
+
+# 拷贝模式
+
+```shell
+# active command mode
+ctrl + b
+
+# command
+[  开启拷贝模式, 可以滚动屏幕
+q  退出拷贝模式
+[Esc]  退出拷贝模式
 ```
 
