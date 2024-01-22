@@ -71,6 +71,10 @@ s.pop();
 
 ## 内存模型
 
+[C++ 内存模型](https://en.cppreference.com/w/cpp/language/memory_model)。
+
+## 内存管理
+
 - 代码段
 - 数据段
 - 堆
@@ -232,8 +236,41 @@ Destructor
 // 初始化 thread
 auto th = std::thread(func, args...);
 // thread 数组. thread 没有实现拷贝函数, vector 的部分初始化方法无法使用. 初始化列表也不能用
+std::vector<std::thread> ths;
+for (int i = 0; i < 5; ++i) ths.emplace_back(func, args...);
 
+// 方法
+th.join();
+th.detach(); // 将线程从当前线程分离, 成为独立的后台线程, 主线程不再管理该线程
 ```
+
+## detach
+
+```c++
+void payload() {
+    while (true) {}
+}
+
+/**
+ * terminate called without an active exception
+ * Process finished with exit code 134 (interrupted by signal 6:SIGABRT)
+ */
+void run_thread() {
+    std::thread th(payload);
+}
+
+/**
+ * Process finished with exit code 0
+ */
+void run_thread_detach() {
+    std::thread th(payload);
+    th.detach();
+}
+```
+
+## 注意 
+
+- 当进程退出时，操作系统会停掉所有由该进程创建的线程（detach 后也会被 kill）
 
 # 信号量
 
@@ -373,4 +410,8 @@ public:
     }
 };
 ```
+
+## atomic
+
+[atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
 

@@ -15,11 +15,11 @@ update: 2020/11/20 00:00:00
 生成公钥
 
 ```shell
+$ ssh-keygen -t ed25519 -C "<your email>"
+
+# 不推荐
 $ ssh-keygen -t rsa -C "<your email>"              # id_rsa
 $ ssh-keygen -t rsa -C "<your another email>"      # id_rsa_work
-
-# 新的算法
-ssh-keygen -t ed25519 -C "<your email>"
 ```
 
 配置全局信息
