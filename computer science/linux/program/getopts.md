@@ -23,7 +23,7 @@ update: 2021/12/14 00:00:00
 # 示例
 
 ```shell
-#!/bin/bash
+co#!/bin/bash
 
 # define usage info
 usage() {
