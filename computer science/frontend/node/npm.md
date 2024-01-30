@@ -18,7 +18,9 @@ $ npm install <pkg-name>@<version> -s
 # Upgrade pkg
 
 ```shell
-$ npm update <pkg-name> --save # OR --save-dev
+# 检查过时的包
+$ npm outdated
+$ npm update --save <pkg-name>  # OR --save-dev
 ```
 
 **使用工具更新所有依赖**

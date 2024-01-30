@@ -8,8 +8,6 @@ date: 2020/12/31 00:00:00
 update: 2020/12/31 00:00:00
 ---
 
-[toc]
-
 # Command Line
 
 ```shell
