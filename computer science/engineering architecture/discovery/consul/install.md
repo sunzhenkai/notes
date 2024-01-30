@@ -159,7 +159,7 @@ $ export PATH=.:$PATH && bash run-consul.sh
 
 **访问UI界面**
 
-浏览器打开地址 http://localhost:8500/。
+浏览器打开地址 [localhost:8500](http://localhost:8500/)。
 
 ![](install/001.jpg)
 
