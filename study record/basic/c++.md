@@ -415,3 +415,13 @@ public:
 
 [atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
 
+# 协程（coroutines）
+
+C++ 20 引入了协程，详见 [cppreference - coroutines](https://en.cppreference.com/w/cpp/language/coroutines)。在此之前的标准，可以通过 `makecontext()/swapcontext()` 来手动管理线程的 Context 切换，实现协程。或者使用其他库的实现，比如 [`boost::corountines` ](https://theboostcpplibraries.com/boost.coroutine)、brpc 等。
+
+## 其他实现
+
+- [bloomberg quantum](https://github.com/bloomberg/quantum/wiki/2.1-Fiber-and-thread-pools) 是一个可扩展的 C++ 协程框架
+  - 底层实现包含两个 thread pool
+    - Fiber Pool，运行协程任务的主线程池
+    - IO Thread Pool，运行 IO 任务的线程池

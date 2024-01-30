@@ -70,8 +70,8 @@ int main() {
 
 **写屏障（Store Barrier）**、**读屏障（Load Barrier）**和**全屏障（Full Barrier）**。
 
-- 防止指令之间的重排序
-- 保证数据的可见性
+- **防止指令之间的重排序**
+- **保证数据的可见性**
 
 [参考一](https://www.0xffffff.org/2017/02/21/40-atomic-variable-mutex-and-memory-barrier/)
 

@@ -30,17 +30,11 @@ tmux kill-session -t {session-name}
 ```shell
 # active command mode
 ctrl + b
+```
 
-# window
-c		create
-&   close
-n   next 
-p   previous 
-w   list windows
-f   find windows
-,   name windows
+## Pane
 
-# pane
+```shell
 " 	splite vertical
 %		splite horizon
 q   show pane numbers
@@ -50,11 +44,26 @@ ctrl+o  swap panes
 
 x		close panel (or exit)
 arrow		change panel
+```
 
-# session
+## Session
+
+```shell
 $  rename session
 s  list session
 d  detach (keep session alive)
+```
+
+## Window
+
+```shell
+c		create
+&   close
+n   next 
+p   previous 
+w   list windows
+f   find windows
+,   name windows
 ```
 
 # 拷贝模式
@@ -67,5 +76,15 @@ ctrl + b
 [  开启拷贝模式, 可以滚动屏幕
 q  退出拷贝模式
 [Esc]  退出拷贝模式
+```
+
+# 调整大小
+
+```shell
+# 1. 启用 command mode 
+ctrl + b
+
+# 2. 调整大小
+{滚轮}  调整上下分屏 Pane 的大小
 ```
 
