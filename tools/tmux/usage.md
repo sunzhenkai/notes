@@ -35,15 +35,15 @@ ctrl + b
 ## Pane
 
 ```shell
-" 	splite vertical
-%		splite horizon
+"   splite vertical
+%   splite horizon
 q   show pane numbers
 o   change focued pane
-ctrl+o  swap panes
-[space] 切换布局
+ctrl+o   swap panes
+[space]  切换布局
 
-x		close panel (or exit)
-arrow		change panel
+x      close panel (or exit)
+arrow  change panel
 ```
 
 ## Session
