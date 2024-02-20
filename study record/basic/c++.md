@@ -231,6 +231,8 @@ Destructor
 
 # thread
 
+## c++ thread
+
 ```c++
 #include <thread>
 // 初始化 thread
@@ -244,7 +246,7 @@ th.join();
 th.detach(); // 将线程从当前线程分离, 成为独立的后台线程, 主线程不再管理该线程
 ```
 
-## detach
+### detach
 
 ```c++
 void payload() {
@@ -268,9 +270,38 @@ void run_thread_detach() {
 }
 ```
 
-## 注意 
+### 注意 
 
 - 当进程退出时，操作系统会停掉所有由该进程创建的线程（detach 后也会被 kill）
+
+## c thread
+
+```c
+struct Arg {
+    int value;
+};
+
+void *payload(void *arg) {
+    auto v = (Arg *) arg;
+    printf("value: %d\n", v->value);
+    return nullptr;
+}
+
+void c_thread() {
+    // 1. init variables
+    Arg arg{2};
+    pthread_attr_t attr;
+    int exit_status;
+
+    // 2. create thread & run
+    pthread_t thread_id;
+    pthread_create(&thread_id, &attr, payload, &arg);
+    pthread_join(thread_id, (void **) &exit_status);
+
+    // 3. clean
+    printf("thread exit status: %d\n", exit_status);
+}
+```
 
 # 信号量
 
@@ -419,8 +450,10 @@ public:
 
 C++ 20 引入了协程，详见 [cppreference - coroutines](https://en.cppreference.com/w/cpp/language/coroutines)。在此之前的标准，可以通过 `makecontext()/swapcontext()` 来手动管理线程的 Context 切换，实现协程。或者使用其他库的实现，比如 [`boost::corountines` ](https://theboostcpplibraries.com/boost.coroutine)、brpc 等。
 
-## 其他实现
+## 实现
 
+- C++ 20
+- `boost::corountines` 
 - [bloomberg quantum](https://github.com/bloomberg/quantum/wiki/2.1-Fiber-and-thread-pools) 是一个可扩展的 C++ 协程框架
   - 底层实现包含两个 thread pool
     - Fiber Pool，运行协程任务的主线程池
