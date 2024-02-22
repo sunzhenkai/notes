@@ -413,13 +413,13 @@ run_wait done
 
 ## 有哪些锁机制
 
-| 锁                           | 说明                 | 备注                         |
-| ---------------------------- | -------------------- | ---------------------------- |
-| std::mutex                   | 互斥锁               |                              |
-| std::shared_mutex            | 读写锁（共享互斥锁） |                              |
-| std::recursive_mutex         | 可重入锁（递归锁）   | 需要程序确保每次上锁都会释放 |
-| std::timed_mutex             | 计时互斥锁           |                              |
-| `std::recursive_timed_mutex` | 计时递归锁           | 需要程序确保每次上锁都会释放 |
+| 锁                         | 说明                 | 备注                         |
+| -------------------------- | -------------------- | ---------------------------- |
+| std::mutex                 | 互斥锁               |                              |
+| std::shared_mutex          | 读写锁（共享互斥锁） |                              |
+| std::recursive_mutex       | 可重入锁（递归锁）   | 需要程序确保每次上锁都会释放 |
+| std::timed_mutex           | 计时互斥锁           |                              |
+| std::recursive_timed_mutex | 计时递归锁           | 需要程序确保每次上锁都会释放 |
 
 ## 如何实现自旋锁
 
@@ -445,6 +445,20 @@ public:
 ## atomic
 
 [atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
+
+`std::atomic` 提供了一种机制，使得多线程环境下对特定类型的变量进行原子操作成为可能。通过使用 `std::atomic` 创建的原子类型，我们可以确保在多线程环境中读写这些变量时，不会出现数据竞争的问题。这为并发编程提供了更高的可靠性和可预测性。
+
+### 方法
+
+```c++
+// 初始化
+std::atomic<int> a;
+std::atomic<int> a(1);
+
+// 赋值
+std::atomic<int> a;
+a = 10;
+```
 
 # 协程（coroutines）
 
