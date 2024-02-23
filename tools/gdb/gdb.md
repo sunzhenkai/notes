@@ -32,7 +32,7 @@ handle SIG35 nostop noprint pass noignore
 ```shell
 $ gdb <program>
 
-# 添加程序参数
+# 为程序添加参数
 $ gdb --args program <args>
 ```
 
@@ -151,7 +151,7 @@ x
 # 帧相关
 
 ```shell
-(gdb) fn       # 选中第 n 个帧
+(gdb) f n       # 选中第 n 个帧
 (gdb) up       # 上一个帧
 (gdb) down     # 下一个帧
 ```
@@ -182,8 +182,17 @@ display <variable-name>
 (gdb) p *(char**)0x21d4b4910
 
 # map 相关
-(gdb)  p a._M_h           
+(gdb) p m._M_h           
+(gdb) p (m._M_h._M_bbegin._M_node._M_nxt) 
+(gdb) p m._M_h._M_buckets
+(gdb) p m._M_h._M_buckets[0]
 
+# vector 相关
+(gdb) p *(v._M_impl._M_start+4) 
+(gdb) p *(v._M_impl._M_start+4)._M_ptr.name # name: struct field
+
+# 智能指针
+(gdb) p sptr._M_ptr->name # name: struct field
 ```
 
 # 常见问题

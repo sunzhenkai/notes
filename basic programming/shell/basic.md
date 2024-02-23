@@ -240,3 +240,54 @@ $ seq 1 2 5 # 1, 3, 5
 $ for i in `seq 3`; do echo $i; done  # 1 2 3
 ```
 
+# case...esac
+
+```shell
+word=a
+case $word in
+	a)
+		echo "a $word"
+		;;
+	b)
+		echo "b $word"
+		;;
+	*)
+		echo "* $word"
+		;;
+esac
+```
+
+# getopts
+
+**参数**
+
+```shell
+# opts
+:前缀	忽略错误
+:后缀	参数后必须有值
+
+# example
+:abc:de:	忽略参数错误，-c、-e后必须有值
+```
+
+**示例**
+
+```shell
+usage() {
+    cat <<EOF
+Usage: $0 [-a] [-b name] msg
+EOF
+}
+
+while getopts ":ab:Bc:" opt; do
+    case $opt in
+        a) echo "found -a" ; a="hello" ;;
+        b) echo "found -b and value is: $OPTARG" ;;
+        c) echo "found -c and value is: $OPTARG" ;;
+        *) usage ;;
+    esac
+done
+
+shift $(($OPTIND - 1))
+```
+
