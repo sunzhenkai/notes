@@ -27,6 +27,25 @@ ${*:2}  截取第二个参数及之后
 ${*:2:3}  截取第二、三个参数
 ```
 
+# getopts
+
+```shell
+# opts
+:前缀	忽略错误
+:后缀	参数后必须有值
+
+# example
+:abc:de:	忽略参数错误，-c、-e后必须有值
+
+while getopts ":ab:Bc:" opt; do
+    case $opt in
+        a) echo "found -a" ; a="ok" ;;
+        b) echo "found -b and value is: $OPTARG" ;;
+        *) "echo usage" ;;
+    esac
+done
+```
+
 # 函数
 
 ```shell
