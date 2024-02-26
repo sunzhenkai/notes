@@ -195,6 +195,30 @@ display <variable-name>
 (gdb) p sptr._M_ptr->name # name: struct field
 ```
 
+## Pretty Printer
+
+Pretty Printer 功能是否支持是在 gdb 编译时，根据编译选项决定的。在编译时需要添加编译参数 `--with-python` 来启用 Pretty Printer。下面的命令可以查看是否开启。
+
+```shell
+$ gdb -config
+This GDB was configured as follows:
+   configure --host=x86_64-pc-linux-gnu --target=x86_64-pc-linux-gnu
+             ...
+             --without-python
+             --without-python-libdir
+             ...
+```
+
+指定自定义的 python 路径，要指定到 python 二进制文件。
+
+```shell
+--without-python=/path/to/python/bin/python3
+```
+
+> 低版本的 python 在 configure 时会校验不通过，建议使用较新版本的 python3。
+
+pretty printer 使用手册参考[这里](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing.html#Pretty-Printing)。
+
 # 常见问题
 
 ## gdb 卡住
@@ -252,3 +276,4 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS_DEBUG} -O0")
 # 参考
 
 - [打印变量](https://stackoverflow.com/questions/6261392/printing-all-global-variables-local-variables)
+

@@ -39,19 +39,19 @@ export CXX=/usr/local/bin/g++-7
 
 # 变量
 
-| 变量               | 含义                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| CFLAGS             | C 编译器选项                                                 |
-| CXXFLAGS           | C++ 编译器选项                                               |
-| CPPFLAGS           | C/C++ 预处理器的命令行参数                                   |
-| LDFLAGS            | 链接参数                                                     |
-| LD_LIBRARY_PATH    | 运行时动态链接库查找路径                                     |
-| LIBRARY_PATH       | 编译时链接库查找路径                                         |
-| C_INCLUDE_PATH     | 头文件查找路径                                               |
-| CPLUS_INCLUDE_PATH | C++ 头文件查找路径                                           |
-| OBJC_INCLUDE_PATH  | ObjectiveC 头文件查找路径                                    |
-| CPATH              | C/C++/ObjectiveC 头文件默认查找路径，多个路径使用 `:` 分隔，比如 `.:/root/include` |
-| DYLD_LIBRARY_PATH  | Mac OS 动态链接库查找路径                                    |
+| 变量               | 含义                                                         | 示例     |
+| ------------------ | ------------------------------------------------------------ | -------- |
+| CFLAGS             | C 编译器选项                                                 |          |
+| CXXFLAGS           | C++ 编译器选项                                               |          |
+| CPPFLAGS           | C/C++ 预处理器的命令行参数                                   |          |
+| LDFLAGS            | 链接参数                                                     |          |
+| LD_LIBRARY_PATH    | 运行时动态链接库查找路径                                     |          |
+| LIBRARY_PATH       | 编译时链接库查找路径                                         | /usr/lib |
+| C_INCLUDE_PATH     | 头文件查找路径                                               |          |
+| CPLUS_INCLUDE_PATH | C++ 头文件查找路径                                           |          |
+| OBJC_INCLUDE_PATH  | ObjectiveC 头文件查找路径                                    |          |
+| CPATH              | C/C++/ObjectiveC 头文件默认查找路径，多个路径使用 `:` 分隔，比如 `.:/root/include` |          |
+| DYLD_LIBRARY_PATH  | Mac OS 动态链接库查找路径                                    |          |
 
 # 参数
 

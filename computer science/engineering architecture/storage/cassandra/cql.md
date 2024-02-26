@@ -7,8 +7,6 @@ tags:
 date: 2022/07/06 00:00:00
 ---
 
-[toc]
-
 # 语法
 
 [CQL](https://docs.datastax.com/en/cql-oss/3.3/cql/cqlIntro.html)。
@@ -60,6 +58,7 @@ ALTER ROLE root WITH PASSWORD = 'NewPassword';
 ## 查询
 
 ```shell
+# 列出所有 keysapces
 desc keyspaces;
 ```
 
@@ -129,5 +128,13 @@ ALTER TABLE [keyspace_name.] table_name
 
 ```cql
 ALTER TABLE trace.ranker ADD rid TEXT;
+```
+
+# Query
+
+```CQL
+// 查询一条
+select * from ks.table limit 1;
+select * from ks.table where id='value' limit 1;
 ```
 
