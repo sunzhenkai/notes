@@ -71,6 +71,29 @@ then
 fi
 ```
 
+**[ ] 和 [[ ]] 的区别**
+
+- 兼容性
+
+  - `[ ]` 是内置命令 test 的可选项，在 Linux、Unix、POSIX 系统兼容
+
+  - `[[ ]]` 是 Korn Shell 作为增强功能引入的，被 base、zsh 等支持，但在 POSIX 系统中不兼容
+
+- `[[ ]]` 于 `[]` 的差异
+
+  - 比较运算符
+    - 比如，`[[ 1 < 2 ]]`，等价于 `[ 1 \< 2 ]`
+  - 布尔运算符（`-a -> &&`，`-o -> ||`）
+    - 比如，`[[ 3 -eq 3 && 4 -eq 4 ]]` 等价于 `[ 3 -eq 3 -a 4 -eq 4 ]`
+  - 组合表达式
+    - 比如，`[[ 3 -eq 3 && (2 -eq 2 || 1 -eq 1) ]] ` 等价于 `[ 3 -eq 3 -a \( 2 -eq 2 -o 1 -eq 1 \) ]`
+  - 模式匹配
+    - 比如，`[[ $name = *c* ]]` ，`[ ]` 中没有对应的匹配运算
+  - 正则匹配
+    - 比如，`[ $name =~ ^Ali ]` ，`[ ]` 中没有对应的匹配运算
+  - 单词切分（`[[ ]]` 不会对变量值按空白符切分，`[ ]` 对应得需要添加 `""` 来达到相似的效果）
+    - 比如，`name = "Wukong Sun"`，`[[ $name ]]` 等价于 `[ "$name" ]`
+
 ## 参数
 
 ### 字符串
@@ -82,6 +105,15 @@ fi
 {string1} != {string2} string1 和 string2 不相同
 {string1} < {string2} 基于 ASCII 码比较
 {string1} > {string2} 基于 ASCII 码比较
+```
+
+**正则匹配**
+
+```shell
+"{data}" =~ ^{regex}$
+
+# 示例
+[[ "$date" =~ ^[0-9]{8}$ ]] && echo "YES"
 ```
 
 ### 变量
@@ -257,5 +289,56 @@ $ seq 3   # [1, 3]
 $ seq 1 2 5 # 1, 3, 5
 
 $ for i in `seq 3`; do echo $i; done  # 1 2 3
+```
+
+# case...esac
+
+```shell
+word=a
+case $word in
+	a)
+		echo "a $word"
+		;;
+	b)
+		echo "b $word"
+		;;
+	*)
+		echo "* $word"
+		;;
+esac
+```
+
+# getopts
+
+**参数**
+
+```shell
+# opts
+:前缀	忽略错误
+:后缀	参数后必须有值
+
+# example
+:abc:de:	忽略参数错误，-c、-e后必须有值
+```
+
+**示例**
+
+```shell
+usage() {
+    cat <<EOF
+Usage: $0 [-a] [-b name] msg
+EOF
+}
+
+while getopts ":ab:Bc:" opt; do
+    case $opt in
+        a) echo "found -a" ; a="hello" ;;
+        b) echo "found -b and value is: $OPTARG" ;;
+        c) echo "found -c and value is: $OPTARG" ;;
+        *) usage ;;
+    esac
+done
+
+shift $(($OPTIND - 1))
 ```
 

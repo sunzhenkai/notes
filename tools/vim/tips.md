@@ -111,6 +111,24 @@ dd     剪切当前行
 d$     剪切到行尾
 ```
 
+### 删除指定行
+
+```shell
+# pattern 删除
+:g/{pattern}/d   # 删除所有包含 pattern 的行
+:g!/{pattern}/d  # 删除所有不包含 pattern 的行
+# g! 等价与 v
+:v/{pattern}/d   # 删除所有不包含 pattern 的行
+# 多个 pattern
+:v/{pattern}\|{pattern}\|{pattern}/d  # \| 或
+
+# 示例
+:g/profile/d
+:g/^\s*$/d
+:g!/^\s*"/d
+:v/error\|warn\|fail/d
+```
+
 ## 粘贴
 
 ```shell
@@ -198,7 +216,7 @@ r     刷新光标所在的目录
 C     将根路径设置为光标所在的目录
 u     设置上级目录为根路径
 cd    设置当前工作路径
-m     文件操作：复制、删除、移动等
+m     文件操作：复制、删除、移动、创建等
 P     大写，跳转到当前根路径
 p     小写，跳转到光标所在的上一级路径
 x     收起当前打开的目录

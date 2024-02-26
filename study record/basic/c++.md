@@ -231,6 +231,8 @@ Destructor
 
 # thread
 
+## c++ thread
+
 ```c++
 #include <thread>
 // 初始化 thread
@@ -244,7 +246,7 @@ th.join();
 th.detach(); // 将线程从当前线程分离, 成为独立的后台线程, 主线程不再管理该线程
 ```
 
-## detach
+### detach
 
 ```c++
 void payload() {
@@ -268,9 +270,38 @@ void run_thread_detach() {
 }
 ```
 
-## 注意 
+### 注意 
 
 - 当进程退出时，操作系统会停掉所有由该进程创建的线程（detach 后也会被 kill）
+
+## c thread
+
+```c
+struct Arg {
+    int value;
+};
+
+void *payload(void *arg) {
+    auto v = (Arg *) arg;
+    printf("value: %d\n", v->value);
+    return nullptr;
+}
+
+void c_thread() {
+    // 1. init variables
+    Arg arg{2};
+    pthread_attr_t attr;
+    int exit_status;
+
+    // 2. create thread & run
+    pthread_t thread_id;
+    pthread_create(&thread_id, &attr, payload, &arg);
+    pthread_join(thread_id, (void **) &exit_status);
+
+    // 3. clean
+    printf("thread exit status: %d\n", exit_status);
+}
+```
 
 # 信号量
 
@@ -382,13 +413,13 @@ run_wait done
 
 ## 有哪些锁机制
 
-| 锁                           | 说明                 | 备注                         |
-| ---------------------------- | -------------------- | ---------------------------- |
-| std::mutex                   | 互斥锁               |                              |
-| std::shared_mutex            | 读写锁（共享互斥锁） |                              |
-| std::recursive_mutex         | 可重入锁（递归锁）   | 需要程序确保每次上锁都会释放 |
-| std::timed_mutex             | 计时互斥锁           |                              |
-| `std::recursive_timed_mutex` | 计时递归锁           | 需要程序确保每次上锁都会释放 |
+| 锁                         | 说明                 | 备注                         |
+| -------------------------- | -------------------- | ---------------------------- |
+| std::mutex                 | 互斥锁               |                              |
+| std::shared_mutex          | 读写锁（共享互斥锁） |                              |
+| std::recursive_mutex       | 可重入锁（递归锁）   | 需要程序确保每次上锁都会释放 |
+| std::timed_mutex           | 计时互斥锁           |                              |
+| std::recursive_timed_mutex | 计时递归锁           | 需要程序确保每次上锁都会释放 |
 
 ## 如何实现自旋锁
 
@@ -415,12 +446,28 @@ public:
 
 [atomic](https://en.cppreference.com/w/cpp/atomic/atomic)
 
+`std::atomic` 提供了一种机制，使得多线程环境下对特定类型的变量进行原子操作成为可能。通过使用 `std::atomic` 创建的原子类型，我们可以确保在多线程环境中读写这些变量时，不会出现数据竞争的问题。这为并发编程提供了更高的可靠性和可预测性。
+
+### 方法
+
+```c++
+// 初始化
+std::atomic<int> a;
+std::atomic<int> a(1);
+
+// 赋值
+std::atomic<int> a;
+a = 10;
+```
+
 # 协程（coroutines）
 
 C++ 20 引入了协程，详见 [cppreference - coroutines](https://en.cppreference.com/w/cpp/language/coroutines)。在此之前的标准，可以通过 `makecontext()/swapcontext()` 来手动管理线程的 Context 切换，实现协程。或者使用其他库的实现，比如 [`boost::corountines` ](https://theboostcpplibraries.com/boost.coroutine)、brpc 等。
 
-## 其他实现
+## 实现
 
+- C++ 20
+- `boost::corountines` 
 - [bloomberg quantum](https://github.com/bloomberg/quantum/wiki/2.1-Fiber-and-thread-pools) 是一个可扩展的 C++ 协程框架
   - 底层实现包含两个 thread pool
     - Fiber Pool，运行协程任务的主线程池
