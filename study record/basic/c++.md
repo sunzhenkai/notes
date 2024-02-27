@@ -229,6 +229,20 @@ Destructor
 | map / set     | 红黑树   | 否           | 平衡树，更新后进行平衡 |
 | unordered_map | 哈希表   | 否           |                        |
 
+# 算法
+
+## sort
+
+```c++
+std::vector<int> v1 = {1, 3, 2, 4, 6, 5};
+// 升序
+std::sort(v1.begin(), v1.end());
+// 内置比较, 降序
+std::sort(v1.begin(), v1.end(), std::greater<>());
+// 自定义比较, 降序
+std::sort(v1.begin(), v1.end(), [](int &a, int &b) { return a > b; });
+```
+
 # thread
 
 ## c++ thread
