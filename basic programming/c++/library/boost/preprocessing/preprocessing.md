@@ -9,16 +9,20 @@ date: 2021/11/22 00:00:00
 
 # Introduction
 
-Boost Preprocessing Library 是 boost 定义的宏（macros）库。
+Boost Preprocessing Library 是 boost 定义的宏（macros）库，官方文档在[这里](https://www.boost.org/doc/libs/1_71_0/libs/preprocessor/doc/)。
 
 # Data Types
 
+Boost 的 Preprocess 库有四种数据类型，array、lists、sequences、tuples。
+
 ## arrays
+
+arrays 是包含两个元素的 tuple，第一个元素是 array 中元素的数量，第二个元素是包含 array 元素的 tuple。
 
 ### 定义
 
 ```c++
-#define ARRAY (3, (x, y, z))
+#define ARRAY (3, (a, b, c))
 ```
 
 ### 原语
@@ -29,23 +33,12 @@ Boost Preprocessing Library 是 boost 定义的宏（macros）库。
 
 ## lists
 
+lists 是一个有头和尾的简单列表。头是一个元素，尾是另外一个 list 或者 BOOST_PP_NIL。
+
 ### 定义
 
 ```c++
-#define OLD \
-   BOOST_PP_LIST_CONS( \
-      a, \
-      BOOST_PP_LIST_CONS( \
-         b, \
-         BOOST_PP_LIST_CONS( \
-            c, \
-            BOOST_PP_LIST_NIL \
-         ) \
-      ) \
-   ) \
-   /**/
-
-#define NEW (a, (b, (c, BOOST_PP_NIL)))
+#define LISTS (a, (b, (c, BOOST_PP_NIL)))
 ```
 
 ### 原语
@@ -56,25 +49,12 @@ Boost Preprocessing Library 是 boost 定义的宏（macros）库。
 
 ## sequences
 
+sequences 是一组相邻的带括号的元素。
+
 ### 定义
 
 ```c++
-BOOST_PP_SEQ_ELEM(1, (a)(b)(c)) // expands to b
-
-#define SEQ \
-   (0)(1)(2)(3)(4)(5)(6)(7)(8)(9) \
-   (10)(11)(12)(13)(14)(15)(16)(17)(18)(19) \
-   (20)(21)(22)(23)(24)(25)(26)(27)(28)(29) \
-   (30)(31)(32)(33)(34)(35)(36)(37)(38)(39) \
-   (40)(41)(42)(43)(44)(45)(46)(47)(48)(49) \
-   (50)(51)(52)(53)(54)(55)(56)(57)(58)(59) \
-   (60)(61)(62)(63)(64)(65)(66)(67)(68)(69) \
-   (70)(71)(72)(73)(74)(75)(76)(77)(78)(79) \
-   (80)(81)(82)(83)(84)(85)(86)(87)(88)(89) \
-   (90)(91)(92)(93)(94)(95)(96)(97)(98)(99) \
-   /**/
-
-BOOST_PP_SEQ_ELEM(88, SEQ) // expands to 88
+#define SEQ (0)(1)(2)(3)
 ```
 
 ### 原语
@@ -83,10 +63,12 @@ BOOST_PP_SEQ_ELEM(88, SEQ) // expands to 88
 
 ## tuples
 
+元组是一个括号内用逗号分隔的元素列表。
+
 ### 定义
 
 ```c++
-#define TUPLE (a, b, c, d)
+#define TUPLE (a, b, c)
 ```
 
 ### 原语
@@ -95,17 +77,45 @@ BOOST_PP_SEQ_ELEM(88, SEQ) // expands to 88
 
 # Reference
 
-## SEQ
+## seq
 
 ### [BOOST_PP_SEQ_FOR_EACH](https://www.boost.org/doc/libs/1_71_0/libs/preprocessor/doc/ref/seq_for_each.html)
 
 ```c++
+// 遍历 SEQ 中的每个元素，应用新的宏。
 BOOST_PP_SEQ_FOR_EACH(macro, data, seq)
 ```
 
-遍历 SEQ 中的每个元素，应用新的宏。
+- macro
+    - 形如 macro(r, data, elem) 的宏。BOOST_PP_SEQ_FOR_EACH 遍历每个元素并使用该宏展开。
+    - 元素
+        - r：当前元素的索引（从 1 开始）
+        - data：辅助数据
+        - elem：当前元素
+- data: 辅助数据（可以不使用，使用 `_` 作为占位符）
+- seq: 定义的序列
 
-## STRING
+**示例**
+
+```c++
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/seq/for_each.hpp>
+#define SEQ (w)(x)(y)(z)
+// cat
+#define MACRO(r, data, elem) BOOST_PP_CAT(elem, data)
+BOOST_PP_SEQ_FOR_EACH(MACRO, _, SEQ) // expands to w_ x_ y_ z_
+// stringize
+#define SIMPLE_SEQ (a)(b)(c)
+#define MACRO(r, data, elem) BOOST_PP_STRINGIZE(r) BOOST_PP_STRINGIZE(data) BOOST_PP_STRINGIZE(elem)
+    std::string v = BOOST_PP_SEQ_FOR_EACH(MACRO, _, SIMPLE_SEQ); // v: 1_a2_b3_c
+#undef MACRO
+```
+
+## tuple
+
+
+
+## string
 
 ### BOOST_PP_CAT
 
