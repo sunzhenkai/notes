@@ -8,6 +8,16 @@ date: 2021/12/15 00:00:00
 update: 2021/12/15 00:00:00
 ---
 
+# 启动
+
+```shell
+seastar::app_template app;
+char *av[5] = {"--overprovisioned", "-c", "4", "--blocked-reactor-notify-ms", "25"};
+app.run(sizeof av / sizeof *av, av, [] {
+    return seastar::make_ready_future<>();
+});
+```
+
 # `std::move`
 
 ```c++
