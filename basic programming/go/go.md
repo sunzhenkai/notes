@@ -683,6 +683,43 @@ default:
 }
 ```
 
+# 单测（Unit Tests）
+
+## 单测文件
+
+创建名为 `{code}_test.go` 的文件，即为 `{code}.go` 的单测文件。
+
+## 示例
+
+**echo.go**
+
+```go
+package tm
+
+func Echo(s string) string {
+	return s
+}
+```
+
+**echo_tests.go**
+
+```go
+package tm
+
+import (
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
+
+func TestEcho(t *testing.T) {
+	word := "hello"
+	echo := Echo(word)
+	assert.Equal(t, word, echo)
+}
+```
+
+
+
 # 参考
 
 - [Go 语言设计与实现](https://draveness.me/golang/)
