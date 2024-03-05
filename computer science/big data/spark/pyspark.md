@@ -31,3 +31,36 @@ row.scores[0]
 df_a.join(df_b, on=[{column}]) # 使用 on
 ```
 
+# 过滤
+
+## 多条件过滤
+
+```python
+df.filter((condition1) & (condition2))
+```
+
+## 包含字符串
+
+```python
+df.filter(col('name').contains('sun'))
+```
+
+## 值比较
+
+```python
+df.filter(col('name') == "wii")
+```
+
+## Null 判断
+
+```python
+df.filter(col('name').isNull())
+df.filter(col('name').isNotNull())
+```
+
+## In 判断
+
+```python
+df.filter(col('name').isin(["wii", "bovenson"]))
+```
+
