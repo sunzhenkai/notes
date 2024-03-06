@@ -486,3 +486,12 @@ C++ 20 引入了协程，详见 [cppreference - coroutines](https://en.cpprefere
   - 底层实现包含两个 thread pool
     - Fiber Pool，运行协程任务的主线程池
     - IO Thread Pool，运行 IO 任务的线程池
+
+# 字符串
+
+## 查找
+
+```c++
+char *strchr(const char *string, int c);  // NULL / 第一个位置
+```
+
