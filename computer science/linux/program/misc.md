@@ -182,6 +182,8 @@ $ cat t2 | sort -t ':' -k 2
 ```shell
 # format
 date +"%Y%m%d"
+# 分钟
+date +"%M"
 
 # minus
 -d "-1 days"
