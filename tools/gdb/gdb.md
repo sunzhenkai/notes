@@ -164,15 +164,19 @@ bt
 # 选中某个栈
 select-frame <frame-no>
 
+# 打印变量
+display <variable-name>
+```
+
+## 列出变量
+
+```shell
 # 查看本地变量
 info locals
 # 查看全局变量
 info variables
 # 查看参数
 info args
-
-# 打印变量
-display <variable-name>
 ```
 
 ## 分类型打印

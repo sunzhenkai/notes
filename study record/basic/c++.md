@@ -218,6 +218,56 @@ Destructor
 */
 ```
 
+## Trivially Copyable
+
+trivially copyable 类型包括如下：
+
+- 未加 const 或 volatile 修饰符（cv-unqualified）的标量类型（scalar type）
+  - 基本整型
+  - 浮点型
+  - 字符型
+  - 布尔型
+- trivially copyable 对象类型（trivially copyable class），同时满足以下条件
+  - 没有非平凡（non-trivial）的拷贝构造函数
+  - 没有非平凡（non-trivial）的移动构造函数
+  - 没有非平凡（non-trivial）的复制赋值操作符
+  - 没有非平凡（non-trivial）的移动赋值操作符
+  - 有一个平凡的析构函数
+- 上述类型的 arrays
+- 上述类型的 cv-unqualified 类型
+
+## Lock Free
+
+Lock Free 是一种并发编程的概念，用于描述一种编写多线程代码的技术或算法，该技术或算法在没有使用传统的互斥锁（mutex）机制的情况下实现了线程安全。
+
+## Memory Order
+
+Memory Order（内存序）是用于指定原子操作和多线程间内存可见性的概念。
+
+- `memory_order_relaxed`: 最轻量级的内存序，没有任何同步或顺序要求，允许重排和乱序执行
+- `memory_order_acquire`: 获取语意
+- `memory_order_release`: 释放语意
+- `memory_order_acq_rel`: 结合了`memory_order_acquire`和`memory_order_release`，同时有获取和释放的语义。适用于具有获取和释放语义的原子操作。
+- `memory_order_seq_cst`: 最严格的内存序，提供全局顺序一致性。保证所有线程对原子操作的执行都具有相同的全局顺序
+
+> memory_order_consume 实现成本高，使用复杂，通常被 `memory_order_acquire` 替代
+
+## Value Initialization
+
+[Value-initialization](https://en.cppreference.com/w/cpp/language/value_initialization)。
+
+```c++
+// 变量定义, 但未初始化
+int x; 
+
+// 变量定义并初始化
+int x = 0;
+int x = int();
+int x{}; // 使用默认初始化方法, 对于标量变量, 使用 zero-initialization, 即被初始化为 0
+```
+
+以标量为例，未初始化的变量，其值是未定义的，具体行为取决于编译器。
+
 # STL
 
 ## 常见数据结构及底层实现
@@ -462,17 +512,71 @@ public:
 
 `std::atomic` 提供了一种机制，使得多线程环境下对特定类型的变量进行原子操作成为可能。通过使用 `std::atomic` 创建的原子类型，我们可以确保在多线程环境中读写这些变量时，不会出现数据竞争的问题。这为并发编程提供了更高的可靠性和可预测性。
 
-### 方法
+对于 atomic 模板类型，要求必须是 trivially-copyable，可以通过 `std::is_trivially_copyable<T>` 判断。
+
+### `atomic<T>::is_lock_free`
+
+`is_lock_free` 用来检查特定类型的**原子操作是否为无锁**。
 
 ```c++
-// 初始化
+// CASE 1
+struct B {
+    int i1;
+    int i2;
+};
+
+struct A {
+    int value;
+    B b;
+};
+
+void atomic_complex() {
+    std::atomic<A> aa;
+    std::cout << aa.is_lock_free() << std::endl; // 0
+}
+// CASE 2
+struct B {
+    int i1;
+    // int i2;
+};
+
+struct A {
+    int value;
+    B b;
+};
+
+void atomic_complex() {
+    std::atomic<A> aa;
+    std::cout << aa.is_lock_free() << std::endl; // 1
+}
+```
+
+### 初始化
+
+```c++
 std::atomic<int> a;
 std::atomic<int> a(1);
+a = 5;
+```
 
-// 赋值
+### 赋值
+
+```c++
 std::atomic<int> a;
 a = 10;
 ```
+
+### 使用方式
+
+- 对临界资源做竞争保护
+  - 创建对应类型的 atomic 变量
+  - 设置值
+    - `store` 
+    - 赋值
+    - `exchange` 
+    - `compare_exchange_weak`
+    - `compare_exchange_strong`
+  - 使用 `load` 或 `()` 操作符来获取值
 
 # 协程（coroutines）
 

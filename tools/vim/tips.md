@@ -139,6 +139,14 @@ p    光标后插入
 C-r"  ": default register
 ```
 
+**使用系统粘贴命令导致的 indent 异常**
+
+```shell
+:set paste  # 切换到粘贴模式
+# 粘贴完后, 切换回来
+:set nopaste
+```
+
 ## 编辑
 
 ```shell
