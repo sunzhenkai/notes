@@ -98,3 +98,21 @@ gmake: *** [cmTC_29ea1/fast] Error 2
 ### ninja-build 版本低
 
 升级 ninja-build 版本，从 `1.7.2` 升级到 `1.11.1` 后问题解决。最新版，从[这里](https://github.com/ninja-build/ninja/releases)下载。
+
+# 使用其他 GCC 库
+
+比如，使用 `/opt/scylladb/bin` 下的 gcc，需要同步设置 LD_LIBRARY_PATH 和 LIBRARY_PATH。
+
+```shell
+PATH=/opt/scylladb/bin:$PATH
+LD_LIBRARY_PATH=/opt/scylladb/lib64:/opt/scylladb/lib:$LD_LIBRARY_PATH
+LIBRARY_PATH=/opt/scylladb/lib64:/opt/scylladb/lib:$LIBRARY_PATH
+```
+
+以免出现以下错误。
+
+```shell
+libstdc++.so.6: version `GLIBCXX_3.4.20' not found
+```
+
+这是因为使用的 g++ 版本和最终链接的 libstdc++ 库不一致导致的。
