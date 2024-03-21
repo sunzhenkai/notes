@@ -199,6 +199,12 @@ info args
 (gdb) p sptr._M_ptr->name # name: struct field
 ```
 
+### Vector
+
+```shell
+p *(*(m._M_impl._M_start+6)._M_impl._M_start) # vector<vector> 打印第 7 个元素 (vector)
+```
+
 ## Pretty Printer
 
 Pretty Printer 功能是否支持是在 gdb 编译时，根据编译选项决定的。在编译时需要添加编译参数 `--with-python` 来启用 Pretty Printer。下面的命令可以查看是否开启。
