@@ -275,6 +275,31 @@ $ echo ${s:1:2}
 
 # 循环
 
+## while
+
+语法
+
+```shell
+while command
+do
+   Statement(s) to be executed if command is true
+done
+```
+
+示例
+
+```shell
+a=0
+while [ $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+
+# 等待 port
+while ! lsof -i:8080; do echo "wait for server ready"; sleep 1; done
+```
+
 ## 数组
 
 ```shell

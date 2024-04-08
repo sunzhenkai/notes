@@ -207,7 +207,9 @@ su <user>
 # 按进程名称
 $ ps aux | grep <process-name> | awk '{print $2}' | xargs kill -9
 # 按端口
-$ lsof -i:8200 | awk '{print $2}' | xargs kill -9
+$ lsof -t -i:8200 | awk '{print $2}' | xargs kill -9
+# 杀死后台线程
+$ kill $(jobs -p)
 ```
 
 ## 滚动日志
@@ -233,6 +235,25 @@ lsof -p <PID> | grep cwd
 
 # proc
 readlink -e /proc/<PID>/cwd
+```
+
+## 按进程名称查找进程 id
+
+```shell
+pgrep {process-name}     # 进程名 like 搜索
+pgrep -x {process-name}  # 进程名精确匹配
+```
+
+## 等待进程结束
+
+```shell
+$ wait {pid}
+```
+
+## 等待后台线程结束
+
+```shell
+$ wait $(jobs -p)
 ```
 
 # 设备
