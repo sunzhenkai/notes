@@ -114,6 +114,20 @@ fl.insert_after(iter, element);
 // 删除
 ```
 
+## unordered_set
+
+```c++
+// 修改
+insert(Key&&)
+emplace(Args&&)
+erase(const Key&)
+merge()
+// 查找
+iterator find(Key)
+size_type count(Key)
+bool contains(Key)
+```
+
 # 基础知识
 
 ## 虚函数

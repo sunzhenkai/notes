@@ -9,6 +9,23 @@ date: 2020/10/27 19:00:00
 update: 2020/10/27 19:00:00
 ---
 
+# 快捷键
+
+```shell
+Ctrl + R : 搜索历史命令
+Ctrl + a : 指针跳到命令行开始
+Ctrl + e : 指针跳到命令行结尾
+Ctrl + b : 向后移动一个字符
+Ctrl + f : 向前移动一个字符
+
+Alt + right : 向右移动一个词
+Alt + left  : 向右移动一个词
+Ctrl + X, Ctrl + X : 在当前位置和开始位置切换
+
+Ctrl + s : 暂停终端输出
+Ctrl + q : 恢复终端输出
+```
+
 # 特殊参数
 
 ```shell
@@ -257,6 +274,31 @@ $ echo ${s:1:2}
 ```
 
 # 循环
+
+## while
+
+语法
+
+```shell
+while command
+do
+   Statement(s) to be executed if command is true
+done
+```
+
+示例
+
+```shell
+a=0
+while [ $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+
+# 等待 port
+while ! lsof -i:8080; do echo "wait for server ready"; sleep 1; done
+```
 
 ## 数组
 

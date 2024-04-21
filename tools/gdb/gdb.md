@@ -164,15 +164,19 @@ bt
 # 选中某个栈
 select-frame <frame-no>
 
+# 打印变量
+display <variable-name>
+```
+
+## 列出变量
+
+```shell
 # 查看本地变量
 info locals
 # 查看全局变量
 info variables
 # 查看参数
 info args
-
-# 打印变量
-display <variable-name>
 ```
 
 ## 分类型打印
@@ -193,6 +197,12 @@ display <variable-name>
 
 # 智能指针
 (gdb) p sptr._M_ptr->name # name: struct field
+```
+
+### Vector
+
+```shell
+p *(*(m._M_impl._M_start+6)._M_impl._M_start) # vector<vector> 打印第 7 个元素 (vector)
 ```
 
 ## Pretty Printer
