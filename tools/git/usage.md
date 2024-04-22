@@ -119,7 +119,7 @@ $ vim .git/config # 移除对应 module
 ```shell
 $ git tag -s "tag_name" -m "comments"
 # push 到远端
-$ git push origin <tag_name>	# one
+$ git push origin <tag-name>	# one
 $ git push --tags							# all
 $ git push origin --tags			# all
 ```

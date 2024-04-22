@@ -42,3 +42,19 @@ Path.home() # 用户目录
 json.dumps(obj, default=vars)  # 使用 vars 序列化对象, 打印对象的所有属性
 ```
 
+# **multiprocessing**
+
+## 共享自定义对象
+
+```python3
+class A():
+	pass
+
+AProxy = MakeProxyType('A', public_methods(A))
+setattr(multiprocessing.managers, 'A', AProxy)
+SyncManager.register('A', A, AProxy)
+manager = SyncManager()
+manager.start()
+shared_a = manager.A()
+```
+
