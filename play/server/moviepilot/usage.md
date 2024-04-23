@@ -59,3 +59,7 @@ UID 是数字的用户 ID，点击用户名，跳转到用户信息页面，有 
 在最后有一个 X-Plex-Token，把等号后面的字符串填到 API 密钥那里。
 
 ![image-20240307102844578](usage/image-20240307102844578.png)
+
+# 注意
+
+- MoviePilot 使用三方工具下载内容（比如 Transmission），并通过工具的 API 调用，需要注意的是，下载路径是 MoviePilot 制定的下载路径，如果 Transmission 在另外的容器里面，要确保下载路径在 MoviePilot 和 下载工具的映射**是一致的**。
