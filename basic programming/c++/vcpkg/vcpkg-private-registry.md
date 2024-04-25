@@ -191,7 +191,19 @@ configure_file("${CMAKE_CURRENT_LIST_DIR}/usage" "${CURRENT_PACKAGES_DIR}/share/
 
 关于 `portfile.cmake` 文件的详细说明，参考[这里](https://learn.microsoft.com/en-us/vcpkg/contributing/maintainer-guide)。
 
-### 更新 `portfile.cmake` 的 SHA512 
+附，从 gitlab 下载。
+
+```cmake
+vcpkg_from_git(
+        OUT_SOURCE_PATH SOURCE_PATH
+        URL git@gitlab.compony.com:group/repo.git
+        REF {commit-id} # 必须是 commit id
+        SHA512 0
+        HEAD_REF main
+)
+```
+
+#### 更新 `portfile.cmake` 的 SHA512 
 
 第一次运行 `vcpkg install ...` 获取 SHA512。
 
@@ -208,12 +220,40 @@ Actual hash: 4202125968a01219deeee14b81e1d476dab18d968425ba36d640816b0b3db6168f8
 
 拷贝 "Actual hash" 的值，覆盖 `portfile.cmake` 的 `SHA512` 的值。
 
+#### 添加编译选项（definitions）
+
+```cmake
+vcpkg_cmake_configure(
+        SOURCE_PATH "${SOURCE_PATH}"
+        OPTIONS -D...=... -D...=... ...
+)
+```
+
 ## 打包安装库
 
 再次运行 `vcpkg install ...`。
 
 ```shell
 $ vcpkg install {project}-library --overlay-ports=/path/to/{project}-vcpkg-custom-overlay
+```
+
+**注意** 依赖要在 `{project}-vcpkg-custom-overlay/vcpkg.json` 中添加，比如。
+
+```json
+{
+  ...
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    },
+    "protobuf"
+  ]
+}
 ```
 
 ### 再次运行
