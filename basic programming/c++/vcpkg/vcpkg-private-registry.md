@@ -8,10 +8,12 @@ tags:
 date: 2024/04/22 00:00:00
 ---
 
-# 步骤
+# 使用步骤
 
-- [基于 vcpkg 安装和使用包](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
-- [使用 vcpkg 打包库](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging?pivots=shell-cmd)
+- 安装 VCPKG，或更新至最新 VCPKG
+- 创建项目，并使用 vcpkg 管理依赖
+- 使用 vcpkg 打包项目（overlay port）
+- 将项目添加到 Registry
 
 # 安装 VCPKG
 
@@ -381,3 +383,8 @@ vcpkg format-manifest /path/to/vcpkg.json
 
 - 从 Registry 拷贝 `ports/{library}` 到 Custome Overlay 目录
 - 更新版本、`portfile.cmake`，再走一遍添加 Port 到 Registry 的流程
+
+# 附录
+
+- [基于 vcpkg 安装和使用包](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
+- [使用 vcpkg 打包库](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging?pivots=shell-cmd)
