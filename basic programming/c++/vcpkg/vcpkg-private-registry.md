@@ -46,11 +46,45 @@ $ ./bootstrap-vcpkg.sh
 
 编写工程源码，以及 `CMakeLists.txt` 文件。
 
-## 创建 manifest 文件 `vcpkg.json`
+## 创建 manifest 文件 `vcpkg.json` 和 `vcpkg-configuration.json`
 
 ```shell
 $ vcpkg new --application
 ```
+
+添加 Git Registry 到 `vcpkg-configuration.json`
+
+```shell
+{
+  ...
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/Microsoft/vcpkg",
+      "baseline": "42bb0d9e8d4cf33485afb9ee2229150f79f61a1f",
+      "packages": "*"
+    }
+  ]
+}
+# or
+{
+  ...
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/Microsoft/vcpkg",
+      "baseline": "42bb0d9e8d4cf33485afb9ee2229150f79f61a1f",
+      "reference": "master",
+      "packages": [
+      	"fmt",
+      	"spdlog"
+      ]
+    }
+  ]
+}
+```
+
+- `reference` 是可选项，如果你的 commit id 不在默认分支，则必须使用 `reference` 指定对应的分支，否则会报 `failed to unpack tree object` 错
 
 ## 添加依赖包
 
@@ -200,7 +234,6 @@ vcpkg_from_git(
         OUT_SOURCE_PATH SOURCE_PATH
         URL git@gitlab.compony.com:group/repo.git
         REF {commit-id} # 必须是 commit id
-        SHA512 0
         HEAD_REF main
 )
 ```
@@ -322,6 +355,19 @@ $ cmake --build vcpkg-build
 $ ./vcpkg-build/{project}
 ```
 
+# 创建 Git Registry
+
+```shell
+$ mkdir ports
+$ mkdir versions
+$ vim versions/baseline.json
+{
+  "default": {}
+}
+```
+
+
+
 # 向 Repository 添加 Port
 
 [完整示例](https://github.com/northwindtraders/vcpkg-registry)，新增依赖库需要修改 / 新增如下文件。
@@ -388,3 +434,31 @@ vcpkg format-manifest /path/to/vcpkg.json
 
 - [基于 vcpkg 安装和使用包](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
 - [使用 vcpkg 打包库](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging?pivots=shell-cmd)
+- [创建私有仓库](https://learn.microsoft.com/en-us/vcpkg/maintainers/registries)
+- [添加仓库到 Git 仓库](https://learn.microsoft.com/en-us/vcpkg/produce/publish-to-a-git-registry)
+- [完整示例](https://github.com/sunzhenkai/vcpkg-full-example)
+
+# Troubleshooting
+
+## failed to unpack tree object
+
+```shell
+-- Running vcpkg install
+Fetching registry information from https://github.com/sunzhenkai/vcpkg-example-registry (master)...
+error: failed to execute: /usr/bin/git --git-dir=/home/wii/.cache/vcpkg/registries/git/.git --work-tree=/home/wii/.cache/vcpkg/registries/git-trees/68d1cfd34c43686c9f60c0d0f780525f29bb046f_3332708.tmp -c core.autocrlf=false read-tree -m -u 68d1cfd34c43686c9f60c0d0f780525f29bb046f
+error: git failed with exit code: (128).
+fatal: failed to unpack tree object 68d1cfd34c43686c9f60c0d0f780525f29bb046f
+```
+
+**原因**
+
+git registry 中依赖库的 `versions/{x}-/{port}.json` 里面的 `git-tree` 值，是在非默认分支打的，默认克隆 HEAD，或者指定的是默认分支，导致 check out 不出来对应的数据。
+
+**解决办法**
+
+需要更新 Git Registry 中 port 版本的 git-tree 数据，命令如下。
+
+```shell
+vcpkg --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions x-add-version --all --verbose --overwrite-version
+```
+
