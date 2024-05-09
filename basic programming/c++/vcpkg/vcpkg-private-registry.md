@@ -362,7 +362,7 @@ $ git commit -m '...'
 
 ```shell
 # 更新版本
-$ vcpkg --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions x-add-version --all --verbose
+$ vcpkg --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions x-add-version --all --verbose --overwrite-version
 $ git commit -m '...version'
 
 # 查看帮助
@@ -388,3 +388,44 @@ vcpkg format-manifest /path/to/vcpkg.json
 
 - [基于 vcpkg 安装和使用包](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
 - [使用 vcpkg 打包库](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started-packaging?pivots=shell-cmd)
+
+# Trubleshooting
+
+## `debug/share` 目录不存在
+
+### 原因
+
+没有文件写入到 share 目录（license 文件拷贝貌似不在 debug 拷贝）。
+
+通常，依赖库在 install 时指定 export target，并 install(export target ...)，会生成对应库的 `{lib}Config.cmake` ，并拷贝到 share 目录下，示例如下。
+
+```cmake
+install(TARGETS {lib}
+        EXPORT {lib}
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib)
+install(EXPORT {lib} DESTINATION share/{lib} FILE {lib}Config.cmake)
+```
+
+### 修复
+
+方案一，手动创建目录，在 portfile.cmake 中添加。
+
+```shell
+file(MAKE_DIRECTORY ${CURRENT_PACKAGES_DIR}/debug/share/{lib})
+```
+
+方案二，依赖库添加 install export
+
+方案三，依赖库添加 install pkgconfig file
+
+# CMake 工程测试
+
+```shell
+$ mkdir build
+$ cd build
+$ cmake ..
+$ make -j
+$ cmake --install . --prefix="$PWD"  # 安装到当前目录
+```
+

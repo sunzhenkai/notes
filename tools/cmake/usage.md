@@ -143,6 +143,47 @@ foreach (V IN LISTS L)
 endforeach()
 ```
 
+## 打印 Target 属性
+
+```cmake
+FUNCTION(PrintTargetProperties _tgt)
+    IF (NOT CMAKE_PROPERTY_LIST)
+        EXECUTE_PROCESS(COMMAND cmake --help-property-list OUTPUT_VARIABLE CMAKE_PROPERTY_LIST)
+
+        # Convert command output into a CMake list
+        STRING(REGEX REPLACE ";" "\\\\;" CMAKE_PROPERTY_LIST "${CMAKE_PROPERTY_LIST}")
+        STRING(REGEX REPLACE "\n" ";" CMAKE_PROPERTY_LIST "${CMAKE_PROPERTY_LIST}")
+        LIST(REMOVE_DUPLICATES CMAKE_PROPERTY_LIST)
+    ENDIF ()
+
+    IF (NOT TARGET ${_tgt})
+        MESSAGE(STATUS "[TargetProperties] There is no target named '${_tgt}'")
+        RETURN()
+    ENDIF ()
+
+    FOREACH (property ${CMAKE_PROPERTY_LIST})
+        STRING(REPLACE "<CONFIG>" "${CMAKE_BUILD_TYPE}" property ${property})
+
+        # Fix https://stackoverflow.com/questions/32197663/how-can-i-remove-the-the-location-property-may-not-be-read-from-target-error-i
+        IF (property STREQUAL "LOCATION" OR property MATCHES "^LOCATION_" OR property MATCHES "_LOCATION$")
+            CONTINUE()
+        ENDIF ()
+
+        GET_PROPERTY(_was_set TARGET ${_tgt} PROPERTY ${property} SET)
+        IF (_was_set)
+            GET_TARGET_PROPERTY(value ${_tgt} ${property})
+            MESSAGE("[TargetProperties] ${_tgt} ${property} = ${value}")
+        ENDIF ()
+    ENDFOREACH ()
+ENDFUNCTION(PrintTargetProperties)
+```
+
+使用
+
+```cmake
+PrintTargetProperties(spdlog::spdlog)
+```
+
 # 变量
 
 ## 判断变量是否定义
@@ -547,5 +588,23 @@ sudo yum install ccache
 
 # 配置
 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+```
+
+# 安装
+
+指定安装目录。
+
+```shell
+# 系统路径
+cmake --install {build-dir} --prefix "/usr"
+# 示例
+cmake --install build --prefix "$PWD"
+```
+
+## 安装头文件
+
+```shell
+# 使用 install
+install(DIRECTORY include/ DESTINATION include) # FILES_MATCHING PATTERN "*.h" 
 ```
 

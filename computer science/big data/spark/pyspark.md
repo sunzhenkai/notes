@@ -64,3 +64,69 @@ df.filter(col('name').isNotNull())
 df.filter(col('name').isin(["wii", "bovenson"]))
 ```
 
+# 创建列
+
+## 重命名
+
+```python
+df_renamed = df.withColumnRenamed('name1', 'name2')
+```
+
+## 从其他列新建列
+
+### 数值计算
+
+```python
+new_df = df.withColumn('After_discount', df.Course_Fees - df.Discount) 
+```
+
+### 使用 UDF
+
+```python
+import pyspark.sql.functions as F 
+from pyspark.sql.types import IntegerType 
+  
+# define the sum_col 
+def Total(Course_Fees, Discount): 
+    res = Course_Fees - Discount 
+    return res 
+  
+new_f = F.udf(Total, IntegerType()) 
+new_df = df.withColumn("Total_price", new_f("Course_Fees", "Discount")) 
+
+# 使用 udf
+@udf(IntegerType())
+def Total(Course_Fees, Discount): 
+    res = Course_Fees - Discount 
+    return res 
+  
+# 使用 udf + lambda
+function = udf(lambda col1, col2 : col1-col2, IntegerType())
+new_df = old_df.withColumn('col_n',function(col('col_1'), col('col_2')))
+```
+
+## 计算
+
+### 最大值
+
+```python3
+df.agg(max("age")).show()
+```
+
+# 报错
+
+```shell
+# 代码
+from pyspark.sql.functions import *
+@F.udf(IntegerType())
+def TimeDiff(a, b): 
+    return abs(a - b)
+    
+# 报错
+TypeError: Invalid argument, not a string or column: 1 of type <class 'int'>. For column literals, use 'lit', 'array', 'struct' or 'create_map' function.
+```
+
+```python
+因为使用 from pyspark.sql.functions import * 导入，导致 abs 使用 from pyspark.sql.functions 内的函数
+```
+
