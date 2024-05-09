@@ -52,6 +52,15 @@ $ [bluetooth]# scan on
 $ echo 'options bluetooth disable_ertm=Y' | sudo tee -a /etc/modprobe.d/bluetooth.conf
 ```
 
+### 其他
+
+```shell
+# 查看设备
+$ bluetoothctl devices
+```
+
+
+
 ### 使用
 
 #### Python
