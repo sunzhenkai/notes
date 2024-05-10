@@ -278,6 +278,21 @@ $ iotop -o
 $ sudo hdparm -Tt /dev/sda
 ```
 
+# Shell
+
+## 排查 PATH 问题
+
+```shell
+bash --login -x  # 命令行输入, 打印每个命令的执行, 可以调试 PATH 设置
+```
+
+## bash 读取配置文件顺序
+
+- `/etc/profile` 
+- `$HOME/.bash_profile`
+- `$HOME/.bash_profile` 不存在则读 `$HOME/.bash_login`
+- `$HOME/.bash_login` 不存在则读 `$HOME/.profile` 
+
 # tail 多个远程文件
 
 ```shell
