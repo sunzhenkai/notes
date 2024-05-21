@@ -123,6 +123,7 @@ libstdc++.so.6: version `GLIBCXX_3.4.20' not found
 add_library(tgt ...)
 target_link_libraries(tgt PRIVATE dep_internal)
 install(TARGETS tgt EXPORT tgt ...)
+install(EXPORT tgt ...)
 ```
 
 **报错**
@@ -141,5 +142,79 @@ CMake Error: install(EXPORT "tgt" ...) includes target "tgt" which requires targ
 
 ```cmake
 target_link_libraries(tgt PRIVATE $<BUILD_INTERFACE:dep_internal>)
+```
+
+如果被其他库依赖。
+
+```shell
+add_library(tgt ...)
+target_link_libraries(tgt PRIVATE dep_internal)
+install(TARGETS tgt dep_internal EXPORT tgt ...)
+install(EXPORT tgt ...)
+```
+
+# Some (but not all) targets in this export set were already defined.
+
+```shell
+CMake Error at cmake-build-debug/vcpkg_installed/x64-linux/share/tcmalloc_minimal_static/tcmalloc_minimal_staticConfig.cmake:42 (message):
+  Some (but not all) targets in this export set were already defined.
+
+  Targets Defined: gperftools::spinlock, gperftools::sysinfo,
+  gperftools::logging
+
+  Targets not yet defined: gperftools::tcmalloc_minimal_static,
+  gperftools::tcmalloc_minimal_internal
+```
+
+一个项目内有多个目标 TargetA 、TargetB。两个目标共同依赖 InternalLibA。
+
+```cmake
+install(TARGETS TargetA InternalLibA EXPORT TargetA ...)
+install(EXPORT TargetA ... NAMESPACE Project)
+
+install(TARGETS TargetB InternalLibA EXPORT TargetB ...)
+install(EXPORT TargetB ... NAMESPACE Project)
+```
+
+如上述导入后，如果在其他项目引入。
+
+```cmake
+find_package(TargetA CONFIG REQUIRED)
+target_link_libraries(main PRIVATE Project::TargetA)
+
+find_package(TargetB CONFIG REQUIRED)
+target_link_libraries(main PRIVATE Project::TargetB)
+```
+
+则会报如下的错。
+
+```shell
+  Some (but not all) targets in this export set were already defined.
+
+  Targets Defined: Project::InternalLibA
+
+  Targets not yet defined: Project::TargetB
+```
+
+原因是在 find_package TargetB 时，出现重复的目标，Project::InternalLibA，在 find_package TargetA 时第一次定义。出现命名冲突。
+
+解决办法，修改 install EXPORT 的 NAMESPACE，避免命名冲突。
+
+```cmake
+install(TARGETS TargetA InternalLibA EXPORT TargetA ...)
+install(EXPORT TargetA ... NAMESPACE TargetA)
+
+install(TARGETS TargetB InternalLibA EXPORT TargetB ...)
+install(EXPORT TargetB ... NAMESPACE TargetA)
+```
+
+使用。
+
+```cmake
+find_package(TargetA CONFIG REQUIRED)
+target_link_libraries(main PRIVATE TargetA::TargetA)
+
+find_package(TargetB CONFIG REQUIRED)
+target_link_libraries(main PRIVATE TargetB::TargetB)
 ```
 
