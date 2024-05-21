@@ -116,3 +116,30 @@ libstdc++.so.6: version `GLIBCXX_3.4.20' not found
 ```
 
 这是因为使用的 g++ 版本和最终链接的 libstdc++ 库不一致导致的。
+
+# CMake Error: install(EXPORT "tgt" ...) includes target "tgt" which requires target "dep_internal" that is not in any export set
+
+```shell
+add_library(tgt ...)
+target_link_libraries(tgt PRIVATE dep_internal)
+install(TARGETS tgt EXPORT tgt ...)
+```
+
+**报错**
+
+```shell
+CMake Error: install(EXPORT "tgt" ...) includes target "tgt" which requires target "dep_internal" that is not in any export set
+```
+
+**原因**
+
+`dep_internal` 是工程内依赖，且不想安装和 export。在安装和导出 tgt 时，由于依赖项目内定义的库 dep_internal，且是 PRIVATE link，又没有 export，因此出现冲突。
+
+**解决**
+
+使用 `$<BUILD_INTERFACE:{target}>`，仅在编译时引用 target。
+
+```cmake
+target_link_libraries(tgt PRIVATE $<BUILD_INTERFACE:dep_internal>)
+```
+
