@@ -20,6 +20,7 @@ addr2line -f -e path/to/binary <address>
 
 ```shell
 nm libssl.a 
+nm -an libssl.a 
 ```
 
 # ldd

@@ -200,6 +200,30 @@ $ passwd root
 
 # Openwrt
 
+## 初始化
+
+### 修改网络配置
+
+`/etc/config/network`
+
+```shell
+# interface 'lan'
+option ipaddr ... # 修改这里
+```
+
+```shell
+$ service network reload
+$ service network restart
+```
+
+### 修改密码
+
+```shell
+$ passwd root
+```
+
+
+
 ## 安装应用 
 
 ```shell
@@ -258,7 +282,8 @@ qm importdisk 103 openwrt-22.03.2-x86-64-generic-squashfs-combined-efi.img local
         - 使用内置的 ipv6 管理，关闭
     - 物理设置
         - 关闭桥接
-    - DHCP 服务器，忽略此接口
+    - DHCP 服务器
+        - 忽略此接口
 - 网络 / 防火墙
     - ![image-20231026230034381](./soft-router/image-20231026230034381.png)
 - 运行 SSR 
@@ -301,3 +326,7 @@ network:
 # 可以尝试下面命令
 curl https://www.google.com
 ```
+
+## 自定义规则
+
+![image-20240519224634959](./soft-router/image-20240519224634959.png)

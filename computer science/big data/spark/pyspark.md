@@ -113,6 +113,27 @@ new_df = old_df.withColumn('col_n',function(col('col_1'), col('col_2')))
 df.agg(max("age")).show()
 ```
 
+# 转换
+
+## row to json string
+
+```shell
+df.toJson()
+```
+
+# 写数据
+
+```python
+df.write.format('orc').save('/path/to/destination')
+df.coalesce(1).write.format('json').save('/path/to/destination') # 写单个文件
+```
+
+**文本文件**
+
+```python
+df.coalesce(1).write.format("text").option("header", "false").mode("overwrite").save('/path/to/destination')
+```
+
 # 报错
 
 ```shell
@@ -128,5 +149,22 @@ TypeError: Invalid argument, not a string or column: 1 of type <class 'int'>. Fo
 
 ```python
 因为使用 from pyspark.sql.functions import * 导入，导致 abs 使用 from pyspark.sql.functions 内的函数
+```
+
+## TypeError: Can not infer schema for type: <class 'str'>
+
+`rdd.toDF()` 时报错。
+
+```shell
+from pyspark.sql import Row
+
+row = Row("val") # Or some other column name
+rdd.map(row).toDF()
+```
+
+或者
+
+```python
+rdd.map(lambda x: (x, )).toDF()
 ```
 
