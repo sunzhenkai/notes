@@ -38,6 +38,37 @@ endif ()
 message("gflags namespace: " ${GFLAGS_NS})
 ```
 
+# 版本信息
+
+**CMakeLists.txt 添加版本定义**
+
+```cmake
+execute_process(
+        COMMAND sh -c "git describe --exact-match --tags 2> /dev/null || git rev-parse --short HEAD"
+        OUTPUT_VARIABLE TAG_REVERSION
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if (TAG_REVERSION STREQUAL "")
+    set(TAG_REVERSION "UNKNOWN")
+endif ()
+add_definitions(-DTAG_REVERSION="${TAG_REVERSION}")
+```
+
+**设置版本信息**
+
+```c++
+int main(int argc, char *argv[]) {
+    google::SetVersionString(TAG_REVERSION); // 在比较早的位置设置
+    ...
+}
+```
+
+**二进制程序打印版本信息**
+
+```shell
+./bin/{app} --version
+```
+
 # 使用
 
 ## 类型
