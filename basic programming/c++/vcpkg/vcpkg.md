@@ -282,3 +282,39 @@ CMake Error: CMake was unable to find a build program corresponding to "Ninja". 
 - 其他原因，排查错误信息的 `vcpkg-manifest-install.log` 文件
   - git 权限问题
   - 磁盘内存不足
+
+## submodule
+
+在使用 `vcpkg_from_git` 时，不会初始化 submodule，需要自己处理。
+
+```cmake
+set(GIT_URL {git-or-http-url})
+set(GIT_REF {commit-id-or-tag})
+
+set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/${GIT_REF})
+file(MAKE_DIRECTORY ${SOURCE_PATH})
+message(STATUS "build {lib} [CURRENT_BUILDTREES_DIR=${CURRENT_BUILDTREES_DIR}, SOURCE_PATH=${SOURCE_PATH}]")
+if (NOT EXISTS "${SOURCE_PATH}/.git")
+    message(STATUS "Cloning")
+    vcpkg_execute_required_process(
+            COMMAND ${GIT} clone ${GIT_URL} ${SOURCE_PATH}
+            WORKING_DIRECTORY ${SOURCE_PATH}
+            LOGNAME clone
+    )
+endif ()
+
+message(STATUS "Fetching submodules")
+vcpkg_execute_required_process(
+        COMMAND ${GIT} submodule update --init
+        WORKING_DIRECTORY ${SOURCE_PATH}
+        LOGNAME submodule
+)
+
+message(STATUS "Checkout revision ${GIT_REF}")
+vcpkg_execute_required_process(
+        COMMAND ${GIT} checkout ${GIT_REF}
+        WORKING_DIRECTORY ${SOURCE_PATH}
+        LOGNAME checkout
+)
+```
+
