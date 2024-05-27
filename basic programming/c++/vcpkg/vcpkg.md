@@ -71,7 +71,33 @@ cmake ... -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
 set(CMAKE_TOOLCHAIN_FILE /path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
 ```
 
+## vcpkg-configuration.json
 
+### example
+
+```shell
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg-configuration.schema.json",
+  "default-registry": {
+    "kind": "git",
+    "repository": "https://internal/mirror/of/github.com/Microsoft/vcpkg",
+    "baseline": "eefee7408133f3a0fef711ef9c6a3677b7e06fd7"
+  },
+  "registries": [
+    {
+      "kind": "git",
+      "repository": "https://github.com/northwindtraders/vcpkg-registry",
+      "baseline": "dacf4de488094a384ca2c202b923ccc097956e0c",
+      "packages": [ "beicode", "beison" ]
+    }
+  ],
+  "overlay-ports": [
+    "./team-ports",
+    "./custom-ports"
+   ],
+  "overlay-triplets": [ "./my-triplets" ]
+}
+```
 
 ## 软件包搜索
 
@@ -165,7 +191,7 @@ git apply patch
 
 压缩包解压路径在 `{VCPKG_HOME}/buildtrees/{library}/src/ar-{version}-{whatever}.clean`
 
-## 清除
+## 清除安装的包
 
 ```shell
 rm -r {VCPKG_HOME}/buildtrees/{library}
@@ -197,3 +223,98 @@ CMake Error at /snap/cmake/1328/share/cmake-3.27/Modules/FindPkgConfig.cmake:607
 
 - 找到出现问题的 find_package 语句，并移到后面
 - 遍历 CMAKE_PREFIX_PATH 并追加 `lib/pkgconfig` 后加入到 `ENV{PKG_CONFIG_PATH}` 中
+
+## Boost
+
+### head only library
+
+`vcpkg.json`
+
+```json
+{
+    "name": "feature-generator-server",
+    "version": "0.0.1",
+    "dependencies": [
+        "boost-core",
+        "boost-stacktrace",
+        "boost-pfr",
+        "boost-..."
+    ]
+}
+```
+
+`CMakeLists.txt`
+
+```cmake
+find_package(Boost REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+```
+
+## patch failed
+
+在更新版本之后出现 patch failed 异常，尝试删除对应的缓存解决。
+
+```shell
+$ rm -r {VCPKG_HOME}/buildtrees/protobuf
+```
+
+## 引用问题
+
+### case 1 通过查看 share/{lib}/{lib}Config.cmake 查看
+
+```shell
+include_directories(${JSON11_INCLUDE_DIRS})
+target_link_libraries({target} ${JSON11_LIBRARIES}) 
+```
+
+## unable to find "Ninja"
+
+**full message**
+
+```shell
+CMake Error: CMake was unable to find a build program corresponding to "Ninja".  CMAKE_MAKE_PROGRAM is not set.  You probably need to select a different build tool.
+```
+
+**可能的原因**
+
+- 没有或不是最新的 ninja，从 [这里](https://github.com/ninja-build/ninja/releases) 下载最新 ninja 程序
+- 使用的是 ninja-build 程序，需要把 ninja 复制或软链称 ninja-build
+- 其他原因，排查错误信息的 `vcpkg-manifest-install.log` 文件
+  - git 权限问题
+  - 磁盘内存不足
+
+## submodule
+
+在使用 `vcpkg_from_git` 时，不会初始化 submodule，需要自己处理。
+
+```cmake
+set(GIT_URL {git-or-http-url})
+set(GIT_REF {commit-id-or-tag})
+
+set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/${GIT_REF})
+file(MAKE_DIRECTORY ${SOURCE_PATH})
+message(STATUS "build {lib} [CURRENT_BUILDTREES_DIR=${CURRENT_BUILDTREES_DIR}, SOURCE_PATH=${SOURCE_PATH}]")
+if (NOT EXISTS "${SOURCE_PATH}/.git")
+    message(STATUS "Cloning")
+    vcpkg_execute_required_process(
+            COMMAND ${GIT} clone ${GIT_URL} ${SOURCE_PATH}
+            WORKING_DIRECTORY ${SOURCE_PATH}
+            LOGNAME clone
+    )
+endif ()
+
+message(STATUS "Fetching submodules")
+vcpkg_execute_required_process(
+        COMMAND ${GIT} submodule update --init
+        WORKING_DIRECTORY ${SOURCE_PATH}
+        LOGNAME submodule
+)
+
+message(STATUS "Checkout revision ${GIT_REF}")
+vcpkg_execute_required_process(
+        COMMAND ${GIT} checkout ${GIT_REF}
+        WORKING_DIRECTORY ${SOURCE_PATH}
+        LOGNAME checkout
+)
+```
+

@@ -184,6 +184,38 @@ ENDFUNCTION(PrintTargetProperties)
 PrintTargetProperties(spdlog::spdlog)
 ```
 
+## 添加定义（add_definitions）
+
+### 添加字符串
+
+```cmake
+execute_process(
+        COMMAND sh -c "git rev-parse --short HEAD"
+        OUTPUT_VARIABLE TAG_REVERSION
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+if (TAG_REVERSION STREQUAL "")
+    set(TAG_REVERSION "UNKNOWN")
+endif ()
+add_definitions(-DTAG_REVERSION="${TAG_REVERSION}") # 添加字符串
+```
+
+### 添加定义
+
+```shell
+add_definitions(-DDEBUG_MODE) # 添加字符串
+```
+
+**使用**
+
+```c++
+#ifdef DEBUG_MODE
+...
+#else
+...
+#endif
+```
+
 # 变量
 
 ## 判断变量是否定义

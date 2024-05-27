@@ -23,3 +23,16 @@ nm libssl.a
 nm -an libssl.a 
 ```
 
+# ldd
+
+```shell
+$ ldd main
+	linux-vdso.so.1 (0x00007ffe5458c000)
+	libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007f74d9d1a000)
+	libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f74d9c33000)
+	libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f74d9a07000)
+	libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f74d99e7000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f74d97be000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f74dc649000)
+```
+
