@@ -21,6 +21,15 @@ bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
 rm -rf ~/miniconda3/miniconda.sh
 ```
 
+配置 Shell
+
+```shell
+# for bash
+~/miniconda3/bin/conda init bash
+# for zsh
+~/miniconda3/bin/conda init zsh
+```
+
 ## 环境
 
 ### 创建环境
