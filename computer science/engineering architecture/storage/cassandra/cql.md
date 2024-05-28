@@ -91,6 +91,11 @@ CREATE  KEYSPACE IF NOT EXISTS "trace" WITH REPLICATION = {
 desc <keyspace-name>;
 ```
 
+```sql
+use <keyspace-name>;
+desc tables;
+```
+
 ## 创建
 
 ```cql
