@@ -1,6 +1,6 @@
 ---
 title: 编程语言学习指南
-categories: 
+categories:
     - coding
 tags:
     - coding
