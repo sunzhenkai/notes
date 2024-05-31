@@ -487,6 +487,15 @@ git registry 中依赖库的 `versions/{x}-/{port}.json` 里面的 `git-tree` �
 vcpkg --x-builtin-ports-root=./ports --x-builtin-registry-versions-dir=./versions x-add-version --all --verbose --overwrite-version
 ```
 
+## 多编译器
+
+如果系统安装多个版本的 gcc/g++，想使用特定的编译器，可以通过下面命令指定。也可用来解决，多个编译器版本时，不同依赖库使用不同编译器的问题（会有查找编译器程序的差异）。
+
+```shell
+export CC=/path/to/gcc
+export CXX=/path/to/g++
+```
+
 # CMake 工程测试
 
 ```shell
