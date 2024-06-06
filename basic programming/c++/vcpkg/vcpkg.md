@@ -185,6 +185,32 @@ git apply patch
 
 - **不要直接复制 patch 内容**，容易出现 `error: corrupt patch at line *` 的问题
 
+# 引入包
+
+## cmake targets
+
+通过 CMake Targets 引入目标，适用于基于 CMake 编译的库，且导出目标配置文件（`{target}Config.cmake`）。
+
+```cmake
+find_package(target CONFIG REQUIRED)
+target_link_libraries(main PRIVATE target)
+```
+
+## find_library
+
+```cmake
+find_package(TargetVar NAMES target REQUIRED)
+target_link_libraries(main PRIVATE ${TargetVar})
+```
+
+## pkgconfig
+
+```cmake
+include(FindPkgConfig)
+pkg_check_modules(target REQUIRED IMPORTED_TARGET target)
+target_link_libraries(main PRIVATE PkgConfig::brpc)
+```
+
 # Trouble Shooting
 
 ## OUT_SOURCE_PATH

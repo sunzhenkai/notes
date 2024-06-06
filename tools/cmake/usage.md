@@ -216,6 +216,12 @@ add_definitions(-DDEBUG_MODE) # 添加字符串
 #endif
 ```
 
+## 添加文件
+
+```cmake
+file(GLOB_RECURSE SRCS src/**.cpp)  # 递归添加 src 下所有的 cpp 文件
+```
+
 # 变量
 
 ## 判断变量是否定义

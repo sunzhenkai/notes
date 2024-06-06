@@ -69,6 +69,10 @@ date: 2023/12/24 00:00:00
 - reinterpret_cast
   - 将指针或引⽤转换为⼀个⾜够⻓度的整型、将整型转换为指针或引⽤类型
 
+```c++
+const_cast<std::string &>(service); // const std::string &service;
+```
+
 ## GLIBC 每次内存分配都会进行系统调用吗
 
 glibc 维护一个内存池，分配内存时优先从内存池获取，分配失败再向操作系统分配内存。
