@@ -257,6 +257,59 @@ set(BUILD_THIRD_PARTY ON CACHE BOOL "build third party library")
 set(DEPS_DIR "/tmp/cpp-external-lib" CACHE STRING "library install prefix" )
 ```
 
+# 编译和安装
+
+```shell
+# build director
+$ mkdir build 
+$ cd build
+# cmake configure
+$ cmake ..
+$ cmake -DCMAKE_INSTALL_PREFIX=$PWD	 ..
+# build
+$ cmake --build .
+# install
+$ cmake --install . --config Release  # debug...
+```
+
+## PkgConfig
+
+`{library}.pc.in`
+
+```
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+includedir=@PKG_CONFIG_INCLUDEDIR@
+libdir=@PKG_CONFIG_LIBDIR@
+
+Name: lib@PROJECT_NAME@
+Description: cpp common
+URL: https://github.com/sunzhenkai/cpp-common
+Version: @CPP_COMMON_VERSION@
+CFlags: -I${includedir}
+Libs: -L${libdir}
+Requires: @PKG_CONFIG_REQUIRES@
+```
+
+`cmake config`
+
+```cmake
+SET(PKG_CONFIG ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.pc)
+
+IF (IS_ABSOLUTE "${CMAKE_INSTALL_INCLUDEDIR}")
+    SET(PKG_CONFIG_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}")
+ELSE ()
+    SET(PKG_CONFIG_INCLUDEDIR "\${prefix}/${CMAKE_INSTALL_INCLUDEDIR}")
+ENDIF ()
+IF (IS_ABSOLUTE "${CMAKE_INSTALL_LIBDIR}")
+    SET(PKG_CONFIG_LIBDIR "${CMAKE_INSTALL_LIBDIR}")
+ELSE ()
+    SET(PKG_CONFIG_LIBDIR "\${exec_prefix}/${CMAKE_INSTALL_LIBDIR}")
+ENDIF ()
+CONFIGURE_FILE("cmake/${PROJECT_NAME}.pc.in" "${PKG_CONFIG}" @ONLY)
+INSTALL(FILES "${PKG_CONFIG}" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+```
+
 # 修改库搜索路径
 
 ```shell
