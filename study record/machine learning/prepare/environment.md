@@ -14,19 +14,19 @@ date: 2024/05/28 00:00:00
 **linux**
 
 ```shell
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm -rf ~/miniconda3/miniconda.sh
+mkdir -p ~/.miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/.miniconda3/miniconda.sh
+bash ~/.miniconda3/miniconda.sh -b -u -p ~/.miniconda3
+rm -rf ~/.miniconda3/miniconda.sh
 ```
 
 配置 Shell
 
 ```shell
 # for bash
-~/miniconda3/bin/conda init bash
+~/.miniconda3/bin/conda init bash
 # for zsh
-~/miniconda3/bin/conda init zsh
+~/.miniconda3/bin/conda init zsh
 ```
 
 ## 环境
@@ -73,11 +73,10 @@ $ conda env update --file env.yml --prune
 $ conda remove --name {env-name} --all
 ```
 
-### 修改默认环境
+### 默认不启用 conda base 环境
 
 ```shell
 $ conda config --set auto_activate_base false  # 关闭默认使用 base
-$ conda activate {env-name}
 ```
 
 # Kaggle
