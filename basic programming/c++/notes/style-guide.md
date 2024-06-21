@@ -9,7 +9,7 @@ date: 2023/11/10 00:00:00
 
 # 风格指南
 
-## Google
+## Google C++ Style Guide
 
 - [英文](https://google.github.io/styleguide/cppguide.html)
 - [中文](https://zh-google-styleguide.readthedocs.io/en/latest/)
@@ -50,7 +50,7 @@ Inplace 格式化文件
 $ clang-format -style=Google -i t.cpp
 ```
 
-在 IDE 中使用 `.clang-format`
+# 在 IDE 中使用 `.clang-format`
 
 - `CLion` 可以识别并应用项目根目录下的 `.clang-format` 文件，如果没有的话，可以点击右下角的 spaces 信息框，再点击 `Enable ClangFormat`
 
