@@ -38,10 +38,37 @@ date: 2024/05/28 00:00:00
 - 分类（Classifying）
 - 关联（Correlating）
 - 转换（Converting）
-- Completing
-- Correcting
-- Creating
-- Charting
+- 补全（Completing）
+- 修正（Correcting）
+- 新建（Creating）
+- 可视化（Charting）
+
+# 问题分类
+
+- 监督学习（Supervised Learning），数据带有明确的标签或目标值
+  - 分类问题（Classification）
+    - 目标，将数据点划分到不同的类别中
+    - 示例，垃圾邮件判定、良性/恶性肿瘤判定
+  - 回归问题（Regression）
+    - 目标，预测一个连续的值
+    - 示例，房价、股票价格
+- 无监督学习（Unsupervised Learning），数据没有明确的标签
+  - 聚类
+  - 降维
+- 强化学习（Reinforcement Learning），智能体通过与环境进行交互并根据奖励信号来学习最佳策略
+- 半监督学习（Semi-supervised Learning），使用少量有标签数据和大量无标签数据进行学习
+- 主动学习（Active Learning），通过选择最有价值的数据进行标注来提高学习效率
+- 迁移学习（Transfer Learning），利用已有的知识和模型来解决新的但相关的问题
+
+## 监督学习
+
+## 回归问题
+
+### 模型
+
+#### 线性回归（Linear Regression）
+
+最基本的回归模型，它假设自变量和因变量之间存在线性关系。
 
 # 参考
 
