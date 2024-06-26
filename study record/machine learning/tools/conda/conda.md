@@ -1,13 +1,13 @@
 ---
-title: 机器学习 - 环境
+title: Conda
 categories: 
-    - 研习录
+  - [机器学习,工具,Conda]
 tags:
-    - 研习录
-date: 2024/05/28 00:00:00
+  - 机器学习
+  - 工具
+  - Conda
+date: 2024/06/27 22:00:00
 ---
-
-# Conda
 
 ## 安装
 
@@ -41,6 +41,12 @@ $ conda info --envs
 
 ```shell
 $ conda create -n ml
+```
+
+**指定 channel**
+
+```shell
+$ conda create -n ml --channel=conda-forge
 ```
 
 **克隆环境**
@@ -79,13 +85,33 @@ $ conda remove --name {env-name} --all
 $ conda config --set auto_activate_base false  # 关闭默认使用 base
 ```
 
+## 打印环境信息
+
+```shell
+$ conda info
+```
+
+# Channel
+
 ### 为环境添加 channel
 
 ```shell
-$ conda config --append channels conda-forge
+$ conda config --append channels conda-forge 
 ```
 
-## 包管理
+## 添加 channel
+
+```shell
+$ conda config 
+```
+
+## 打印 channel
+
+```shell
+$ conda config --show channels
+```
+
+# 包管理
 
 conda 的包管理有 channel 的概念，如果不指定则为默认的 `defaults`。如果我们想要安装其他 channel 的包，示例如下。
 
@@ -132,19 +158,43 @@ $ conda install {channel}::{package}
 $ conda install {package}={version}
 ```
 
+# Trouble Shotting
 
-
-# Kaggle
-
-## 安装
-
-详见[文档](https://www.kaggle.com/docs/api#getting-started-installation-&-authentication)，[Github 仓库](https://github.com/Kaggle/kaggle-api)。
+## GLIBCXX_3.4.30 not found
 
 ```shell
-$ pip install kaggle
+ImportError: /home/wii/.miniconda3/envs/ml/bin/../lib/libstdc++.so.6: version `GLIBCXX_3.4.30' not found (required by /home/wii/.miniconda3/envs/ml/lib/python3.12/site-packages/paddle/base/libpaddle.so)
 ```
 
-在 [User Profile](https://www.kaggle.com/settings/account) 页面 `Create New Token`，并将下载的文件放到 `~/.kaggle/kaggle.json`。
+可以通过如下命令，查看当前 gcc 支持的 GLIBCXX 版本。
 
+```shell
+$ strings /path/to/libstdc++.so.6 | grep GLIBCXX
+```
 
+这个报错通常是运行的程序依赖的 gcc 版本和已经安装的 gcc 版本不匹配，要么太高，要么太低。安装兼容版本的 gcc 即可。
+
+## libstdcxx-ng 11.2.0.*  is not installable
+
+```shell
+libstdcxx-ng 11.2.0.*  is not installable because it conflicts with any installable versions previously reported
+```
+
+这个报错是在 conda 环境，安装 gcc 13.3.0 时报的错。原因是已经安装 `libstdcxx-ng 11.2.0.*` ，和要安装的 gcc 13.3.0 出现依赖冲突。可以先卸载。
+
+```shell
+$ conda uninstall libstdcxx-ng # 当然，大概率会失败
+```
+
+可以重新创建环境，并添加 channel conda-forge。
+
+```shell
+$ conda create --name {env-name} --channel=conda-forge conda-forge::gcc=13.2.0
+```
+
+# 推荐
+
+```shell
+$ conda create --name ml --channel=conda-forge conda-forge::gcc=13.2.0 conda-forge::python=3.12.4
+```
 

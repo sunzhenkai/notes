@@ -36,3 +36,11 @@ $ ldd main
 	/lib64/ld-linux-x86-64.so.2 (0x00007f74dc649000)
 ```
 
+# strings
+
+strings 程序的主要功能是找出文件（包括文本文件、二进制文件等）内容中的可打印字符串。
+
+```shell
+strings /usr/lib/libstdc++.so.6 | grep GLIBCXX
+```
+
