@@ -29,6 +29,12 @@ Dockerfile和Docker Compose的主要区别在于其关注点和使用场景：
 
 通常情况下，你可以使用Dockerfile构建出应用程序所需的镜像，然后使用Docker Compose来定义和管理各个容器的协同工作，以搭建和运行复杂的多容器应用程序。
 
+# 安装
+
+```shell
+$ sudo apt install docker-compose-plugin
+```
+
 # 命令
 
 ```shell
@@ -40,6 +46,12 @@ $ docker dompose stop
 # 删除
 # !!! 注意, 是删除
 $ docker compose down
+```
+
+## 启动指定 service
+
+```shell
+$ docker compose up -d services...
 ```
 
 # Nvidia GPU

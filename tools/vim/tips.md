@@ -168,7 +168,9 @@ N    previous
 ### 跨文件查找
 
 ```shell
-:vimgrep /{pattern}/g [file]    # :vimgrep /foobar/g **
+:vimgrep /{pattern}/g [file]    
+# :cd 										# 先设置当前工作路径 
+# :vimgrep /foobar/g **   # 查找所有文件
 :cn[f]    下一个匹配[文件]
 :cp[f]    上一个匹配[文件]
 :cr/cla   回到开始/结束

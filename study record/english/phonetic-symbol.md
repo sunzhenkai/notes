@@ -1,5 +1,5 @@
 ---
-title: 研习录 - 英语
+title: 英语 - 音标
 categories: 
     - 研习录
 tags:
