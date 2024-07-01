@@ -668,23 +668,40 @@ ulimit -c unlimited # 临时
 vim /etc/security/limits.conf
 # 添加内容
 * soft core unlimited
+```
+## 列出 core dump 日志
 
-# 默认路径
-/var/lib/systemd/coredump
+```shell
+$ coredumpctl list
+```
 
-# 列出所有 coredump
-coredumpctl list
+## core pattern
 
+```shell
 # core_pattern
-# 修改 core 文件路径
-echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern  # 放到 /tmp 路径下
-echo 'core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern       # 放到 working directory 下
 # 查看 core_pattern
 cat /proc/sys/kernel/core_pattern 
 
 # 默认
 |/usr/lib/systemd/systemd-coredump %p %u %g %s %t %e"
 ```
+
+## 路径
+
+### 默认路径
+
+```shell
+/var/lib/systemd/coredump
+```
+
+### 修改路径
+
+```shell
+# 修改 core 文件路径
+echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern  # 放到 /tmp 路径下
+echo 'core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern   # 放到 working directory 下
+```
+
 # 节点间测速
 
 ```shell

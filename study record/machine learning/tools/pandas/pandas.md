@@ -34,17 +34,64 @@ s.values
 
 # 处理CSV文件
 
+## 读取文件
+
 ```python
-#### 读取csv文件，并转化为DataFrame
-train_df = pd.read_csv('../data/train.csv')
+# 读取csv文件，并转化为DataFrame
+df = pd.read_csv('../data/train.csv')
+```
+
+## 导出文件
+
+```python
+df.to_csv("output.csv", index=False)
 ```
 
 # DataFrame方法
 
-**选取数据**
+## 数据探索
+
+### 读取列
+
+```python
+print(data.columns)
+```
+
+### **选取数据**
 
 - `iloc`
 - `DF.clomun_name` : 通过列名选择
+
+### 包含 NaN 的列
+
+```python
+for c in df.loc[:, df.isna().any()]:
+  pass
+```
+
+### 填充 NaN 值
+
+```python
+df['Column'] = df['Column'].fillna(df['Column'].mean())  # 是用 Column 的平均值填充该列的 NaN 值
+```
+
+### 打印列的类型
+
+```python
+df['Column'].dtype
+```
+
+### 过滤行
+
+```python
+df['Column'][df['Column'].isna()]
+```
+
+### 转换类型
+
+```python
+df['Column'] = df['Column'].astype(str)
+```
 
 ## `iloc`
 
