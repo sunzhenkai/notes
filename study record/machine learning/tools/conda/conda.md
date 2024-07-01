@@ -195,6 +195,6 @@ $ conda create --name {env-name} --channel=conda-forge conda-forge::gcc=13.2.0
 # 推荐
 
 ```shell
-$ conda create --name ml --channel=conda-forge conda-forge::gcc=13.2.0 conda-forge::python=3.12.4
+$ conda create --name ml --channel=conda-forge conda-forge::gcc=13.2.0 conda-forge::python=3.12.4 conda-forge::jupyterlab
 ```
 

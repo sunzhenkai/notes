@@ -35,6 +35,26 @@ $ jupyter notebook password
 # 设置监听和端口
 
 ```shell
-jupyter notebook --ip 0.0.0.0 --port 18800 
+$ jupyter notebook --ip 0.0.0.0 --port 18800 
+```
+
+# Trouble Shotting
+
+## 'charset_normalizer' has no attribute 'md__mypyc'
+
+```shell
+AttributeError: partially initialized module 'charset_normalizer' has no attribute 'md__mypyc' (most likely due to a circular import)
+```
+
+**解决**
+
+```shell
+$ pip3 install --force-reinstall charset-normalizer
+```
+
+# 推荐
+
+```shell
+$ jupyter lab --notebook-dir=$PWD --ip 0.0.0.0 --port 18800 --NotebookApp.token=token
 ```
 
