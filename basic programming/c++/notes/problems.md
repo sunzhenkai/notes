@@ -61,7 +61,9 @@ int S::v = 0;
 # undefined reference to
 
 - 未连接库
-- 编译库的编译器版本不一致，ABI 不兼容
+- **编译库的编译器版本**不一致，ABI 不兼容
+  - 尤其注意，多个库之间使用的 gcc/++ 不一致
+
 - `find_package` 的顺序，在某些情况下也有可能会导致这个问题
   - 被依赖先调用 find_package
 

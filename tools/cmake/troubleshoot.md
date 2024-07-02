@@ -218,3 +218,16 @@ find_package(TargetB CONFIG REQUIRED)
 target_link_libraries(main PRIVATE TargetB::TargetB)
 ```
 
+# possibly undefined macro: AC_PROG_LIBTOOL
+
+```shell
+configure.ac:94: error: possibly undefined macro: AC_PROG_LIBTOOL
+      If this token and others are legitimate, please use m4_pattern_allow.
+      See the Autoconf documentation.
+```
+
+```shell
+# 安装 libtool
+$ yum install libtool
+```
+
