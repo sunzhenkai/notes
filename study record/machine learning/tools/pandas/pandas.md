@@ -62,19 +62,6 @@ print(data.columns)
 - `iloc`
 - `DF.clomun_name` : 通过列名选择
 
-### 包含 NaN 的列
-
-```python
-for c in df.loc[:, df.isna().any()]:
-  pass
-```
-
-### 填充 NaN 值
-
-```python
-df['Column'] = df['Column'].fillna(df['Column'].mean())  # 是用 Column 的平均值填充该列的 NaN 值
-```
-
 ### 打印列的类型
 
 ```python
@@ -93,7 +80,32 @@ df['Column'][df['Column'].isna()]
 df['Column'] = df['Column'].astype(str)
 ```
 
-## `iloc`
+## NaN 值处理
+
+### 包含 NaN 的列
+
+```python
+for c in df.loc[:, df.isna().any()]:
+  pass
+```
+
+### 打印每列包含 NaN 的列数
+
+```python
+df.isna().sum()
+```
+
+### 填充 NaN 值
+
+```python
+df['Column'] = df['Column'].fillna(df['Column'].mean())  # 是用 Column 的平均值填充该列的 NaN 值
+```
+
+
+
+## 其他
+
+### `iloc`
 
 从DataFrame中选择数据
 
@@ -181,7 +193,7 @@ dtype: float64
 Name: 2, dtype: float64
 ```
 
-## `mean`
+### `mean`
 
 计算均值
 
@@ -198,7 +210,7 @@ train_df.mean()
 train_df['Age'].mean()
 ```
 
-## `dropna`
+### `dropna`
 
 ```python
 DataFrame.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
@@ -220,8 +232,6 @@ DataFrame.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
 - `inplace`
   - `True` : 在原始数据集上进行操作，返回`None`
   - `False`  : 返回新的数据集，保持原始数据集不变
-
-## `drop`
 
 ### 删除列
 
