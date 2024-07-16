@@ -101,8 +101,6 @@ df.isna().sum()
 df['Column'] = df['Column'].fillna(df['Column'].mean())  # 是用 Column 的平均值填充该列的 NaN 值
 ```
 
-
-
 ## 其他
 
 ### `iloc`

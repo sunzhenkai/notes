@@ -29,6 +29,13 @@ rm -rf ~/.miniconda3/miniconda.sh
 ~/.miniconda3/bin/conda init zsh
 ```
 
+## shell profile 
+
+```shell
+eval "$(/path/to/anaconda3/bin/conda shell.YOUR_SHELL_NAME hook)" 
+# 修改路径及 YOUR_SHELL_NAME
+```
+
 ## 环境
 
 ### 列出环境

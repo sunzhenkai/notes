@@ -23,6 +23,11 @@ nm libssl.a
 nm -an libssl.a 
 ```
 
+```shell
+# 安装
+$ yum install binutils
+```
+
 # ldd
 
 ```shell

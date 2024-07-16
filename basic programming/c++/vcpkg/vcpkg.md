@@ -250,6 +250,20 @@ CMake Error at /snap/cmake/1328/share/cmake-3.27/Modules/FindPkgConfig.cmake:607
 - 找到出现问题的 find_package 语句，并移到后面
 - 遍历 CMAKE_PREFIX_PATH 并追加 `lib/pkgconfig` 后加入到 `ENV{PKG_CONFIG_PATH}` 中
 
+或者设置如下内容。
+
+```cmake
+set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH TRUE)
+```
+
+以 tcmalloc 为例。
+
+```cmake
+set(PKG_CONFIG_USE_CMAKE_PREFIX_PATH TRUE)
+include(FindPkgConfig)
+pkg_check_modules(gperftools REQUIRED IMPORTED_TARGET GLOBAL libtcmalloc)
+```
+
 ## Boost
 
 ### head only library

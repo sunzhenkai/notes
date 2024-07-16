@@ -430,6 +430,12 @@ vcpkg format-manifest /path/to/vcpkg.json
 - 从 Registry 拷贝 `ports/{library}` 到 Custome Overlay 目录
 - 更新版本、`portfile.cmake`，再走一遍添加 Port 到 Registry 的流程
 
+# 创建 Port
+
+## 创建 Helper Ports / Script Ports
+
+Helper Ports / Script Ports 类似于 `vcpkg-cmake` ，暴露函数以便在构建阶段使用。文档见这里 [Author helper ports](https://learn.microsoft.com/en-us/vcpkg/maintainers/authoring-script-ports)，[Port 集成](https://github.com/microsoft/vcpkg/tree/master/ports/vcpkg-cmake)。gs
+
 # 附录
 
 - [基于 vcpkg 安装和使用包](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
