@@ -434,7 +434,43 @@ vcpkg format-manifest /path/to/vcpkg.json
 
 ## 创建 Helper Ports / Script Ports
 
-Helper Ports / Script Ports 类似于 `vcpkg-cmake` ，暴露函数以便在构建阶段使用。文档见这里 [Author helper ports](https://learn.microsoft.com/en-us/vcpkg/maintainers/authoring-script-ports)，[Port 集成](https://github.com/microsoft/vcpkg/tree/master/ports/vcpkg-cmake)。gs
+Helper Ports / Script Ports 类似于 `vcpkg-cmake` ，暴露函数以便在构建阶段使用。文档见这里 [Author helper ports](https://learn.microsoft.com/en-us/vcpkg/maintainers/authoring-script-ports)，[Port 集成](https://github.com/microsoft/vcpkg/tree/master/ports/vcpkg-cmake)。
+
+## 使用 feature
+
+`portfile.cmake`
+
+```cmake
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        asm       MI_SEE_ASM
+        secure    MI_SECURE
+        glog      WITH_GLOG
+)
+
+vcpkg_cmake_configure(
+    SOURCE_PATH "${SOURCE_PATH}"
+    OPTIONS
+        # Expands to "-DMI_SEE_ASM=ON;-DMI_SECURE=ON;-DWITH_GLOG=ON"
+        ${FEATURE_OPTIONS}
+)
+```
+
+`vcpkg.json`
+
+```json
+{
+  ...
+  "features": {
+    "glog": {
+      "description": "glog",
+      "dependencies": [ 
+        "glog"
+      ]
+    }
+  }
+}
+```
 
 # 附录
 

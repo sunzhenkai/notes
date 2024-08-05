@@ -201,7 +201,30 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
 
-# 中文乱码
+# 最佳实践
+
+## 分支名称
+
+### 分支分类
+
+- 主分支，main / master
+- 开发分支，dev
+- 功能分支，feature  / feat
+- 修复分支，bugfix / fix
+- 发布分支，release
+- 紧急修复分支，hotfix
+- 测试分支，test
+- 文档分支，doc
+
+### 命名示例
+
+```shell
+feature/JIRA-1929-support-oneid
+```
+
+# 问题排查
+
+## 中文乱码
 
 [参考](https://gist.github.com/nightire/5069597#file-git-windows-md)
 
@@ -227,7 +250,7 @@ git commit -m 'comment' --author='sample@x.com'
 git commit --amend -m 'comment' ...
 ```
 
-# git-remote-http libcurl-httpd24.so.4 不存在
+## git-remote-http libcurl-httpd24.so.4 不存在
 
 **错误信息**
 

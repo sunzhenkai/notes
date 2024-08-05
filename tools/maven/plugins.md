@@ -291,6 +291,39 @@ update: 2021/08/23 00:00:00
 </assembly>
 ```
 
+# exec-maven-plugin
+
+执行命令。
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>exec-maven-plugin</artifactId>
+            <groupId>org.codehaus.mojo</groupId>
+            <version>3.3.0</version>
+            <executions>
+                <execution>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <id>Show PWD</id>
+                <executable>pwd</executable>
+                <arguments>
+                  <argument>scripts/copy_protocols.sh</argument>
+                </arguments>
+          </configuration>
+        </plugin>
+  </plugins>
+</build>
+```
+
+
+
 # 参考
 
 - https://stackoverflow.com/questions/47310215/merging-meta-inf-services-files-with-maven-assembly-plugin

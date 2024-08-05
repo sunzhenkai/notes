@@ -205,3 +205,11 @@ $ conda create --name {env-name} --channel=conda-forge conda-forge::gcc=13.2.0
 $ conda create --name ml --channel=conda-forge conda-forge::gcc=13.2.0 conda-forge::python=3.12.4 conda-forge::jupyterlab
 ```
 
+# 常用包
+
+```shell
+# gcc & g++, 指定版本
+conda-forge::gxx=8.5.0
+conda-forge::gcc=8.5.0
+```
+
