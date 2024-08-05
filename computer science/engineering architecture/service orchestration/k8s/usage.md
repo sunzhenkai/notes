@@ -168,8 +168,11 @@ kubectl delete secret <secret>
 # Namespace
 
 ```shell
+# 列出所有的 namespace
+$ kubectl get namespaces
+
 # 创建命名空间
-kubectl create namespace <space-name>
+$ kubectl create namespace <space-name>
 ```
 
 # 登录容器

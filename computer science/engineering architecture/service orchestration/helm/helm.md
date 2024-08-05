@@ -139,3 +139,7 @@ helm template --debug <relative-path-to-chart>
 # ArtifactHUB
 
 [helm artifact hub](https://artifacthub.io/packages/search?kind=0)
+
+# 自定义 Repo
+
+示例参考 [bitnami](https://github.com/bitnami/charts)。
