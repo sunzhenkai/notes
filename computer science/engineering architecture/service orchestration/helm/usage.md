@@ -57,6 +57,13 @@ REVISION: 2
 TEST SUITE: None
 ```
 
+## 卸载 Chart
+
+```shell
+$ helm uninstall ace
+release "ace" uninstalled
+```
+
 ## 示例
 
 ```shell

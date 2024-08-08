@@ -35,3 +35,18 @@ sudo vim /etc/resolv.conf
 kubectl delete pods --all -n=<namespace> # 删除所有 pods
 ```
 
+# pod didn't trigger scale-up
+
+**错误信息**
+
+```shell
+.. (combined from similar events): pod didn't trigger scale-up (it wouldn't fit if a new node is added): 2 Insufficient memory, 7 can't increase node group size
+```
+
+**原因**
+
+- pod 添加的 container 的内存、CPU 资源超过资源池机器的限制，导致无法扩容
+
+**解决**
+
+- 减少 container 的 memory / cpu
