@@ -9,6 +9,10 @@ date: 2023/12/18 00:00:00
 
 # 硬件
 
+## CPU & GPU
+
+![img](./cuda/image3-2.png)
+
 ## 内存
 
 内存分级。
@@ -63,3 +67,5 @@ kernel_function<<<grid, block>>>();
 # 参考
 
 - [CUDA Refresher: The CUDA Programming Model](https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/)
+
+- [CUDA Refresher: Reviewing the Origins of GPU Computing](https://developer.nvidia.com/blog/cuda-refresher-reviewing-the-origins-of-gpu-computing/)
