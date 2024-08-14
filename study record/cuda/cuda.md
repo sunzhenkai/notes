@@ -103,13 +103,124 @@ kernel_function<<<grid, block>>>();
 
 # 线程模型
 
-## 重要概念
+<img src="cuda/image-20240813122458457.png" alt="image-20240813122458457" style="zoom:50%;" />
 
-- grid，网格
-- block，线程块
+- 重要概念
+
+  - grid，网格
+
+  - block，线程块
+
+- 配置线程 `<<<grid_size, block_size>>>`
+
+- 最大允许线程块大小 1024
+
+- 最大允许网格大小  2^32 - 1
+
+- 每个线程在核函数中都有一个唯一标识
+
+- 内建变量（build-in variable）
+
+  - 每个线程的唯一标识由 `<<<grid_size, block_size>>>` 确定，grid_size、block_size 保存在内建变量（build-in variable）
+    - gridDim.x，该变量的值等于执行配置中变量 grid_size 的值
+    - blockDim.x，该变量的值等于执行配置中变量 block_size 的值
+  - 线程索引保存在内建变量
+    - blockIdx.x，该变量保存一个线程块在一个网格中的索引，范围是 `[0, gridDim.x)`
+    - threadIdx.x，该变量保存一个线程在线程块中的索引，范围是`[0, blockDim.x)`
+
+- 多维线程
+
+  - CUDA 可以组织三维的网格和线程块
+  - blockIdx 和 threadIdx 是类型为 uint3 的变量，该类型是结构体，有 x、y、z 三个变量
+  - gridDim 和 blockDim 是类型为 dim3 的变量，该类型是结构体，有 x、y、z 三个变量
+  - 多维网格和多维线程块本质上是一维的，GPU 物理上不分块
+  - 数量限制
+    - 网格大小
+      - gridDim.x，`[1, 2^31)`
+      - gridDim.y，`[1, 2^16)`
+      - gridDim.z，`[1, 2^16)`
+    - 线程块
+      - blockDim.x，1024
+      - blockDim.y，1024
+      - blockDim.z，64
+  - 定义
+
+```c++
+dim3 grid_size(g_x, g_y, g_z);
+dim3 block_size(g_x, g_y, g_z);
+```
+
+<img src="cuda/image-20240813125337918.png" alt="image-20240813125337918" style="zoom:50%;" />
+
+# nvcc 编译流程
+
+- nvcc 分离源代码为
+  - 主机（Host，`__host__`）代码
+  - 设备（Device，`__global__`）代码
+- 主机代码是 C/C++ 语法，设备代码是 C/C++ 扩展语言
+- nvcc 先将设备代码编译为 PTX（Parallel Thread Execution）伪汇编语言，再将 PTX 代码编译为二进制的 cubin 目标代码
+  - 编译 PTX 时，需要指定 `-arch=compute_XY` 选项，指定虚拟架构的计算能力，用于确定代码中能够使用的 CUDA 功能
+  - 编译 cubin 时，需要指定 `-code=sm_ZW` 选项，指定一个真实架构的计算能力，用以确定可执行文件能够使用的 GPU
+
+<img src="cuda/cuda-compilation-from-cu-to-executable.png" alt="CUDA Compilation Trajectory" style="zoom:36%;" />
+
+- PTX
+  - PTX 是 CUDA 平台为基于 GPU 的通用计算而定义的虚拟机和指令集
+  - nvcc 编译命令总是使用两个体系结构
+    - 一个是虚拟的中间体系结构
+    - 另一个是实际的 GPU 体系结构
+  - 虚拟架构更像是对应用所需的 GPU 功能的声明
+  - 兼容性
+    - 虚拟架构应该尽可能选择低版本，适配更多实际 GPU
+    - 实际架构应该尽可能选择高版本，充分发挥 GPU 性能
+
+参考[文档](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/)。
+
+# 运行
+
+## 步骤
+
+- 设置 GPU 设备
+  - 使用 `cudaGetDeviceCount` 可以获取 GPU 设备数量
+  - 使用 `cudaSetDevice` 来设置使用的设备
+- 分配主机和设备内存
+- 初始化主机中的数据
+- 从主机复制数据到设备
+- 调用核函数在设备中运行
+- 将计算得到的数据从设备传给主机
+- 释放主机与设备内存
+
+# 内存管理
+
+- 内存分配，`cudaMalloc`，对应标准库 `malloc`
+  - 运行环境：设备、主机
+- 数据传递，`cudaMemcpy`，对应标准库 `memcpy`
+  - 支持主机->主机、主机->设备、设备->设备、设备->主机 的内存拷贝，支持默认选项自动识别
+  - 运行环境：主机
+- 内存初始化，`memset`，对应标准库 `cudaMemset`
+  - 运行环境：主机
+- 内存释放，`cudaFree`，对应标准库 `free`
+  - 运行环境：主机、设备
+
+# 函数
+
+- 设备函数（`__device__` 修饰）
+  - 只能运行在 GPU 设备上
+  - 设备函数只能被核函数和其他设备函数调用
+- 核函数（`__global__` 修饰）
+  - 一般由主机调用，在设备中执行
+  - `__global__` 修饰符不能和 `__host__` 、`__device__` 同时用
+- 主机函数（`__host__` 修饰或无修饰）
+  - 主机端 C++ 函数
+
+说明
+
+- 可以使用 `__host__` 和 `__device__` 同时修饰一个函数来减少冗余，编译器会针对主机和设备分别编译
 
 # 参考
 
 - [CUDA Refresher: The CUDA Programming Model](https://developer.nvidia.com/blog/cuda-refresher-cuda-programming-model/)
 
 - [CUDA Refresher: Reviewing the Origins of GPU Computing](https://developer.nvidia.com/blog/cuda-refresher-reviewing-the-origins-of-gpu-computing/)
+
+- [CUDA编程基础入门系列](https://www.bilibili.com/video/BV1sM4y1x7of/?p=12&spm_id_from=pageDriver&vd_source=dde715d24e4fe38dc525c996ab020c1a)
