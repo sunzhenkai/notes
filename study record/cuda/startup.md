@@ -15,4 +15,4 @@ CUDA 提供两层 API，驱动（Driver） API 及运行时（Runtime） API。R
 
 # Compute Capability
 
-英伟达每款 GPU 会有一个叫做 Compute Capability 的版本号，用于标识设备的计算平台兼容性。其直译 **计算能力** 略有歧义，并非代表设备的计算性能。
+英伟达每款 GPU 会有一个叫做 Compute Capability 的版本号，用于标识设备的**计算平台兼容性**。其直译 **计算能力** 略有歧义，并非代表设备的计算性能。
