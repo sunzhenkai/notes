@@ -14,6 +14,11 @@ date: 2023/06/20 00:00:00
 - snap
 - flatpak
 
+# 搜索包
+
+- [base/extra package](https://archlinux.org/packages/)
+- [aur](https://aur.archlinux.org/packages)
+
 # 初始化
 
 ```shell
@@ -35,6 +40,7 @@ $ pacman -S -h
 ## 切换源
 
 ```shell
+# manjaro
 # 1. 刷新
 $ sudo pacman-mirrors -i -c China -m rank
 # 选择合适的源
@@ -79,7 +85,42 @@ $ pacman -Ss vim
 
 AUR（Arch User Repository）。
 
-## 使用
+## AUR Helpers
+
+AUR helpers 可以帮助我们搜索、下载、编译 AUR 包，常见的 AUR helpers 有 yay、paru等。
+
+## Paru
+
+### 安装
+
+```shell
+$ sudo pacman -S --needed base-devel
+$ git clone https://aur.archlinux.org/paru.git
+$ cd paru
+$ makepkg -si
+```
+
+### 使用示例
+
+```shell
+# 搜索
+$ paru -Ss gcc7
+```
+
+```shell
+paru <target> -- Interactively search and install <target>.
+paru -- Alias for paru -Syu.
+paru -S <target> -- Install a specific package.
+paru -Sua -- Upgrade AUR packages.
+paru -Qua -- Print available AUR updates.
+paru -G <target> -- Download the PKGBUILD and related files of <target>.
+paru -Gp <target> -- Print the PKGBUILD of <target>.
+paru -Gc <target> -- Print the AUR comments of <target>.
+paru --gendb -- Generate the devel database for tracking *-git packages. This is only needed when you initially start using paru.
+paru -Bi . -- Build and install a PKGBUILD in the current directory.
+```
+
+## 其他
 
 可以手动[搜索包](https://aur.archlinux.org/packages)，然后使用 git clone，并使用命令 `makepkg  -s` 编译，使用命令 `makepkg -i` 安装，或直接使用 `makepkg -is` 命令编译安装。也可以通过 pamac 命令使用 aur。 
 
@@ -94,7 +135,7 @@ $ pamac build ttf-ms-fonts
 
 > 安装 AUR 包
 >
-> pamac build pkg
+> pamac build pkgp
 >
 > 安装官方包
 >
