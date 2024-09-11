@@ -19,6 +19,26 @@ date: 2023/12/18 00:00:00
 
 ![img](cuda/memory-hierarchy-in-gpus-2.png)
 
+## Nvidia GPU 架构
+
+## 层级
+
+![img](cuda/gaEfOQD6l3q8p4TzybT7gMVZc8YQkni-0-9ClI9Ei4epE4aHSLjg9-3ON8bkRFZxvm1G-nOCZ9CPy_zqw-EmBWje-sOiSem0oFWA4J7HnhdVdF5RUbrLB7n5-XGKDGznfh6R3xna.png)
+
+参考 [GPU Performance Background User's Guide](https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/index.html#)，[NVIDIA Hopper Architecture In-Depth](https://developer.nvidia.com/blog/nvidia-hopper-architecture-in-depth/)。 
+
+![simple-gpu-arch.svg](cuda/simple-gpu-arch.svg)
+
+### SM（Streaming Multiprocessor）
+
+![img](cuda/raD52-V3yZtQ3WzOE0Cvzvt8icgGHKXPpN2PS_5MMyZLJrVxgMtLN4r2S2kp5jYI9zrA2e0Y8vAfpZia669pbIog2U9ZKdJmQ8oSBjof6gc4IrhmorT2Rr-YopMlOf1aoU3tbn5Q.png)
+
+每个 SM 都有自己的指令调度器和各种指令执行管道。乘加是现代神经网络中最常见的运算，充当全连接层和卷积层的构建块，这两个层都可以被视为向量点积的集合。下表显示了 NVIDIA 最新 GPU 架构上各种数据类型的单个 SM 每个时钟的乘加运算。每个乘加都包含两个运算，因此可以将表中的吞吐量乘以 2，以获得每个时钟的 FLOP 计数。要获得 GPU 的 FLOPS 速率，需要将其乘以 SM 数量和 SM 时钟速率。例如，具有 108 个 SM 和 1.41 GHz 时钟频率的 A100 GPU 的峰值密集吞吐量为 156 TF32 TFLOPS 和 312 FP16 TFLOPS（应用程序实现的吞吐量取决于本文档中讨论的许多因素）。
+
+![multi-add-op.svg](cuda/multi-add-op.svg)
+
+
+
 # 核函数
 
 ## 定义

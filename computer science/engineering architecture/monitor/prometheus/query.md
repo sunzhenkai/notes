@@ -78,3 +78,11 @@ rate(label_replace(up{job="node-exporter"}, "foo", "bar-$1", "job", "node-(.+)")
 sum(rate(label_replace(no_fail_request{job=~"${cluster}"}, "private_ip_address", "$1", "instance", "(.*):8000$")[1m:]) * on (private_ip_address) group_left(zone) agent_status{instance_state="running",region="${cluster}"}) by (zone) / 
 sum(rate(label_replace(total_request{job=~"${cluster}"}, "private_ip_address", "$1", "instance", "(.*):8000$")[1m:]) * on (private_ip_address) group_left(zone) agent_status{instance_state="running",region="${cluster}"}) by (zone)
 ```
+
+# 过滤不为 0
+
+```shell
+avg(metric_name{] != 0) by (region)  # 对值为 0 的指标不进行 avg 计算
+avg(metric_name{]) by (region) ！= 0  # 对值为 0 的结果不进行展示
+```
+

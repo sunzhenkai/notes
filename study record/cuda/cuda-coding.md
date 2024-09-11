@@ -124,3 +124,32 @@ $ nsys profile {cuda-program} # 运行并记录程序的 profile 到 nsys-rep �
 $ nsys analyze {nsys-rep}     # 分析 profile 文件
 ```
 
+# 获取 GPU 信息
+
+**运行时 API**
+
+```c++
+__host__ cudaError_t cudaGetDeviceProperties ( cudaDeviceProp* prop, int  device )
+```
+
+```c++
+__host__ void PrintDeviceInfo() {
+  int deviceCount;
+  cudaGetDeviceCount(&deviceCount);
+  std::cout << "GPU device count: " << deviceCount << std::endl;
+
+  for (int i = 0; i < deviceCount; ++i) {
+    // sm: 流式多处理器, Streaming Multiprocessor
+    cudaDeviceProp dp{};
+    cudaGetDeviceProperties(&dp, i);
+    std::cout << "device.0  " << std::endl;
+    std::cout << "  sm count: \t\t\t\t" << dp.multiProcessorCount << std::endl;
+    std::cout << "  shared memory per block: \t\t" << dp.sharedMemPerBlock / 1024 << "KB" << std::endl;
+    std::cout << "  max threads per block:\t\t" << dp.maxThreadsPerBlock << std::endl;
+    std::cout << "  max threads per multi processor:\t" << dp.maxThreadsPerMultiProcessor << std::endl;
+    std::cout << "  max threads per sm:\t\t\t" << dp.maxThreadsPerMultiProcessor / 32 << std::endl;
+    std::cout << "  max blocks per multi processor:\t" << dp.maxBlocksPerMultiProcessor << std::endl;
+  }
+}
+```
+

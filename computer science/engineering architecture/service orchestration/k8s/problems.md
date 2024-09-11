@@ -50,3 +50,29 @@ kubectl delete pods --all -n=<namespace> # 删除所有 pods
 **解决**
 
 - 减少 container 的 memory / cpu
+
+# Core Dump 及保存
+
+**设置 core dump 保存路径及命名**
+
+在 `deployment.yaml` 中配置，运行命令 `echo "core.%p" > /proc/sys/kernel/core_pattern` 。
+
+映射 HostPath，容器重启不删除文件。
+
+```yaml
+# deployment.yaml
+spec:
+	template:
+		spec:
+			volumes:
+				- name: core-dump-volume
+          hostPath:
+            path: /data/core
+            type: DirectoryOrCreate
+			containers:
+				- name: {container-name}
+					volumeMounts:
+						- name: core-dump-volume
+							mountPath: /data/core
+```
+

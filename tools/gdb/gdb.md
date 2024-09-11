@@ -39,8 +39,12 @@ $ gdb --args program <args>
 ## 启动程序
 
 ```shell
+$ gdb -ex=r --args /path/to/program arg1 arg2 # -ex=r => -ex=run
+```
+
+```shell
 $ gdb /path/to/program
-$ run {args}
+(gdb) run {args}
 ```
 
 # 调试 core 文件
