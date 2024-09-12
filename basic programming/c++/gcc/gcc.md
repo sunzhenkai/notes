@@ -127,3 +127,13 @@ g++ -Xlinker -v
 export LIBRARY_PATH={path}:{path}
 ```
 
+# AUR 低版本 GCC
+
+```shell
+configure:4314: $? = 0
+configure:4303: gcc -V >&5
+gcc: error: unrecognized command-line option '-V'
+gcc: fatal error: no input files
+```
+
+上面的报错可以忽略，只是尝试探测 gcc 版本，详见 [这里](https://superuser.com/questions/846768/gcc-unrecognized-command-line-options-v-and-qversion-with-autoconf)。

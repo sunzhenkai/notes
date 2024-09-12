@@ -23,6 +23,14 @@ tmux a -t {session-name}
 tmux ls
 # 清理 session
 tmux kill-session -t {session-name}
+
+# tmux 内
+# 重命名 session
+C-B $
+# 重命名 window
+C-B ,
+# 关闭 window
+C-B &
 ```
 
 # 快捷键

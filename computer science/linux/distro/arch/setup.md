@@ -8,6 +8,27 @@ date: 2021/09/04 00:00:00
 update: 2021/09/04 00:00:00
 ---
 
+# 中文
+
+```shell
+# 修改文件 /etc/locale.gen
+en_US.UTF-8 UTF-8
+zh_CN.UTF-8 UTF-8
+zh_CN.GBK GBK
+zh_CN GB2312
+
+# locale-gen
+$ sudo locale-gen
+```
+
+## zsh
+
+```shell
+ # 文件 ~/.zshrc
+ export LC_ALL=en_US.UTF-8
+ export LANG=en_US.UTF-8
+```
+
 # 网络设置
 
 ## 使用 systemd-networkd 管理网络
@@ -66,6 +87,8 @@ wii ALL=(ALL:ALL) NOPASSWD: ALL   # wii 用户使用 sudo 获取所有权限，�
 # 必备
 
 ```shell
-$ pacman -S sudo git curl wget zip unzip base-devel gdb
+$ pacman -S sudo git curl wget zip unzip base-devel
+# C++ 开发
+$ pacman -S gdb cmake ninja texinfo
 ```
 

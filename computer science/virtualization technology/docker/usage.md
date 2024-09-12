@@ -315,10 +315,24 @@ systemctl start cgconfig
 reboot
 ```
 
-# 查看磁盘占用
+# 常用操作
+
+## 查看磁盘占用
 
 ```shell
 docker system df -v
 # 会打印 image、container 的磁盘占用
+
+# 查看容器磁盘占用
+docker ps --size
+```
+
+## 清理无用镜像
+
+```shell
+docker image prune # 仅清理镜像
+
+# !危险操作
+docker system prune # 要同时清理未使用的镜像、停止的容器、未使用的网络和未挂载的卷
 ```
 

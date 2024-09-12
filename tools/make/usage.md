@@ -165,6 +165,13 @@ $ make test  # test
 $ make clean # clean
 ```
 
+# 设置并行度
+
+```shell
+# /etc/profile
+export MAKEFLAGS="-j15 -l15"  # 修改 15, 根据实际 cpu 核数设置
+```
+
 # 参考
 
 - [Ubuntu Wiki](https://wiki.ubuntu.org.cn/%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%86%99Makefile:MakeFile%E4%BB%8B%E7%BB%8D)
