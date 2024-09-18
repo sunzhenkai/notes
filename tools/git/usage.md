@@ -164,6 +164,25 @@ git blame <file> -L <start-line>,<end-line>
 git push origin --delete <branch>
 ```
 
+# Git Tree
+
+```shell 
+# 检出 /path/pattern 下文件在 tree-ish 下的状态
+git checkout {tree-ish} /path/pattern  # 主要后面的 path, 存放 checkout 出来的文件
+```
+
+检出并保存在其他路径
+
+```shell
+git archive f9ee8bb31f04f4e6a8c0d3e96fbb98deeb448d45 | tar -x -C /tmp/f9ee8bb31f04f4e6a8c0d3e96fbb98deeb448d45
+```
+
+从 remote 检出 
+
+```shell
+git archive --remote=https://github.com/user/repo.git <tree-ish> | tar -x -C /path/to/target-dir
+```
+
 # 配置
 
 ```shell

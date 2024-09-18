@@ -121,6 +121,16 @@ sed '{NUM}q;d' file
 sed '10q;d' file
 ```
 
+## 按行读取文件
+
+```shell
+cat {file} | while read line || [ -n "$line" ]; do
+    echo "$line"
+done
+```
+
+注意，`while read line; do ... done <{file}`，在遇到 EOF 后，会返回异常状态，导致丢失最后一行（如果最后一行没有换行符的话），要用 `|| [ -n "$line" ]` 来解决这个问题。
+
 # 用户
 
 ## 创建用户

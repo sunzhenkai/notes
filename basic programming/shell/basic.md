@@ -273,6 +273,23 @@ bcd
 $ echo ${s:1:2}
 ```
 
+## 切分
+
+`IFS=';' read -ra SLICES <<< "$IN"` 
+
+```shell
+IFS=';' read -ra ADDR <<< "$IN" # 按 ; 分割
+for i in "${ADDR[@]}"; do
+  # process "$i"
+done
+```
+
+## 替换
+
+```shell
+echo ${LINE//{old}/{new}}
+```
+
 # 循环
 
 ## while

@@ -358,3 +358,30 @@ vcpkg_execute_required_process(
 )
 ```
 
+# Checkout Git Tree
+
+检出并保存在其他路径
+
+```shell
+mkdir /tmp/<tree-ish>
+git archive <tree-ish> | tar -x -C /tmp/<tree-ish>
+```
+
+从 remote 检出 
+
+```shell
+git archive --remote=https://github.com/user/repo.git <tree-ish> | tar -x -C /tmp/<tree-ish>
+```
+
+示例
+
+从 vcpkg 检出 gRPC 1.22.0 的 port 文件到当前目录。
+
+```shell
+# 从本地检出
+git -C ~/.local/vcpkg archive f9ee8bb31f04f4e6a8c0d3e96fbb98deeb448d45 | tar -x -C .
+
+# 从 remote 检出 (不一定能行)
+git archive --remote=git@github.com:grpc/grpc.git f9ee8bb31f04f4e6a8c0d3e96fbb98deeb448d45 | tar -x -C .
+```
+
