@@ -59,3 +59,22 @@ echo "nameserver 4.4.4.4" >> /etc/resolv.conf
 <ip>	raw.githubusercontent.com
 ```
 
+# 保存数据
+
+Unraid 系统中，`/boot`、`/mnt` 之外的路径均在内存中，在下次重启后，会丢失。可以用如下方式来保存数据。
+
+- 第一步，数据保存在 `/boot` 路径下
+- 第二步，在 Unraid 系统启动时把文件拷贝到目标位置，有两种方式
+    - 其一，更改 `/boot/config/go` 文件（shell 脚本），在 Unraid 系统启动时把文件拷贝到目标位置
+    - 其二，使用 User Scripts 插件，在 Apps 中搜索安装，在 Plugins 中使用
+        - 可以选择脚本运行时间，如果只需运行一次，选 `At First Array Start Only` 即可
+        - 脚本路径在界面有显示，比如 `/boot/config/plugins/user.scripts/scripts/dockerInit`，这是一个目录，下面有个 script 文件用于编写命令
+
+# Docker
+
+## 重启 Docker
+
+```shell
+$ /etc/rc.d/rc.docker restart
+```
+
