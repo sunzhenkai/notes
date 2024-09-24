@@ -233,6 +233,9 @@ mount -t auto /dev/vdb1 /data
 
 # 写入 /etc/fstab, root 用户运行
 echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0" >> /etc/fstab
+
+
+echo -e "UUID=$(blkid -o value -s UUID /dev/sdb1)\t/downloads\text4\tdefaults\t0 0" >> /etc/fstab
 ```
 
 ## 创建 LVM 分区
