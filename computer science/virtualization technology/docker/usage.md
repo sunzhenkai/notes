@@ -200,11 +200,11 @@ $ docker images ubuntu	# 查看单个镜像
 dive hub.docker.com/<user>/<image>:<tag>
 ```
 
-## 删除镜像
+## 删除镜像 / 清理
 
 ```shell
 $ docker image remove <id>
-$ docker image prune    # 删除危险镜像
+$ docker image prune    # 删除无用镜像
 $ docker image prune -a # 删除所有镜像
 ```
 
