@@ -334,5 +334,9 @@ docker image prune # 仅清理镜像
 
 # !危险操作
 docker system prune # 要同时清理未使用的镜像、停止的容器、未使用的网络和未挂载的卷
+
+# !危险才做，可能误删
+# 尝试删除所有镜像
+docker image ls -a | awk '{print $3}' | xargs docker image rm -
 ```
 

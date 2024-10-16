@@ -90,10 +90,7 @@ $ perf archieve
 
 # 分析
 $ tar xvf perf.data.tar.bz2 -C ~/.debug
-$ 
 ```
-
-
 
 ## 使用
 
@@ -105,7 +102,7 @@ $ perf top
 $ pid=$(pgrep <program-name>)
 
 # 记录数据
-$ perf record -e cpu-clock -F 99 -p $pid -g -- sleep 10 # 记录 10 秒数据
+$ perf record -e cpu-clock -F 99 -p $pid -g -- sleep 30 # 记录 30 秒数据
 
 # 展示记录数据的分析结果
 $ perf report --show-total-period
