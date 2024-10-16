@@ -18,6 +18,28 @@ date: 2020/11/10 21:00:00
 - [Initialization order bugs](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerInitializationOrderFiasco)
 - [Memory leaks](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizerLeakSanitizer)
 
+# TL;TR
+
+```shell
+# CMAKE_CXX_FLAGS
+-g3 -fno-omit-frame-pointer -fno-common -fsanitize=undefined -fsanitize=address -fsanitize-recover=address
+
+# 环境变量
+export ASAN_OPTIONS=symbolize=true:halt_on_error=false:abort_on_error=false:disable_coredump=false:unmap_shadow_on_exit=true:disable_core=false:sleep_before_dying=15:fast_unwind_on_fatal=1:log_path=asan.log
+```
+
+**指定 Asan Library 路径**
+
+```shell
+export LD_LIBRARY_PATH=/path/to/libasan.so.x
+```
+
+## 注意
+
+- 部分 IDE 集成分析工具，ASAN_OPTIONS 可能被覆盖，比如 CLion，需要在设置中设置 ASAN_OPTIONS（AddressSanitizer）。
+
+![image-20241014111225039](asan/image-20241014111225039.png)
+
 # 使用
 
 ## 编译选项
@@ -49,15 +71,15 @@ ASAN_LDFLAGS += -fsanitize=address -g1 # 如果使用gcc链接，此处可忽略
 ASAN_OPTIONS是Address-Sanitizier的运行选项环境变量。
 
 ```shell
-halt_on_error=0 					# 检测内存错误后继续运行
-abort_on_error=0					# 遇到错误后调用 abort() 而不是 _exit()
-detect_leaks=1 						# 使能内存泄露检测
-malloc_context_size=15 		# 内存错误发生时，显示的调用栈层数为15
-log_path=/tmp/asan.log 		# 内存检查问题日志存放文件路径
-suppressions=$SUPP_FILE		# 屏蔽打印某些内存错误
-symbolize=1
-disable_coredump=0
-disable_core=0
+halt_on_error=0/1 					# 检测内存错误后继续运行
+abort_on_error=0/1					# 遇到错误后调用 abort() 而不是 _exit()
+detect_leaks=0/1 						# 使能内存泄露检测
+malloc_context_size=15 		  # 内存错误发生时，显示的调用栈层数为15
+log_path=asan.log     		  # 内存检查问题日志存放文件路径
+suppressions=$SUPP_FILE 		# 屏蔽打印某些内存错误
+symbolize=0/1               # 启用符号化，将错误地址翻译成代码行号
+disable_coredump=0/1        # 禁用 core dump         
+disable_core=0/1            # 禁用 core dump   
 unmap_shadow_on_exit=1
 sleep_before_dying=60
 ```

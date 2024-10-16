@@ -79,10 +79,10 @@ gcc -std=c++17 -o sample.exe sample.cpp
 -Wall			开启警告（all: 应该开启的最小警告集合）
 -Wextra		开启扩展警告
 -Werror 	所有警告视为错误
--Wno-error=...	关闭某项警告视为错误
--Wno-<...>			关闭某项警告视为错误
--Werror   所有警告视为错误
+-Wno-error=...	    关闭某项警告视为错误
+-Wno-<warning-name>	关闭某项警告
 -Wextra
+-w                  忽略所有警告
 
 # 常用警告
 -Werror=return-type    函数没有 return 视为错误
@@ -98,6 +98,10 @@ export CCFLAGS='--asdf -Wno-narrowing'
 
 make CXXFLAGS='-ggdb3 -O0 -Wno-narrowing' CPPFLAGS='-DX=1 -DY=2 -Wno-narrowing' CCFLAGS='--asdf -Wno-narrowing' all -j
 ```
+
+## 注意
+
+- `-w` 和 `-Werror... ` 同时用会有冲突，`-w` 会短路 `-Werror`。`-w -Werror=...`  和 `-Werror=... -w` 都不行。
 
 # 编译库
 

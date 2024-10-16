@@ -613,6 +613,19 @@ journalctl -u <service> -f
 async -auz <path-to-local> user@host:/path/to/remote
 ```
 
+## 开机运行命令
+
+### Crontab
+
+```shell
+$ crontab -e
+# 输入
+@reboot {your command line}
+
+# 查看 Crontab 运行日志
+$ grep CRON /var/log/syslog
+```
+
 # Swap 分区
 
 ## 开启
