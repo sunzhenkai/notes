@@ -10,6 +10,9 @@ date: 2022/10/16 00:00:00
 # 镜像
 
 - [lede](https://github.com/coolsnowwolf/lede)
+- [immortalwrt](https://github.com/immortalwrt/immortalwrt)
+    - [下载镜像](https://downloads.immortalwrt.org/releases/23.05.4/targets/x86/64/)
+
 
 # 主题
 
