@@ -181,3 +181,7 @@ $ kubectl create namespace <space-name>
 kubectl exec --stdin --tty <pod-instance> -- /bin/bash
 ```
 
+# 工具
+
+- k9s，基于 SHELL 的 K8S 客户端工具
+- [k8s Lens](https://k8slens.dev/)，桌面端 K8S 客户端工具

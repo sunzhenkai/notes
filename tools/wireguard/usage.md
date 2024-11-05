@@ -257,6 +257,31 @@ PreDown = ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
 > $ sudo ufw enable
 > ```
 
+# 常见问题
+
+## 无法访问远端内网
+
+首先，客户端配置远端地址段。
+
+```shell
+[Peer]
+Endpoint = {remote_ip:port}
+PublicKey = {public_key}
+AllowedIPs = 10.0.20.0/24     # wireguard 组网地址
+AllowedIPs = 192.168.6.0/24   # 远端内网地址
+AllowedIPs = 192.168.1.0/24   # 远端内网地址
+```
+
+其次，配置远端服务器网络 forward。
+
+```shell
+$ sudo vim /etc/sysctl.conf
+net.ipv4.ip_forward=1
+net.ipv6.conf.all.forwarding=1
+$ sudo sysctl -p
+$ sudo ufw allow 51820/udp
+```
+
 ## 参考
 
 [参考](https://iliasa.eu/wireguard-how-to-access-a-peers-local-network/) [参考二](https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-20-04)

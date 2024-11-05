@@ -240,6 +240,15 @@ This GDB was configured as follows:
 
 pretty printer 使用手册参考[这里](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Pretty-Printing.html#Pretty-Printing)。
 
+# 多线程
+
+```shell
+(gdb) info threads           # 打印所有线程信息
+(gdb) info threads {thread-no}...       # 打印指定线程信息
+(gdb) thread {thread-no}     # 切换到线程
+(gdb) thread apply all bt    # 在所有线程打印调用栈信息
+```
+
 # 常见问题
 
 ## gdb 卡住

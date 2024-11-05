@@ -102,7 +102,7 @@ $ perf top
 $ pid=$(pgrep <program-name>)
 
 # 记录数据
-$ perf record -e cpu-clock -F 99 -p $pid -g -- sleep 30 # 记录 30 秒数据
+$ perf record -e cpu-clock -F 99 -p $pid -g -- sleep 60 # 记录 60 秒数据
 
 # 展示记录数据的分析结果
 $ perf report --show-total-period

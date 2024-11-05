@@ -213,3 +213,25 @@ $ export PATH=.:$PATH && bash run-consul.sh
 
 - 设置 encrypt，不同机房，使用不同 datacenter 名称，避免跨环境注册，服务混合
 - 设置 `limits.http_max_conns_per_client` ，默认 200，极有可能不够用，出现各种问题
+
+# 配置
+
+## Standalone
+
+```json
+{
+  "retry_join" : ["127.0.0.1"],
+  "data_dir": "/var/lib/consul",
+  "log_level": "INFO",
+  "server": true,
+  "node_name": "master",
+  "addresses": {
+    "http": "0.0.0.0"
+  },
+  "bind_addr": "0.0.0.0",
+  "advertise_addr": "{ip}",
+  "ui": true,
+  "bootstrap_expect": 1
+}
+```
+

@@ -295,7 +295,6 @@ sudo systemctl restart kubelet
 
 ```shell
 sudo vim /lib/systemd/system/docker.service
-
 ```
 
 **参考**
