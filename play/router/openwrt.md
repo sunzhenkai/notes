@@ -69,5 +69,11 @@ opkg install block-mount
 保存并应用
 ```
 
+# 预编译固件
 
+- Immortal Wrt
+- iStoreOs
 
+# 配置
+
+- [OpenClash 配置](https://www.youtube.com/watch?v=s84CWgKus4U&t=514s)
