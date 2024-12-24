@@ -1,5 +1,5 @@
 ---
-title: Python 机器学习: 基于 Pytorch 和 Scikit-Learn - 第二章
+title: Python 机器学习 基于 Pytorch 和 Scikit-Learn - 第二章
 categories: 
     - [研习录, 机器学习]
 tags:
