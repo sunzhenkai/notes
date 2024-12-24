@@ -185,7 +185,7 @@ dim3 grid_size(g_x, g_y, g_z);
 dim3 block_size(g_x, g_y, g_z);
 ```
 
-<img src="cuda/image-20240813125337918.png" alt="image-20240813125337918" style="zoom:50%;" />
+![img](cuda/image-20240813125337918.png)
 
 # nvcc 编译流程
 
