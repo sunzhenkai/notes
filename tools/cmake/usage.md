@@ -660,6 +660,30 @@ Macro 和 function 比较相似，区别如下。
 
 # 编译
 
+## 使用 preset
+
+```shell
+cmake --preset=default  # 读取 CMakePresets.json 中的 default 配置项
+```
+
+CMakePresets.json 示例。
+
+```json
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "default",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/vcpkg-build",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+            }
+        }
+    ]
+}
+```
+
 ## 指定 Target
 
 ```shell

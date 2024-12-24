@@ -25,3 +25,19 @@ update: 2020/11/20 00:00:00
     - `gitlab_rails['gitlab_ssh_host'] = 'git.sample.com'`
     - `gitlab_rails['gitlab_shell_ssh_port'] = 2222`
 
+# Runner
+
+```shell
+# create volumn
+$ docker volume create gitlab-runner-config-1
+# create container
+$ docker run -d --name gitlab-runner-1 --restart always \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v gitlab-runner-config-1:/etc/gitlab-runner \
+  -p 8093:8093 \
+  gitlab/gitlab-runner:latest
+  
+# register
+$ docker exec -it gitlab-runner gitlab-runner register
+```
+

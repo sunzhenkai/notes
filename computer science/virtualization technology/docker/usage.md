@@ -1,5 +1,5 @@
 ---
-title: docker 使用
+title: docker usage
 categories: 
   - 算机科学
   - 虚拟化
@@ -154,6 +154,25 @@ $ sudo docker run -d --name <container-name> ... <image-name>
 
 - [参考](https://www.linuxandubuntu.com/home/migrate-docker-containers-to-new-server)
 
+## 为容器添加持久化存储
+
+### 使用本地存储
+
+```shell
+$ docker run -d --name {name} --restart always \
+  -v /path/to/local/system:/container/path \
+  {image}
+```
+
+### 使用 Docker Volumn
+
+```shell
+$ docker volume create {volumn-name}
+$ docker run -d --name {name} --restart always \
+  -v {volumn-name}:/container/path \
+  {image}
+```
+
 # 镜像
 
 ## 导出镜像
@@ -227,6 +246,16 @@ $ sudo usermod -aG docker $(whoami)
 # 生效
 $ sudo service docker restart
 $ newgrp - docker # 切换到docker用户组
+```
+
+通过 snap 安装的 docker
+
+```shell
+$ sudo addgroup --system docker
+$ sudo adduser $USER docker
+$ newgrp docker
+$ sudo snap disable docker
+$ sudo snap enable docker
 ```
 
 ## macos
@@ -334,7 +363,7 @@ docker image prune # 仅清理镜像
 # !危险操作
 docker system prune # 要同时清理未使用的镜像、停止的容器、未使用的网络和未挂载的卷
 
-# !危险才做，可能误删
+# !危险操作，可能误删
 # 尝试删除所有镜像
 docker image ls -a | awk '{print $3}' | xargs docker image rm -
 ```

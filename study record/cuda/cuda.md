@@ -138,7 +138,7 @@ kernel_function<<<grid, block>>>();
 
 # 线程模型
 
-<img src="cuda/image-20240813122458457.png" alt="image-20240813122458457" style="zoom:50%;" />
+![img](cuda/image-20240813122458457.png)
 
 - 重要概念
 

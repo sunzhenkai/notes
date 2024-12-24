@@ -290,3 +290,17 @@ export LD_LIBRARY_PATH=/opt/rh/httpd24/root/usr/lib64:$LD_LIBRARY_PATH
 source ~/.bashrc
 ```
 
+##  shallow update not allowed
+
+错误信息
+
+```shell
+ ! [remote rejected] master -> master (shallow update not allowed)
+```
+
+解决
+
+```shell
+git filter-branch -- --all
+```
+

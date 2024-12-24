@@ -158,7 +158,7 @@ NAME           STATUS   ROLES           AGE     VERSION
 k8s-master-1   Ready    control-plane   5m55s   v1.24.1
 ```
 
-## 配置 none root 用户使用
+## 配置 non-root 用户使用
 
 ```shell
 mkdir -p $HOME/.kube

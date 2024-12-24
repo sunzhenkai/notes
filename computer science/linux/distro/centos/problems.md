@@ -73,3 +73,31 @@ sudo yum install gcc72-c++
 yum install lcov.noarch
 ```
 
+# CentOS 7 
+
+centos 7 的生命已经结束，再继续使用会遇到很多问题。
+
+## centos-release-scl-rh
+
+```shell
+# 安装
+yum install centos-release-scl-rh
+```
+
+更新源配置文件。
+
+```shell
+# /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo
+[centos-sclo-rh]
+name=CentOS-7.9.2009 - SCLo rh
+baseurl=https://vault.centos.org/7.9.2009/sclo/$basearch/rh/
+gpgcheck=0
+enabled=1
+
+[centos-sclo-sclo]
+name=CentOS-7.9.2009 - SCLo sclo
+baseurl=https://vault.centos.org/7.9.2009/sclo/$basearch/sclo/
+gpgcheck=0
+enabled=1
+```
+
