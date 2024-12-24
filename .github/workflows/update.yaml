@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
         with: 
           repository: "sunzhenkai/talking-ground"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
           submodules: true
           path: 'talking-ground'
 
