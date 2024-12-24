@@ -197,7 +197,7 @@ dim3 block_size(g_x, g_y, g_z);
   - 编译 PTX 时，需要指定 `-arch=compute_XY` 选项，指定虚拟架构的计算能力，用于确定代码中能够使用的 CUDA 功能
   - 编译 cubin 时，需要指定 `-code=sm_ZW` 选项，指定一个真实架构的计算能力，用以确定可执行文件能够使用的 GPU
 
-<img src="cuda/cuda-compilation-from-cu-to-executable.png" alt="CUDA Compilation Trajectory" style="zoom:36%;" />
+![img](cuda/cuda-compilation-from-cu-to-executable.png)
 
 - PTX
   - PTX 是 CUDA 平台为基于 GPU 的通用计算而定义的虚拟机和指令集
