@@ -358,7 +358,7 @@ vcpkg_execute_required_process(
 )
 ```
 
-# Checkout Git Tree
+## Checkout Git Tree
 
 检出并保存在其他路径
 
@@ -383,5 +383,30 @@ git -C ~/.local/vcpkg archive f9ee8bb31f04f4e6a8c0d3e96fbb98deeb448d45 | tar -x 
 
 # 从 remote 检出 (不一定能行)
 git archive --remote=git@github.com:grpc/grpc.git f9ee8bb31f04f4e6a8c0d3e96fbb98deeb448d45 | tar -x -C .
+```
+
+## `--host` 问题
+
+起因是使用镜像编译，设置如下变量。
+
+```shell
+export CC=/usr/bin/gcc10-cc
+export CXX=/usr/bin/gcc10-c++
+```
+
+编译的时候，有些依赖库会报错。看 config 日志在调用库的 configure 中传入 `--host=gcc10`，部分信息如下。
+
+```shell
+config-x64-linux-dbg-err.log:invalid configuration `gcc10': machine `gcc10-unknown' not recognized
+config-x64-linux-dbg-config.log:host=gcc10
+```
+
+这显然是 vcpkg 在获取 host 时出错了。具体原因未知，解决方式是把 CC 和 CXX 设置为 `/usr/bin/{cc/cxx}`
+
+```shell
+ln -s /usr/bin/gcc10-cc /usr/bin/cc
+ln -s /usr/bin/gcc10-c++ /usr/bin/c++
+export CC=/usr/bin/cc
+export CXX=/usr/bin/c++
 ```
 
