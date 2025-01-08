@@ -87,3 +87,74 @@ H							# 显式/折叠隐藏文件
 修改 terminal font，以 iterm2 为例。字体可从 [nerd fonts](https://www.nerdfonts.com/font-downloads) 下载。
 
 ![image-20240922102745830](./usage/image-20240922102745830.png)
+
+## 无法复制到系统粘贴板
+
+场景是，登录到远程机器，并使用 nvim 编译，无法复制选中的文本，解决方案是使用快捷键，下面是 Max OS 下的快捷键操作，Windows/Linux 下可尝试探索。
+
+```shell
+<option + 拖动鼠标> : 选中连续文本，可跨行
+<option + command + 拖动鼠标> : 选中矩形区域，可跨行
+```
+
+选中后，再按系统的复制快捷键即可（或右键弹出菜单、选择复制）。
+
+## FZF 搜索窗口无法复制寄存器内容
+
+核心思想是针对 fzf 窗口，自定义快捷键，调用 `getreg()` 来获取寄存器内容，搜索到使用 `getreg(nr2char(getchar()))` 命令，但是不行。在 `init.lua` 文件中添加任意一个方案的内容，在搜索时使用快捷键 `Ctrl + V` 即可粘贴寄存器内容。
+
+方案一，使用 nvim 的 lua  api 命令创建。
+
+```lua
+local autogrp = vim.api.nvim_create_augroup("FZF", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "fzf",
+	group = autogrp,
+	callback = function()
+		vim.api.nvim_set_keymap("t", "<C-r>", "getreg()", { noremap = true, expr = true, silent = true })
+	end,
+})
+```
+
+方案二，使用 `vim.cmd`。
+
+```lua
+vim.cmd([[
+  autocmd! FileType fzf tnoremap <expr> <C-r> getreg()
+]])
+```
+
+# Lazy.nvim
+
+## Mason
+
+- mason 仅安装 LSP Server，最终还是要使用 lspconfig 插件来完成 LSP
+
+### 唤出
+
+```shell
+:Mason
+```
+
+![image-20241227184840062](usage/image-20241227184840062.png)
+
+![image-20241227184849311](usage/image-20241227184849311.png)
+
+修改 Mason 配置后，可手动唤出 Mason 面板安装。
+
+## 分屏
+
+```shell
+<space> -> <shift> + \ : 水平分屏
+<space> -> - : 垂直分屏
+```
+
+切换分屏。
+
+```shell
+<ctrl> + H/左 : 左
+<ctrl> + L/右 : 右
+<ctrl> + J/下 : 下
+<ctrl> + K/上 : 上
+```
+

@@ -35,6 +35,8 @@ C-B &
 
 # 快捷键
 
+[TmuxCheatSheet](https://tmuxcheatsheet.com/)
+
 ```shell
 # active command mode
 ctrl + b
@@ -47,6 +49,8 @@ ctrl + b
 %   splite horizon
 q   show pane numbers
 o   change focued pane
+z   set current pane fullscreen
+!   转换 pane 为 window
 ctrl+o   swap panes
 [space]  切换布局
 
@@ -96,3 +100,31 @@ ctrl + b
 {滚轮}  调整上下分屏 Pane 的大小
 ```
 
+# TPM（Tmux Plugin Manager）
+
+安装。
+
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+编辑 `~/.tmux.conf`，添加如下内容。
+
+```shell
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'github_username/plugin_name#branch'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'
+```
+
+# 概念
+
+三要素 Session、Window、Pane。prefix key，默认 ctrl + B。

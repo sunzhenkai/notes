@@ -198,9 +198,18 @@ target_link_libraries(main PRIVATE target)
 
 ## find_library
 
+针对未提供 CMake 和 PkgConfig 引入方式的库，可使用此方法。
+
 ```cmake
-find_package(TargetVar NAMES target REQUIRED)
+find_library(TargetVar NAMES target REQUIRED)
 target_link_libraries(main PRIVATE ${TargetVar})
+```
+
+示例。
+
+```cmake
+find_library(PolarisApi NAMES libpolaris_api.a REQUIRED)
+target_link_libraries(main ${PolarisApi})
 ```
 
 ## pkgconfig
@@ -209,6 +218,17 @@ target_link_libraries(main PRIVATE ${TargetVar})
 include(FindPkgConfig)
 pkg_check_modules(target REQUIRED IMPORTED_TARGET target)
 target_link_libraries(main PRIVATE PkgConfig::brpc)
+```
+
+thrift 示例。
+
+```cmake
+find_package(PkgConfig REQUIRED)
+find_package(Thrift CONFIG)
+if(NOT TARGET thrift::thrift)
+    pkg_search_module(THRIFT REQUIRED IMPORTED_TARGET GLOBAL thrift)
+    add_library(thrift::thrift ALIAS PkgConfig::THRIFT)
+endif()
 ```
 
 # Trouble Shooting

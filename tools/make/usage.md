@@ -98,6 +98,12 @@ $ make
 HELLO
 ```
 
+## 读取文本内容
+
+```makefile
+TAG := $(shell cat $(name)/VERSION)
+```
+
 # Example
 
 ```makefile

@@ -65,6 +65,19 @@ $ clang-format -style=Google -i t.cpp
 ```c++
 // clang-foramt off
 {codes}
-// clang-foramt off
+// clang-foramt on
+```
+
+## Clangformat 配置示例
+
+```shell
+---
+# use defaults from the LLVM style
+BasedOnStyle: LLVM
+ColumnLimit: 120
+---
+Language: Proto
+# Don't format .proto files.
+DisableFormat: true
 ```
 

@@ -34,6 +34,15 @@ CMD   运行容器时运行, 指定默认运行的程序, 程序结束容器退�
 ENTRYPOINT 容器运行时运行，需要显式指定 --entrypoint 才会被覆盖, 只有最后一个生效, CMD 会作为 ENTRYPOINT 的参数
 ```
 
+## RUN
+
+```dockerfile
+# update-alternatives 示例
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 30
+```
+
+
+
 # 构建镜像
 
 ```shell

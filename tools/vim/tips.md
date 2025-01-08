@@ -190,6 +190,26 @@ N    previous
 :5,10s/foo/bar/gc   # with confirm
 ```
 
+## 多行编辑
+
+### 输入
+
+```shell
+1. Enter Command Mode
+2. Ctrl + V, Select Target Lines
+3. Shift + I, Enter Normal Mode
+4. Enter Texts
+5. Esc, Done
+```
+
+### 删除
+
+```shell
+1. Enter Command Mode
+2. Ctrl + V, Select Rectangle Area
+3. D, Delete Texts
+```
+
 ## 多行注释
 
 **注释**

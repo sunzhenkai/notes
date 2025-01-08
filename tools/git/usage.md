@@ -58,6 +58,12 @@ $ git clone git@github.com:<user-name>/<repo-name>.git
 $ git remote add origin git@github.com:<user-name>/<repo-name>.git
 ```
 
+# restore
+
+```shell
+git restore --staged . # 恢复所有暂存
+```
+
 # stash
 
 用于暂存代码。
@@ -112,6 +118,15 @@ $ rm -rf path/to/submodule
 $ rm -rf .git/modules/{module}
 $ vim .gitmodules # 移除对应 module
 $ vim .git/config # 移除对应 module
+```
+
+## 更换 submodule 地址
+
+```shell 
+$ cd /path/to/submodule/dirctory
+$ git remote set-url origin {new-url}
+$ vim .gitmodules # 修改库地址
+$ git submodule sync # 更新主库引用
 ```
 
 # tags
