@@ -12,6 +12,16 @@ date: 2025/01/07 00:00:00
 - https://github.com/WeBankFinTech/Prophecis
 - https://github.com/meta-soul/MetaSpore
 
+# 训练框架
+
+- [Tensorfow]()
+- [PyTorch]()
+- [PaddlePaddle]()
+- [MegEngine](https://github.com/MegEngine/MegEngine)
+- Keras
+- MXNet
+- CNTK
+
 # 训推一体方案
 
 ![img](./README/22ab779e2a8946efbed4fbbb8ae6cc68bdc114a9ffad4241b8810763e479a8f4.png)
