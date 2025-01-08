@@ -6,3 +6,4 @@ node_modules/
 .deploy*/
 hexo/source/_posts/lns
 hexo/source/_posts/docs
+*.swp
