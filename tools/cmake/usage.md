@@ -619,9 +619,9 @@ ARG(1.0.0 www.so.com true)
 - ARG0，ARG1 ...
 
 ```cmake
-
 function(ARG4)
-    set(options OPTIONAL FAST)
+		# 定义解析变量列表
+		set(options OPTIONAL FAST)
     set(oneValueArgs NAME URL)
     set(multiValueArgs KEY)
     cmake_parse_arguments(PREFIX "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
