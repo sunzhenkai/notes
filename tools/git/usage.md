@@ -129,6 +129,12 @@ $ vim .gitmodules # 修改库地址
 $ git submodule sync # 更新主库引用
 ```
 
+## 初始化一个 submodule
+
+```shell
+git submodule update --init submoduleName
+```
+
 # tags
 
 ```shell
