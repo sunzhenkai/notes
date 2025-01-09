@@ -9,8 +9,8 @@ date: 2025/01/07 00:00:00
 
 # 开源方案
 
-- https://github.com/WeBankFinTech/Prophecis
-- https://github.com/meta-soul/MetaSpore
+- [Prophecis](https://github.com/WeBankFinTech/Prophecis)
+- [MetaSpore](https://github.com/meta-soul/MetaSpore)
 
 # 训练框架
 
