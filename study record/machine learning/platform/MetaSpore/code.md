@@ -51,43 +51,5 @@ EmbeddingSumConcat -> EmbeddingOperator -> torch.nn.Module
 
 # 附录
 
-## arrow
-
-### SourceNodeOptions
-
-### PushGenerator
-
-### ExecBatch
-
-### Declaration
-
-### ProjectNodeOptions 
-
-### MakeExecNode
-
-### ConsumingSinkNodeOptions
-
-### ExecNode 
-
-### ExecPlan
-
-### JoinType
-
-### KernelState 
-
-### KernelContext 
-
-### FunctionRegistry 
-
-### KernelInitArgs 
-
-### ScalarKernel 
-
-### ScalarFunction
-
-### Arity
-
-
-
 ## boost
 

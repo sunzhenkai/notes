@@ -46,7 +46,7 @@ MetaSpore C++ 包含几个模块。
 ## 定义模型
 
 ```python
-embedding_size      :? 每个特征组的 embedding size
+embedding_size      : 每个特征组的 embedding size
 # MetaSpore 相关
 sparse              : ms.EmbeddingSumConcat
 sparse.updater      : ms.FTRLTensorUpdater
@@ -56,3 +56,14 @@ dense.normalization : ms.nn.Normalization
 dense               : torch.nn.Sequential
 ```
 
+初始化内容。
+
+- EmbeddingSumConcat
+  - SparseFeatureExtractor
+    - 解析原始特征列配置文件
+    - 向计算图中添加计算 Hash 特征的 Node
+  - EmbeddingBagModule
+- TensorUpdater，Sparse & Dense 数据更新类
+  - FTRLTensorUpdater
+- TensorInitializer，张量初始化器
+  - NormalTensorInitializer，归一化张量初始化器
