@@ -67,3 +67,41 @@ dense               : torch.nn.Sequential
   - FTRLTensorUpdater
 - TensorInitializer，张量初始化器
   - NormalTensorInitializer，归一化张量初始化器
+- Normalization，归一化
+
+## 训练模型
+
+```python
+PyTorchEstimator
+```
+
+- 定义 PyTorchEstimator
+  - module
+  - worker / server 数量
+  - 模型输出路径
+  - Label 列索引
+
+```python
+PyTorchAgent
+PyTorchLauncher
+PyTorchHelperMixin
+PyTorchModel
+PyTorchEstimator
+```
+
+## 核心概念
+
+- JobRunner
+- PyTorchEstimator
+  - pyspark.ml.base.Estimator
+- Launcher
+  - PSLauncher
+- Agent
+- Module
+  - EmbeddingOperator
+  - TensorUpdater
+  - TensorInitializer
+  - Normalization
+- PyTorchModel
+  - pyspark.ml.base.Model
+- Metric

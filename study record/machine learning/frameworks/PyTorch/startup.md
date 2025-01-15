@@ -24,3 +24,17 @@ forward(*input) : 定义每次调用时的计算逻辑，所有子类都应该�
 ## Linear
 
 ## ReLU
+
+# DDP
+
+- rank，全局进程序号
+- local_rank，本机进程序号，可以使用 `local_rank = torch.distributed.get_rank() % torch.cuda.device_count()` 计算（在每个机器进程数一致时）
+- world size，全局并行数
+
+# 附录
+
+- https://www.alibabacloud.com/blog/alluxio-deep-learning-practices---1-running-pytorch-framework-on-hdfs_596532
+
+- https://medium.com/@binfan_alluxio/deep-learning-at-alibaba-cloud-with-alluxio-running-pytorch-on-hdfs-3a99d7655fd4
+- https://zhuanlan.zhihu.com/p/76638962
+- https://www.paddlepaddle.org.cn/documentation/docs/zh/api_guides/low_level/layers/sparse_update.html

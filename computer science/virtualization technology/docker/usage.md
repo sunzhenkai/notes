@@ -295,6 +295,50 @@ docker login hub.private.com
 
 # 配置代理
 
+## `~/.docker/config.json`
+
+注意，这是 docker cli 的配置，不是 daemon 的配置。
+
+```json
+{
+ "proxies": {
+   "default": {
+     "httpProxy": "http://proxy.example.com:3128",
+     "httpsProxy": "https://proxy.example.com:3129",
+     "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
+   }
+ }
+}
+```
+
+## `/etc/docker/daemon.json`
+
+注意：
+
+- 这是 daemon 的配置，不是 docker cli 的配置
+- httpProxy （docker cli）和 http-proxy（docker daemon）的差别
+- https-proxy 配置成 http 也是可以的，比如 `"https-proxy": "http://proxy.example.com:3128"`
+
+```json
+{
+  "proxies": {
+    "http-proxy": "http://proxy.example.com:3128",
+    "https-proxy": "https://proxy.example.com:3129",
+    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
+  }
+}
+```
+
+重启生效。
+
+```shell
+sudo systemctl restart docker
+# 或
+sudo service docker restart
+```
+
+## 其他
+
 ```shell
 sudo mkdir -p /etc/systemd/system/docker.service.d 
 sudo touch /etc/systemd/system/docker.service.d/proxy.conf
@@ -366,5 +410,16 @@ docker system prune # 要同时清理未使用的镜像、停止的容器、未�
 # !危险操作，可能误删
 # 尝试删除所有镜像
 docker image ls -a | awk '{print $3}' | xargs docker image rm -
+```
+
+# TroubleShooting
+
+## dockerd
+
+有时候，dockerd 会给出一些错误信息。
+
+```shell
+~/code/private-config/nodes/home$ dockerd
+unable to configure the Docker daemon with file /etc/docker/daemon.json: the following directives don't match any configuration option: noProxy
 ```
 
