@@ -292,13 +292,13 @@ docker hub 文档参考[这里](https://hub.docker.com/r/apache/hadoop)，docker
 
 ```shell
 # 从容器拷贝 hadoop 程序
-docker cp hadoop_namenode_1:/opt/hadoop /usr/local/
+docker cp datascience-namenode-1:/opt/hadoop /opt/
 
 # 添加到 path
 export PATH=/usr/local/hadoop/bin:$PATH
 
 # 获取 nodename 节点 ip
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' hadoop_namenode_1
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' datascience-namenode-1
 ## 172.18.0.4
 
 # 修改 hosts
@@ -319,6 +319,14 @@ drwxr-xr-x   - hadoop supergroup          0 2023-08-02 10:25 /data
 ```
 
 ## 关闭权限控制
+
+环境变量修改。
+
+```yml
+HDFS-SITE.XML_dfs.permissions.enabled=false
+```
+
+配置文件修改。
 
 ```xml
 <!-- hdfs-site.xml -->
@@ -408,7 +416,7 @@ fs.exists(path)
 fs.delete(path, true);	# (path, recursive)
 ```
 
-# 命令
+# HDFS
 
 ```shell
 # 创建目录

@@ -14,6 +14,16 @@ update: 2020/12/30 00:00:00
 $ sudo pacman -S dpkg
 ```
 
+# 使用
+
+## `--slave`
+
+在更新一个程序后，往往需要同步更改其他程序，比如修改 gcc 为 gcc11，则需要同步修改 g++、gcov 等，可以使用 slave 来实现。
+
+```shell
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 110 --slave /usr/bin/g++ g++ /usr/bin/g++-11 --slave /usr/bin/gcov gcov /usr/bin/gcov-11 --slave /usr/bin/gcc-ar gcc-ar /usr/bin/gcc-ar-11 --slave /usr/bin/gcc-ranlib gcc-ranlib /usr/bin/gcc-ranlib-11
+```
+
 # 示例
 
 ```shell

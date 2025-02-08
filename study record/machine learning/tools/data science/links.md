@@ -1,5 +1,5 @@
 ---
-title: datascience links
+title: datascience - links
 categories: 
     - [play, server]
 tags:

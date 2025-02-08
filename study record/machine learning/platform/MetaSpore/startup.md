@@ -12,6 +12,50 @@ date: 2025/01/09 00:00:00
 1. 先编译 C++ 库，生成 `metaspore.so`
 2. 再使用 setuptools 和 wheel 工具，打包 python 库
 
+# 编译
+
+## 镜像
+
+- 环境变量
+
+  ```shell
+  export REPOSITORY={hub-repo}
+  export VERSION={version}
+  ```
+
+- 构建 Dev 镜像（基础环境）
+
+```shell
+DOCKER_BUILDKIT=1 docker build --network host --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} --build-arg RUNTIME=gpu -f docker/ubuntu20.04/Dockerfile_dev -t $REPOSITORY/metaspore-dev-gpu:${VERSION} .
+
+DOCKER_BUILDKIT=1 docker build --network host --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} --build-arg RUNTIME=cpu -f docker/ubuntu20.04/Dockerfile_dev -t $REPOSITORY/metaspore-dev-cpu:${VERSION} .
+```
+
+- Serving
+
+  - Build 镜像（基于 Dev 镜像进行编译）
+  - Service 镜像
+
+- Training
+
+  - Build 镜像（基于 Dev 镜像进行编译）
+
+    ```shell
+    DOCKER_BUILDKIT=1 docker build --network host --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} -f docker/ubuntu20.04/Dockerfile_training_build --build-arg DEV_IMAGE=$REPOSITORY/metaspore-dev-cpu:${VERSION} -t $REPOSITORY/metaspore-training-build:${VERSION} .
+    ```
+    
+  - Spark Training 镜像
+  
+    ```shell
+    DOCKER_BUILDKIT=1 docker build --network host --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} -f docker/ubuntu20.04/Dockerfile_training_release --build-arg METASPORE_RELEASE=build --build-arg METASPORE_BUILD_IMAGE=$REPOSITORY/metaspore-training-build:${VERSION} -t $REPOSITORY/metaspore-training-release:${VERSION} --target release .
+    ```
+  
+- Jupyter
+
+  ```shell
+  DOCKER_BUILDKIT=1 docker build --network host --build-arg http_proxy=${http_proxy} --build-arg https_proxy=${https_proxy} -f docker/ubuntu20.04/Dockerfile_jupyter --build-arg RELEASE_IMAGE=$REPOSITORY/metaspore-training-release:${VERSION} -t $REPOSITORY/metaspore-training-jupyter:${VERSION} docker/ubuntu20.04
+  ```
+
 # MetaSpore C++
 
 MetaSpore C++ 包含几个模块。
@@ -42,6 +86,13 @@ MetaSpore C++ 包含几个模块。
 # Getting Started
 
 [文档链接](https://github.com/meta-soul/MetaSpore/blob/main/tutorials/metaspore-getting-started.ipynb)
+
+## 步骤
+
+- 定义模型（PyTorch Module）
+- 定义 Estimator
+  - PyTorchEstimator，封装 PyTorch 模型，并在分布式环境下训练（调用 fit 方法并传入 DataFrame 进行训练）
+  - 调用 launcher.launch() 在个节点启动 PS 进程（server、worker、coordinator）
 
 ## 定义模型
 
