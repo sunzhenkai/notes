@@ -154,6 +154,59 @@ set(CMAKE_TOOLCHAIN_FILE /path/to/vcpkg/scripts/buildsystems/vcpkg.cmake)
 
 [官方文档](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd)
 
+## Makefile 工程
+
+```cmake
+set(MAKE_OPTS "")
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
+    list(APPEND MAKE_OPTS "STATIC=1")
+else()
+    list(APPEND MAKE_OPTS "SHARED=1")
+endif()
+```
+
+```shell
+# Configure
+# 1. 如果没有 configure.ac 等自动化配置，需要 SKIP_CONFIGURE，且 COPY_SOURCE
+# vcpkg_configure_make(SOURCE_PATH "${SOURCE_PATH}" OPTIONS ${MAKE_OPTS} COPY_SOURCE SKIP_CONFIGURE)
+vcpkg_configure_make(SOURCE_PATH "${SOURCE_PATH}" OPTIONS ${MAKE_OPTS})
+vcpkg_build_make()
+vcpkg_fixup_pkgconfig()
+```
+
+## 自定义克隆
+
+```cmake
+set(GIT_REF 7.0.3)
+set(GIT_URL https://github.com/aerospike/aerospike-client-c.git)
+
+# custome clone git repo
+set(SOURCE_PATH ${CURRENT_BUILDTREES_DIR}/${GIT_REF})
+file(MAKE_DIRECTORY ${SOURCE_PATH})
+if (NOT EXISTS "${SOURCE_PATH}/.git")
+    message(STATUS "Cloning")
+    vcpkg_execute_required_process(
+            COMMAND ${GIT} clone ${GIT_URL} ${SOURCE_PATH}
+            WORKING_DIRECTORY ${SOURCE_PATH}
+            LOGNAME clone
+    )
+endif ()
+
+message(STATUS "Checkout revision ${GIT_REF}")
+vcpkg_execute_required_process(
+        COMMAND ${GIT} checkout ${GIT_REF}
+        WORKING_DIRECTORY ${SOURCE_PATH}
+        LOGNAME checkout
+)
+
+message(STATUS "Fetching submodules")
+vcpkg_execute_required_process(
+        COMMAND ${GIT} submodule update --init
+        WORKING_DIRECTORY ${SOURCE_PATH}
+        LOGNAME submodule
+)
+```
+
 # Registries
 
 ## 获取 SHA512
@@ -430,3 +483,103 @@ export CC=/usr/bin/cc
 export CXX=/usr/bin/c++
 ```
 
+## Makefile 工程 build 失败
+
+1. vcpkg_build_make 默认会构建目标 all
+
+```shell 
+CMake Error at scripts/cmake/vcpkg_execute_build_process.cmake:134 (message):
+    Command failed: /usr/bin/make STATIC=1 SHARED=0 V=1 -j 1 -f Makefile all
+```
+
+可以通过如下命令指定目标。
+
+```shell
+vcpkg_build_make(OPTIONS STATIC=1 SHARED=0 DISABLE_PARALLEL BUILD_TARGET build INSTALL_TARGET install)
+```
+
+2. 尝试添加 DISABLE_PARALLEL，关闭并行编译
+
+## AR 命令错误
+
+makefile
+
+```makefile
+AR= ar rc
+...
+$(CORE_T): $(CORE_O) $(AUX_O) $(LIB_O)
+	$(info CKPT2 : $(AR))
+	$(AR) $@ $(sort $?)
+	$(RANLIB) $@
+```
+
+使用 vcpkg 编译时，命令如下。
+
+```shell
+CKPT2 : ar
+```
+
+但是手动运行命令时，输入如下。
+
+```shell
+CKPT2 : ar rc
+```
+
+可以看到，在使用 vcpkg 编译时（vcpkg_build_make），makefile 中指定的 AR 变量没生效。
+
+在 AR 重新定义前，添加打印。
+
+```shell
+$(info CKPT3 AR=$(AR))
+AR= ar rc
+$(info CKPT4 AR=$(AR))
+```
+
+输入如下。
+
+```shell
+# vcpkg 输出:
+CKPT3 AR=ar
+CKPT4 AR=ar
+
+# 手动运行输出:
+CKPT3 AR=ar
+CKPT4 AR=ar rc
+```
+
+可以看到，vcpkg 运行时，AR 变量没有修改成功。再去检查 AR 的来源。
+
+```shell
+# 打印代码
+$(info CKPT6 AR 的来源: $(origin AR))
+
+# vcpkg 运行
+CKPT6 AR 的来源: environment override
+# 手动运行
+CKPT6 AR 的来源: default
+```
+
+可以看到，vcpkg 在运行时，定义了环境变量 AR。
+
+**解决方案 一**
+
+```shell
+# 修改 makefile 中的赋值语句，添加 override 强制赋值
+override AR= ar rc
+```
+
+**解决方案 二**
+
+```shell
+# 在父 makefile 中添加 unexport
+unexport AR
+```
+
+**解决方案 三**
+
+```shell
+# 定义 AR 参数
+vcpkg_build_make(DISABLE_PARALLEL OPTIONS "AR=ar rc")
+```
+
+这种方案有可能可以解决问题，但是需要知道的是对所有 ar 命令都加了 rc，可能会造成其他问题。

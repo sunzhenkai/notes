@@ -39,12 +39,31 @@ fc-cache -fv
 
 NeoVim 以 Buffer List 的方式管理打开的文件，每个打开的文件是一个 Buffer，并且有唯一的 id（`:ls` 可查看打开的文件列表及 id）。
 
+# 编辑
+
+## 跳转
+
+```shell
+gd    # 跳转到上一个编辑的位置，可跨文件
+%     # 跳转到成对符号的另一侧, 比如 {}, [], ()
+[{    # 跳转到代码块的开始位置
+}]    # 跳转到代码块的结束位置
+```
+
+## 移动
+
+```shell
+Ctrl+[,j/k # Ctrl+[ 后快速按 j/k 键可以移动当前行上移/下移一行，注意必须要快；此外 Ctrl+[ 后会进入 command 模式
+```
+
 # 快捷键
 
 ## LazyVim
 
 ```shell
-<space>e      # 打开 NeoTree
+<space>-e      # 打开 NeoTree
+<ctrl>-o       # 上一个编辑的位置
+<ctrl>-i       # 下一个编辑的位置，<ctrl>-o 的逆操作
 ```
 
 ## Buffer
@@ -75,8 +94,6 @@ H							# 显式/折叠隐藏文件
 ```shell
 <ctrl>-v    # 开启矩阵选择
 ```
-
-
 
 # 插件
 
@@ -158,3 +175,12 @@ vim.cmd([[
 <ctrl> + K/上 : 上
 ```
 
+# 拷贝到系统剪贴板
+
+```shell
+:"+y
+```
+
+**Iterm2 额外配置**
+
+![image-20250314132955546](/Users/wii/workspace/public/notes/tools/neovim/usage/image-20250314132955546.png)
