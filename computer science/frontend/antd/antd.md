@@ -45,3 +45,37 @@ const onSelect = (info: any) => {
     reader.readAsText(file);
 };
 ```
+
+# TroubleShooting
+
+## V4 升 V5
+
+组件兼容
+
+```shell
+yarn add @ant-design/compatible@v5-compatible-v4
+
+import { Comment } from '@ant-design/compatible';
+```
+
+Babel 配置
+
+```json
+{
+  "presets": [
+    ...
+  ],
+  "plugins": [
+    ...
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": true
+      }
+    ]
+  ]
+}
+```
+
