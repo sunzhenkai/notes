@@ -273,7 +273,7 @@ String path = "receiver";
 Socket socket = new Socket(host, port);
 FileTransferClient client = new FileTransferClient(socket);
 client.delete(path);
-client.send(path, new File("/Users/wii/Downloads/cat.jpg"));
+client.send(path, new File(".../Downloads/cat.jpg"));
 client.close();
 ```
 

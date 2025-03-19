@@ -95,6 +95,22 @@ H							# 显式/折叠隐藏文件
 <ctrl>-v    # 开启矩阵选择
 ```
 
+# 终端
+
+## 滚动
+
+**进入 Normal 模式**
+
+在 Neovim 终端界面中，按 `Ctrl+\` + `Ctrl+N`（快速连续按键）切换到 Normal 模式，之后可使用以下操作：
+
+- `j`/`k`：逐行上下滚动
+- `Ctrl+u`/`Ctrl+d`：半屏滚动
+- `gg`/`G`：跳转到顶部/底部
+
+**退出 Normal 模式**
+
+- `i` 
+
 # 插件
 
 # 常见问题
@@ -183,4 +199,4 @@ vim.cmd([[
 
 **Iterm2 额外配置**
 
-![image-20250314132955546](/Users/wii/workspace/public/notes/tools/neovim/usage/image-20250314132955546.png)
+![image-20250317171736221](./usage/image-20250317171736221.png)

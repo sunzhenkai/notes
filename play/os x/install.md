@@ -61,7 +61,7 @@ Reading CPBA_X64FRE_ZH-CN_DV9            (Apple_UDF : 0)…
 Elapsed Time: 12.059s
 Speed: 420.2Mbytes/sec
 Savings: 0.0%
-created: /Users/wii/Downloads/cn_windows_10_business_editions_version_2004_updated_sep_2020_x64_dvd_7134ba4b.img.dmg
+created: .../Downloads/cn_windows_10_business_editions_version_2004_updated_sep_2020_x64_dvd_7134ba4b.img.dmg
 
 #### 2. Rename
 $ mv cn_windows_10_business_editions_version_2004_updated_sep_2020_x64_dvd_7134ba4b.img.dmg cn_windows_10_business_editions_version_2004_updated_sep_2020_x64_dvd_7134ba4b.img
