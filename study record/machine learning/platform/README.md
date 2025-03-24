@@ -13,6 +13,7 @@ date: 2025/01/07 00:00:00
 - [MetaSpore](https://github.com/meta-soul/MetaSpore)
 - [TensorNet](https://github.com/Qihoo360/tensornet)
   - [参考一](https://blog.csdn.net/ZVAyIVqt0UFji/article/details/108633132)
+- [TFRA](https://github.com/tensorflow/recommenders-addons/tree/master)
 
 
 # 训练框架
@@ -24,6 +25,11 @@ date: 2025/01/07 00:00:00
 - Keras
 - MXNet
 - CNTK
+
+# Inference / Serving
+
+- [triton](https://github.com/triton-inference-server/server)
+- [TF Serving](https://github.com/tensorflow/serving/tree/master#)
 
 # MLOps
 
