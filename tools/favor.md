@@ -12,3 +12,19 @@ date: 2023/07/28 00:00:00
     - [setup](./plantuml/setup)
 - [yed](https://www.yworks.com/products/yed)
     - [note](./yed/yed)
+
+# 开发工具
+
+- 终端，Kitty / Alacritty / Wrap / Iterm2
+- zsh
+  - Oh My Zsh
+  - Powerlevel10k‌
+- Tmux
+- Fish Shell
+- Starship
+- Git 终端工具
+  - gitui
+  - lazygit
+- 终端编辑器
+  - Neovim
+  - Helix

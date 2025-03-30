@@ -7,6 +7,35 @@ tags:
 date: 2022/08/28 00:00:00
 ---
 
+# 创建用户
+
+```shell
+# 添加 group
+$ groupadd {groupname}
+# 添加用户
+$ useradd -d /home/{username} -m -s /bin/bash -g {username} {groupname}
+# 添加 sudo
+$ sudo usermod -aG sudo {username}
+# 设置密码
+$ sudo passwd {username}
+```
+
+**示例**
+
+```shell
+groupadd wii
+useradd -d /home/wii -m -s /bin/bash -g wii wii
+sudo usermod -aG sudo wii
+sudo passwd wii
+```
+
+**sudo 权限无需密码**
+
+```shell
+$ visudo
+<username>    ALL=(ALL) NOPASSWD: ALL
+```
+
 # 设置时区
 
 **timedatectl**
@@ -44,5 +73,24 @@ $ sudo timedatectl set-timezone Asia/Shanghai
 
 ```shell
 $ tzselect
+```
+
+# 安装依赖
+
+```shell
+$ git clone https://github.com/sunzhenkai/env-init.git
+$ cd env-init && ./activate
+$ source ~/.bashrc
+$ ii ubuntu -c
+```
+
+# 生成 ssh key
+
+```shell
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
+```shell
+ssh-keygen -t ed25519 -C "zhenkai.sun@qq.com"
 ```
 
