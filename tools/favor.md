@@ -15,7 +15,7 @@ date: 2023/07/28 00:00:00
 
 # 开发工具
 
-- 终端，Kitty / Alacritty / Wrap / Iterm2 / Ghostty / zed
+- 终端，Wrap / Alacritty / Kitty / Iterm2 / Ghostty
 - zsh
   - Oh My Zsh
   - Powerlevel10k‌
