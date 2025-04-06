@@ -27,6 +27,14 @@ $ go build -o output-file-name main.go
 $ go build -gcflags="-m" main.go
 ```
 
+## 静态编译
+
+不依赖共享库，可以避免 libc 库接口不兼容的问题。
+
+```shell
+CGO_ENABLED=0 go build -ldflags="-s -w -extldflags=-static" main.go
+```
+
 ## 示例
 
 **代码**
@@ -54,7 +62,7 @@ Hello World!
 $ go build hello.go
 ```
 
-## 添加依赖库实例
+## 添加依赖库示例
 
 ```shell
 # main.go
