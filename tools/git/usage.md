@@ -325,3 +325,31 @@ source ~/.bashrc
 git filter-branch -- --all
 ```
 
+## fatal: '...' does not have a commit checked out
+
+**错误信息**
+
+```shell
+# case 1
+$ git submodule add {repo-url}
+fatal: '...' does not have a commit checked out
+
+# case 2
+$ git submodule add {repo-url} {dest-dir}
+fatal: You are on a branch yet to be born
+fatal: unable to checkout submodule '...'
+```
+
+**原因**
+
+在仓库为空时，执行了 `git submodule add`
+
+**解决**
+
+```shell
+rm -r .git/modules/{dest-dir}
+rm -r {dest-dir}
+# 重新添加
+git submodule add ...
+```
+
