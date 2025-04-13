@@ -67,6 +67,78 @@ Arrow C++ 库由多个部分组成，每个部分完成不同的功能。
 
 文件系统抽象允许从不同的存储后端读取和写入数据，例如本地文件系统或 S3 存储桶
 
+# 计算
+
+## 通用计算 API
+
+### Functions 及其注册
+
+- 函数表示对可能不同类型的输入的计算操作
+- 在内部，一个函数由一个或多个“内核”（**Kernels**）实现
+- 函数存储在全局函数注册表（[`FunctionRegistry`](https://arrow.apache.org/docs/cpp/api/compute.html#_CPPv4N5arrow7compute16FunctionRegistryE) ）中，可以在其中按名称查找它们
+
+### Input Shapes
+
+- 计算 API 的输入被标识为通用的 Datum 类，可以标识 Scalar、Array、ChunkedArray
+- 很多函数支持 Array、Chunked Array和 Scalar 作为输入，但是有些需要特定的输入
+  - array_sort_indices，仅接受一个 Array 作为输入
+  - sort_indices，更通用，接受 Array、Chunked Array、BatchRecord、Table
+
+### 调用函数
+
+- 计算函数可以使用 `arrow::compute::CallFunctioni()` 来调用
+- 也可以用具体的 API，比如 `arrow::compute::Add()`
+
+```shell
+arrow::compute::CallFunctioni("add", ...) 等价于 arrow::compute::Add(...)
+```
+
+需要注意的是，一些函数还需要特定类型的参数（Options）。
+
+```c++
+ScalarAggregateOptions scalar_aggregate_options;
+arrow::compute::CallFunction("min_max", {...}, &scalar_aggregate_options)
+```
+
+## 隐式转换（Implicit casts）
+
+functions 可能会对输入进行隐式转换。
+
+## 可用的 Functions
+
+### 类型分类
+
+- Numeric，Integer、Floating、Decimal128/256
+- Temporal，Date、Time、Timestamp、Duration、Interval
+- Binary Like，Binary、LargeBinary、FixedSizeBinary
+- String Like，String、LargeString
+- List Like，List、LargeList、ListView、LargeListView、FixedSizeList
+- Nested，List-likes、Struct、Union、related types like Map
+
+**如果一个 Function 不支持一个输入类型，会返回 TypeError Status。**
+
+### Aggregations（聚合）
+
+标量聚合操作操作在 （Chunked）Array、Scalar，产生单个输出值。
+
+具体的聚合方法看[这里](https://arrow.apache.org/docs/cpp/compute.html#aggregations)。
+
+### Group Aggregations（组聚合）
+
+组聚合方法通常无法直接调用，通常作为 SQL 类型 `group by` 操作，详见[这里](https://arrow.apache.org/docs/cpp/compute.html#grouped-aggregations-group-by)。
+
+### Element-wise (“scalar”) functions
+
+这类方法接受 Array 和 Scalar 作为输入。对于一元输入，输入是什么类型，输出就是什么类型。
+
+两元输入时有如下的语义（在其他领域有时称为 `broadcasting` 比如 Numpy）。
+
+- (Scalar, Scalar)，输出 Scalar
+- (Array, Array)，输出 Array
+- (Scalar, Array)、(Array, Scalar) 输出 Array。标量输入被处理为与另一个相同长度的数组，元素是重复的值。
+
+[更多](https://arrow.apache.org/docs/cpp/compute.html#array-wise-vector-functions)。
+
 # Acero
 
 Acero 是一个流查询引擎，用来制定和执行计算。
@@ -74,6 +146,10 @@ Acero 是一个流查询引擎，用来制定和执行计算。
 ![Acero consumes streams of input data, transforms them, and outputs a stream of data.](startup/high_level.svg)
 
 Arrow 使用 ExecPlan 来表示计算，ExecPlan 以零个或多个 Stream 作为输入，但输出只有一个 Stream。Plan 描述了数据怎么被转换、传递。
+
+Acero 处理流式数据，Compute 处理内存中的数据。
+
+![A diagram of layers with core on the left, compute in the middle, and acero on the right](./startup/layers.svg)
 
 ## 概念
 

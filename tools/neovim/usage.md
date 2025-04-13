@@ -320,3 +320,25 @@ vim.keymap.set("v", "<leader>y", '"+y', {
 **Iterm2 额外配置**
 
 ![image-20250317171736221](./usage/image-20250317171736221.png)
+
+# 问题排查
+
+```shell
+:LspInfo               # 打印 Lsp 信息，用于排查
+:setlocal indentexpr?  # 查看 indent 信息
+```
+
+## 日志
+
+```shell
+~/.local/state/nvim
+```
+
+## 初始化
+
+```c++
+#include "arrow/dataset/plan.h"
+
+arrow::dataset::internal::Initialize();
+```
+
