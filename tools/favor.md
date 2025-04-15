@@ -10,6 +10,7 @@ date: 2023/07/28 00:00:00
 # 画图
 - [plantuml](https://plantuml.com/)
     - [setup](./plantuml/setup)
+- [mermaid](https://github.com/mermaid-js/mermaid?tab=readme-ov-file)
 - [yed](https://www.yworks.com/products/yed)
     - [note](./yed/yed)
 
