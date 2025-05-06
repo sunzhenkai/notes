@@ -539,6 +539,15 @@ class ... {};
 
 [参考](https://stackoverflow.com/questions/5533354/what-does-a-call-to-this-template-somename-do)，[这里](https://www.zhihu.com/question/37990298)。
 
+## 类型判断
+
+```c++
+# 判断类型是否是 std::string
+if constexpr (std::is_same_v<std::decay_t<T>, std::string>) ...
+```
+
+
+
 # 文件及目录
 
 ## 当前文件夹
