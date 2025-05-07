@@ -328,6 +328,12 @@ vim.cmd([[
 <ctrl> + K/上 : 上
 ```
 
+## 快捷键冲突检查
+
+```shell
+:checkhealth which-key
+```
+
 # 拷贝到系统剪贴板
 
 ```shell
