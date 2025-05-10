@@ -4,7 +4,7 @@ categories:
   - zeppelin
 tags:
   - zeppelin
-date: 2021/2/23 00:00:00
+date: "2021-02-23T00:00:00+08:00"
 ---
 
 # 安装

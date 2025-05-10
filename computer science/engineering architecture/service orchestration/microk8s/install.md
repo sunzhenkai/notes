@@ -4,8 +4,8 @@ categories:
   - [架构,container,microk8s]
 tags:
   - microk8s
-date: 2022/08/18 00:00:00
-update: 2022/08/18 00:00:00
+date: "2022-08-18T00:00:00+08:00"
+update: "2022-08-18T00:00:00+08:00"
 ---
 
 # 文档

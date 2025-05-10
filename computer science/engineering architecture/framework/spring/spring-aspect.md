@@ -4,8 +4,8 @@ categories:
   - [架构,Java,框架,spring]
 tags:
   - spring
-date: 2021/04/12 00:00:00
-update: 2021/04/12 00:00:00
+date: "2021-04-12T00:00:00+08:00"
+update: "2021-04-12T00:00:00+08:00"
 ---
 
 # new Bean 问题

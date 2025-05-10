@@ -4,7 +4,7 @@ categories:
   - [工具,fswatch]
 tags:
   - emacs
-date: 2022/09/17 00:00:00
+date: "2022-09-17T00:00:00+08:00"
 ---
 
 # 参数

@@ -4,8 +4,8 @@ categories:
   - [linux,distro,centos]
 tags:
   - distro
-date: 2021/10/17 00:00:00
-update: 2021/10/17 00:00:00
+date: "2021-10-17T00:00:00+08:00"
+update: "2021-10-17T00:00:00+08:00"
 ---
 
 # 用户管理

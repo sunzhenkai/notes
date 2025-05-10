@@ -4,8 +4,8 @@ categories:
   - [computer science, computing, instance]
 tags:
   - openstack
-date: 2022/06/02 00:00:00
-update: 2022/06/02 00:00:00
+date: "2022-06-02T00:00:00+08:00"
+update: "2022-06-02T00:00:00+08:00"
 ---
 
 # 挂载卷

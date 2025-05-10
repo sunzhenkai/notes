@@ -4,7 +4,7 @@ categories:
   - [coding, c++]
 tags:
   - c++
-date: 2022/02/09 00:00:00
+date: "2022-02-09T00:00:00+08:00"
 ---
 
 # 容易 Core Dump 的情形

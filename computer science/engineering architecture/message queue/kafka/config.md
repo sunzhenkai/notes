@@ -4,8 +4,8 @@ categories:
     - [架构, mq, kafka]
 tags:
     - kafka
-date: 2021/10/12 00:00:00
-update: 2021/10/12 00:00:00
+date: "2021-10-12T00:00:00+08:00"
+update: "2021-10-12T00:00:00+08:00"
 ---
 
 # Common

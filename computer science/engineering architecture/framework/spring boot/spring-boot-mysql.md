@@ -4,8 +4,8 @@ categories:
   - [架构,框架,spring boot]
 tags:
   - spring boot
-date: 2021/05/10 00:00:00
-update: 2021/05/10 00:00:00
+date: "2021-05-10T00:00:00+08:00"
+update: "2021-05-10T00:00:00+08:00"
 ---
 
 # 依赖

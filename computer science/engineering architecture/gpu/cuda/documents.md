@@ -4,8 +4,8 @@ categories:
   - [architecture, gpu, cuda]
 tags:
   - cuda
-date: 2023/06/30 00:00:00
-update: 2023/06/30 00:00:00
+date: "2023-06-30T00:00:00+08:00"
+update: "2023-06-30T00:00:00+08:00"
 ---
 
 # 概念

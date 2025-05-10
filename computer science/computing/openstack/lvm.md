@@ -4,8 +4,8 @@ categories:
   - [computer science, computing, storage]
 tags:
   - openstack
-date: 2021/11/02 00:00:00
-update: 2021/11/02 00:00:00
+date: "2021-11-02T00:00:00+08:00"
+update: "2021-11-02T00:00:00+08:00"
 ---
 
 # LVM

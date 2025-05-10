@@ -5,7 +5,7 @@ categories:
 tags:
   - linux
     - rsync
-date: 2022/10/21 00:00:00
+date: "2022-10-21T00:00:00+08:00"
 ---
 
 # Command

@@ -4,8 +4,8 @@ categories:
   - [big data, hadoop]
 tags:
   - hadoop
-date: 2022/06/02 00:00:00
-update: 2022/06/02 00:00:00
+date: "2022-06-02T00:00:00+08:00"
+update: "2022-06-02T00:00:00+08:00"
 ---
 
 [toc]

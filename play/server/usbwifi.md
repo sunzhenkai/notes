@@ -4,7 +4,7 @@ categories:
   - [play,network]
 tags:
   - server
-date: 2022/08/27 00:00:00
+date: "2022-08-27T00:00:00+08:00"
 ---
 
 # 360 随身 wifi 1 代

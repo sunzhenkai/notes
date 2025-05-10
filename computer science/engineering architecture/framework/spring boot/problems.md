@@ -4,8 +4,8 @@ categories:
   - [架构,java,框架,spring boot]
 tags:
   - spring boot
-date: 2020/12/29 00:00:00
-update: 2020/12/29 00:00:00
+date: "2020-12-29T00:00:00+08:00"
+update: "2020-12-29T00:00:00+08:00"
 ---
 
 # 服务停止时Redis连接池断开异常

@@ -4,8 +4,8 @@ categories:
   - [架构,java,框架,spring boot]
 tags:
   - spring boot
-date: 2021/09/06 00:00:00
-update: 2021/09/06 00:00:00
+date: "2021-09-06T00:00:00+08:00"
+update: "2021-09-06T00:00:00+08:00"
 ---
 
 # 单个可执行 jar 包

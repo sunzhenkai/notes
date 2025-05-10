@@ -4,8 +4,8 @@ categories:
   - [架构,container,k8s]
 tags:
   - k8s
-date: 2022/08/15 00:00:00
-update: 2022/08/15 00:00:00
+date: "2022-08-15T00:00:00+08:00"
+update: "2022-08-15T00:00:00+08:00"
 ---
 
 # k8s objects

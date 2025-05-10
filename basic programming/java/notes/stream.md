@@ -4,8 +4,8 @@ categories:
   - [coding,java,notes]
 tags:
   - java
-date: 2021/02/07 00:00:00
-update: 2021/02/07 00:00:00
+date: "2021-02-07T00:00:00+08:00"
+update: "2021-02-07T00:00:00+08:00"
 ---
 
 # collect

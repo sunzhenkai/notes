@@ -4,7 +4,7 @@ categories:
   - [linux,distro,ubuntu]
 tags:
   - distro
-date: 2022/08/28 00:00:00
+date: "2022-08-28T00:00:00+08:00"
 ---
 
 # 创建用户

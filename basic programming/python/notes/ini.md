@@ -4,8 +4,8 @@ categories:
   - [python, notes]
 tags:
   - python
-date: 2021/11/25 00:00:00
-update: 2021/11/25 00:00:00
+date: "2021-11-25T00:00:00+08:00"
+update: "2021-11-25T00:00:00+08:00"
 ---
 
 # 加载

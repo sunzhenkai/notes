@@ -4,8 +4,8 @@ categories:
   - [工具,cmake]
 tags:
   - cmake
-date: 2020/12/31 00:00:00
-update: 2020/12/31 00:00:00
+date: "2020-12-31T00:00:00+08:00"
+update: "2020-12-31T00:00:00+08:00"
 ---
 
 # Command Line

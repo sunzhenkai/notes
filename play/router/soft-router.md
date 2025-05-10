@@ -4,7 +4,7 @@ categories:
   - [play,soft router]
 tags:
   - soft router
-date: 2022/10/16 00:00:00
+date: "2022-10-16T00:00:00+08:00"
 ---
 
 # 镜像

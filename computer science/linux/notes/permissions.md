@@ -1,11 +1,11 @@
 ---
 title: linux permissions
-categories: 
-  - [linux,notes]
+categories:
+  - [linux, notes]
 tags:
   - Linux
-date: 2020/12/21 9:40:00
-update: 2020/12/21 9:40:00
+date: "2020-12-21T09:40:00+08:00"
+update: "2020-12-21T09:40:00+08:00"
 ---
 
 # file permissions
@@ -13,7 +13,6 @@ update: 2020/12/21 9:40:00
 ## owner
 
 ```shell
-$ chown user filename
-$ chown user:group filename
+chown user filename
+chown user:group filename
 ```
-

@@ -4,8 +4,8 @@ categories:
   - [coding,java,notes]
 tags:
   - java
-date: 2021/03/10 00:00:00
-update: 2021/03/10 00:00:00
+date: "2021-03-10T00:00:00+08:00"
+update: "2021-03-10T00:00:00+08:00"
 ---
 
 # 锁分类

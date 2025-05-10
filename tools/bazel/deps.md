@@ -4,8 +4,8 @@ categories:
   - [工具,bazel]
 tags:
   - bazel
-date: 2021/07/01 00:00:00
-update: 2021/07/01 00:00:00
+date: "2021-07-01T00:00:00+08:00"
+update: "2021-07-01T00:00:00+08:00"
 ---
 
 # google-apis

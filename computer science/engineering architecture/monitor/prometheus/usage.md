@@ -4,8 +4,8 @@ categories:
   - [架构, 监控, prometheus]
 tags:
   - prometheus
-date: 2021/11/10 00:00:00
-update: 2021/11/10 00:00:00
+date: "2021-11-10T00:00:00+08:00"
+update: "2021-11-10T00:00:00+08:00"
 ---
 
 # 异常报警

@@ -4,8 +4,8 @@ categories:
     - 关于
 tags:
     - 关于
-date: 1993/1/1 00:00:00
-update: 1993/1/1 00:00:00
+date: "1993-01-01T00:00:00+08:00"
+update: "1993-01-01T00:00:00+08:00"
 ---
 
 整理了一些文档，一部分是笔记，一部分是文章， 绝大多数是 Markdown 格式，源码在 [这里](https://github.com/sunzhenkai/notes)。有两个网站可以更方便的查看，[wii.pub](https://wii.pub) 和 [wii.wiki](https://wii.wiki)。

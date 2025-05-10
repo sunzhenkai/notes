@@ -4,7 +4,7 @@ categories:
   - [架构,container,k8s,k9s]
 tags:
   - k9s
-date: 2022/08/22 00:00:00
+date: "2022-08-22T00:00:00+08:00"
 ---
 
 # Install

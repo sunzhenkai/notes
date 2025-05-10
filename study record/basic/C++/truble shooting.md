@@ -5,7 +5,7 @@ categories:
 tags:
     - 研习录
     - C++
-date: 2024/03/18 00:00:00
+date: "2024-03-18T00:00:00+08:00"
 ---
 
 # Core Dump

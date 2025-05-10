@@ -4,8 +4,8 @@ categories:
   - [工具,cmake]
 tags:
   - cmake
-date: 2021/01/4 00:00:00
-update: 2021/01/4 00:00:00
+date: "2021-01-04T00:00:00+08:00"
+update: "2021-01-04T00:00:00+08:00"
 ---
 
 # gflags

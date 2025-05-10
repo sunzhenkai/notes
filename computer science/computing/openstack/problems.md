@@ -4,8 +4,8 @@ categories:
   - [computer science, computing, openstack]
 tags:
   - openstack
-date: 2021/12/05 00:00:00
-update: 2021/12/05 00:00:00
+date: "2021-12-05T00:00:00+08:00"
+update: "2021-12-05T00:00:00+08:00"
 ---
 
 # 无法删除卷

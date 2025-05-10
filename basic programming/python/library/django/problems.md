@@ -4,7 +4,7 @@ categories:
   - [python, library, django]
 tags:
   - django
-date: 2020/12/24 19:00:00
+date: "2020-12-24T19:00:00+08:00"
 ---
 
 # 启动时执行一次

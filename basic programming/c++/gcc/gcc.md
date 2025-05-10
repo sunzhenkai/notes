@@ -4,7 +4,7 @@ categories:
   - [coding, c++, gcc]
 tags:
   - gcc
-date: 2022/03/10 00:00:00
+date: "2022-03-10T00:00:00+08:00"
 ---
 
 # Install

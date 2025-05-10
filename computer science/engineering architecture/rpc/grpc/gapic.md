@@ -5,8 +5,8 @@ categories:
 tags:
     - gapis
     - gRPC
-date: 2021/05/24 00:00:00
-update: 2021/05/24 00:00:00
+date: "2021-05-24T00:00:00+08:00"
+update: "2021-05-24T00:00:00+08:00"
 ---
 
 # Introduction
