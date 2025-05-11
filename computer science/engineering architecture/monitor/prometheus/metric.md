@@ -4,8 +4,8 @@ categories:
   - [架构, 监控, prometheus]
 tags:
   - prometheus
-date: 2021/10/14 00:00:00
-update: 2021/10/14 00:00:00
+date: "2021-10-14T00:00:00+08:00"
+update: "2021-10-14T00:00:00+08:00"
 ---
 
 # metric

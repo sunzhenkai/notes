@@ -4,8 +4,8 @@ categories:
   - [工具,bazel]
 tags:
   - bazel
-date: 2021/05/22 00:00:00
-update: 2021/05/22 00:00:00
+date: "2021-05-22T00:00:00+08:00"
+update: "2021-05-22T00:00:00+08:00"
 ---
 
 # Description

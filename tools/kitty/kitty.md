@@ -4,7 +4,7 @@ categories:
   - [tools, kitty]
 tags:
   - kitty
-date: 2025/3/28 00:00:00
+date: "2025-03-28T00:00:00+08:00"
 ---
 
 # Troubleshotting

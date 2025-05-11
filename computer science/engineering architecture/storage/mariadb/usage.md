@@ -4,7 +4,7 @@ categories:
   - [架构, 存储, mariadb]
 tags:
   - mariadb
-date: 2022/10/01 00:00:00
+date: "2022-10-01T00:00:00+08:00"
 ---
 
 # Install

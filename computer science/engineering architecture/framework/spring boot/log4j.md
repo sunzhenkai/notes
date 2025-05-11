@@ -5,8 +5,8 @@ categories:
 tags:
   - log4j
     - spring boot
-date: 2021/05/12 00:00:00
-update: 2021/05/12 00:00:00
+date: "2021-05-12T00:00:00+08:00"
+update: "2021-05-12T00:00:00+08:00"
 ---
 
 # Dependency

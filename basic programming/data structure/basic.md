@@ -4,7 +4,7 @@ categories:
   - [data struct]
 tags:
   - data struct
-date: 2023/05/10 00:00:00
+date: "2023-05-10T00:00:00+08:00"
 ---
 
 # 数据结构

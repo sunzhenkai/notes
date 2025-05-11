@@ -5,7 +5,7 @@ categories:
 tags:
   - phpmyadmin
     - mariadb
-date: 2022/08/27 00:00:00
+date: "2022-08-27T00:00:00+08:00"
 ---
 
 # Docker

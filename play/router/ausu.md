@@ -4,7 +4,7 @@ categories:
   - [play,router]
 tags:
   - router
-date: 2022/10/16 00:00:00
+date: "2022-10-16T00:00:00+08:00"
 ---
 
 # 通过域名解析内网机器

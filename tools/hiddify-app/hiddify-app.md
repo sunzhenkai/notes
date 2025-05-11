@@ -1,11 +1,11 @@
 ---
 title: hiddify
-categories: 
-  - [工具, hiddify]
+categories:
+  - [tools, hiddify]
 tags:
   - hiddify
-date: 2021/08/25 00:00:00
-update: 2021/08/25 00:00:00
+comments: true
+date: "2020-10-26T18:00:00+08:00"
 ---
 
 # 简介

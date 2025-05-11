@@ -4,8 +4,8 @@ categories:
   - [tools,ftp]
 tags:
   - ftp
-date: 2022/1/10 00:00:00
-update: 2022/1/10 00:00:00
+date: "2022-01-10T00:00:00+08:00"
+update: "2022-01-10T00:00:00+08:00"
 ---
 
 ```shell

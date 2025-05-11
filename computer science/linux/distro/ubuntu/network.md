@@ -4,8 +4,8 @@ categories:
   - [linux,distro,ubuntu]
 tags:
   - distro
-date: 2021/08/28 00:00:00
-update: 2021/08/28 00:00:00
+date: "2021-08-28T00:00:00+08:00"
+update: "2021-08-28T00:00:00+08:00"
 ---
 
 # 静态地址

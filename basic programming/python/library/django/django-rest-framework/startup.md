@@ -5,7 +5,7 @@ categories:
 tags:
   - django rest framework
   - django rest framework
-date: 2022/02/27 00:00:00
+date: "2022-02-27T00:00:00+08:00"
 ---
 
 # startup

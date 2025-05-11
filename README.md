@@ -1,11 +1,11 @@
 ---
 title: README
 categories:
-    - 关于
+  - 关于
 tags:
-    - 关于
-date: 1993-1-1T00:00:00+08:00
-update: 1993-1-1T00:00:00+08:00
+  - 关于
+date: "1993-01-01T00:00:00+08:00"
+update: "1993-01-01T00:00:00+08:00"
 ---
 
 整理了一些文档，一部分是笔记，一部分是文章， 绝大多数是 Markdown 格式，源码在 [这里](https://github.com/sunzhenkai/notes)。有两个网站可以更方便的查看，[wii.pub](https://wii.pub) 和 [wii.wiki](https://wii.wiki)。
@@ -15,6 +15,6 @@ update: 1993-1-1T00:00:00+08:00
 
 如果想要了解我，那么请查看[这个页面](./about.md)，如果感兴趣可以看一些我的[碎碎念](./others/thoughts/thoughts)。写的东西会非常杂，也会不断添加内容，希望能对你有些用处。期望能打造成一个百宝箱，但愿不会变成你们眼中的垃圾箱。
 
-如果有疑问，可以写在[这里](https://github.com/sunzhenkai/notes/issues)，如果想联系我，可以 Email（zhenkai.sun@qq.com）或微信（sunzhkai）。
+如果有疑问，可以写在[这里](https://github.com/sunzhenkai/notes/issues)，如果想联系我，可以 Email（<zhenkai.sun@qq.com>）或微信（sunzhkai）。
 
 最后，如果有大量链接需要整理且经常访问，欢迎试下[灵犀](https://exploring.fun)，欢迎专注 [GitHub 账户](https://github.com/sunzhenkai)。

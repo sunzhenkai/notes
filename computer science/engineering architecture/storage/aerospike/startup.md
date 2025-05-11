@@ -4,7 +4,7 @@ categories:
   - [架构,存储,scylladb]
 tags:
   - scylladb
-date: 2025/03/18 00:00:00
+date: "2025-03-18T00:00:00+08:00"
 ---
 
 # AQL

@@ -4,7 +4,7 @@ categories:
   - [coding, c++]
 tags:
   - c++
-date: 2023/07/27 00:00:00
+date: "2023-07-27T00:00:00+08:00"
 ---
 
 # 包管理器
@@ -16,6 +16,7 @@ date: 2023/07/27 00:00:00
 - [folly](https://github.com/facebook/folly)
 - [bde](https://github.com/bloomberg/bde)
 - [abseil-cpp](https://github.com/abseil/abseil-cpp)
+- [poco](https://github.com/pocoproject/poco)
 
 # Git 仓库
 - [awesome-cpp](https://github.com/fffaraz/awesome-cpp)

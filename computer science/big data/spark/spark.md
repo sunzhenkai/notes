@@ -4,8 +4,8 @@ categories:
   - [big data, spark]
 tags:
   - spark
-date: 2022/06/04 00:00:00
-update: 2022/06/04 00:00:00
+date: "2022-06-04T00:00:00+08:00"
+update: "2022-06-04T00:00:00+08:00"
 ---
 
 # 读 Json 

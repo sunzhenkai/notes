@@ -6,7 +6,7 @@ categories:
 tags:
   - k8s
   - helm
-date: 2024/08/05 00:00:00
+date: "2024-08-05T00:00:00+08:00"
 ---
 
 # local git repo

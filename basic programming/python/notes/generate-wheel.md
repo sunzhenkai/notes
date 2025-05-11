@@ -4,8 +4,8 @@ categories:
   - [python, notes]
 tags:
   - python
-date: 2022/06/20 00:00:00
-update: 2022/06/20 00:00:00
+date: "2022-06-20T00:00:00+08:00"
+update: "2022-06-20T00:00:00+08:00"
 ---
 
 # 安装

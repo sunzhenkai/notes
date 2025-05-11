@@ -4,8 +4,8 @@ categories:
   - [tools, plantuml]
 tags:
   - plantuml
-date: 2021/01/13 19:00:00
-update: 2021/01/13 19:00:00
+date: "2021-01-13T19:00:00+08:00"
+update: "2021-01-13T19:00:00+08:00"
 ---
 
 # 声明元素

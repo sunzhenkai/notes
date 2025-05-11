@@ -4,8 +4,8 @@ categories:
   - [big data, mapr]
 tags:
   - MapR
-date: 2021/09/19 00:00:00
-update: 2021/09/19 00:00:00
+date: "2021-09-19T00:00:00+08:00"
+update: "2021-09-19T00:00:00+08:00"
 ---
 
 # Install

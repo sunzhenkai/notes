@@ -6,7 +6,7 @@ categories:
 tags:
   - flex
   - bison
-date: 2021/01/28 00:00:00
+date: "2021-01-28T00:00:00+08:00"
 ---
 
 # 简述

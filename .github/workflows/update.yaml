@@ -2,7 +2,7 @@ name: TriggerParentRepoUpdate
 
 on:
   push:
-    branches: 
+    branches:
       - master
 
 jobs:
@@ -10,22 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: '[talking-ground] checkout repository'
+      - name: "[talking-ground] checkout repository"
         uses: actions/checkout@v3
-        with: 
+        with:
           repository: "sunzhenkai/talking-ground"
           token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
           submodules: true
-          path: 'talking-ground'
+          path: "talking-ground"
 
-      - name: '[talking-ground] Pull & update submodules recursively'
-        working-directory: 'talking-ground'
+      - name: "[talking-ground] Pull & update submodules recursively"
+        working-directory: "talking-ground"
         run: |
           git submodule update --init --recursive
           git submodule update --recursive --remote
 
-      - name: '[talking-ground] Commit'
-        working-directory: 'talking-ground'
+      - name: "[talking-ground] Commit"
+        working-directory: "talking-ground"
         run: |
           git config user.email "zhenkai.sun@github.com"
           git config user.name "zhenkai.sun"

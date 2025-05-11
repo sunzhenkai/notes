@@ -4,7 +4,7 @@ categories:
   - [coding, c++]
 tags:
   - c++
-date: 2020/11/10 21:00:00
+date: "2020-11-10T21:00:00+08:00"
 ---
 
 [AddressSanitizer](https://github.com/google/sanitizers/wiki/AddressSanitizer/AddressSanitizer) (ASan) C/C++ 程序的内存错误检测器，可以检查如下错误。

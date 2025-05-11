@@ -4,8 +4,8 @@ categories:
     - [play, server]
 tags:
     - development
-date: 2023/07/27 00:00:00
-update: 2023/07/27 00:00:00
+date: "2023-07-27T00:00:00+08:00"
+update: "2023-07-27T00:00:00+08:00"
 ---
 如果你搭建了 datascience 开发环境，并在 hosts 中配置了 datascience 解析，那么下面的链接你可能会用到。
 # UI

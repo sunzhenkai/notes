@@ -4,8 +4,8 @@ categories:
   - [架构,java,框架,curator x discovery]
 tags:
   - curator x discovery
-date: 2021/06/03 00:00:00
-update: 2021/06/03 00:00:00
+date: "2021-06-03T00:00:00+08:00"
+update: "2021-06-03T00:00:00+08:00"
 ---
 
 ## 概念

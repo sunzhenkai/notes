@@ -1,11 +1,11 @@
 ---
 title: linux usage
-categories: 
-  - [linux,notes]
+categories:
+  - [linux, notes]
 tags:
   - Linux
-date: 2020/12/21 9:40:00
-update: 2020/12/21 9:40:00
+date: "2020-12-21T09:40:00+08:00"
+update: "2020-12-21T09:40:00+08:00"
 ---
 
 # 工具
@@ -17,9 +17,9 @@ update: 2020/12/21 9:40:00
 ## 按大小排序打印文件
 
 ```shell
-$ ls -lSh   # -S: 按大小排序; -h: human readable
-$ ls -lShr  # -r: 倒序
-$ ls -lShrR # -R: 递归列出子文件夹
+ls -lSh   # -S: 按大小排序; -h: human readable
+ls -lShr  # -r: 倒序
+ls -lShrR # -R: 递归列出子文件夹
 ```
 
 ## 在特定文件内查找内容
@@ -27,13 +27,13 @@ $ ls -lShrR # -R: 递归列出子文件夹
 **grep**
 
 ```shell
-$ grep -inr --include pom.xml apollo . # i: 忽略大小写; r: 递归; n: 行号
+grep -inr --include pom.xml apollo . # i: 忽略大小写; r: 递归; n: 行号
 ```
 
 **vim**
 
 ```shell
-:vimgrep /apollo/g **/pom.xml 
+:vimgrep /apollo/g **/pom.xml
 ```
 
 ## 递归查找特定文件[夹]
@@ -49,7 +49,7 @@ $ find . -name '\.idea'
 **删除**
 
 ```shell
-$ find . -name '\.idea' | xargs rm  -r
+find . -name '\.idea' | xargs rm  -r
 ```
 
 ## 目录栈
@@ -67,11 +67,11 @@ $ find . -name '\.idea' | xargs rm  -r
 ```shell
 $  ~ dirs
 ~
-$  ~ pushd Downloads 
+$  ~ pushd Downloads
 ~/Downloads ~
 $  Downloads dirs
 ~/Downloads ~
-$  Downloads popd           
+$  Downloads popd
 ~
 $  ~ dirs
 ~
@@ -108,7 +108,7 @@ SCRIPT_DIR=$(readlink -f $0 | xargs dirname)
 ## 查看软连文件大小
 
 ```shell
-# -L 
+# -L
 ls -lhL
 ```
 
@@ -156,7 +156,7 @@ $ ssh-keygen -t rsa -C <email>
 $ ssh-copy-id -i ~/.ssh/id_rsa.pub <user@remote-host>
 
 # [B] 修改目录权限
-$ chmod 700 ./.ssh 
+$ chmod 700 ./.ssh
 $ chmod 600 ~/.ssh/authorized_keys
 
 # [A] 登录
@@ -168,8 +168,8 @@ $ ssh <remote-host>
 ```shell
 # sudo -i / sudo -s / sudo bash / sudo su
 
-Summary of the differences found   
-                                               corrupted by user's 
+Summary of the differences found
+                                               corrupted by user's
                 HOME=/root      uses root's PATH     env vars
 sudo -i         Y               Y[2]                 N
 sudo -s         N               Y[2]                 Y
@@ -186,7 +186,7 @@ sudo chmod u+w /etc/sudoers
 sudo visudo
 
 # 修改 /etc/sudoers，添加下面内容
-## 注意: 
+## 注意:
 ### 1. 先把用户加到 wheel 组 (命令: sudo usermod -aG wheel <username>)
 ### 2. 放到 "%wheel  ALL=(ALL)       ALL " 的下面, 所以: 最好放到文件最后
 <username>    ALL=(ALL) NOPASSWD: ALL
@@ -231,7 +231,7 @@ kill -USR1 <pid>
 ## 排查进程无故 killed
 
 ```shell
-$ dmesg -T| grep -E -i -B100 'killed process'
+dmesg -T| grep -E -i -B100 'killed process'
 ```
 
 ## 查看进程工作路径
@@ -257,13 +257,13 @@ pgrep -x {process-name}  # 进程名精确匹配
 ## 等待进程结束
 
 ```shell
-$ wait {pid}
+wait {pid}
 ```
 
 ## 等待后台线程结束
 
 ```shell
-$ wait $(jobs -p)
+wait $(jobs -p)
 ```
 
 # 设备
@@ -273,7 +273,7 @@ $ wait $(jobs -p)
 ### 磁盘读写监控
 
 ```shell
-$ iotop -o 
+iotop -o
 ```
 
 **参数**
@@ -285,7 +285,7 @@ $ iotop -o
 ### 磁盘测速
 
 ```shell
-$ sudo hdparm -Tt /dev/sda
+sudo hdparm -Tt /dev/sda
 ```
 
 # Shell
@@ -298,10 +298,10 @@ bash --login -x  # 命令行输入, 打印每个命令的执行, 可以调试 PA
 
 ## bash 读取配置文件顺序
 
-- `/etc/profile` 
+- `/etc/profile`
 - `$HOME/.bash_profile`
 - `$HOME/.bash_profile` 不存在则读 `$HOME/.bash_login`
-- `$HOME/.bash_login` 不存在则读 `$HOME/.profile` 
+- `$HOME/.bash_login` 不存在则读 `$HOME/.profile`
 
 # tail 多个远程文件
 
@@ -414,7 +414,7 @@ sudo service sshd restart
 ## 远程执行命令
 
 ```shell
-$ ssh -i /path/to/secret-key-file user@host "command"
+ssh -i /path/to/secret-key-file user@host "command"
 ```
 
 **示例**
@@ -500,7 +500,7 @@ nethogs [option] eth0 eth1 ppp0
 ### tcpdump
 
 ```shell
-tcpdump -i <interface> port <port> 
+tcpdump -i <interface> port <port>
 tcpdump -i <interface> port <port> -w output.cap
 
 # 其他用法
@@ -552,10 +552,10 @@ ss -nap | grep $(pidof <process>)
 # lsb_release
 $ lsb_release -a
 No LSB modules are available.
-Distributor ID:	Ubuntu
-Description:	Ubuntu 18.04.5 LTS
-Release:	18.04
-Codename:	bionic
+Distributor ID: Ubuntu
+Description: Ubuntu 18.04.5 LTS
+Release: 18.04
+Codename: bionic
 
 # os-release
 $ cat /etc/os-release
@@ -583,7 +583,7 @@ $ hostnamectl
   Operating System: Ubuntu 18.04.5 LTS
             Kernel: Linux 4.15.0-126-generic
       Architecture: x86-64
-      
+
 # issue
 $ cat /etc/issue
 Ubuntu 18.04.5 LTS \n \l
@@ -692,10 +692,11 @@ vim /etc/security/limits.conf
 # 添加内容
 * soft core unlimited
 ```
+
 ## 列出 core dump 日志
 
 ```shell
-$ coredumpctl list
+coredumpctl list
 ```
 
 ## core pattern
@@ -703,7 +704,7 @@ $ coredumpctl list
 ```shell
 # core_pattern
 # 查看 core_pattern
-cat /proc/sys/kernel/core_pattern 
+cat /proc/sys/kernel/core_pattern
 
 # 默认
 |/usr/lib/systemd/systemd-coredump %p %u %g %s %t %e"
@@ -738,10 +739,10 @@ iperf3 -s
 iperf3 -c <node-b>
 ```
 
-# dmesg 
+# dmesg
 
 ```shell
-$ dmesg
+dmesg
 ```
 
 错误信息原因参考[这里](https://utcc.utoronto.ca/~cks/space/blog/linux/KernelSegfaultErrorCodes)。
@@ -754,4 +755,3 @@ command -v <program>
 # 示例
 command -v vim > /dev/null 2>&1  && echo "yes"
 ```
-

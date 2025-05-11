@@ -4,7 +4,7 @@ categories:
   - [coding, c++]
 tags:
   - c++
-date: 2021/12/21 00:00:00
+date: "2021-12-21T00:00:00+08:00"
 ---
 
 [toc]
@@ -538,6 +538,15 @@ class ... {};
 ## this->template
 
 [参考](https://stackoverflow.com/questions/5533354/what-does-a-call-to-this-template-somename-do)，[这里](https://www.zhihu.com/question/37990298)。
+
+## 类型判断
+
+```c++
+# 判断类型是否是 std::string
+if constexpr (std::is_same_v<std::decay_t<T>, std::string>) ...
+```
+
+
 
 # 文件及目录
 

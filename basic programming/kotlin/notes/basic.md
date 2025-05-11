@@ -4,8 +4,8 @@ categories:
   - [coding, kotlin, notes]
 tags:
   - kotlin
-date: 2021/01/09 19:00:00
-update: 2021/01/09 19:00:00
+date: "2021-01-09T19:00:00+08:00"
+update: "2021-01-09T19:00:00+08:00"
 ---
 
 # 安装

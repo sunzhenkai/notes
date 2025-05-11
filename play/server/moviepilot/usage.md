@@ -4,8 +4,8 @@ categories:
   - [play,server]
 tags:
   - moviepilot
-date: 2024/03/06 00:00:00
-update: 2024/03/06 00:00:00
+date: "2024-03-06T00:00:00+08:00"
+update: "2024-03-06T00:00:00+08:00"
 ---
 
 # 站点

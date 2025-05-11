@@ -4,8 +4,8 @@ categories:
   - [linux,distro,mint]
 tags:
   - distro
-date: 2021/08/24 00:00:00
-update: 2021/08/24 00:00:00
+date: "2021-08-24T00:00:00+08:00"
+update: "2021-08-24T00:00:00+08:00"
 ---
 
 # 获取发行版信息

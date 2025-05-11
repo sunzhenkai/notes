@@ -4,8 +4,8 @@ categories:
   - [工具,update-alternatives]
 tags:
   - update-alternatives
-date: 2020/12/30 00:00:00
-update: 2020/12/30 00:00:00
+date: "2020-12-30T00:00:00+08:00"
+update: "2020-12-30T00:00:00+08:00"
 ---
 
 # 安装

@@ -4,7 +4,7 @@ categories:
   - [架构,container,minikube]
 tags:
   - minikube
-date: 2023/07/12 00:00:00
+date: "2023-07-12T00:00:00+08:00"
 ---
 
 # 文档
