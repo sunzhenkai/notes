@@ -1,11 +1,10 @@
 ---
-title: 安装 Arch Linux 
+title: fdisk
 categories: 
-  - [linux,distro,centos]
+  - [工具,fdisk]
 tags:
-  - distro
-date: 2021/09/04 00:00:00
-update: 2021/09/04 00:00:00
+  - fdisk
+date: 2025/05/05 00:00:00
 ---
 
 # 创建并挂载分区
@@ -70,54 +69,3 @@ $ mount /dev/sda2 /mnt       # 挂载根分区
 $ mkdir /mnt/boot            # 创建 boot 挂载点
 $ mount /dev/sda1 /mnt/boot  # 挂载 /boot 分区
 ```
-
-# 安装
-
-```shell
-$ pacstrap -K /mnt base linux linux-firmware
-```
-
-# 配置
-
-```shell
-# fstab
-$ genfstab -U /mnt >> /mnt/etc/fstab
-
-# Chroot
-$ arch-chroot /mnt
-
-# Time
-$ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-$ hwclock --systohc
-
-# root passwd
-$ passwd
-
-# 安装 vim
-$ pacman -S vim
-
-# Localization
-$ vim /etc/locale.conf # 写入如下内容
-LANG=en_US.UTF-8
-
-# hostname
-$ vim /etc/hostname
-```
-
-Boot loader
-
-```shell
-# GRUB
-$ pacman -S grub efibootmgr
-$ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
-
-## 配置 GRUB
-$ grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-重启
-
-```shell
-$ exit
-```
-

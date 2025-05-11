@@ -13,6 +13,7 @@ date: 2023/06/20 00:00:00
 - AUR
 - snap
 - flatpak
+- homebrew
 
 # 搜索包
 
@@ -89,6 +90,16 @@ AUR（Arch User Repository）。
 
 AUR helpers 可以帮助我们搜索、下载、编译 AUR 包，常见的 AUR helpers 有 yay、paru等。
 
+## Yay
+
+```shell
+sudo pacman -S --needed git base-devel
+cd /tmp
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
 ## Paru
 
 ### 安装
@@ -140,3 +151,33 @@ $ pamac build ttf-ms-fonts
 > 安装官方包
 >
 > pamac install pkg 
+
+# Hyprland
+
+```shell
+sudo pacman -S hyprland 
+# yay -S hyprland-git
+
+# tools
+## mako 通知
+## xdg-desktop-portal-hyprland 通讯
+## dolphin 文件管理器
+## sddm 桌面显示管理器
+## pipewire、wireplumber 屏幕共享 
+## waybar 状态栏
+## hyprpaper 设置壁纸
+## brightnessctl 调整亮度
+## playerctl 播放控制
+## network-manager-applet 网络图形界面
+## polkit-kde-agent 权限认证界面
+## wl-clipboard	粘贴板
+sudo pacman -S sddm dolphin mako pipewire wireplumber xdg-desktop-portal-hyprland waybar hyprpaper brightnessctl playerctl network-manager-applet polkit-kde-agent firefox wl-clipboard	uwsm
+yay -S cliphist wl-clip-persist eww
+
+# start tools
+sudo systemctl enable --now sddm.service
+
+# fonts
+sudo pacman -S ttf-dejavu ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-droid ttf-opensans ttf-fira-code ttf-font-awesome
+```
+

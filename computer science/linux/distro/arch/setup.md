@@ -50,6 +50,14 @@ DNS=192.168.6.1
 ```shell
 $ systemctl enable systemd-networkd
 $ systemctl start systemd-networkd
+$ systemctl enable systemd-resolved
+$ systemctl start systemd-resolved
+```
+
+检查 DNS
+
+```shell
+$ resolvectl status
 ```
 
 # 配置 SSH 远程登录
@@ -72,6 +80,7 @@ systemctl start sshd.service
 
 ```shell
 $ groupadd -g 100 wii
+$ pacman -S zsh
 $ useradd -m -d /home/wii -s /bin/zsh -g wii wii
 ```
 
