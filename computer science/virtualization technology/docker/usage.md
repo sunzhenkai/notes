@@ -1,6 +1,6 @@
 ---
 title: docker usage
-categories: 
+categories:
   - 算机科学
   - 虚拟化
   - docker
@@ -15,7 +15,9 @@ update: "2020-12-21T19:00:00+08:00"
 Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 [Linux](http://baike.baidu.com/item/Linux) 机器上，也可以实现[虚拟化](http://baike.baidu.com/item/%E8%99%9A%E6%8B%9F%E5%8C%96)。容器是完全使用[沙箱](http://baike.baidu.com/item/%E6%B2%99%E7%AE%B1/393318)机制，相互之间不会有任何接口。
 
 # 安装
+
 ## ubuntu
+
 参考[官网文档](https://docs.docker.com/engine/install/ubuntu/)。
 
 ## amazon linux 2
@@ -42,7 +44,7 @@ sudo yum install -y docker
 ## 从镜像创建新容器
 
 ```shell
-$ docker run -it -d --restart=always --name=ubuntu-18.04 ubuntu:18.04 
+$ docker run -it -d --restart=always --name=ubuntu-18.04 ubuntu:18.04
 
 # 指定端口
 $ docker run --restart=always -p 8080:8080 <image-name>
@@ -51,7 +53,7 @@ $ docker run --restart=always -p 8080:8080 <image-name>
 ## 启动已创建容器
 
 ```shell
-$ docker start container_id/container_name
+docker start container_id/container_name
 ```
 
 ## 查看运行的容器
@@ -75,7 +77,7 @@ docker stop container-name
 ```shell
 root@VirtualBox:/home/conpot# docker ps
 CONTAINER ID        IMAGE        ...
-5a794455532d        nginx:alpine    ...  
+5a794455532d        nginx:alpine    ...
 8518250908b5        voxxit/rsyslog  ...
 77613e26eb6f        elk_logstash    ...
 7effd23c7005        elk_kibana      ...
@@ -109,30 +111,31 @@ root@VirtualBox:/home/conpot# docker ps -q
 ## 重命名容器
 
 ```shell
-$ docker rename CONTAINER NEW_NAME
+docker rename CONTAINER NEW_NAME
 ```
+
 ## 更新容器设置
 
 ```shell
-$ docker update --restart=always container_name/container_id	# --restart=no
+docker update --restart=always container_name/container_id # --restart=no
 ```
 
 ## 执行命令
 
 ```shell
-$ docker exec -it [container] /bin/bash
+docker exec -it [container] /bin/bash
 ```
 
 ## 列出所有容器
 
 ```shell
-$ docker ps -a
+docker ps -a
 ```
 
 ## 删除容器
 
 ```shell
-$ docker docker rm container-name
+docker docker rm container-name
 ```
 
 ## 迁移容器
@@ -188,27 +191,27 @@ $ docker save myimage:latest | gzip > myimage_latest.tar.gz
 ## 加载镜像
 
 ```shell
-$ docker load -i docker-output.tar
-$ docker load < docker-output.tar
+docker load -i docker-output.tar
+docker load < docker-output.tar
 ```
 
 ## Search
 
 ```shell
-$ docker search ubuntu
+docker search ubuntu
 ```
 
 ## 下载
 
 ```shell
-$ docker pull
+docker pull
 ```
 
 ## 查看下载的容器
 
 ```shell
-$ docker images
-$ docker images ubuntu	# 查看单个镜像
+docker images
+docker images ubuntu # 查看单个镜像
 ```
 
 ## 分析镜像大小
@@ -222,9 +225,9 @@ dive hub.docker.com/<user>/<image>:<tag>
 ## 删除镜像 / 清理
 
 ```shell
-$ docker image remove <id>
-$ docker image prune    # 删除无用镜像
-$ docker image prune -a # 删除所有镜像
+docker image remove <id>
+docker image prune    # 删除无用镜像
+docker image prune -a # 删除所有镜像
 ```
 
 ## 导出/加载容器
@@ -234,10 +237,11 @@ docker export container-name > latest.tar
 docker export --output="latest.tar" container-name
 ```
 
-
 # 非 root 用户使用 docker
+
 ## ubuntu
-https://www.jianshu.com/p/35cdb71a32d3
+
+<https://www.jianshu.com/p/35cdb71a32d3>
 
 ```shell
 $ sudo groupadd docker
@@ -251,11 +255,11 @@ $ newgrp - docker # 切换到docker用户组
 通过 snap 安装的 docker
 
 ```shell
-$ sudo addgroup --system docker
-$ sudo adduser $USER docker
-$ newgrp docker
-$ sudo snap disable docker
-$ sudo snap enable docker
+sudo addgroup --system docker
+sudo adduser $USER docker
+newgrp docker
+sudo snap disable docker
+sudo snap enable docker
 ```
 
 ## macos
@@ -301,13 +305,13 @@ docker login hub.private.com
 
 ```json
 {
- "proxies": {
-   "default": {
-     "httpProxy": "http://proxy.example.com:3128",
-     "httpsProxy": "https://proxy.example.com:3129",
-     "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
-   }
- }
+  "proxies": {
+    "default": {
+      "httpProxy": "http://proxy.example.com:3128",
+      "httpsProxy": "https://proxy.example.com:3129",
+      "noProxy": "*.test.example.com,.example.org,127.0.0.0/8"
+    }
+  }
 }
 ```
 
@@ -340,12 +344,12 @@ sudo service docker restart
 ## 其他
 
 ```shell
-sudo mkdir -p /etc/systemd/system/docker.service.d 
+sudo mkdir -p /etc/systemd/system/docker.service.d
 sudo touch /etc/systemd/system/docker.service.d/proxy.conf
 sudo chmod 777 /etc/systemd/system/docker.service.d/proxy.conf
 sudo echo '
 [Service]
-Environment="HTTP_PROXY=socks5://192.168.6.19:3213" 
+Environment="HTTP_PROXY=socks5://192.168.6.19:3213"
 Environment="HTTPS_PROXY=socks5://192.168.6.19:3213"
 ' >> /etc/systemd/system/docker.service.d/proxy.conf
 sudo systemctl daemon-reload
@@ -362,6 +366,7 @@ sudo systemctl restart kubelet
 ## centos
 
 ```shell
+
 ```
 
 # 修改 `/var/lib/docker` 路径
@@ -412,6 +417,10 @@ docker system prune # 要同时清理未使用的镜像、停止的容器、未�
 docker image ls -a | awk '{print $3}' | xargs docker image rm -
 ```
 
+# 镜像推荐
+
+- [VNC 浏览器](https://hub.docker.com/r/mrcolorrain/vnc-browser)
+
 # TroubleShooting
 
 ## dockerd
@@ -422,4 +431,3 @@ docker image ls -a | awk '{print $3}' | xargs docker image rm -
 ~/code/private-config/nodes/home$ dockerd
 unable to configure the Docker daemon with file /etc/docker/daemon.json: the following directives don't match any configuration option: noProxy
 ```
-
