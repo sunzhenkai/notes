@@ -20,13 +20,48 @@ perf 工具默认生成记录文件 perf.data，读写路径是 pwd。
 
 ```shell
 # ubuntu
-sudo apt install linux-tools -y
+sudo apt install linux-tools-common linux-tools-generic linux-tools-`uname -r` -y
 
 # centos
 sudo yum install perf -y
 ```
 
+```shell
+# source code
+wget https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.10.134.tar.gz
+tar -xf linux-5.10.134.tar.gz
+cd linux-5.10.134/tools/perf
+
+make  # 如果编译出错，可以尝试修改 Makefile.config 里面的 FLAGS, 移除 -Werror
+cp perf /usr/bin/
+```
+
 ## 工具
+
+### bpftrace
+
+```shell
+bpftrace -e 'profile:hz:99 /pid == 1/ { @[ustack] = count(); }'
+```
+
+### google-perftools + brpc
+
+```shell
+apt install google-gperftools
+```
+
+```shell
+pprof-symbolize --text 0.0.0.0:9500 --seconds=5
+pprof-symbolize 0.0.0.0:9500 --seconds=5
+```
+
+### brpc/tools/pporf
+
+`./brpc/tools/pprof` 是一个 prel 脚本文件，不需要编译
+
+```shell
+./brpc/tools/pprof --text localhost:9500/pprof/profile
+```
 
 ### top
 
