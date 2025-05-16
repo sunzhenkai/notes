@@ -1,7 +1,7 @@
 ---
 title: Neovim
-categories: 
-  - [tools,Neovim]
+categories:
+  - [tools, Neovim]
 tags:
   - tools
   - Neovim
@@ -86,8 +86,8 @@ Ctrl+[,j/k # Ctrl+[ 后快速按 j/k 键可以移动当前行上移/下移一行
   - `v`、`V` 进入 Visual Mode；`v` 按字符选择，`V` 按行选择
   - **Operator-Pending Mode**，操作符待决模式，改模式是指 Noraml 模式下输入了操作符但未完成整个操作时的状态
     - 可以按 `Esc` 中止该状态
--  **Insert Mode**
-  - `Esc`、`C+[` 进入 Normal Mode
+- **Insert Mode**
+- `Esc`、`C+[` 进入 Normal Mode
 - **Command Line Mode**
 - **Visual Mode**
   - `C+v` 进入按块选择
@@ -131,8 +131,6 @@ Ctrl+[,j/k # Ctrl+[ 后快速按 j/k 键可以移动当前行上移/下移一行
 | <    | 减少缩进                            |
 | =    | 自动缩进                            |
 | !    | 使用外部程序过滤{motion} 所跨越的行 |
-
-
 
 ## 可重复的操作及回退方式
 
@@ -197,16 +195,16 @@ bn{number}    # 下面的第 {number} 个
 bp            # 前一个
 bp{number}    # 前面的第 {number} 个
 b#            # 切换到最近激活的 buffer
-ls						# 列出所有 buffer
+ls      # 列出所有 buffer
 ```
 
 ## NeoTree
 
 ```shell
-?							# 打开帮助框
-a							# 添加文件/文件夹，添加文件夹则以 '/' 结尾，否则添加文件
-H							# 显式/折叠隐藏文件
-.							# 设置选定的目录为 root dir
+?       # 打开帮助框
+a       # 添加文件/文件夹，添加文件夹则以 '/' 结尾，否则添加文件
+H       # 显式/折叠隐藏文件
+.       # 设置选定的目录为 root dir
 ```
 
 # 使用
@@ -220,7 +218,7 @@ I     # 开始编辑
 Esc         # 退出编辑，编辑对多行生效
 
 # 行位添加
-<ctrl>-v  
+<ctrl>-v
 $     # shift + 4
 A     # shift + a
 Esc
@@ -246,7 +244,7 @@ z{?}
 
 **退出 Normal 模式**
 
-- `i` 
+- `i`
 
 # 插件
 
@@ -273,16 +271,16 @@ z{?}
 
 核心思想是针对 fzf 窗口，自定义快捷键，调用 `getreg()` 来获取寄存器内容，搜索到使用 `getreg(nr2char(getchar()))` 命令，但是不行。在 `init.lua` 文件中添加任意一个方案的内容，在搜索时使用快捷键 `Ctrl + V` 即可粘贴寄存器内容。
 
-方案一，使用 nvim 的 lua  api 命令创建。
+方案一，使用 nvim 的 lua api 命令创建。
 
 ```lua
 local autogrp = vim.api.nvim_create_augroup("FZF", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "fzf",
-	group = autogrp,
-	callback = function()
-		vim.api.nvim_set_keymap("t", "<C-r>", "getreg()", { noremap = true, expr = true, silent = true })
-	end,
+ pattern = "fzf",
+ group = autogrp,
+ callback = function()
+  vim.api.nvim_set_keymap("t", "<C-r>", "getreg()", { noremap = true, expr = true, silent = true })
+ end,
 })
 ```
 
@@ -345,9 +343,9 @@ vim.cmd([[
 ```lua
 -- 可视模式下 <leader>y 复制到系统剪贴板
 vim.keymap.set("v", "<leader>y", '"+y', {
-	noremap = true, -- 非递归映射
-	silent = true, -- 静默执行
-	desc = "Copy to system clipboard", -- 可选的描述
+ noremap = true, -- 非递归映射
+ silent = true, -- 静默执行
+ desc = "Copy to system clipboard", -- 可选的描述
 })
 ```
 
@@ -375,4 +373,3 @@ vim.keymap.set("v", "<leader>y", '"+y', {
 
 arrow::dataset::internal::Initialize();
 ```
-
