@@ -84,7 +84,7 @@ $ pacman -Ss vim
 
 # AUR
 
-AUR（Arch User Repository）。
+AUR（Arch User Repository），通常使用 AUR Helpers 安装 AUR 的包。
 
 ## AUR Helpers
 
