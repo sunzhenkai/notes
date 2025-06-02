@@ -111,6 +111,11 @@ Boot loader
 $ pacman -S grub efibootmgr
 $ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
 
+## 如何需要添加其他系统引导，默认不检测其他系统
+$ vim /etc/default/grub
+# 确保如下配置
+GRUB_DISABLE_OS_PROBER=false
+
 ## 配置 GRUB
 $ grub-mkconfig -o /boot/grub/grub.cfg
 ```
