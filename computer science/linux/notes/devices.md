@@ -232,8 +232,7 @@ mkfs.ext4 /dev/vdb1
 mount -t auto /dev/vdb1 /data
 
 # 写入 /etc/fstab, root 用户运行
-echo -e "UUID=$(blkid -o value -s UUID /dev/vdb1)\t/data\text4\tdefaults\t0 0" >> /etc/fstab
-
+echo -e "UUID=$(blkid -o value -s UUID /dev/sdb1)\t/data\text4\tdefaults\t0 0" >> /etc/fstab
 
 echo -e "UUID=$(blkid -o value -s UUID /dev/sdb1)\t/downloads\text4\tdefaults\t0 0" >> /etc/fstab
 ```
@@ -398,6 +397,22 @@ sudo vgremove <lvm-vg-name>
 
 ```shell
 sudo pvremove /dev/sda
+```
+
+## 挂载新硬盘
+
+```shell
+# 创建文件系统
+$ sudo mkfs -t ext4 /dev/sdb
+# 分区
+$ sudo parted -a optimal /dev/sdb 
+(parted) mklabel gpt
+(parted) mkpart primary 0% 100%
+# 格式化
+$ sudo mkfs.ext4 /dev/vdb1
+# 挂载
+$ sudo mkdir /data
+$ sudo mount -t auto /dev/sdb1 /data
 ```
 
 # 查看接口
