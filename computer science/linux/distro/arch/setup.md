@@ -101,3 +101,29 @@ $ pacman -S sudo git curl wget zip unzip base-devel
 $ pacman -S gdb cmake ninja texinfo
 ```
 
+# Wake On Lan
+
+```shell
+sudo pacman -S ethtool
+sudo ethtool -s eth0 wol g
+
+# 持久化配置
+# /etc/systemd/network/50-wired.link
+[Match]
+MACAddress=aa:bb:cc:dd:ee:ff
+
+[Link]
+NamePolicy=kernel database onboard slot path
+MACAddressPolicy=persistent
+WakeOnLan=magic
+```
+
+或使用 wol service。
+
+```shell
+# 安装
+yay -Sy wol-systemd
+# enable
+sudo systemctl enable wol@eno1.service  # eno1 为网络接口
+```
+
