@@ -159,6 +159,10 @@ $ sudo mkdir data
 $ sudo mount -t auto /dev/sda1 /data
 ```
 
+```shell
+$ echo -e "UUID=$(sudo blkid -o value -s UUID /dev/sdb1)\t/data\text4\tdefaults\t0 0" | sudo tee -a /etc/fstab
+```
+
 ### 示例
 
 ```shell
@@ -232,7 +236,9 @@ mkfs.ext4 /dev/vdb1
 mount -t auto /dev/vdb1 /data
 
 # 写入 /etc/fstab, root 用户运行
-echo -e "UUID=$(blkid -o value -s UUID /dev/sdb1)\t/data\text4\tdefaults\t0 0" >> /etc/fstab
+echo -e "UUID=$(blkid -o value -s UUID /dev/sdb1)\t/data\text4\tdefaults\t0 0" >> /etc/
+fstab
+echo -e "UUID=$(sudo blkid -o value -s UUID /dev/sdb1)\t/data\text4\tdefaults\t0 0" | sudo tee -a /etc/fstab
 
 echo -e "UUID=$(blkid -o value -s UUID /dev/sdb1)\t/downloads\text4\tdefaults\t0 0" >> /etc/fstab
 ```
