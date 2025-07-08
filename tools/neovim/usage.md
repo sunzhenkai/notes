@@ -366,10 +366,9 @@ vim.keymap.set("v", "<leader>y", '"+y', {
 ~/.local/state/nvim
 ```
 
-## 初始化
+## 初始化后有报错
 
-```c++
-#include "arrow/dataset/plan.h"
-
-arrow::dataset::internal::Initialize();
+```shell
+nvim --headless "+Lazy! sync" +qa
 ```
+

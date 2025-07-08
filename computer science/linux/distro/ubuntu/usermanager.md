@@ -23,9 +23,10 @@ $ sudo passwd {username}
 ```
 
 ```shell
-groupadd wii
-useradd -d /home/wii -m -s /bin/bash -g wii wii
-sudo usermod -aG sudo wii
-sudo passwd wii
+NEW_USER=wii
+sudo groupadd $NEW_USER
+sudo useradd -d /data/$NEW_USER -m -s /bin/bash -g $NEW_USER $NEW_USER
+sudo usermod -aG sudo $NEW_USER
+sudo passwd $NEW_USER
 ```
 
