@@ -213,3 +213,20 @@ conda-forge::gxx=8.5.0
 conda-forge::gcc=8.5.0
 ```
 
+## `cannot import name 'ConfigDict' from 'pydantic' `
+
+```shell
+Error while loading conda entry point: conda-anaconda-tos (cannot import name 'ConfigDict' from 'pydantic' (/data/zhenkai.sun/.miniconda3/lib/python3.10/site-packages/pydantic/__init__.py))
+```
+
+**解决**
+
+```shell
+# Step 1: 进入 Miniconda 出错环境的 site-packages
+cd /data/zhenkai.sun/.miniconda3/lib/python3.10/site-packages
+# Step 2: 删除出问题的 pydantic
+rm -rf pydantic*
+# Step 3: 使用 pip 安装一个老版本（v1.x 是 Conda 使用的）
+/data/zhenkai.sun/.miniconda3/bin/pip install "pydantic<2"
+```
+

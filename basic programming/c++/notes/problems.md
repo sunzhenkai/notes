@@ -74,3 +74,29 @@ int S::v = 0;
 gcc -lstdc++ code.c
 ```
 
+## ABI 兼容性问题
+
+```shell
+"CXXFLAGS": "-D_GLIBCXX_USE_CXX11_ABI=0 -Wno-stringop-truncation"
+```
+
+链接的库没有使用统一的 `_GLIBCXX_USE_CXX11_ABI` 参数。
+
+```cmake
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "build",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+      },
+      "environment": {
+        "CXXFLAGS": "-D_GLIBCXX_USE_CXX11_ABI=0 -Wno-stringop-truncation"
+      }
+    }
+  ]
+}
+```
+
