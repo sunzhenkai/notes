@@ -248,6 +248,12 @@ z{?}
 
 # 插件
 
+## Telescope
+
+### Preview 窗口
+
+- `<C-b>/<C-f>` 可以滚动 Preview 窗口
+
 # 常见问题
 
 ## 图标显示异常
@@ -370,5 +376,21 @@ vim.keymap.set("v", "<leader>y", '"+y', {
 
 ```shell
 nvim --headless "+Lazy! sync" +qa
+```
+
+# 语言
+
+## Golang
+
+### 添加当前函数测试代码
+
+```go
+// 为当前函数添加测试代码
+:GoAddTest
+
+// 运行当前测试函数
+:GoTestFunc
+:GoTestFunc -v  // 显示测试输出日志
+// 测试日志弹窗显示, 如果想要再查看, 打开 Notification Hitory (leader-n)
 ```
 
