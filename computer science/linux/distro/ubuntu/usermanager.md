@@ -30,3 +30,10 @@ sudo usermod -aG sudo $NEW_USER
 sudo passwd $NEW_USER
 ```
 
+```shell
+groupadd zhenkai.sun
+useradd -d /data/zhenkai.sun -m -s /bin/bash -g zhenkai.sun zhenkai.sun
+sudo usermod -aG sudo zhenkai.sun
+sudo passwd zhenkai.sun
+```
+

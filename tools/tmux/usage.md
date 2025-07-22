@@ -1,5 +1,5 @@
 ---
-wtitle: tmux
+title: tmux
 categories: 
   - [工具,tmux]
 tags:
