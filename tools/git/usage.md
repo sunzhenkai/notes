@@ -353,3 +353,11 @@ rm -r {dest-dir}
 git submodule add ...
 ```
 
+## Permission denied (publickey).
+
+打印 debug 信息。
+
+```shell
+ssh -vvv -T git@{remote-repo-address}
+```
+

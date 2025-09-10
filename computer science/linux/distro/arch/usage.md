@@ -45,6 +45,12 @@ $ pacman -S -h
 # 1. 刷新
 $ sudo pacman-mirrors -i -c China -m rank
 # 选择合适的源
+
+# archlinux
+$ sudo vim /etc/pacman.d/mirrorlist
+# 清华源, 在最顶端添加
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+
 # 2. 更新
 $ sudo pacman -Syy
 ```

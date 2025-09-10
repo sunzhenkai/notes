@@ -355,6 +355,14 @@ vim.keymap.set("v", "<leader>y", '"+y', {
 
 # 问题排查
 
+## 重新安装所有插件
+
+```shell
+nvim --headless "+Lazy! sync" +qa
+```
+
+## 打印信息
+
 ```shell
 :LspInfo               # 打印 Lsp 信息，用于排查
 :setlocal indentexpr?  # 查看 indent 信息
