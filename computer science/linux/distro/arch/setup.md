@@ -127,3 +127,21 @@ yay -Sy wol-systemd
 sudo systemctl enable wol@eno1.service  # eno1 为网络接口
 ```
 
+或手动添加 wol servce
+
+```shell
+sudo tee /etc/systemd/system/wol.service > /dev/null <<EOF
+[Unit]
+Description=Configure Wake-on-LAN
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ethtool -s enp3s0 wol g
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl enable --now wol.service
+```
+
