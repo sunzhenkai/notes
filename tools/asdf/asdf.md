@@ -1,5 +1,5 @@
 ---
-title: asdf
+ title: asdf
 categories: 
   - [工具,asdf]
 tags:
@@ -81,3 +81,10 @@ go version go1.20.4 darwin/arm64
 ```
 
 如果当前目录下的 `.tool-version` 文件内有指定的版本，那么在当前目录下运行时（包含子目录）会使用`.tool-version` 内的版本。
+
+## 移除 Plugin
+
+```shell
+asdf plugin remove {plugin-name}
+```
+

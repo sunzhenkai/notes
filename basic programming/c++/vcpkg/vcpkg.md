@@ -363,6 +363,11 @@ find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 ```
 
+```cmake
+find_package(Boost REQUIRED COMPONENTS locale)
+set(THIRD_LIBRARIES Boost::locale)
+```
+
 ## patch failed
 
 在更新版本之后出现 patch failed 异常，尝试删除对应的缓存解决。
@@ -600,3 +605,44 @@ set(ENV{INSTALL_PREFIX} "${CURRENT_PACKAGES_DIR}${Z_VCPKG_INSTALL_PREFIX}")
 ```
 
 > INSTALL_PREFIX 和库有关
+
+# 二进制缓存
+
+vcpkg 默认使用文件类型的缓存，在编译时默认也会查找默认位置的缓存。如果需要指定新的位置，可以使用下面的配置。
+
+```shell
+vcpkg install {package} --binarysource="files,/root/.cache/vcpkg/archives --dry-run --debug
+```
+
+但是，有时候不使用缓存，重新编译，这种一般是因为 vcpkg 记录的 ABI 有变动，下面是 package 的示例  ABI 信息。
+
+```shell
+[DEBUG] <abientries for zlib:x86-windows>
+[DEBUG]   0001-Prevent-invalid-inclusions-when-HAVE_-is-set-to-0.patch|750b9542cb55e6328cca01d3ca997f1373b9530afa95e04213168676936e7bfa
+[DEBUG]   0002-skip-building-examples.patch|835ddecfed752e0f49be9b0f8ff7ba76541cb0a150044327316e22ca84f8d0c2
+[DEBUG]   0003-build-static-or-shared-not-both.patch|d6026271dcb3d8fc74b41e235620ae31576a798e77aa411c3af8cd9e948c02b1
+[DEBUG]   0004-android-and-mingw-fixes.patch|37a43eddbcb1b7dde49e7659ae895dfd0ff1df66666c1371ba7d5bfc49d8b438
+[DEBUG]   cmake|3.26.2
+[DEBUG]   features|core
+[DEBUG]   portfile.cmake|ac63047b644fa758860dd7ba48ff9a13b058c6f240b8e8d675b8fbba035976be
+[DEBUG]   ports.cmake|5a8e00cedff0c898b1f90f7d129329d0288801bc9056562b039698caf31ff3f3
+[DEBUG]   post_build_checks|2
+[DEBUG]   powershell|7.3.6
+[DEBUG]   triplet|x86-windows
+[DEBUG]   triplet_abi|3e71dd1d4afa622894ae367adbbb1ecbd42c57c51428a86b675fa1c8cad3a581-36b818778ba6f2c16962495caedb9a7b221d5be4c60de1cd3060f549319a9931-f5d02a6542664cfbd4a38db478133cbb1a18f315
+[DEBUG]   usage|be22662327df993eebc437495add75acb365ab18d37c7e5de735d4ea4f5d3083
+[DEBUG]   vcpkg-cmake|1b3dac4b9b0bcbef227c954b495174863feebe3900b2a6bdef0cd1cf04ca1213
+[DEBUG]   vcpkg-cmake-wrapper.cmake|5d49ef2ee6448479c2aad0e5f732e2676eaba0411860f9bebabe6002d66f57d1
+[DEBUG]   vcpkg.json|bc94e2540efabe36130a806381a001c57194e7de67454ab7ff1e30aa15e6ce23
+[DEBUG]   vcpkg_copy_pdbs|d57e4f196c82dc562a9968c6155073094513c31e2de475694143d3aa47954b1c
+[DEBUG]   vcpkg_fixup_pkgconfig|588d833ff057d3ca99c14616c7ecfb5948b5e2a9e4fc02517dceb8b803473457
+[DEBUG]   vcpkg_from_git|8f27bff0d01c6d15a3e691758df52bfbb0b1b929da45c4ebba02ef76b54b1881
+[DEBUG]   vcpkg_from_github|b743742296a114ea1b18ae99672e02f142c4eb2bef7f57d36c038bedbfb0502f
+[DEBUG]   vcpkg_replace_string|d43c8699ce27e25d47367c970d1c546f6bc36b6df8fb0be0c3986eb5830bd4f1
+[DEBUG] </abientries>
+```
+
+- 常见的变动原因
+  - **gcc/g++ 不一致**
+  - **cmake 版本有变动**，在使用 vcpkg install 时，如果没有 cmake 或者版本不满足， vcpkg 会下载新版本的 cmake
+

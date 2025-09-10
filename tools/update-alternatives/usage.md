@@ -1,5 +1,5 @@
 ---
-wtitle: update-alternatives
+title: update-alternatives
 categories: 
   - [工具,update-alternatives]
 tags:

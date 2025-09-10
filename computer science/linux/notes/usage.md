@@ -755,3 +755,26 @@ command -v <program>
 # 示例
 command -v vim > /dev/null 2>&1  && echo "yes"
 ```
+
+# 安装高版本 GCC/G++
+
+Ubuntu 官方维护了一个用于测试 GCC 新版本的 PPA（**Ubuntu Toolchain Test Builds**），可以很方便地在 Ubuntu 上安装多个版本的 GCC。
+
+比如，需要在 ubuntu 22.04 安装 gcc/g++ 13。
+
+```shell
+# 添加 PPA 源（包含 GCC 13）
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt update
+
+# 安装 GCC 和 G++
+sudo apt install gcc-13 g++-13
+
+# 设置默认版本（可选）
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+
+# 查看当前默认版本
+gcc --version
+```
+
