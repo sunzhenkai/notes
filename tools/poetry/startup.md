@@ -26,3 +26,15 @@ curl -sSL https://install.python-poetry.org | python3 -
 poetry init
 ```
 
+# Run
+
+```shell
+poetry run python ...
+```
+
+# Activate
+
+```shell
+poetry env activate
+```
+
