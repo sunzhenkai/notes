@@ -88,3 +88,12 @@ go version go1.20.4 darwin/arm64
 asdf plugin remove {plugin-name}
 ```
 
+# 示例
+
+## Golang 1.24
+
+```shell
+asdf install golang 1.24.7
+asdf set -u golang 1.24.7
+```
+
