@@ -93,8 +93,9 @@ FLUSH PRIVILEGES;
 
 # 数据库
 
-## 导入
+## 导出
 
 ```sql
+mariadb-dump -u {user} -p --add-drop-database --add-drop-table {database} > {database}.sql
 ```
 
