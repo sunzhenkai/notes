@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tools/favor.md",
+                "file": "tools/nginx/config.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "favor"
+              "title": "config"
             }
           }
         ]
@@ -41,7 +41,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": true
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "tools/favor.md",
+                "file": "tools/nginx/config.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "favor 的反向链接列表"
+              "title": "config 的反向链接列表"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "tools/favor.md",
+                "file": "tools/nginx/config.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "favor 的出链列表"
+              "title": "config 的出链列表"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tools/favor.md",
+                "file": "tools/nginx/config.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "favor 的大纲"
+              "title": "config 的大纲"
             }
           }
         ]
@@ -171,10 +171,8 @@
   },
   "active": "466bea02963190dc",
   "lastOpenFiles": [
-    "未命名.canvas",
     "tools/favor.md",
     "2025-10-11.md",
-    "[likely.md",
     "README.md",
     "others/thoughts",
     "computer science/engineering architecture/discovery/consul/usage.md",
@@ -182,3 +180,4 @@
     "computer science/linux/program/crontab.md"
   ]
 }
+

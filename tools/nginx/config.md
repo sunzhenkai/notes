@@ -1,12 +1,13 @@
 ---
 title: nginx配置
-categories: 
-  - [linux,software]
+categories:
+  - - linux
+    - software
 tags:
   - linux
   - nginx
-date: "2020-11-13T22:00:00+08:00"
-update: "2020-11-13T22:00:00+08:00"
+date: 2020-11-13T22:00:00+08:00
+update: 2020-11-13T22:00:00+08:00
 ---
 
 # 命令
