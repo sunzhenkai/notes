@@ -7,7 +7,22 @@ tags:
 date: "2021-05-24T00:00:00+08:00"
 update: "2021-05-24T00:00:00+08:00"
 ---
+# 路径和标签
 
+在 bazel 中，每个可构建物（binary、library、file 等）都有一个唯一标签标识，格式如下。
+
+```
+@repo//package/path:target_name
+```
+
+同时，有以下约定。
+- 当前仓库引用可以省略 `@repo`
+- 如果 target 和 包名相同，可以省略 target `//package`
+- 引用同包内目标，可以直接指定目标名，`:target_name` 
+标识符说明。
+- `@repo` 指定仓库名
+- `//` 分割仓库和包
+- `:` 分割包和目标
 # 查看所有 Targets
 
 ```shell

@@ -7,7 +7,6 @@ tags:
 date: "2021-05-22T00:00:00+08:00"
 update: "2021-05-22T00:00:00+08:00"
 ---
-
 # Description
 
 Bazel 是一个开源的构建、测试工具，类似于 Make、Maven和Gradle。

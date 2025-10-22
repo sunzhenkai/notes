@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "basic programming/rust/usage.md",
+                "file": "tools/bazel/usage.md",
                 "mode": "source",
                 "source": false
               },
@@ -95,8 +95,8 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "basic programming/rust/usage.md",
-                "collapseAll": false,
+                "file": "tools/bazel/usage.md",
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
@@ -114,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "basic programming/rust/usage.md",
+                "file": "tools/bazel/usage.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -143,7 +143,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "basic programming/rust/usage.md",
+                "file": "tools/bazel/usage.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -152,7 +152,8 @@
               "title": "usage 的大纲"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -172,9 +173,11 @@
   },
   "active": "d80c793974c712e5",
   "lastOpenFiles": [
-    "未命名.canvas",
+    "tools/bazel/deps.md",
+    "tools/bazel/bazel.md",
     "basic programming/rust/startup.md",
     "basic programming/rust/usage.md",
+    "未命名.canvas",
     "basic programming/java/socket-send-file.md",
     "README.md",
     "basic programming/rust",
