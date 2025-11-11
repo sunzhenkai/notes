@@ -239,6 +239,8 @@ docker export --output="latest.tar" container-name
 
 # 非 root 用户使用 docker
 
+索引，`docker root`，`root docker`。
+
 ## ubuntu
 
 <https://www.jianshu.com/p/35cdb71a32d3>

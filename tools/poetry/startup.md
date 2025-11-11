@@ -38,3 +38,17 @@ poetry run python ...
 poetry env activate
 ```
 
+# 导出依赖项
+
+最新版的 poetry 默认没有 export 命令了，需要安装插件。
+
+```shell
+poetry self add poetry-plugin-export
+```
+
+导出。
+
+```shell
+poetry export --without-hashes > requirements.txt
+```
+
