@@ -1,7 +1,8 @@
 ---
 title: c++ STL
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2023-05-06T00:00:00+08:00"

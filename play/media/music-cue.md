@@ -1,7 +1,8 @@
 ---
 title: music - cue
 categories: 
-  - [play, media]
+  - play
+  - media
 tags:
   - media
 date: "2020-12-17T00:00:00+08:00"

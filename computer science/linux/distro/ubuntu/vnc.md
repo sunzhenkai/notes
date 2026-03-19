@@ -1,7 +1,9 @@
 ---
 title: ubuntu - vnc
 categories: 
-  - [linux,distro,ubuntu]
+  - linux
+  - distro
+  - ubuntu
 tags:
   - distro
 date: "2021-09-29T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: systemd使用
 categories: 
-  - [linux,software]
+  - linux
+  - software
 tags:
   - linux
   - systemd

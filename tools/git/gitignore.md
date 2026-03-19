@@ -1,7 +1,8 @@
 ---
 title: gitignore
 categories: 
-  - [工具,git]
+  - 工具
+  - git
 tags:
   - git
 date: "2020-11-20T00:00:00+08:00"

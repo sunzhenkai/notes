@@ -1,7 +1,8 @@
 ---
 title: 排序
 categories: 
-  - [coding, 算法]
+  - coding
+  - 算法
 tags:
   - 算法
 date: "2021-04-12T00:00:00+08:00"

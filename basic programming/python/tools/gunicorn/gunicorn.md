@@ -1,7 +1,9 @@
 ---
 title: gunicorn
 categories: 
-  - [python, tools, gunicorn]
+  - python
+  - tools
+  - gunicorn
 tags:
   - python
     - gunicorn

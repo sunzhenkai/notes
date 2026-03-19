@@ -1,7 +1,8 @@
 ---
 title: install python from source
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2022-08-24T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: MinIO
 categories:
-  - [tools, MinIO]
+  - tools
+  - MinIO
 tags:
   - tools
   - MinIO

@@ -1,7 +1,8 @@
 ---
 title: cmake - libraries
 categories: 
-  - [工具,cmake]
+  - 工具
+  - cmake
 tags:
   - cmake
 date: "2021-01-04T00:00:00+08:00"

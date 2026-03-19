@@ -1,7 +1,8 @@
 ---
 title: css
 categories: 
-  - [前端,css]
+  - 前端
+  - css
 tags:
   - 前端
   - css

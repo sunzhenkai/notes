@@ -1,7 +1,7 @@
 ---
 title: TIPS
 categories: 
-  - [杂项]
+  - 杂项
 tags:
   - 杂项
 date: "2021-02-02T00:00:00+08:00"

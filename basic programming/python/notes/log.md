@@ -1,7 +1,8 @@
 ---
 title: python logger
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-11-25T00:00:00+08:00"

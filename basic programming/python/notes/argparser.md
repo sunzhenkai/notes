@@ -1,7 +1,8 @@
 ---
 title: python argparse
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-09-29T00:00:00+08:00"

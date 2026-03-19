@@ -1,7 +1,8 @@
 ---
 title: 理财 - 股票
 categories: 
-  - [life, 理财]
+  - life
+  - 理财
 tags:
   - 股票
 date: "2021-05-14T00:00:00+08:00"

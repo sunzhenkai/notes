@@ -1,7 +1,9 @@
 ---
 title: 制作 docker 镜像
 categories: 
-    - [计算机科学,虚拟化,docker]
+    - 计算机科学
+    - 虚拟化
+    - docker
 tags:
     - docker
 date: "2021-12-27T00:00:00+08:00"

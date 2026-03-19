@@ -1,7 +1,10 @@
 ---
 title: gperftools
 categories: 
-  - [coding, c++, tools, gperftools]
+  - coding
+  - c++
+  - tools
+  - gperftools
 tags:
   - c++
     - gperftools

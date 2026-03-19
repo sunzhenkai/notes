@@ -1,7 +1,8 @@
 ---
 title: linux - crontab
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - linux
     - crontab

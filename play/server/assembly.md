@@ -1,7 +1,8 @@
 ---
 title: 组装
 categories: 
-  - [play,server]
+  - play
+  - server
 tags:
   - server
 date: "2021-08-24T00:00:00+08:00"

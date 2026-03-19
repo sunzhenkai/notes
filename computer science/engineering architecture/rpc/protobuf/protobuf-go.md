@@ -1,7 +1,8 @@
 ---
 title: protobuf - go
 categories: 
-  - [架构, rpc]
+  - 架构
+  - rpc
 tags:
   - protobuf
 date: "2022-05-10T00:00:00+08:00"

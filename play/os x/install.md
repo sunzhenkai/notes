@@ -1,7 +1,8 @@
 ---
 title: os x
 categories: 
-  - [play, os x]
+  - play
+  - os x
 tags:
   - os x
 date: "2020-12-17T00:00:00+08:00"

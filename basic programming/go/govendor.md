@@ -1,7 +1,8 @@
 ---
 title: govendor
 categories: 
-  - [coding, go]
+  - coding
+  - go
 tags:
   - go
 date: "2020-12-30T12:00:00+08:00"

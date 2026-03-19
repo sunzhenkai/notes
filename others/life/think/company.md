@@ -1,7 +1,7 @@
 ---
 title: 企业的价值观
 categories: 
-  - [life]
+  - life
 tags:
   - life
 date: "2021-11-23T00:00:00+08:00"

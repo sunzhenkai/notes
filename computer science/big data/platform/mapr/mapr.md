@@ -1,7 +1,8 @@
 ---
 title: MapR
 categories: 
-  - [big data, mapr]
+  - big data
+  - mapr
 tags:
   - MapR
 date: "2021-09-19T00:00:00+08:00"

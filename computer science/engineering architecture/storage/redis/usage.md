@@ -1,7 +1,9 @@
 ---
 title: redis usage
 categories: 
-  - [架构, 存储, redis]
+  - 架构
+  - 存储
+  - redis
 tags:
   - 架构
   - 存储

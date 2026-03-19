@@ -1,7 +1,8 @@
 ---
 title: on my zsh - install
 categories: 
-  - [工具,zsh]
+  - 工具
+  - zsh
 tags:
   - zsh
 date: "2021-05-10T00:00:00+08:00"

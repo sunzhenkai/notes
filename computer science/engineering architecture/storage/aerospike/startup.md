@@ -1,7 +1,9 @@
 ---
 title: scylladb
 categories: 
-  - [架构,存储,scylladb]
+  - 架构
+  - 存储
+  - scylladb
 tags:
   - scylladb
 date: "2025-03-18T00:00:00+08:00"

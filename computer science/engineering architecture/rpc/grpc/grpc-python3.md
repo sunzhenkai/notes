@@ -1,7 +1,9 @@
 ---
 title: grpc python3
 categories: 
-    - [架构, rpc, gRPC]
+    - 架构
+    - rpc
+    - gRPC
 tags:
     - gRPC
 date: "2021-10-12T00:00:00+08:00"

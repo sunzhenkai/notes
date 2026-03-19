@@ -1,7 +1,8 @@
 ---
 title: python random
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-08-25T00:00:00+08:00"

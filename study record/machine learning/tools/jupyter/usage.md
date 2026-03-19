@@ -1,7 +1,9 @@
 ---
 title: Jupyter使用
 categories: 
-  - [机器学习,工具,Jupyter]
+  - 机器学习
+  - 工具
+  - Jupyter
 tags:
   - 机器学习
   - 工具

@@ -1,7 +1,8 @@
 ---
 title: rsync
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - linux
     - rsync

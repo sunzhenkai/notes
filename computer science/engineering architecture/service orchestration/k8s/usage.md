@@ -1,7 +1,9 @@
 ---
 title: k8s usage
 categories: 
-  - [架构,container,k8s]
+  - 架构
+  - container
+  - k8s
 tags:
   - k8s
 date: "2022-06-09T00:00:00+08:00"

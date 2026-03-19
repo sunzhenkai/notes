@@ -1,7 +1,8 @@
 ---
 title: 领域驱动设计（Domain-Driven Design）
 categories: 
-  - [计算机科学, 软件工程]
+  - 计算机科学
+  - 软件工程
 tags:
   - 软件工程
   - DDD

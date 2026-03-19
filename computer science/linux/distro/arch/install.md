@@ -1,7 +1,9 @@
 ---
 title: 安装 Arch Linux 
 categories: 
-  - [linux,distro,centos]
+  - linux
+  - distro
+  - centos
 tags:
   - distro
 date: "2021-09-04T00:00:00+08:00"

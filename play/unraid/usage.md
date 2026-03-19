@@ -1,7 +1,8 @@
 ---
 title: unraid 插件
 categories: 
-  - [play,unraid]
+  - play
+  - unraid
 tags:
   - unriad
 date: "2020-12-11T00:00:00+08:00"

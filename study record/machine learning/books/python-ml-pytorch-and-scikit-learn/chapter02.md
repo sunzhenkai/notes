@@ -1,7 +1,8 @@
 ---
 title: Python 机器学习 基于 Pytorch 和 Scikit-Learn - 第二章
 categories: 
-    - [研习录, 机器学习]
+    - 研习录
+    - 机器学习
 tags:
     - 机器学习
 date: "2024-10-28T00:00:00+08:00"

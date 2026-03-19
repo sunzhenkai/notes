@@ -1,7 +1,8 @@
 ---
 title: 英语常识
 categories: 
-  - [life, learn]
+  - life
+  - learn
 tags:
   - life
 date: "2021-01-12T00:00:00+08:00"

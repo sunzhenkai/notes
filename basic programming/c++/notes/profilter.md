@@ -1,7 +1,8 @@
 ---
 title: c++ - perf
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2022-01-26T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: vncserver
 categories: 
-  - [linux,notes]
+  - linux
+  - notes
 tags:
   - Linux
 date: "2021-08-25T00:00:00+08:00"

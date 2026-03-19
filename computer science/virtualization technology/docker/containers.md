@@ -1,7 +1,9 @@
 ---
 title: Docker 容器
 categories: 
-    - [计算机科学,虚拟化,docker]
+    - 计算机科学
+    - 虚拟化
+    - docker
 tags:
     - docker
 date: "2020-12-21T19:00:00+08:00"

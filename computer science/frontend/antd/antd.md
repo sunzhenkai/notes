@@ -1,7 +1,8 @@
 ---
 title: ant design
 categories: 
-  - [前端,antd]
+  - 前端
+  - antd
 tags:
   - 前端
   - antd

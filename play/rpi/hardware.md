@@ -1,7 +1,8 @@
 ---
 title: 树莓派连接硬件
 categories: 
-  - [play,树莓派]
+  - play
+  - 树莓派
 tags:
   - 树莓派
 date: "2020-12-05T18:40:00+08:00"

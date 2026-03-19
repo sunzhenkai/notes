@@ -1,7 +1,8 @@
 ---
 title: hexo usage
 categories:
-  - [tools, publish]
+  - tools
+  - publish
 tags:
   - hexo
 comments: true

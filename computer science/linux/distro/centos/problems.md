@@ -1,7 +1,9 @@
 ---
 title: centos 常见问题
 categories: 
-  - [linux,distro,centos]
+  - linux
+  - distro
+  - centos
 tags:
   - distro
 date: "2021-08-28T00:00:00+08:00"

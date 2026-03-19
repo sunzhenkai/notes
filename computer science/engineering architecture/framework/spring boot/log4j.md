@@ -1,7 +1,9 @@
 ---
 title: spring boot - log4j
 categories: 
-  - [架构,框架,spring boot]
+  - 架构
+  - 框架
+  - spring boot
 tags:
   - log4j
     - spring boot

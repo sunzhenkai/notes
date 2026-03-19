@@ -1,7 +1,9 @@
 ---
 title: ubuntu cloud
 categories: 
-  - [linux,distro,ubuntu]
+  - linux
+  - distro
+  - ubuntu
 tags:
   - distro
 date: "2021-09-04T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: nginx creat self-signed SSL certificate 
 categories: 
-  - [linux,software]
+  - linux
+  - software
 tags:
   - linux
   - nginx

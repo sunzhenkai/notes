@@ -1,7 +1,8 @@
 ---
 title: hadoop startup
 categories: 
-  - [big data, hadoop]
+  - big data
+  - hadoop
 tags:
   - hadoop
 date: "2022-06-02T00:00:00+08:00"

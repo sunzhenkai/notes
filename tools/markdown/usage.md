@@ -1,7 +1,8 @@
 ---
 title: markdown语法
 categories: 
-  - [工具,markdown]
+  - 工具
+  - markdown
 tags:
   - 工具
   - markdown

@@ -1,7 +1,9 @@
 ---
 title: gapis
 categories: 
-    - [架构, rpc, gRPC]
+    - 架构
+    - rpc
+    - gRPC
 tags:
     - gapis
     - gRPC

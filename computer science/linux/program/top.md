@@ -1,7 +1,8 @@
 ---
 title: top
 categories: 
-  - [linux,software]
+  - linux
+  - software
 tags:
   - linux
   - top

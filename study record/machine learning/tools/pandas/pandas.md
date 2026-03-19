@@ -1,7 +1,9 @@
 ---
 title: pandas
 categories: 
-  - [python, library, pandas]
+  - python
+  - library
+  - pandas
 tags:
   - pandas
 date: "2022-06-05T00:00:00+08:00"

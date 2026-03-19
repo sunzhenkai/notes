@@ -1,7 +1,8 @@
 ---
 title: gdb
 categories: 
-  - [coding, tools]
+  - coding
+  - tools
 tags:
   - c++
     - gdb

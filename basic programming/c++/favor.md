@@ -1,7 +1,8 @@
 ---
 title: C++ 收藏
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2023-07-27T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: Neovim
 categories:
-  - [tools, Neovim]
+  - tools
+  - Neovim
 tags:
   - tools
   - Neovim

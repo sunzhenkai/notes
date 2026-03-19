@@ -1,7 +1,8 @@
 ---
 title: dpdk docs
 categories: 
-  - [linux,software]
+  - linux
+  - software
 tags:
   - linux
   - dpdk

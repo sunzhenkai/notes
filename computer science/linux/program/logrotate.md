@@ -1,7 +1,8 @@
 ---
 title: logrotate
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - linux
     - logrotate

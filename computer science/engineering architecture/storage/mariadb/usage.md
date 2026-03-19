@@ -1,7 +1,9 @@
 ---
 title: mariadb usage
 categories: 
-  - [架构, 存储, mariadb]
+  - 架构
+  - 存储
+  - mariadb
 tags:
   - mariadb
 date: "2022-10-01T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: hiddify
 categories:
-  - [tools, hiddify]
+  - tools
+  - hiddify
 tags:
   - hiddify
 comments: true

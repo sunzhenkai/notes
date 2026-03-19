@@ -1,7 +1,9 @@
 ---
 title: c++ library
 categories: 
-  - [coding, c++, library]
+  - coding
+  - c++
+  - library
 tags:
   - c++
 date: "2021-01-12T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: linux sre
 categories: 
-  - [linux,notes]
+  - linux
+  - notes
 tags:
   - Linux
 date: "2021-11-22T00:00:00+08:00"

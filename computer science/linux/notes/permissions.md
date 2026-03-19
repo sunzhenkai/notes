@@ -1,7 +1,8 @@
 ---
 title: linux permissions
 categories:
-  - [linux, notes]
+  - linux
+  - notes
 tags:
   - Linux
 date: "2020-12-21T09:40:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: 架构 - 分布式锁
 categories: 
-  - [架构, notes]
+  - 架构
+  - notes
 tags:
   - 分布式锁
 date: "2021-05-13T00:00:00+08:00"

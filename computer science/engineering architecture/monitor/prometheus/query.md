@@ -1,7 +1,9 @@
 ---
 title: prometheus 查询语句
 categories: 
-  - [架构, 监控, prometheus]
+  - 架构
+  - 监控
+  - prometheus
 tags:
   - prometheus
 date: "2021-01-12T00:00:00+08:00"

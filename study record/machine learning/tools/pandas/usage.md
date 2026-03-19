@@ -1,7 +1,9 @@
 ---
 title: pandas
 categories: 
-  - [machine learning, tools, pandas]
+  - machine learning
+  - tools
+  - pandas
 tags:
   - machine learning
   - pandas

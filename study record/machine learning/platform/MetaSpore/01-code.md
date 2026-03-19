@@ -1,7 +1,8 @@
 ---
 title: MetaSpore - Startup
 categories: 
-    - [研习录, 机器学习]
+    - 研习录
+    - 机器学习
 tags:
     - 机器学习
 date: "2025-01-09T00:00:00+08:00"

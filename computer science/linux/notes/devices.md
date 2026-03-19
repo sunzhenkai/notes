@@ -1,7 +1,8 @@
 ---
 title: Linux之查看设备
 categories: 
-  - [linux,notes]
+  - linux
+  - notes
 tags:
   - Linux
 date: "2020-12-05T18:40:00+08:00"

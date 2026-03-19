@@ -1,7 +1,8 @@
 ---
 title: vpn
 categories: 
-  - [工具,vpn]
+  - 工具
+  - vpn
 tags:
   - vpn
   - wireguard

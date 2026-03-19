@@ -1,7 +1,8 @@
 ---
 title: c++ 最佳实践
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2022-02-10T00:00:00+08:00"

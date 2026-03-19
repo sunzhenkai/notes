@@ -1,7 +1,8 @@
 ---
 title: Java Socket 传输文件
 categories: 
-  - [coding, java]
+  - coding
+  - java
 tags:
   - java
   - socket

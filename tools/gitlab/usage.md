@@ -1,7 +1,8 @@
 ---
 title: gitlab 使用
 categories: 
-  - [工具,gitlab]
+  - 工具
+  - gitlab
 tags:
   - gitlab
 date: "2020-11-20T00:00:00+08:00"

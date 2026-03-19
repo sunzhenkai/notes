@@ -1,7 +1,8 @@
 ---
 title: moviepilot
 categories: 
-  - [play,server]
+  - play
+  - server
 tags:
   - moviepilot
 date: "2024-03-06T00:00:00+08:00"

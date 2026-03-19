@@ -1,7 +1,8 @@
 ---
 title: c++ threads
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
     - threads

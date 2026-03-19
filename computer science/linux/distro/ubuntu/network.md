@@ -1,7 +1,9 @@
 ---
 title: ubuntu network
 categories: 
-  - [linux,distro,ubuntu]
+  - linux
+  - distro
+  - ubuntu
 tags:
   - distro
 date: "2021-08-28T00:00:00+08:00"

@@ -1,7 +1,9 @@
 ---
 title: mariadb 常见问题
 categories: 
-  - [架构, 存储, mariadb]
+  - 架构
+  - 存储
+  - mariadb
 tags:
   - mariadb
 date: "2021-08-30T00:00:00+08:00"

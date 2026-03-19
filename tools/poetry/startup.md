@@ -1,7 +1,8 @@
 ---
 title: Poetry
 categories: 
-  - [tools, Poetry]
+  - tools
+  - Poetry
 tags:
   - Poetry
 date: "2025-08-26T19:00:00+08:00"

@@ -1,7 +1,10 @@
 ---
 title: seastar tutorail
 categories: 
-  - [架构,java,框架,seastar]
+  - 架构
+  - java
+  - 框架
+  - seastar
 tags:
   - seastar
 date: "2021-12-15T00:00:00+08:00"

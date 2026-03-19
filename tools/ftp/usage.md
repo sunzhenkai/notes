@@ -1,7 +1,8 @@
 ---
 title: ftp client usage
 categories: 
-  - [tools,ftp]
+  - tools
+  - ftp
 tags:
   - ftp
 date: "2022-01-10T00:00:00+08:00"

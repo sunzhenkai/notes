@@ -1,7 +1,9 @@
 ---
 title: gRPC 的一些实践
 categories: 
-  - [架构, rpc, gRPC]
+  - 架构
+  - rpc
+  - gRPC
 tags:
   - gRPC
 date: "2021-11-15T00:00:00+08:00"

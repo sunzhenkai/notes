@@ -1,7 +1,9 @@
 ---
 title: rapidjson - usage
 categories: 
-  - [coding, c++, library]
+  - coding
+  - c++
+  - library
 tags:
   - c++
   - rapidjson

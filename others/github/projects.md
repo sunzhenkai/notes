@@ -1,7 +1,7 @@
 ---
 title: github 项目梳理
 categories: 
-  - [github]
+  - github
 tags:
   - github
 date: "2020-12-21T11:40:00+08:00"

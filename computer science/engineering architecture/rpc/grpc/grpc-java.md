@@ -1,7 +1,9 @@
 ---
 title: grpc java
 categories: 
-    - [架构, rpc, gRPC]
+    - 架构
+    - rpc
+    - gRPC
 tags:
     - gRPC
 date: "2021-06-03T00:00:00+08:00"

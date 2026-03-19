@@ -1,7 +1,9 @@
 ---
 title: brpc c++
 categories: 
-  - [架构,框架,brpc]
+  - 架构
+  - 框架
+  - brpc
 tags:
   - brpc
 date: "2020-12-31T00:00:00+08:00"

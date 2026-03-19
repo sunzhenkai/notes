@@ -1,7 +1,8 @@
 ---
  title: asdf
 categories: 
-  - [工具,asdf]
+  - 工具
+  - asdf
 tags:
   - asdf
 date: "2025-04-08T00:00:00+08:00"

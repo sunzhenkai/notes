@@ -1,7 +1,8 @@
 ---
 title: c++ 手册
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2020-11-10T21:00:00+08:00"

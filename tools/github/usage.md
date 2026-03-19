@@ -1,7 +1,8 @@
 ---
 title: GitHub
 categories: 
-  - [工具,GitHub]
+  - 工具
+  - GitHub
 tags:
   - GitHub
 date: "2020-11-20T00:00:00+08:00"

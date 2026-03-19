@@ -1,7 +1,9 @@
 ---
 title: Thrift
 categories: 
-  - [架构, rpc, dsl]
+  - 架构
+  - rpc
+  - dsl
 tags:
   - Thrift
 date: "2021-03-05T00:00:00+08:00"

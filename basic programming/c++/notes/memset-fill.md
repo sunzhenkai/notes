@@ -1,7 +1,8 @@
 ---
 title: memset & fill
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2020-11-21T12:00:00+08:00"

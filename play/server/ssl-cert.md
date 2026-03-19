@@ -1,7 +1,8 @@
 ---
 title: HTTPS 证书
 categories: 
-  - [play,server]
+  - play
+  - server
 tags:
   - server
 date: "2022-08-21T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: python problems
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2022-07-20T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: mac 软件
 categories: 
-  - [工具, mac]
+  - 工具
+  - mac
 tags:
   - mac
 date: "2020-12-29T00:00:00+08:00"

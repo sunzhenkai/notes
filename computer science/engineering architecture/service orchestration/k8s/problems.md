@@ -1,7 +1,9 @@
 ---
 title: k8s problems
 categories: 
-  - [架构,container,k8s]
+  - 架构
+  - container
+  - k8s
 tags:
   - k8s
 date: "2022-08-27T00:00:00+08:00"

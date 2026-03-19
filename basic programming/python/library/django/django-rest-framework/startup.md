@@ -1,7 +1,10 @@
 ---
 title: django rest framework startup
 categories: 
-  - [python, library, django, django rest framework]
+  - python
+  - library
+  - django
+  - django rest framework
 tags:
   - django rest framework
   - django rest framework

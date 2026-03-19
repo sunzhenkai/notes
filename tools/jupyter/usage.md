@@ -1,7 +1,8 @@
 ---
 title: Jupyter
 categories: 
-  - [tools, Jupyter]
+  - tools
+  - Jupyter
 tags:
   - Jupyter
 date: "2025-08-19T00:00:00+08:00"

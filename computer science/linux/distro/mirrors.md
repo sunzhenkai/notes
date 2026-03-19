@@ -1,7 +1,8 @@
 ---
 title: distro mirrors
 categories: 
-  - [linux,distro]
+  - linux
+  - distro
 tags:
   - distro
     - mirrors

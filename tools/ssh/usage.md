@@ -1,7 +1,8 @@
 ---
 title: ssh
 categories: 
-  - [工具,ssh]
+  - 工具
+  - ssh
 tags:
   - ssh
 date: "2025-06-06T00:00:00+08:00"

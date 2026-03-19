@@ -1,7 +1,9 @@
 ---
 title: dubbo
 categories: 
-    - [架构, rpc, dubbo]
+    - 架构
+    - rpc
+    - dubbo
 tags:
     - dubbo
 date: "2021-05-27T00:00:00+08:00"

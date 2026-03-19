@@ -1,7 +1,8 @@
 ---
 title: pyenv
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-12-08T00:00:00+08:00"

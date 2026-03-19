@@ -1,7 +1,9 @@
 ---
 title: boost - processing
 categories: 
-  - [coding, c++, library]
+  - coding
+  - c++
+  - library
 tags:
   - c++
 date: "2021-11-22T00:00:00+08:00"

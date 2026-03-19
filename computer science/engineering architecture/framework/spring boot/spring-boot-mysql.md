@@ -1,7 +1,9 @@
 ---
 title: spring boot 常见问题
 categories: 
-  - [架构,框架,spring boot]
+  - 架构
+  - 框架
+  - spring boot
 tags:
   - spring boot
 date: "2021-05-10T00:00:00+08:00"

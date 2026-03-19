@@ -1,7 +1,9 @@
 ---
 title: 系统信息
 categories: 
-  - [linux,distro,mint]
+  - linux
+  - distro
+  - mint
 tags:
   - distro
 date: "2021-08-24T00:00:00+08:00"

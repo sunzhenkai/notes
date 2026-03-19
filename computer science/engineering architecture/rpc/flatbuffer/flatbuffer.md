@@ -1,7 +1,9 @@
 ---
 title: flatbuffer
 categories: 
-  - [架构, rpc, dsl]
+  - 架构
+  - rpc
+  - dsl
 tags:
   - flatbuffer
 date: "2022-04-22T00:00:00+08:00"

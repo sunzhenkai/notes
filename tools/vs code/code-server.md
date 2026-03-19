@@ -1,7 +1,7 @@
 ---
 title: vs code server
 categories: 
-  - [工具]
+  - 工具
 tags:
   - 工具
 date: "2021-05-10T00:00:00+08:00"

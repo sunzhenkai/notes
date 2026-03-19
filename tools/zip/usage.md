@@ -1,7 +1,8 @@
 ---
 title: zip - usage
 categories: 
-  - [工具,zip]
+  - 工具
+  - zip
 tags:
   - zip
 date: "2021-05-10T00:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: node startup
 categories: 
-  - [前端, node]
+  - 前端
+  - node
 tags:
   - usage
 date: "2020-12-30T00:00:00+08:00"

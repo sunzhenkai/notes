@@ -1,7 +1,9 @@
 ---
 title: gcc
 categories: 
-  - [coding, c++, gcc]
+  - coding
+  - c++
+  - gcc
 tags:
   - gcc
 date: "2022-03-10T00:00:00+08:00"

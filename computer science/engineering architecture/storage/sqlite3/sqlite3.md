@@ -1,7 +1,8 @@
 ---
 title: sqlite3
 categories: 
-  - [架构, 存储]
+  - 架构
+  - 存储
 tags:
   - 架构
   - 存储

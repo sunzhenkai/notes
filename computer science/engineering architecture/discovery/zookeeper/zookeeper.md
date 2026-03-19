@@ -1,7 +1,9 @@
 ---
 title: zookeeper
 categories: 
-  - [架构,discovery,zookeeper]
+  - 架构
+  - discovery
+  - zookeeper
 tags:
   - zookeeper
 date: "2021-03-15T00:00:00+08:00"

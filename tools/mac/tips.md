@@ -1,7 +1,8 @@
 ---
 title: mac os tips
 categories: 
-  - [tools, mac]
+  - tools
+  - mac
 tags:
   - mac
 date: "2020-12-29T00:00:00+08:00"

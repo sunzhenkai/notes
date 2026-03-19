@@ -1,7 +1,8 @@
 ---
 title: API - 规范
 categories: 
-    - [guide,api]
+    - guide
+    - api
 tags:
     - API
     - 规范

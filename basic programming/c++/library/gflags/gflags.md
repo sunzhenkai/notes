@@ -1,7 +1,9 @@
 ---
 title: gflags
 categories: 
-  - [coding, c++, library]
+  - coding
+  - c++
+  - library
 tags:
   - c++
   - gflags

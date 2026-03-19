@@ -1,7 +1,8 @@
 ---
 title: python common notes
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-10-06T00:00:00+08:00"

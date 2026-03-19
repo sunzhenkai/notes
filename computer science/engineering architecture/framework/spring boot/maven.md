@@ -1,7 +1,10 @@
 ---
 title: spring boot maven
 categories: 
-  - [架构,java,框架,spring boot]
+  - 架构
+  - java
+  - 框架
+  - spring boot
 tags:
   - spring boot
 date: "2021-09-06T00:00:00+08:00"

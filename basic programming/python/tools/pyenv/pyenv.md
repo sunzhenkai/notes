@@ -1,7 +1,8 @@
 ---
 title: pyenv
 categories: 
-  - [python, tools]
+  - python
+  - tools
 tags:
   - virtualenv
 date: "2022-07-17T00:00:00+08:00"

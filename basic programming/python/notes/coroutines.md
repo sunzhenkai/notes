@@ -1,7 +1,8 @@
 ---
 title: python coroutines
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-06-05T00:00:00+08:00"

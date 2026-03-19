@@ -1,7 +1,8 @@
 ---
 title: python debugger
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2021-10-02T00:00:00+08:00"

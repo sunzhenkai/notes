@@ -1,7 +1,9 @@
 ---
 title: mongo tools
 categories: 
-  - [架构, 存储, mongodb]
+  - 架构
+  - 存储
+  - mongodb
 tags:
   - mongodb
 date: "2022-01-07T00:00:00+08:00"

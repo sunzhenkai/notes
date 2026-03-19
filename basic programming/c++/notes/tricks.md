@@ -1,7 +1,8 @@
 ---
 title: c++ tricks
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2021-12-21T00:00:00+08:00"

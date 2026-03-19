@@ -1,7 +1,10 @@
 ---
 title: lldb
 categories: 
-  - [coding, c++, tools, lldb]
+  - coding
+  - c++
+  - tools
+  - lldb
 tags:
   - c++
     - lldb

@@ -1,7 +1,8 @@
 ---
 title: rsync
 categories:
-  - [tools, rsync]
+  - tools
+  - rsync
 tags:
   - rsync
 comments: true

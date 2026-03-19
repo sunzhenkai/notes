@@ -1,7 +1,8 @@
 ---
 title: vim usage
 categories: 
-  - [工具,vim]
+  - 工具
+  - vim
 tags:
   - vim
 date: "2020-12-30T19:00:00+08:00"

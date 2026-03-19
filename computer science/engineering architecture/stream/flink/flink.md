@@ -1,7 +1,9 @@
 ---
 title: flink
 categories: 
-  - [架构,stream,flink]
+  - 架构
+  - stream
+  - flink
 tags:
   - flink
 date: "2022-07-07T00:00:00+08:00"

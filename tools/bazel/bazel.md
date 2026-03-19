@@ -1,7 +1,8 @@
 ---
 title: bazel
 categories: 
-  - [工具,bazel]
+  - 工具
+  - bazel
 tags:
   - bazel
 date: "2021-05-22T00:00:00+08:00"

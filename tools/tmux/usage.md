@@ -1,7 +1,8 @@
 ---
 title: tmux
 categories: 
-  - [工具,tmux]
+  - 工具
+  - tmux
 tags:
   - tmux
 date: "2020-12-30T00:00:00+08:00"

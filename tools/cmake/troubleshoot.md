@@ -1,7 +1,8 @@
 ---
 title: cmake troubleshoot
 categories: 
-  - [工具,cmake]
+  - 工具
+  - cmake
 tags:
   - cmake
 date: "2024-02-27T00:00:00+08:00"

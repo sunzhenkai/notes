@@ -1,7 +1,8 @@
 ---
 title: maven plugins
 categories:  
-  - [工具,maven]
+  - 工具
+  - maven
 tags:
   - maven
 date: "2021-08-23T00:00:00+08:00"

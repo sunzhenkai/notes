@@ -1,7 +1,8 @@
 ---
 title: element ui
 categories: 
-  - [前端,element ui]
+  - 前端
+  - element ui
 tags:
   - 前端
   - element ui

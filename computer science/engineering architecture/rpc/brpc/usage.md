@@ -1,7 +1,9 @@
 ---
 title: brpc
 categories: 
-  - [computer science, engineering architecture, rpc]
+  - computer science
+  - engineering architecture
+  - rpc
 tags:
   - rpc
   - brpc

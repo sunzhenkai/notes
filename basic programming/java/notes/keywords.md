@@ -1,7 +1,9 @@
 ---
 title: java 关键字
 categories: 
-  - [coding,java,notes]
+  - coding
+  - java
+  - notes
 tags:
   - java
   - todo

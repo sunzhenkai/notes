@@ -1,7 +1,8 @@
 ---
 title: lazygit
 categories: 
-  - [tools, lazygit]
+  - tools
+  - lazygit
 tags:
   - lazygit
 date: 2025/5/5 00:00:00

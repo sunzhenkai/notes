@@ -1,7 +1,8 @@
 ---
 title: mac usage
 categories: 
-  - [linux, Mac]
+  - linux
+  - Mac
 tags:
   - usage
 date: "2020-10-27T19:00:00+08:00"

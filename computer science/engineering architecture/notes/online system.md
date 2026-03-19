@@ -1,7 +1,8 @@
 ---
 title: 架构 - 在线服务系统
 categories: 
-  - [架构, notes]
+  - 架构
+  - notes
 tags:
   - 架构
 date: "2024-03-18T00:00:00+08:00"

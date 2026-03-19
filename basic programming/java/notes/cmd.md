@@ -1,7 +1,9 @@
 ---
 title: java function
 categories: 
-  - [coding,java,notes]
+  - coding
+  - java
+  - notes
 tags:
   - java
 date: "2021-06-16T00:00:00+08:00"

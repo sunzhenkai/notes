@@ -1,7 +1,8 @@
 ---
 title: 设计模式（一）之策略模式
 categories: 
-  - [coding, 设计模式]
+  - coding
+  - 设计模式
 tags:
   - 设计模式
 date: "2021-01-20T23:00:00+08:00"

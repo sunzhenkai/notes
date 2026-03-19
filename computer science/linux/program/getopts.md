@@ -1,7 +1,8 @@
 ---
 title: getopts
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - linux
     - getopts

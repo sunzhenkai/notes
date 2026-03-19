@@ -1,7 +1,8 @@
 ---
 title: python requests
 categories: 
-  - [python, library]
+  - python
+  - library
 tags:
   - python
 date: "2020-12-08T19:00:00+08:00"

@@ -1,7 +1,8 @@
 ---
 title: 黑苹果安装
 categories: 
-  - [play, os x]
+  - play
+  - os x
 tags:
   - os x
 date: "2021-01-25T00:00:00+08:00"

@@ -1,7 +1,9 @@
 ---
 title: gRPC
 categories: 
-  - [架构, rpc, gRPC]
+  - 架构
+  - rpc
+  - gRPC
 tags:
   - gRPC
 date: "2021-05-24T00:00:00+08:00"

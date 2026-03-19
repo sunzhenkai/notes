@@ -1,7 +1,10 @@
 ---
 title: vcpkg
 categories: 
-  - [coding, c++, tools, vcpkg]
+  - coding
+  - c++
+  - tools
+  - vcpkg
 tags:
   - c++
     - vcpkg

@@ -1,7 +1,9 @@
 ---
 title: jmeter
 categories: 
-    - [架构, 压测, jmeter]
+    - 架构
+    - 压测
+    - jmeter
 tags:
     - jmeter
 date: "2021-08-25T00:00:00+08:00"

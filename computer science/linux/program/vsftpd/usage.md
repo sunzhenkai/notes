@@ -1,7 +1,8 @@
 ---
 title: vsftpd usage
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - ftp
   - vsftpd

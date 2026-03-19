@@ -1,7 +1,8 @@
 ---
 title: go usage
 categories: 
-  - [coding, go]
+  - coding
+  - go
 tags:
   - go
 date: "2021-03-24T00:00:00+08:00"

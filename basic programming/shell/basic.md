@@ -1,7 +1,8 @@
 ---
 title: shell 编程
 categories: 
-  - [linux, shell]
+  - linux
+  - shell
 tags:
   - linux
   - shell

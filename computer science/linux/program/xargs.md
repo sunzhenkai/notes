@@ -1,7 +1,8 @@
 ---
 title: linux xargs
 categories: 
-  - [linux,程序]
+  - linux
+  - 程序
 tags:
   - xargs
   - linux

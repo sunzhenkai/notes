@@ -1,7 +1,7 @@
 ---
 title: LLM - startup
 categories: 
-  - [LLM]
+  - LLM
 tags:
   - LLM
 date: "2023-06-15T00:00:00+08:00"

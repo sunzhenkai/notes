@@ -1,7 +1,9 @@
 ---
 title: consul usage
 categories: 
-  - [架构,注册发现,consul]
+  - 架构
+  - 注册发现
+  - consul
 tags:
   - consul
 date: "2021-12-08T00:00:00+08:00"

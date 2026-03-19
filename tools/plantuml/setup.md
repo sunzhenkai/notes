@@ -1,7 +1,8 @@
 ---
 title: plantuml startup
 categories: 
-  - [tools, plantuml]
+  - tools
+  - plantuml
 tags:
   - plantuml
 date: "2021-01-13T19:00:00+08:00"

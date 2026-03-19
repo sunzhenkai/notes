@@ -1,7 +1,9 @@
 ---
 title: Conda
 categories: 
-  - [机器学习,工具,Conda]
+  - 机器学习
+  - 工具
+  - Conda
 tags:
   - 机器学习
   - 工具

@@ -1,7 +1,7 @@
 ---
 title: rpc 基础
 categories: 
-  - [coding]
+  - coding
 tags:
   - coding
 date: "2023-05-23T00:00:00+08:00"

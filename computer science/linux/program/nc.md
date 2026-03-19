@@ -1,7 +1,8 @@
 ---
 title: nc
 categories: 
-  - [linux,程序]
+  - linux
+  - 程序
 tags:
   - sed
 date: "2021-01-11T00:00:00+08:00"

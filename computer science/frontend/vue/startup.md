@@ -1,7 +1,8 @@
 ---
 title: vue startup
 categories: 
-  - [前端,vue]
+  - 前端
+  - vue
 tags:
   - 前端
   - vue

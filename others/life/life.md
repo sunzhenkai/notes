@@ -1,7 +1,7 @@
 ---
 title: 成长
 categories: 
-  - [life]
+  - life
 tags:
   - life
 date: "2021-09-18T00:00:00+08:00"

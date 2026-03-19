@@ -1,7 +1,8 @@
 ---
 title: linux commands misc
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - linux
 date: "2021-06-28T00:00:00+08:00"

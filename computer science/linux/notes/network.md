@@ -1,7 +1,8 @@
 ---
 title: Linux之网络配置
 categories: 
-  - [linux,notes]
+  - linux
+  - notes
 tags:
   - Linux
 date: "2020-12-05T18:40:00+08:00"

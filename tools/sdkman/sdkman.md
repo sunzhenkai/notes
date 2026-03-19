@@ -1,7 +1,8 @@
 ---
 title: sdkman
 categories: 
-  - [工具,sdkman]
+  - 工具
+  - sdkman
 tags:
   - sdkman
 date: "2022-06-02T00:00:00+08:00"

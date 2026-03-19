@@ -1,7 +1,8 @@
 ---
 title: yEd
 categories: 
-  - [工具,yEd]
+  - 工具
+  - yEd
 tags:
   - yEd
 date: "2021-06-02T00:00:00+08:00"

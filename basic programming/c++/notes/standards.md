@@ -1,7 +1,8 @@
 ---
 title: c++ 各标准版本特性
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2023-11-07T00:00:00+08:00"

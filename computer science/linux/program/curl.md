@@ -1,7 +1,8 @@
 ---
 title: curl
 categories:
-  - [linux, software]
+  - linux
+  - software
 tags:
   - linux
     - curl

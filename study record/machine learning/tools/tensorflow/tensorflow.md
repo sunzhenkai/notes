@@ -1,7 +1,9 @@
 ---
 title: tensorflow
 categories: 
-  - [机器学习,工具,tensorflow]
+  - 机器学习
+  - 工具
+  - tensorflow
 tags:
   - 机器学习
   - 工具

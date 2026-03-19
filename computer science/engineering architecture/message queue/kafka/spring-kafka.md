@@ -1,7 +1,9 @@
 ---
 title: spring kafka
 categories: 
-    - [架构, mq, kafka]
+    - 架构
+    - mq
+    - kafka
 tags:
     - kafka
 date: "2021-09-24T00:00:00+08:00"

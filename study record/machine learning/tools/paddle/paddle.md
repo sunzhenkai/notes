@@ -1,7 +1,9 @@
 ---
 title: PaddlePaddle
 categories: 
-  - [机器学习,工具,PaddlePaddle]
+  - 机器学习
+  - 工具
+  - PaddlePaddle
 tags:
   - 机器学习
   - 工具

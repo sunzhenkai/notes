@@ -1,7 +1,10 @@
 ---
 title: vcpkg - 自定义仓库
 categories: 
-  - [coding, c++, tools, vcpkg]
+  - coding
+  - c++
+  - tools
+  - vcpkg
 tags:
   - c++
     - vcpkg

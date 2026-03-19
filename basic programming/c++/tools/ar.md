@@ -1,7 +1,9 @@
 ---
 title: ar
 categories: 
-  - [coding, c++, tools]
+  - coding
+  - c++
+  - tools
 tags:
   - c++
   - ar

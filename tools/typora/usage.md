@@ -1,7 +1,8 @@
 ---
 title: typora
 categories: 
-  - [工具,typora]
+  - 工具
+  - typora
 tags:
   - typora
 date: "2021-08-18T00:00:00+08:00"

@@ -1,7 +1,9 @@
 ---
 title: django 常见问题
 categories: 
-  - [python, library, django]
+  - python
+  - library
+  - django
 tags:
   - django
 date: "2020-12-24T19:00:00+08:00"

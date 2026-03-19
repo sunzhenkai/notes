@@ -1,7 +1,7 @@
 ---
 title: vector
 categories: 
-  - [架构]
+  - 架构
 tags:
   - 架构
 date: "2023-05-30T00:00:00+08:00"

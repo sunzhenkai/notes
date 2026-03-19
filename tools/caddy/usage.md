@@ -1,7 +1,8 @@
 ---
 title: caddy usage
 categories: 
-  - [工具,caddy]
+  - 工具
+  - caddy
 tags:
   - caddy
 date: "2021-08-17T00:00:00+08:00"

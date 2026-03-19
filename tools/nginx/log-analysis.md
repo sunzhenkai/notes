@@ -1,7 +1,8 @@
 ---
 title: nginx 日志分析
 categories: 
-  - [linux,software]
+  - linux
+  - software
 tags:
   - linux
   - nginx

@@ -1,7 +1,8 @@
 ---
 title: zellij - usage
 categories: 
-  - [工具,zellij]
+  - 工具
+  - zellij
 tags:
   - zellij
 date: "2025-03-30T00:00:00+08:00"

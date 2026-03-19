@@ -1,7 +1,9 @@
 ---
 title: mysql/mariadb usage
 categories: 
-  - [架构, 存储, mysql]
+  - 架构
+  - 存储
+  - mysql
 tags:
   - mysql
 date: "2020-10-27T19:00:00+08:00"

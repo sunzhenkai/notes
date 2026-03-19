@@ -1,7 +1,10 @@
 ---
 title: netty
 categories: 
-  - [架构,java,框架,netty]
+  - 架构
+  - java
+  - 框架
+  - netty
 tags:
   - netty
 date: "2021-03-13T00:00:00+08:00"

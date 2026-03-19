@@ -1,7 +1,8 @@
 ---
 title: makefile 使用
 categories: 
-  - [工具,makefile]
+  - 工具
+  - makefile
 tags:
   - makefile
 date: "2021-02-03T00:00:00+08:00"

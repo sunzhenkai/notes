@@ -1,7 +1,9 @@
 ---
 title: phpmyadmin
 categories: 
-  - [架构, 存储, mariadb]
+  - 架构
+  - 存储
+  - mariadb
 tags:
   - phpmyadmin
     - mariadb

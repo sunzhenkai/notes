@@ -1,7 +1,8 @@
 ---
 title: c++ debug
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2021-03-11T00:00:00+08:00"

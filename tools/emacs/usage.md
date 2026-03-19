@@ -1,7 +1,8 @@
 ---
 title: emacs
 categories: 
-  - [工具,emacs]
+  - 工具
+  - emacs
 tags:
   - emacs
 date: "2022-09-17T00:00:00+08:00"

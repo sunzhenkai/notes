@@ -1,7 +1,9 @@
 ---
 title: prometheus common metric
 categories: 
-  - [架构, 监控, prometheus]
+  - 架构
+  - 监控
+  - prometheus
 tags:
   - prometheus
 date: "2023-07-18T00:00:00+08:00"

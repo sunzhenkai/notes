@@ -1,7 +1,9 @@
 ---
 title: kotlin 基础
 categories: 
-  - [coding, kotlin, notes]
+  - coding
+  - kotlin
+  - notes
 tags:
   - kotlin
 date: "2021-01-09T19:00:00+08:00"

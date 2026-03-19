@@ -1,7 +1,8 @@
 ---
 title: python virtualenv
 categories: 
-  - [python, library]
+  - python
+  - library
 tags:
   - virtualenv
 date: "2020-12-10T19:00:00+08:00"

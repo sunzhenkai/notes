@@ -1,7 +1,9 @@
 ---
 title: brpc
 categories: 
-  - [coding, c++, library]
+  - coding
+  - c++
+  - library
 tags:
   - c++
   - brpc

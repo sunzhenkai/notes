@@ -1,7 +1,8 @@
 ---
 title: rustscan
 categories:
-  - [tools, rustscan]
+  - tools
+  - rustscan
 tags:
   - rustscan
 comments: true

@@ -1,7 +1,8 @@
 ---
 title: c++ 数据结构
 categories: 
-  - [coding, c++]
+  - coding
+  - c++
 tags:
   - c++
 date: "2021-03-11T00:00:00+08:00"

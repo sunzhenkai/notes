@@ -1,7 +1,8 @@
 ---
 title: 作者及书籍
 categories: 
-  - [life, 读书]
+  - life
+  - 读书
 tags:
   - life
 date: "2021-09-18T00:00:00+08:00"

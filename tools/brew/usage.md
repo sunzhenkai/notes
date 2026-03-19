@@ -1,7 +1,8 @@
 ---
 title: brew
 categories: 
-  - [工具,brew]
+  - 工具
+  - brew
 tags:
   - brew
 date: "2021-08-06T00:00:00+08:00"

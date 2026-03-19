@@ -1,7 +1,8 @@
 ---
 title: fdisk
 categories: 
-  - [工具,fdisk]
+  - 工具
+  - fdisk
 tags:
   - fdisk
 date: 2025/05/05 00:00:00

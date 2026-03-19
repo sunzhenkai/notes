@@ -1,7 +1,8 @@
 ---
 title: 华硕路由器
 categories: 
-  - [play,router]
+  - play
+  - router
 tags:
   - router
 date: "2022-10-16T00:00:00+08:00"

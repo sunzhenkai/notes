@@ -1,7 +1,9 @@
 ---
 title: file & path
 categories: 
-  - [coding,java,notes]
+  - coding
+  - java
+  - notes
 tags:
   - java
 date: "2021-11-17T00:00:00+08:00"

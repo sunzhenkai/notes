@@ -1,7 +1,7 @@
 ---
 title: vs code 使用
 categories: 
-  - [工具]
+  - 工具
 tags:
   - 工具
 date: "2024-02-26T00:00:00+08:00"

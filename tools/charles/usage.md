@@ -1,7 +1,8 @@
 ---
 title: charles usage
 categories: 
-  - [工具,charles]
+  - 工具
+  - charles
 tags:
   - charles
 date: "2021-08-17T00:00:00+08:00"

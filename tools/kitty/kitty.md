@@ -1,7 +1,8 @@
 ---
 title: Kitty
 categories: 
-  - [tools, kitty]
+  - tools
+  - kitty
 tags:
   - kitty
 date: "2025-03-28T00:00:00+08:00"

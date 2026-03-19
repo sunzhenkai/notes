@@ -1,7 +1,8 @@
 ---
 title: elastic search
 categories: 
-  - [架构, 搜索引擎]
+  - 架构
+  - 搜索引擎
 tags:
   - 架构
   - 搜索引擎

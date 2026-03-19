@@ -1,7 +1,9 @@
 ---
 title: numpy
 categories: 
-  - [python, library, numpy]
+  - python
+  - library
+  - numpy
 tags:
   - numpy
 date: "2021-08-31T20:00:00+08:00"

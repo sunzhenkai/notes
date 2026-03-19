@@ -1,7 +1,8 @@
 ---
 title: pve - usage
 categories: 
-  - [play,pve]
+  - play
+  - pve
 tags:
   - samb
 date: "2022-08-21T00:00:00+08:00"

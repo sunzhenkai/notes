@@ -1,7 +1,8 @@
 ---
 title: C++ - 内存模型
 categories: 
-    - [研习录,C++]
+    - 研习录
+    - C++
 tags:
     - 研习录
     - C++

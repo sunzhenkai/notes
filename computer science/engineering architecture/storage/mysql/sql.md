@@ -1,7 +1,9 @@
 ---
 title: mysql/mariadb sql query
 categories: 
-  - [架构, 存储, mysql]
+  - 架构
+  - 存储
+  - mysql
 tags:
   - mysql
 date: "2021-11-25T00:00:00+08:00"

@@ -1,7 +1,9 @@
 ---
 title: kafka configuration
 categories: 
-    - [架构, mq, kafka]
+    - 架构
+    - mq
+    - kafka
 tags:
     - kafka
 date: "2021-10-12T00:00:00+08:00"

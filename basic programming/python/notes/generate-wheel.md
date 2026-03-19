@@ -1,7 +1,8 @@
 ---
 title: python - generate wheel
 categories: 
-  - [python, notes]
+  - python
+  - notes
 tags:
   - python
 date: "2022-06-20T00:00:00+08:00"
