@@ -123,3 +123,4 @@
 - [OpenCode GitHub](https://github.com/anomalyco/opencode)
 - [Replit 文档](https://docs.replit.com)
 - [Windsurf 文档](https://docs.windsurf.com)
+- **[Cursor vs OpenCode 对比](./comparison-cursor-opencode.md)** ⭐ 新增
