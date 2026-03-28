@@ -6,6 +6,8 @@
 
 **Claude Code 产品页与文档：** [claude.com/product/claude-code](https://claude.com/product/claude-code) · [code.claude.com 文档索引](https://code.claude.com/docs/llms.txt)
 
+**功能要点与配置域（模式 / MCP / 会话 / Skills·Agents 等）：** [features-and-config.md](./features-and-config.md)
+
 ---
 
 ## Claude Code 使用手册
@@ -237,6 +239,7 @@ Claude 模型支持视觉输入；在 Claude Code 各端按产品当前能力附
 ## 相关链接
 
 - **[Claude Code 命令参考（CLI 与子命令）](./cli-and-commands.md)** — `claude` 全部子命令、启动参数与 `/` 内置命令
+- **[核心功能与配置域](./features-and-config.md)** — 模式、回滚、MCP、会话与上下文、Skills/Agents、插件与 scope
 - 官网：https://claude.ai
 - 产品概览：https://claude.com/product/overview
 - API 文档：https://docs.anthropic.com
