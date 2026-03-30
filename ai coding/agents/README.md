@@ -45,6 +45,18 @@
 - **[OpenCode](./opencode)** - 131K+ Stars，多平台支持，免费模型
 - **[Aider](./aider)** - 开源免费，终端原生，Git 集成，CONVENTIONS.md 配置
 
+### 规范驱动开发
+
+让 AI 编码助手在写代码前先对齐需求的规范框架：
+
+- **[OpenSpec](../openspec)** - 轻量级 SDD 框架，支持 20+ AI 工具，Propose → Apply → Archive 工作流
+
+### 工程方法论
+
+围绕 AI Agent 构建约束、反馈和质量保障的方法论：
+
+- **[Harness Engineering](../harness-engineering)** - 缰绳工程：Prompt → Context → Harness 三层递进，让 AI Agent 安全高效运行的系统工程实践
+
 ### Web 开发工具
 
 基于浏览器的 AI 开发工具：
