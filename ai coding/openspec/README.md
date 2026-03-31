@@ -176,6 +176,7 @@ npm install -g @fission-ai/openspec@latest
 - **入门**
   - [入门指南](./getting-started.md) - 了解 OpenSpec 如何工作，创建第一个变更
   - [工作流程](./workflows.md) - 常见的工作流模式和最佳实践
+  - [Cursor IDE 专用指南](./cursor-guide.md) - Cursor IDE 的四个命令和 proposal 改进方法
 
 - **命令参考**
   - [斜杠命令](./commands.md) - AI 助手中的斜杠命令（如 `/opsx:propose`）
