@@ -171,6 +171,24 @@ openspec update
 npm install -g @fission-ai/openspec@latest
 ```
 
+## 文档目录
+
+- **入门**
+  - [入门指南](./getting-started.md) - 了解 OpenSpec 如何工作，创建第一个变更
+  - [工作流程](./workflows.md) - 常见的工作流模式和最佳实践
+
+- **命令参考**
+  - [斜杠命令](./commands.md) - AI 助手中的斜杠命令（如 `/opsx:propose`）
+  - [CLI 参考](./cli-reference.md) - 终端命令参考
+
+- **核心概念**
+  - [核心概念](./concepts.md) - 深入了解规范、变更、工件和 delta 规范
+  - [支持的工具](./supported-tools.md) - 支持的 AI 编程助手列表
+
+- **高级主题**
+  - [自定义配置](./customization.md) - 自定义工作流和项目配置
+  - [多语言指南](./multi-language-guide.md) - 配置非英语语言支持
+
 ## 相关资源
 
 - [OpenSpec GitHub](https://github.com/Fission-AI/OpenSpec)
