@@ -79,25 +79,28 @@ openspec init
 
 ### 简化工作流（推荐）
 
-| 命令 | 说明 |
-|------|------|
-| `/opsx:propose` | 创建变更提案 |
-| `/opsx:apply` | 按规范实施 |
+| 命令            | 说明             |
+| --------------- | ---------------- |
+| `/opsx:propose` | 创建变更提案     |
+| `/opsx:apply`   | 按规范实施       |
 | `/opsx:archive` | 归档已完成的变更 |
 
 ### 扩展工作流
 
 通过 `openspec config profile` 切换到扩展模式后可用：
 
-| 命令 | 说明 |
-|------|------|
-| `/opsx:new` | 创建新提案（扩展版） |
-| `/opsx:continue` | 继续未完成的任务 |
-| `/opsx:ff` | 快速推进 |
-| `/opsx:verify` | 验证实现 |
-| `/opsx:sync` | 同步规范状态 |
-| `/opsx:bulk-archive` | 批量归档 |
-| `/opsx:onboard` | 项目入门引导 |
+| 命令                 | 用途                                                                | 旧版 0.x 命令        |
+| -------------------- | ------------------------------------------------------------------- | -------------------- |
+| `/opsx-explore`      | 自由思考，只读模式，不写代码。允许在动手前理清思路，可衔接 opsx-new | -                    |
+| `/opsx-new`          | 开始一个新变更                                                      | `/openspec:proposal` |
+| `/opsx-continue`     | 创建下一个产物（一次一个）。产物是指 proposal、specs、design、tasks | `/openspec:proposal` |
+| `/opsx-ff`           | Fast-Forward，按依赖顺序一口气生成四个产物。适合需求明确的场景      | `/openspec:proposal` |
+| `/opsx-apply`        | 实现 tasks.md 里的任务                                              | `/openspec:apply`    |
+| `/opsx-verify`       | 检查代码和规范是否一致                                              | -                    |
+| `/opsx-sync`         | 预览规格合并（可选 —— 如需要会提示归档）                            | -                    |
+| `/opsx-archive`      | 完成并归档变更                                                      | `/openspec:archive`  |
+| `/opsx-bulk-archive` | 批量归档多个变更                                                    | -                    |
+| `/opsx:onboard`      | 项目入门引导                                                        | -                    |
 
 ## 三种规范文档
 
@@ -128,14 +131,14 @@ OpenSpec 支持 20+ AI 编程助手，包括但不限于：
 
 ## 与同类工具对比
 
-| 特性 | OpenSpec | Spec Kit (GitHub) | Kiro (AWS) |
-|------|----------|-------------------|------------|
-| 重量级 | 轻量 | 较重 | 中等 |
-| 阶段门控 | 无，自由迭代 | 严格阶段门控 | 有 |
-| 工具锁定 | 无，支持 20+ 工具 | GitHub 生态 | Kiro IDE + Claude |
-| 安装 | npm（简单） | Python（较复杂） | IDE 内置 |
-| 棕地项目支持 | 原生支持 | 有限 | 有限 |
-| 定制性 | 高（自定义 Profile/Schema） | 低 | 低 |
+| 特性         | OpenSpec                    | Spec Kit (GitHub) | Kiro (AWS)        |
+| ------------ | --------------------------- | ----------------- | ----------------- |
+| 重量级       | 轻量                        | 较重              | 中等              |
+| 阶段门控     | 无，自由迭代                | 严格阶段门控      | 有                |
+| 工具锁定     | 无，支持 20+ 工具           | GitHub 生态       | Kiro IDE + Claude |
+| 安装         | npm（简单）                 | Python（较复杂）  | IDE 内置          |
+| 棕地项目支持 | 原生支持                    | 有限              | 有限              |
+| 定制性       | 高（自定义 Profile/Schema） | 低                | 低                |
 
 ## 适用场景
 
