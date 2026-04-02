@@ -7,6 +7,7 @@ site:
   name: "Wii's Blogs"
   # 默认展示的文档，不配置则默认展示 README.md（忽略大小写）
   default_doc: "README.md"
+  footer: "京ICP备2026013364号-2"
 
 # 服务配置
 server:
