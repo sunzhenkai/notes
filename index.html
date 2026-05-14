@@ -68,6 +68,54 @@
         font-weight: 400;
       }
 
+      /* Language toggle */
+      .lang-switch {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 100;
+        display: flex;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--card-bg);
+        box-shadow: var(--shadow);
+        font-size: 0.82rem;
+      }
+
+      .lang-switch button {
+        padding: 6px 14px;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: 500;
+        transition:
+          background 0.2s,
+          color 0.2s;
+        white-space: nowrap;
+      }
+
+      .lang-switch button.active {
+        background: var(--link);
+        color: #fff;
+      }
+
+      .lang-switch button:hover:not(.active) {
+        background: var(--tag-bg);
+        color: var(--link);
+      }
+
+      /* Language visibility */
+      html:not([lang="en"]) [data-lang="en"] {
+        display: none !important;
+      }
+      html[lang="en"] [data-lang="zh"] {
+        display: none !important;
+      }
+
       /* Intro card */
       .intro-card {
         background: var(--card-bg);
@@ -321,47 +369,95 @@
     </style>
   </head>
   <body>
+    <!-- Language toggle -->
+    <div class="lang-switch">
+      <button id="btn-zh" class="active">中文</button>
+      <button id="btn-en">English</button>
+    </div>
+
     <div class="container">
       <!-- Hero -->
       <header class="hero">
         <h1>Wii's Talking Ground</h1>
-        <p class="subtitle">一点笔记，一点文章，一个百宝箱</p>
+        <!-- <p class="subtitle">
+          <span data-lang="zh">一点笔记，一点文章，一个百宝箱</span>
+          <span data-lang="en">Notes, articles, a treasure chest</span>
+        </p> -->
       </header>
 
       <!-- Intro -->
       <!-- sync:block:intro -->
       <div class="intro-card">
-        <p>欢迎来到 Wii 的世界。</p>
-        <p>
+        <p data-lang="zh">欢迎来到 Wii 的世界。</p>
+        <p data-lang="en">Welcome to Wii's world.</p>
+        <p data-lang="zh">
           这是一个由文字构建的世界，纵如潺潺涓流，也能感受到其间微小的能量、情绪的波动、
           缓慢的成长。既有内心的独白，也有技术的积淀，希望这些文字能有些许用处。
         </p>
-        <p>
+        <p data-lang="en">
+          This is a world built with words — like a gentle stream, you can still
+          feel the subtle energy, emotional ripples, and slow growth within. A
+          mix of inner monologues and technical accumulations; I hope these
+          words prove somewhat useful.
+        </p>
+        <p data-lang="zh">
           大模型正在重构整个文字世界，这既让文字变得廉价，也使得别具一格的文字显得弥足珍贵。
         </p>
-        <p>
+        <p data-lang="en">
+          Large language models are reshaping the entire world of text, making
+          words cheap yet rendering truly distinctive writing all the more
+          precious.
+        </p>
+        <p data-lang="zh">
           对于软件开发从业者，大模型已成为绕不开的课题，从 2025
           年开始积极拥抱这一新质生产力。这同时也带来了生成文字、手写文字难以区分的问题，
           为此我将使用两个资源做硬隔离。
         </p>
-        <p>
+        <p data-lang="en">
+          For software developers, LLMs have become an unavoidable topic. Since
+          2025, I've been actively embracing this new productive force. This
+          also brings the challenge of distinguishing AI-generated text from
+          handwritten text — to address this, I maintain two strictly separated
+          resources.
+        </p>
+        <p data-lang="zh">
           <a href="https://note.wii.pub" target="_blank" rel="noopener"
             >note.wii.pub</a
           >
           是我从学生时代便开始积累的文档站点，内容涵盖编程技术、生活技巧与个人喜好。
           后续我也会借助 LLM 来更好地总结知识，这部分内容同步发布于此。
         </p>
-        <p>
+        <p data-lang="en">
+          <a href="https://note.wii.pub" target="_blank" rel="noopener"
+            >note.wii.pub</a
+          >
+          is a documentation site I've been building since my student days,
+          covering programming techniques, life hacks, and personal interests. I
+          continue leveraging LLMs to better synthesize knowledge, with content
+          synced and published here.
+        </p>
+        <p data-lang="zh">
           与 Notes 做了硬隔离的另一个资源是
           <a href="https://blog.wii.pub" target="_blank" rel="noopener"
             >blog.wii.pub</a
           >， 基于 Halo 搭建，手写文字为主体，大模型生成文本则通过引用标注。
         </p>
+        <p data-lang="en">
+          Another resource, strictly isolated from Notes, is
+          <a href="https://blog.wii.pub" target="_blank" rel="noopener"
+            >blog.wii.pub</a
+          >
+          — built on Halo, with handwritten text as the main body and
+          LLM-generated content attributed via citations.
+        </p>
       </div>
 
       <!-- Sites -->
       <!-- sync:block:sites -->
-      <h2 class="section-title">📖 查看</h2>
+      <h2 class="section-title">
+        <span data-lang="zh">📖 查看</span>
+        <span data-lang="en">📖 Browse</span>
+      </h2>
       <div class="site-cards">
         <!-- sync:item:site-pub -->
         <a
@@ -374,8 +470,12 @@
             <span class="icon pub">N</span>
             note.wii.pub
           </div>
-          <p class="site-desc">
+          <p class="site-desc" data-lang="zh">
             从学生时代积累至今的文档，内容涵盖编程技术与生活技巧。
+          </p>
+          <p class="site-desc" data-lang="en">
+            Documentation accumulated since student days, covering programming
+            and life tips.
           </p>
           <span class="site-tech">MdServe + GitHub Pages</span>
         </a>
@@ -391,8 +491,12 @@
             <span class="icon wiki">B</span>
             blog.wii.pub
           </div>
-          <p class="site-desc">
+          <p class="site-desc" data-lang="zh">
             基于 Halo 搭建的博客，手写文字为主体，大模型文本引用标注。
+          </p>
+          <p class="site-desc" data-lang="en">
+            A blog built on Halo — handwritten content with LLM contributions
+            cited.
           </p>
           <span class="site-tech">Halo</span>
         </a>
@@ -400,7 +504,10 @@
 
       <!-- More links -->
       <!-- sync:block:links -->
-      <h2 class="section-title">🔗 了解更多</h2>
+      <h2 class="section-title">
+        <span data-lang="zh">🔗 了解更多</span>
+        <span data-lang="en">🔗 More</span>
+      </h2>
       <div class="links-grid">
         <!-- sync:item:link-issues -->
         <a
@@ -410,7 +517,10 @@
           rel="noopener"
         >
           <span class="emoji">❓</span>
-          <span class="label">提个疑问</span>
+          <span class="label">
+            <span data-lang="zh">提个疑问</span>
+            <span data-lang="en">Ask a question</span>
+          </span>
           <span class="sublabel">GitHub Issues</span>
           <span class="arrow">→</span>
         </a>
@@ -422,7 +532,10 @@
           rel="noopener"
         >
           <span class="emoji">🐙</span>
-          <span class="label">GitHub 账户</span>
+          <span class="label">
+            <span data-lang="zh">GitHub 账户</span>
+            <span data-lang="en">GitHub Account</span>
+          </span>
           <span class="arrow">→</span>
         </a>
         <!-- sync:item:link-lingxi -->
@@ -433,8 +546,14 @@
           rel="noopener"
         >
           <span class="emoji">🦊</span>
-          <span class="label">灵犀</span>
-          <span class="sublabel">链接整理工具</span>
+          <span class="label">
+            <span data-lang="zh">灵犀</span>
+            <span data-lang="en">Lingxi</span>
+          </span>
+          <span class="sublabel">
+            <span data-lang="zh">链接整理工具</span>
+            <span data-lang="en">Link organizer</span>
+          </span>
           <span class="arrow">→</span>
         </a>
         <!-- sync:item:link-solo -->
@@ -446,26 +565,37 @@
         >
           <span class="emoji">🌐</span>
           <span class="label">solo.wii.pub</span>
-          <span class="sublabel">我的其他项目</span>
+          <span class="sublabel">
+            <span data-lang="zh">我的其他项目</span>
+            <span data-lang="en">My other projects</span>
+          </span>
           <span class="arrow">→</span>
         </a>
       </div>
 
       <!-- Contact -->
       <!-- sync:block:contact -->
-      <h2 class="section-title">📬 联系我</h2>
+      <h2 class="section-title">
+        <span data-lang="zh">📬 联系我</span>
+        <span data-lang="en">📬 Contact</span>
+      </h2>
       <div class="contact-strip">
         <a href="mailto:zhenkai.sun@qq.com" class="contact-pill">
           ✉️ zhenkai.sun@qq.com
         </a>
-        <span class="contact-pill"> 💬 微信：xsunzhenkai </span>
+        <span class="contact-pill">
+          💬
+          <span data-lang="zh">微信：xsunzhenkai</span>
+          <span data-lang="en">WeChat: xsunzhenkai</span>
+        </span>
       </div>
     </div>
 
     <!-- sync:block:footer -->
     <footer>
       <p>
-        Built with ❤️ — 源码在
+        <span data-lang="zh">Built with ❤️ — 源码在</span>
+        <span data-lang="en">Built with ❤️ — Source at</span>
         <a
           href="https://github.com/sunzhenkai/notes"
           target="_blank"
@@ -480,5 +610,41 @@
         >
       </p>
     </footer>
+
+    <script>
+      (function () {
+        var html = document.documentElement;
+        var btnZh = document.getElementById("btn-zh");
+        var btnEn = document.getElementById("btn-en");
+
+        function setLang(lang) {
+          if (lang === "en") {
+            html.setAttribute("lang", "en");
+            btnZh.classList.remove("active");
+            btnEn.classList.add("active");
+          } else {
+            html.setAttribute("lang", "zh-CN");
+            btnZh.classList.add("active");
+            btnEn.classList.remove("active");
+          }
+          try {
+            localStorage.setItem("lang", lang);
+          } catch (e) {}
+        }
+
+        btnZh.addEventListener("click", function () {
+          setLang("zh");
+        });
+        btnEn.addEventListener("click", function () {
+          setLang("en");
+        });
+
+        // Load saved preference
+        try {
+          var saved = localStorage.getItem("lang");
+          if (saved) setLang(saved);
+        } catch (e) {}
+      })();
+    </script>
   </body>
 </html>
