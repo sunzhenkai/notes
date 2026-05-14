@@ -8,13 +8,20 @@ date: "1993-01-01T00:00:00+08:00"
 update: "1993-01-01T00:00:00+08:00"
 ---
 
-整理了一些文档，一部分是笔记，一部分是文章， 绝大多数是 Markdown 格式，源码在 [这里](https://github.com/sunzhenkai/notes)。有两个网站可以更方便的查看，[wii.pub](https://wii.pub) 和 [wii.wiki](https://wii.wiki)。
+欢迎来到 Wii 的世界。
 
-- [wii.pub](https://wii.pub) 是基于 Hexo 生成的博客形式的静态站点，没有做特别整理，不过有标签和分类，使用[这个仓库](https://github.com/sunzhenkai/blog-docs) 配合 GitHub Pages 搭建
-- [wii.wiki](https://wii.wiki) 是基于 VitePress 生成的目录形式的静态站点，苦于 [wii.pub](https://wii.pub) 的杂乱无章，做了详细的目录，使用[这个仓库](https://github.com/sunzhenkai/talking-ground) 配合 GitHub Pages 搭建
+这是一个由文字构建的世界，纵如潺潺涓流，亦能感受到其间微小的能量、情绪的波动、缓慢的成长。这个世界里，既有内心的独白，亦有技术的积淀，亦希望其中的文字能有些许用处。
 
-如果想要了解我，那么请查看[这个页面](./about.md)，如果感兴趣可以看一些我的[碎碎念](./others/thoughts/thoughts)。写的东西会非常杂，也会不断添加内容，希望能对你有些用处。期望能打造成一个百宝箱，但愿不会变成你们眼中的垃圾箱。
+大模型在重构整个文字世界，这即让文字变得廉价，也使得别具一格的文字显得弥足珍贵。
+
+对于软件开发从业者，大模型已成为绕不开的角色，从 25
+年开始也积极拥抱这一新质生产力。同时也带来了生成文字、手写文字难以区分的问题，为此我将使用两个资源做硬隔离。
+
+[Notes](https://github.com/sunzhenkai/notes) 是从学生时代便开始积累，可以说是包罗万象，从编程技术，到生活技巧，再到喜好分享，归根结底技术文档占了绝大部分。涉及技术便逃不开大模型，在写这些文字的不久前，也已混入了部分大模型生成的文字，后面会继续借助 LLM 来更好地总结知识，如果感兴趣可以关注下 LLM Wiki 这个话题。同时，这部分文档的可视化会放在 [note.wii.pub](https://note.wii.pub) 供大家参考。
+
+和 Notes 做了硬隔离的另外一个资源是 [blog.wii.pub](https://blog.wii.pub)，这是基于 Halo
+搭建的一个博客服务，我会确保手写文字作为主体，如有必要则通过引用标注大模型生成文本。
 
 如果有疑问，可以写在[这里](https://github.com/sunzhenkai/notes/issues)，如果想联系我，可以 Email（<zhenkai.sun@qq.com>）或微信（xsunzhenkai）。
 
-最后，如果有大量链接需要整理且经常访问，欢迎试下[灵犀](https://exploring.fun)，欢迎专注 [GitHub 账户](https://github.com/sunzhenkai)。
+最后，如果有大量链接需要整理且经常访问，欢迎试用[灵犀](https://exploring.fun)，欢迎专注 [GitHub 账户](https://github.com/sunzhenkai)，如果对我的其他项目感兴趣，欢迎访问 [solo.wii.pub](https://solo.wii.pub)。
