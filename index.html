@@ -1,435 +1,484 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sunzhenkai's notes</title>
-  <style>
-    :root {
-      --bg: #f8f9fa;
-      --card-bg: #ffffff;
-      --text: #2c3e50;
-      --text-secondary: #5a6c7d;
-      --border: #e2e8f0;
-      --link: #2563eb;
-      --link-hover: #1d4ed8;
-      --tag-bg: #eff6ff;
-      --tag-text: #2563eb;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
-      --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wii's Talking Ground</title>
+    <style>
+      :root {
+        --bg: #f8f9fa;
+        --card-bg: #ffffff;
+        --text: #2c3e50;
+        --text-secondary: #5a6c7d;
+        --border: #e2e8f0;
+        --link: #2563eb;
+        --link-hover: #1d4ed8;
+        --tag-bg: #eff6ff;
+        --tag-text: #2563eb;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+        --shadow-hover:
+          0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.05);
+      }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+          "PingFang SC", "Microsoft YaHei", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
 
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px;
-      flex: 1;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .hero h1 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 8px;
-    }
-
-    .hero .subtitle {
-      color: var(--text-secondary);
-      font-size: 1rem;
-      font-weight: 400;
-    }
-
-    /* Intro card */
-    .intro-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .intro-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #2563eb, #7c3aed);
-      border-radius: 4px 0 0 4px;
-    }
-
-    .intro-card p {
-      color: var(--text);
-      font-size: 1.05rem;
-      line-height: 1.8;
-    }
-
-    .intro-card a {
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 1.5px solid transparent;
-      transition: border-color 0.2s;
-    }
-
-    .intro-card a:hover {
-      border-bottom-color: var(--link);
-    }
-
-    /* Section title */
-    .section-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 16px;
-      padding-left: 4px;
-    }
-
-    /* Site cards */
-    .site-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-
-    .site-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: box-shadow 0.25s, transform 0.25s;
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-
-    .site-card:hover {
-      box-shadow: var(--shadow-hover);
-      transform: translateY(-2px);
-    }
-
-    .site-card .site-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .site-card .site-name .icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #fff;
-      flex-shrink: 0;
-    }
-
-    .site-card .site-name .icon.pub {
-      background: linear-gradient(135deg, #2563eb, #3b82f6);
-    }
-
-    .site-card .site-name .icon.wiki {
-      background: linear-gradient(135deg, #7c3aed, #a78bfa);
-    }
-
-    .site-card .site-desc {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-
-    .site-card .site-tech {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 0.78rem;
-      background: var(--tag-bg);
-      color: var(--tag-text);
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-weight: 500;
-    }
-
-    /* Links section */
-    .links-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 36px;
-    }
-
-    .link-item {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 18px;
-      text-decoration: none;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: box-shadow 0.2s, border-color 0.2s;
-    }
-
-    .link-item:hover {
-      box-shadow: var(--shadow-hover);
-      border-color: #cbd5e1;
-    }
-
-    .link-item .emoji {
-      font-size: 1.3rem;
-      flex-shrink: 0;
-    }
-
-    .link-item .label {
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .link-item .sublabel {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-
-    .link-item .arrow {
-      margin-left: auto;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .link-item:hover .arrow {
-      opacity: 1;
-    }
-
-    /* Contact strip */
-    .contact-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 8px;
-    }
-
-    .contact-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 8px 18px;
-      font-size: 0.9rem;
-      color: var(--text);
-      text-decoration: none;
-      transition: box-shadow 0.2s, border-color 0.2s;
-    }
-
-    .contact-pill:hover {
-      box-shadow: var(--shadow-hover);
-      border-color: #cbd5e1;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 32px 24px;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
-
-    footer a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
       .container {
-        padding: 36px 16px;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 60px 24px;
+        flex: 1;
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        margin-bottom: 48px;
       }
 
       .hero h1 {
-        font-size: 1.8rem;
+        font-size: 2.4rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 8px;
       }
 
-      .site-cards {
-        grid-template-columns: 1fr;
+      .hero .subtitle {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        font-weight: 400;
       }
 
-      .links-grid {
-        grid-template-columns: 1fr;
-      }
-
+      /* Intro card */
       .intro-card {
-        padding: 20px 20px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 32px 36px;
+        margin-bottom: 36px;
+        position: relative;
+        overflow: hidden;
       }
 
-      .contact-strip {
-        flex-direction: column;
+      .intro-card p {
+        color: var(--text-secondary);
+        font-size: 1.02rem;
+        line-height: 1.9;
+      }
+
+      .intro-card p + p {
+        margin-top: 1.5em;
+      }
+
+      .intro-card a {
+        color: var(--link);
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1.5px solid transparent;
+        transition: border-color 0.2s;
+      }
+
+      .intro-card a:hover {
+        border-bottom-color: var(--link);
+      }
+
+      /* Section title */
+      .section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 16px;
+        padding-left: 4px;
+      }
+
+      /* Site cards */
+      .site-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 36px;
+      }
+
+      .site-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        transition:
+          box-shadow 0.25s,
+          transform 0.25s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+
+      .site-card:hover {
+        box-shadow: var(--shadow-hover);
+        transform: translateY(-2px);
+      }
+
+      .site-card .site-name {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+        display: flex;
         align-items: center;
+        gap: 8px;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <div class="container">
-    <!-- Hero -->
-    <header class="hero">
-      <h1>📦 sunzhenkai's notes</h1>
-      <p class="subtitle">一点笔记，一点文章，一个百宝箱</p>
-    </header>
+      .site-card .site-name .icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+      }
 
-    <!-- Intro -->
-    <!-- sync:block:intro -->
-    <div class="intro-card">
-      <p>
-        欢迎来到 Wii 的世界。
-      </p>
-      <p>
-        这是一个由文字构建的世界，纵如潺潺涓流，也能感受到其间微小的能量、情绪的波动、
-        缓慢的成长。既有内心的独白，也有技术的积淀，希望这些文字能有些许用处。
-      </p>
-      <p>
-        大模型正在重构整个文字世界，这既让文字变得廉价，也使得别具一格的文字显得弥足珍贵。
-      </p>
-      <p>
-        对于软件开发从业者，大模型已成为绕不开的课题，从 2025
-        年开始积极拥抱这一新质生产力。这同时也带来了生成文字、手写文字难以区分的问题，
-        为此我将使用两个资源做硬隔离。
-      </p>
+      .site-card .site-name .icon.pub {
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+      }
+
+      .site-card .site-name .icon.wiki {
+        background: linear-gradient(135deg, #7c3aed, #a78bfa);
+      }
+
+      .site-card .site-desc {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      .site-card .site-tech {
+        display: inline-block;
+        margin-top: 10px;
+        font-size: 0.78rem;
+        background: var(--tag-bg);
+        color: var(--tag-text);
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-weight: 500;
+      }
+
+      /* Links section */
+      .links-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 36px;
+      }
+
+      .link-item {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-decoration: none;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transition:
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+
+      .link-item:hover {
+        box-shadow: var(--shadow-hover);
+        border-color: #cbd5e1;
+      }
+
+      .link-item .emoji {
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+
+      .link-item .label {
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+
+      .link-item .sublabel {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+        font-weight: 400;
+      }
+
+      .link-item .arrow {
+        margin-left: auto;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      .link-item:hover .arrow {
+        opacity: 1;
+      }
+
+      /* Contact strip */
+      .contact-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 8px;
+      }
+
+      .contact-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 8px 18px;
+        font-size: 0.9rem;
+        color: var(--text);
+        text-decoration: none;
+        transition:
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+
+      .contact-pill:hover {
+        box-shadow: var(--shadow-hover);
+        border-color: #cbd5e1;
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 32px 24px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        border-top: 1px solid var(--border);
+      }
+
+      footer a {
+        color: var(--link);
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        .container {
+          padding: 36px 16px;
+        }
+
+        .hero h1 {
+          font-size: 1.8rem;
+        }
+
+        .site-cards {
+          grid-template-columns: 1fr;
+        }
+
+        .links-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .intro-card {
+          padding: 20px 20px;
+        }
+
+        .contact-strip {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Hero -->
+      <header class="hero">
+        <h1>Wii's Talking Ground</h1>
+        <p class="subtitle">一点笔记，一点文章，一个百宝箱</p>
+      </header>
+
+      <!-- Intro -->
+      <!-- sync:block:intro -->
+      <div class="intro-card">
+        <p>欢迎来到 Wii 的世界。</p>
+        <p>
+          这是一个由文字构建的世界，纵如潺潺涓流，也能感受到其间微小的能量、情绪的波动、
+          缓慢的成长。既有内心的独白，也有技术的积淀，希望这些文字能有些许用处。
+        </p>
+        <p>
+          大模型正在重构整个文字世界，这既让文字变得廉价，也使得别具一格的文字显得弥足珍贵。
+        </p>
+        <p>
+          对于软件开发从业者，大模型已成为绕不开的课题，从 2025
+          年开始积极拥抱这一新质生产力。这同时也带来了生成文字、手写文字难以区分的问题，
+          为此我将使用两个资源做硬隔离。
+        </p>
+        <p>
+          <a href="https://note.wii.pub" target="_blank" rel="noopener"
+            >note.wii.pub</a
+          >
+          是我从学生时代便开始积累的文档站点，内容涵盖编程技术、生活技巧与个人喜好。
+          后续我也会借助 LLM 来更好地总结知识，这部分内容同步发布于此。
+        </p>
+        <p>
+          与 Notes 做了硬隔离的另一个资源是
+          <a href="https://blog.wii.pub" target="_blank" rel="noopener"
+            >blog.wii.pub</a
+          >， 基于 Halo 搭建，手写文字为主体，大模型生成文本则通过引用标注。
+        </p>
+      </div>
+
+      <!-- Sites -->
+      <!-- sync:block:sites -->
+      <h2 class="section-title">📖 查看</h2>
+      <div class="site-cards">
+        <!-- sync:item:site-pub -->
+        <a
+          href="https://note.wii.pub"
+          class="site-card"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="site-name">
+            <span class="icon pub">N</span>
+            note.wii.pub
+          </div>
+          <p class="site-desc">
+            从学生时代积累至今的文档，内容涵盖编程技术与生活技巧。
+          </p>
+          <span class="site-tech">MdServe + GitHub Pages</span>
+        </a>
+
+        <!-- sync:item:site-wiki -->
+        <a
+          href="https://blog.wii.pub"
+          class="site-card"
+          target="_blank"
+          rel="noopener"
+        >
+          <div class="site-name">
+            <span class="icon wiki">B</span>
+            blog.wii.pub
+          </div>
+          <p class="site-desc">
+            基于 Halo 搭建的博客，手写文字为主体，大模型文本引用标注。
+          </p>
+          <span class="site-tech">Halo</span>
+        </a>
+      </div>
+
+      <!-- More links -->
+      <!-- sync:block:links -->
+      <h2 class="section-title">🔗 了解更多</h2>
+      <div class="links-grid">
+        <!-- sync:item:link-issues -->
+        <a
+          href="https://github.com/sunzhenkai/notes/issues"
+          class="link-item"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="emoji">❓</span>
+          <span class="label">提个疑问</span>
+          <span class="sublabel">GitHub Issues</span>
+          <span class="arrow">→</span>
+        </a>
+        <!-- sync:item:link-github -->
+        <a
+          href="https://github.com/sunzhenkai"
+          class="link-item"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="emoji">🐙</span>
+          <span class="label">GitHub 账户</span>
+          <span class="arrow">→</span>
+        </a>
+        <!-- sync:item:link-lingxi -->
+        <a
+          href="https://exploring.fun"
+          class="link-item"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="emoji">🦊</span>
+          <span class="label">灵犀</span>
+          <span class="sublabel">链接整理工具</span>
+          <span class="arrow">→</span>
+        </a>
+        <!-- sync:item:link-solo -->
+        <a
+          href="https://solo.wii.pub"
+          class="link-item"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="emoji">🌐</span>
+          <span class="label">solo.wii.pub</span>
+          <span class="sublabel">我的其他项目</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Contact -->
+      <!-- sync:block:contact -->
+      <h2 class="section-title">📬 联系我</h2>
+      <div class="contact-strip">
+        <a href="mailto:zhenkai.sun@qq.com" class="contact-pill">
+          ✉️ zhenkai.sun@qq.com
+        </a>
+        <span class="contact-pill"> 💬 微信：xsunzhenkai </span>
+      </div>
     </div>
 
-    <!-- Sites -->
-    <!-- sync:block:sites -->
-    <h2 class="section-title">📖 查看方式</h2>
-    <div class="site-cards">
-      <!-- sync:item:site-pub -->
-      <a href="https://note.wii.pub" class="site-card" target="_blank" rel="noopener">
-        <div class="site-name">
-          <span class="icon pub">N</span>
-          note.wii.pub
-        </div>
-        <p class="site-desc">从学生时代积累至今的文档，内容涵盖编程技术与生活技巧。</p>
-        <span class="site-tech">MdServe + GitHub Pages</span>
-      </a>
-
-      <!-- sync:item:site-wiki -->
-      <a href="https://blog.wii.pub" class="site-card" target="_blank" rel="noopener">
-        <div class="site-name">
-          <span class="icon wiki">B</span>
-          blog.wii.pub
-        </div>
-        <p class="site-desc">基于 Halo 搭建的博客，手写文字为主体，大模型文本引用标注。</p>
-        <span class="site-tech">Halo</span>
-      </a>
-    </div>
-
-    <!-- More links -->
-    <!-- sync:block:links -->
-    <h2 class="section-title">🔗 了解更多</h2>
-    <div class="links-grid">
-      <!-- sync:item:link-issues -->
-      <a href="https://github.com/sunzhenkai/notes/issues" class="link-item" target="_blank" rel="noopener">
-        <span class="emoji">❓</span>
-        <span class="label">提个疑问</span>
-        <span class="sublabel">GitHub Issues</span>
-        <span class="arrow">→</span>
-      </a>
-      <!-- sync:item:link-github -->
-      <a href="https://github.com/sunzhenkai" class="link-item" target="_blank" rel="noopener">
-        <span class="emoji">🐙</span>
-        <span class="label">GitHub 账户</span>
-        <span class="arrow">→</span>
-      </a>
-      <!-- sync:item:link-lingxi -->
-      <a href="https://exploring.fun" class="link-item" target="_blank" rel="noopener">
-        <span class="emoji">🦊</span>
-        <span class="label">灵犀</span>
-        <span class="sublabel">链接整理工具</span>
-        <span class="arrow">→</span>
-      </a>
-      <!-- sync:item:link-solo -->
-      <a href="https://solo.wii.pub" class="link-item" target="_blank" rel="noopener">
-        <span class="emoji">🌐</span>
-        <span class="label">solo.wii.pub</span>
-        <span class="sublabel">我的其他项目</span>
-        <span class="arrow">→</span>
-      </a>
-    </div>
-
-    <!-- Contact -->
-    <!-- sync:block:contact -->
-    <h2 class="section-title">📬 联系我</h2>
-    <div class="contact-strip">
-      <a href="mailto:zhenkai.sun@qq.com" class="contact-pill">
-        ✉️ zhenkai.sun@qq.com
-      </a>
-      <span class="contact-pill">
-        💬 微信：xsunzhenkai
-      </span>
-    </div>
-  </div>
-
-  <!-- sync:block:footer -->
-  <footer>
-    <p>
-      Built with ❤️ — 源码在
-      <a href="https://github.com/sunzhenkai/notes" target="_blank" rel="noopener">sunzhenkai/notes</a>
-    </p>
-    <!-- sync:protected:icp -->
-    <p style="margin-top: 6px; font-size: 0.8rem;">
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">京ICP备2026013364号-2</a>
-    </p>
-  </footer>
-
-</body>
+    <!-- sync:block:footer -->
+    <footer>
+      <p>
+        Built with ❤️ — 源码在
+        <a
+          href="https://github.com/sunzhenkai/notes"
+          target="_blank"
+          rel="noopener"
+          >sunzhenkai/notes</a
+        >
+      </p>
+      <!-- sync:protected:icp -->
+      <p style="margin-top: 6px; font-size: 0.8rem">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener"
+          >京ICP备2026013364号-2</a
+        >
+      </p>
+    </footer>
+  </body>
 </html>
