@@ -8,3 +8,4 @@ hexo/source/_posts/lns
 hexo/source/_posts/docs
 *.swp
 *.pid
+.cache/
