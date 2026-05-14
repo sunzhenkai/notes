@@ -12,16 +12,16 @@ update: "1993-01-01T00:00:00+08:00"
 
 这是一个由文字构建的世界，纵如潺潺涓流，亦能感受到其间微小的能量、情绪的波动、缓慢的成长。这个世界里，既有内心的独白，亦有技术的积淀，亦希望其中的文字能有些许用处。
 
-大模型在重构整个文字世界，这即让文字变得廉价，也使得别具一格的文字显得弥足珍贵。
+大模型在重构整个文字世界，这既让文字变得廉价，也使得别具一格的文字显得弥足珍贵。
 
 对于软件开发从业者，大模型已成为绕不开的课题，从 2025
 年开始积极拥抱这一新质生产力。同时也带来了生成文字、手写文字难以区分的问题，为此我将使用两个资源做硬隔离。
 
-[Notes](https://github.com/sunzhenkai/notes) 是从学生时代便开始积累，可以说是包罗万象，从编程技术，到生活技巧，再到喜好分享，归根结底技术文档占了绝大部分。涉及技术便逃不开大模型，在写这些文字的不久前，也已混入了部分大模型生成的文字，后面会继续借助 LLM 来更好地总结知识，如果感兴趣可以关注下 LLM Wiki 这个话题。同时，这部分文档的可视化会放在 [note.wii.pub](https://note.wii.pub) 供大家参考。
+[Notes](https://github.com/sunzhenkai/notes) 是从学生时代便开始积累，可以说是包罗万象，从编程技术，到生活技巧，再到喜好分享，归根结底技术文档占了绝大部分。涉及技术便逃不开大模型，在写这些文字不久前，也已混入了部分大模型生成的文字，后面会继续借助 LLM 来更好地总结知识，如果感兴趣可以关注下 LLM Wiki 这个话题。同时，这部分文档的可视化会放在 [note.wii.pub](https://note.wii.pub) 供大家参考。
 
 和 Notes 做了硬隔离的另外一个资源是 [blog.wii.pub](https://blog.wii.pub)，这是基于 Halo
 搭建的一个博客服务，我会确保手写文字作为主体，如有必要则通过引用标注大模型生成文本。
 
 如果有疑问，可以写在[这里](https://github.com/sunzhenkai/notes/issues)，如果想联系我，可以 Email（<zhenkai.sun@qq.com>）或微信（xsunzhenkai）。
 
-最后，如果有大量链接需要整理且经常访问，欢迎试用[灵犀](https://exploring.fun)，欢迎专注 [GitHub 账户](https://github.com/sunzhenkai)，如果对我的其他项目感兴趣，欢迎访问 [solo.wii.pub](https://solo.wii.pub)。
+最后，如果有大量链接需要整理且经常访问，欢迎试用[灵犀](https://exploring.fun)，欢迎关注 [GitHub 账户](https://github.com/sunzhenkai)，如果对我的其他项目感兴趣，欢迎访问 [solo.wii.pub](https://solo.wii.pub)。
