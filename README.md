@@ -17,9 +17,9 @@ update: "2026-05-14T15:14:00+08:00"
 对于软件开发从业者，大模型已成为绕不开的课题，从 2025
 年开始积极拥抱这一新质生产力。这同时也带来了生成文字、手写文字难以区分的问题，为此我将使用两个资源做硬隔离。
 
-[Notes](https://github.com/sunzhenkai/notes) 从学生时代便开始积累，内容包罗万象，从编程技术、生活技巧到个人喜好，但归根结底技术文档占了绝大部分。说到技术便绕不开大模型，在这之前也已混入部分大模型生成的文字。后续我会继续借助 LLM 来更好地总结知识，感兴趣的话可以关注 LLM Wiki 这个话题。这部分文档同时发布在 [note.wii.pub](https://note.wii.pub) 供参考。
+[Notes](https://github.com/sunzhenkai/notes) 从学生时代便开始积累，内容包罗万象，从编程技术、生活技巧到个人喜好，但归根结底技术文档占了绝大部分。说到技术便绕不开大模型，在这之前也已混入部分大模型生成的文字。后续我会继续借助 LLM 来更好地总结知识，感兴趣的话可以关注 LLM Wiki 这个话题。这部分文档同时发布在 [笔记](https://note.wii.pub) 供参考。
 
-和 Notes 做了硬隔离的另外一个资源是 [blog.wii.pub](https://blog.wii.pub)，这是基于 Halo
+和 Notes 做了硬隔离的另外一个资源是 [定风坡](https://blog.wii.pub)，这是基于 Halo
 搭建的一个博客服务，我会确保手写文字作为主体，如有必要则通过引用标注大模型生成文本。
 
 如果有疑问，可以写在[这里](https://github.com/sunzhenkai/notes/issues)，如果想联系我，可以 Email（<zhenkai.sun@qq.com>）或微信（xsunzhenkai）。
