@@ -14,7 +14,11 @@ commit:
 	fi
 
 push: commit
-	@git push
+	@for remote in $$(git remote); do \
+		echo "==> Pushing to $$remote..."; \
+		git push $$remote HEAD; \
+	done
+	@echo "==> All remotes pushed."
 
 serve:
 	@mdserve serve
