@@ -186,6 +186,61 @@ git blame <file> -L <start-line>,<end-line>
 git push origin --delete <branch>
 ```
 
+# worktree
+
+`git worktree` 允许在同一个仓库下同时检出多个工作目录，无需重复 clone。适用于同时开发多个分支、做 code review、紧急修复等场景。
+
+```shell
+# 添加 worktree，基于已有分支
+$ git worktree add <path> <branch>
+
+# 添加 worktree，基于新的分支
+$ git worktree add -b <new-branch> <path> <start-point>
+
+# 添加 worktree，检出某个 commit 或 tag（ detached HEAD 状态）
+$ git worktree add --detach <path> <commit-or-tag>
+
+# 列出所有 worktree
+$ git worktree list
+
+# 删除 worktree（需先确保工作目录干净）
+$ git worktree remove <path>
+
+# 强制删除（即使有未提交的改动）
+$ git worktree remove --force <path>
+
+# 清理已删除目录的 worktree 记录
+$ git worktree prune
+```
+
+**示例**
+
+```shell
+# 在 ../hotfix-branch 目录检出 hotfix 分支
+$ git worktree add ../hotfix-branch hotfix
+
+# 在 ../feature-new 目录创建并检出新分支 feature/new-feature
+$ git worktree add -b feature/new-feature ../feature-new main
+
+# 在 ../v1.0-tag 目录检出 v1.0 标签
+$ git worktree add --detach ../v1.0-tag v1.0
+
+# 查看所有 worktree
+$ git worktree list
+# /path/to/main-repo          abc1234 [main]
+# /path/to/hotfix-branch      def5678 [hotfix]
+# /path/to/feature-new        ghi9012 [feature/new-feature]
+
+# 完成工作后删除
+$ git worktree remove ../hotfix-branch
+```
+
+**注意事项**
+
+- 同一个分支不能同时在多个 worktree 中检出，否则会报错。
+- 删除 worktree 对应的目录后，需执行 `git worktree prune` 清理残留记录。
+- 各 worktree 共享同一个 `.git` 仓库，提交历史互通。
+
 # Git Tree
 
 ```shell 
