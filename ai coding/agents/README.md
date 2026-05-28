@@ -56,6 +56,8 @@
 围绕 AI Agent 构建约束、反馈和质量保障的方法论：
 
 - **[Harness Engineering](../harness-engineering)** - 缰绳工程：Prompt → Context → Harness 三层递进，让 AI Agent 安全高效运行的系统工程实践
+- **[GStack](../gstack)** - AI 软件工厂：23 个专家角色 + 8 个强力工具，Think → Plan → Build → Review → Test → Ship → Reflect 全流程
+- **[Superpowers](../superpowers)** - Agent 技能框架：14 个可组合 Skill，Brainstorm → Plan → TDD → Review → Finish 全流程自动触发
 
 ### Web 开发工具
 
