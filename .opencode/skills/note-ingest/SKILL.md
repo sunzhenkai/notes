@@ -36,6 +36,7 @@ disable-model-invocation: true
 - [ ] 步骤 4：生成归档计划（展示，不写盘）
 - [ ] 步骤 5：人工确认
 - [ ] 步骤 6：执行写入
+- [ ] 步骤 7：索引联动
 ```
 
 ### 步骤 1 — 收集输入
@@ -62,9 +63,10 @@ disable-model-invocation: true
 
 ### 步骤 3 — 搜库 + 定位
 
-1. 用 Grep/Glob 按 `topic` 关键词搜索已有文件/目录
-2. 按 [taxonomy.md](taxonomy.md) 决策树确定目标目录
-3. 选定动作：
+1. **优先读全局导航索引** `ingest/NAV-INDEX.md`（若存在），按 `topic` 所属 taxonomy 顶层目录缩小候选目录范围
+2. 再用 Grep/Glob 按 `topic` 关键词在候选范围内精确搜索已有文件/目录
+3. 按 [taxonomy.md](taxonomy.md) 决策树确定目标目录
+4. 选定动作：
 
 | 动作 | 条件 |
 |------|------|
@@ -72,7 +74,7 @@ disable-model-invocation: true
 | `update_existing` | 用户明确要更新某文件，或内容与已有文件高度重叠 |
 | `new_file` | 新主题、新工具目录、或独立长文 |
 
-4. 确定目标路径与文件名（见 taxonomy 文件名惯例）
+5. 确定目标路径与文件名（见 taxonomy 文件名惯例）
 
 ### 步骤 4 — 生成归档计划
 
@@ -176,6 +178,27 @@ update: "{ISO8601+08:00}"
 **后续建议**（按需提及）：
 - 若修改了根 `README.md` 且需同步站点 → 运行 `/sync-index`
 ```
+
+### 步骤 7 — 索引联动
+
+归档写入后，提示用户更新相关索引以保持 note-ask / note-index 闭环准确。**不自动写盘，由用户确认。**
+
+1. 判断本次归档是否影响索引：
+   - `new_file` 新建文件 / 新建目录 → 建议更新对应分目录索引与全局导航索引
+   - `append_section` / `update_existing` → 一般不影响索引条目，可不更新
+2. 给出建议：
+
+```markdown
+## 索引联动建议
+
+- 本次为 new_file，建议更新索引：
+  - 分目录索引：{目标目录}/README.md
+  - 全局导航索引：ingest/NAV-INDEX.md
+- 是否现在运行 `/note-index {目标目录}` 更新？（确认 / 稍后 / 跳过）
+```
+
+3. 用户**确认** → 转入 `note-index` skill 对目标目录范围执行索引更新（仍走 note-index 的步骤 3–5 人工确认流程）
+4. 用户**稍后/跳过** → 结束，仅在汇报中保留建议提醒
 
 ---
 
