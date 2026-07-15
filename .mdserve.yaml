@@ -24,11 +24,11 @@ docs:
 # Git 自动拉取配置（可选）
 git:
   # 是否启用自动拉取
-  enabled: false
+  enabled: true
   # 拉取间隔，支持格式：30s, 5m, 1h 等
   interval: "5m"
   # 分支名称
-  branch: "main"
+  branch: "master"
 
 # 菜单配置（可选）
 # 支持两级菜单结构
