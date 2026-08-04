@@ -26,7 +26,7 @@ git:
   # 是否启用自动拉取
   enabled: true
   # 拉取间隔，支持格式：30s, 5m, 1h 等
-  interval: "5m"
+  interval: "90s"
   # 分支名称
   branch: "master"
 
