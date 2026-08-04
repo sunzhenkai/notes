@@ -5,7 +5,7 @@ categories:
 tags:
   - 索引
 date: "2026-06-22T14:58:43+08:00"
-update: "2026-06-22T14:58:43+08:00"
+update: "2026-08-04T15:16:46+08:00"
 ---
 
 # 笔记导航索引
@@ -118,7 +118,7 @@ OS、网络、架构、中间件、大数据、前端等 CS 基础与系统。
 | [big data](../computer%20science/big%20data/) | 大数据平台（Hadoop/Spark/Yarn/Zeppelin） |
 | [computing](../computer%20science/computing/) | 计算（OpenStack 等） |
 | [cryptography](../computer%20science/cryptography/) | 密码学 |
-| [engineering architecture](../computer%20science/engineering%20architecture/index.md) | 工程架构（RPC/MQ/存储/监控/压测/链路追踪等） |
+| [engineering architecture](../computer%20science/engineering%20architecture/index.md) | 工程架构（认证授权、RPC/MQ、存储、监控、压测、链路追踪等） |
 | [frontend](../computer%20science/frontend/) | 前端（Vue/CSS/Node/Android/antd/element-ui） |
 | [fundamentals of compiling](../computer%20science/fundamentals%20of%20compiling/) | 编译原理（flex/bison） |
 | [linux](../computer%20science/linux/) | Linux 系统、发行版、内核与编程 |
