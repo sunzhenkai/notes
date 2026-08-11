@@ -1,6 +1,6 @@
 # 可插拔外围 Runtime 架构
 
-> 本文定义围绕 [自建可嵌入 Agent Library](./README.md) 的外围 Runtime 能力槽位、接入边界与候选实现。它不要求第一阶段部署独立平台；组件应按真实需求启用。
+> 本文定义围绕 [自建可嵌入 Agent Library](./README.md) 的外围 Runtime 能力槽位、接入边界与候选实现。它不要求第一阶段部署独立平台；组件应按真实需求启用。面向可部署服务、Temporal 任务和 Sandbox 的组合方案见[通用 Agent Service 与可执行任务模块架构](./agent-service-task-module-architecture.md)。
 
 ## 结论
 

@@ -126,6 +126,7 @@ await agent.run({
 
 ## 相关内容
 
+- [通用 Agent Service 与可执行任务模块架构](./agent-service-task-module-architecture.md)
 - [可插拔外围 Runtime 架构](./runtime-architecture.md)
 - [Pi 与 QM 调研：自建可嵌入 Agent Library 的架构取舍](./pi-qm-research.md)
 - [Harness Engineering](../harness-engineering/README.md)

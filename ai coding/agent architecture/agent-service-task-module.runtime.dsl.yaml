@@ -1,0 +1,194 @@
+version: "1.0"
+sourceModel: "./agent-service-task-module.architecture.json#1.0"
+status: validated
+diagramType: runtime
+renderer: mermaid
+direction: left-to-right
+layers:
+  - Actors
+  - Gateway
+  - Runtime
+  - Platform
+  - Infrastructure
+nodes:
+  - id: host-client
+    label: "宿主应用\nWeb / IM / Backend / CLI"
+    type: actor
+    layer: Actors
+    group: Host
+    positionHint: far-left
+  - id: agent-api
+    label: "Agent API\nchat / run / stream / task"
+    type: gateway
+    layer: Gateway
+    group: Agent Service
+    positionHint: left
+  - id: session-context
+    label: "Session & Context"
+    type: service
+    layer: Runtime
+    group: Agent Service
+    positionHint: center
+  - id: agent-executor
+    label: "Agent Executor\nAgent Loop / Tool Dispatch / Events"
+    type: service
+    layer: Runtime
+    group: Shared Agent Core
+    positionHint: center
+  - id: task-facade
+    label: "Task Facade\nsubmit / schedule / status / cancel"
+    type: service
+    layer: Runtime
+    group: Executable Task Module
+    positionHint: center
+  - id: temporal-adapter
+    label: "Temporal Adapter\nWorkflow / Activity / Schedule"
+    type: platform
+    layer: Platform
+    group: Executable Task Module
+    positionHint: center
+  - id: temporal-service
+    label: "Temporal\nNamespace / Workflow / Task Queue"
+    type: platform
+    layer: Platform
+    group: Workflow Runtime
+    positionHint: right
+  - id: environment-worker
+    label: "Environment Task Workers\ndev / staging / prod"
+    type: service
+    layer: Runtime
+    group: Executable Task Module
+    positionHint: right
+  - id: provider-registry
+    label: "Provider Registry\nModel / Memory / Tool / Policy"
+    type: platform
+    layer: Platform
+    group: Shared Agent Core
+    positionHint: center
+  - id: model-tools
+    label: "LLM 与业务工具"
+    type: external
+    layer: Platform
+    group: External Capabilities
+    positionHint: far-right
+  - id: agent-state
+    label: "Memory / Agent State"
+    type: database
+    layer: Infrastructure
+    group: State
+    positionHint: bottom
+  - id: artifact-store
+    label: "Artifact Store"
+    type: object-storage
+    layer: Infrastructure
+    group: Artifact
+    positionHint: bottom
+  - id: sandbox-provider
+    label: "Sandbox Provider\ncreate / exec / snapshot / destroy"
+    type: platform
+    layer: Platform
+    group: Sandbox Module
+    positionHint: right
+  - id: sandbox-manager
+    label: "环境内 Sandbox Manager"
+    type: platform
+    layer: Platform
+    group: Sandbox Module
+    positionHint: right
+  - id: sandbox-runtime
+    label: "隔离执行环境\nContainer / gVisor / Kata / Firecracker"
+    type: external
+    layer: Infrastructure
+    group: Execution Isolation
+    positionHint: bottom
+edges:
+  - id: host-calls-agent-api
+    from: host-client
+    to: agent-api
+    protocol: HTTP/SSE
+    sync: sync
+    label: 在线与任务请求
+  - id: api-loads-session
+    from: agent-api
+    to: session-context
+    protocol: in-process
+    sync: sync
+    label: 解析 scope 与会话
+  - id: session-runs-agent
+    from: session-context
+    to: agent-executor
+    protocol: in-process
+    sync: sync
+    label: 在线 Agent Run
+  - id: api-submits-task
+    from: agent-api
+    to: task-facade
+    protocol: in-process
+    sync: sync
+    label: 可选 task 能力
+  - id: task-uses-temporal-adapter
+    from: task-facade
+    to: temporal-adapter
+    protocol: in-process
+    sync: sync
+    label: 任务语义映射
+  - id: adapter-calls-temporal
+    from: temporal-adapter
+    to: temporal-service
+    protocol: gRPC
+    sync: sync
+    label: start / query / signal / cancel
+  - id: temporal-routes-worker
+    from: temporal-service
+    to: environment-worker
+    protocol: Temporal Task Queue
+    sync: async
+    label: 按环境分发
+  - id: worker-runs-agent-core
+    from: environment-worker
+    to: agent-executor
+    protocol: in-process
+    sync: sync
+    label: 复用共享内核
+  - id: executor-uses-providers
+    from: agent-executor
+    to: provider-registry
+    protocol: in-process
+    sync: sync
+    label: 能力调用
+  - id: providers-call-model-tools
+    from: provider-registry
+    to: model-tools
+    protocol: HTTPS/RPC
+    sync: sync
+    label: 推理与业务工具
+  - id: providers-read-agent-state
+    from: provider-registry
+    to: agent-state
+    protocol: SQL/KV
+    sync: sync
+    label: 状态与 checkpoint
+  - id: providers-use-artifacts
+    from: provider-registry
+    to: artifact-store
+    protocol: S3 API
+    sync: sync
+    label: 文件与快照
+  - id: providers-use-sandbox
+    from: provider-registry
+    to: sandbox-provider
+    protocol: in-process
+    sync: sync
+    label: 高风险执行
+  - id: sandbox-provider-calls-manager
+    from: sandbox-provider
+    to: sandbox-manager
+    protocol: gRPC
+    sync: sync
+    label: 管理 Sandbox
+  - id: manager-controls-runtime
+    from: sandbox-manager
+    to: sandbox-runtime
+    protocol: Sandbox API
+    sync: sync
+    label: 隔离执行

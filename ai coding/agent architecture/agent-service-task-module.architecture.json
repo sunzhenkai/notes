@@ -1,0 +1,286 @@
+{
+  "version": "1.0",
+  "status": "validated",
+  "layerProfile": "generic-six-layer-v1",
+  "nodes": [
+    {
+      "id": "host-client",
+      "name": "宿主应用",
+      "kind": "actor",
+      "type": "actor",
+      "layer": "Actors",
+      "boundedContext": "Host",
+      "boundary": "external"
+    },
+    {
+      "id": "agent-api",
+      "name": "Agent API",
+      "kind": "component",
+      "type": "gateway",
+      "layer": "Gateway",
+      "boundedContext": "Agent Service",
+      "boundary": "internal",
+      "deployment": "agent-service",
+      "replicas": 2
+    },
+    {
+      "id": "session-context",
+      "name": "Session & Context",
+      "kind": "component",
+      "type": "service",
+      "layer": "Runtime",
+      "boundedContext": "Agent Service",
+      "boundary": "internal",
+      "deployment": "agent-service",
+      "replicas": 2
+    },
+    {
+      "id": "agent-executor",
+      "name": "Agent Executor",
+      "kind": "component",
+      "type": "service",
+      "layer": "Runtime",
+      "boundedContext": "Agent Core",
+      "boundary": "internal",
+      "deployment": "shared-agent-core"
+    },
+    {
+      "id": "task-facade",
+      "name": "Task Facade",
+      "kind": "component",
+      "type": "service",
+      "layer": "Runtime",
+      "boundedContext": "Task Execution",
+      "boundary": "internal",
+      "deployment": "agent-service",
+      "replicas": 2
+    },
+    {
+      "id": "temporal-adapter",
+      "name": "Temporal Adapter",
+      "kind": "component",
+      "type": "platform",
+      "layer": "Platform",
+      "boundedContext": "Task Execution",
+      "boundary": "internal",
+      "deployment": "agent-service"
+    },
+    {
+      "id": "temporal-service",
+      "name": "Temporal",
+      "kind": "system",
+      "type": "platform",
+      "layer": "Platform",
+      "boundedContext": "Workflow Runtime",
+      "boundary": "internal",
+      "deployment": "temporal-cluster",
+      "replicas": 3
+    },
+    {
+      "id": "environment-worker",
+      "name": "Environment Task Workers",
+      "kind": "container",
+      "type": "service",
+      "layer": "Runtime",
+      "boundedContext": "Task Execution",
+      "boundary": "internal",
+      "deployment": "environment-worker-pools",
+      "replicas": 2
+    },
+    {
+      "id": "provider-registry",
+      "name": "Provider Registry",
+      "kind": "component",
+      "type": "platform",
+      "layer": "Platform",
+      "boundedContext": "Agent Core",
+      "boundary": "internal",
+      "deployment": "shared-agent-core"
+    },
+    {
+      "id": "model-tools",
+      "name": "LLM 与业务工具",
+      "kind": "system",
+      "type": "external",
+      "layer": "Platform",
+      "boundedContext": "External Capabilities",
+      "boundary": "external"
+    },
+    {
+      "id": "agent-state",
+      "name": "Memory / Agent State",
+      "kind": "container",
+      "type": "database",
+      "layer": "Infrastructure",
+      "boundedContext": "Agent State",
+      "boundary": "internal",
+      "deployment": "state-store",
+      "replicas": 2
+    },
+    {
+      "id": "artifact-store",
+      "name": "Artifact Store",
+      "kind": "container",
+      "type": "object-storage",
+      "layer": "Infrastructure",
+      "boundedContext": "Artifact",
+      "boundary": "internal",
+      "deployment": "object-storage",
+      "replicas": 2
+    },
+    {
+      "id": "sandbox-provider",
+      "name": "Sandbox Provider",
+      "kind": "component",
+      "type": "platform",
+      "layer": "Platform",
+      "boundedContext": "Execution Isolation",
+      "boundary": "internal",
+      "deployment": "shared-agent-core"
+    },
+    {
+      "id": "sandbox-manager",
+      "name": "Sandbox Manager",
+      "kind": "container",
+      "type": "platform",
+      "layer": "Platform",
+      "boundedContext": "Execution Isolation",
+      "boundary": "internal",
+      "deployment": "environment-sandbox-manager",
+      "replicas": 2
+    },
+    {
+      "id": "sandbox-runtime",
+      "name": "隔离执行环境",
+      "kind": "system",
+      "type": "external",
+      "layer": "Infrastructure",
+      "boundedContext": "Execution Isolation",
+      "boundary": "internal",
+      "deployment": "container-gvisor-kata-microvm"
+    }
+  ],
+  "relations": [
+    {
+      "id": "host-calls-agent-api",
+      "from": "host-client",
+      "to": "agent-api",
+      "protocol": "HTTP/SSE",
+      "sync": "sync",
+      "description": "提交在线或任务请求并接收事件"
+    },
+    {
+      "id": "api-loads-session",
+      "from": "agent-api",
+      "to": "session-context",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "解析 scope、会话与上下文"
+    },
+    {
+      "id": "session-runs-agent",
+      "from": "session-context",
+      "to": "agent-executor",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "执行在线 Agent Run"
+    },
+    {
+      "id": "api-submits-task",
+      "from": "agent-api",
+      "to": "task-facade",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "启用模块时提交、查询或取消任务"
+    },
+    {
+      "id": "task-uses-temporal-adapter",
+      "from": "task-facade",
+      "to": "temporal-adapter",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "映射任务语义到 Workflow、Schedule 与 Signal"
+    },
+    {
+      "id": "adapter-calls-temporal",
+      "from": "temporal-adapter",
+      "to": "temporal-service",
+      "protocol": "gRPC",
+      "sync": "sync",
+      "description": "启动、查询、Signal 和取消 Workflow"
+    },
+    {
+      "id": "temporal-routes-worker",
+      "from": "temporal-service",
+      "to": "environment-worker",
+      "protocol": "Temporal Task Queue",
+      "sync": "async",
+      "description": "按 Namespace 和 Task Queue 路由到目标环境"
+    },
+    {
+      "id": "worker-runs-agent-core",
+      "from": "environment-worker",
+      "to": "agent-executor",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "Worker 内嵌共享 Agent Core 执行有界 Slice"
+    },
+    {
+      "id": "executor-uses-providers",
+      "from": "agent-executor",
+      "to": "provider-registry",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "按能力调用 Model、Memory、Tool、Policy 等 Provider"
+    },
+    {
+      "id": "providers-call-model-tools",
+      "from": "provider-registry",
+      "to": "model-tools",
+      "protocol": "HTTPS/RPC",
+      "sync": "sync",
+      "description": "模型推理与受控业务工具调用"
+    },
+    {
+      "id": "providers-read-agent-state",
+      "from": "provider-registry",
+      "to": "agent-state",
+      "protocol": "SQL/KV",
+      "sync": "sync",
+      "description": "读取和保存会话、记忆与 checkpoint"
+    },
+    {
+      "id": "providers-use-artifacts",
+      "from": "provider-registry",
+      "to": "artifact-store",
+      "protocol": "S3 API",
+      "sync": "sync",
+      "description": "保存文件、报告、日志包和 Sandbox Snapshot"
+    },
+    {
+      "id": "providers-use-sandbox",
+      "from": "provider-registry",
+      "to": "sandbox-provider",
+      "protocol": "in-process",
+      "sync": "sync",
+      "description": "高风险工具通过 Sandbox Provider 执行"
+    },
+    {
+      "id": "sandbox-provider-calls-manager",
+      "from": "sandbox-provider",
+      "to": "sandbox-manager",
+      "protocol": "gRPC",
+      "sync": "sync",
+      "description": "创建、执行、快照、检查和销毁 Sandbox"
+    },
+    {
+      "id": "manager-controls-runtime",
+      "from": "sandbox-manager",
+      "to": "sandbox-runtime",
+      "protocol": "Sandbox API",
+      "sync": "sync",
+      "description": "控制容器、强化容器或 microVM"
+    }
+  ],
+  "openQuestions": []
+}
