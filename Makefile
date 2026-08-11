@@ -1,9 +1,9 @@
 PID_FILE := .mdserve.pid
 
 # Tools that receive note-* skills/commands (opencode is the source of truth)
-NOTE_TOOLS := .cursor .codebuddy .qoder
+NOTE_TOOLS := .cursor .codebuddy .qoder .codex
 
-# Sync note-* skills/commands from .opencode (source) to cursor/codebuddy/qoder.
+# Sync note-* skills/commands from .opencode (source) to cursor/codebuddy/qoder/codex.
 # Only note-* prefixed files/dirs are touched; non-note files are left intact.
 note-sync:
 	@for tool in $(NOTE_TOOLS); do \
@@ -22,7 +22,7 @@ note-sync:
 			echo "   command: $$tool/commands/$$(basename $$f)"; \
 		done; \
 	done
-	@echo "==> note-* synced to: $(NOTE_TOOLS)"
+	@echo "==> note-* synced to: $(NOTE_TOOLS) (opencode is the source of truth)"
 
 # Git commit with timestamp and changed files
 commit:

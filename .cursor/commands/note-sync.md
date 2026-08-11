@@ -1,10 +1,10 @@
 ---
-description: 将 note-* skills/commands 从 opencode 同步到 cursor/codebuddy/qoder
+description: 将 note-* skills/commands 从 opencode 同步到 cursor/codebuddy/qoder/codex
 ---
 
 # /note-sync
 
-以 `.opencode/` 为单一事实源，将 `note-*` 系列 skills 与 commands 同步到 cursor、codebuddy、qoder 三个工具目录，保证行为一致。
+以 `.opencode/` 为单一事实源，将 `note-*` 系列 skills 与 commands 同步到 cursor、codebuddy、qoder、codex 五个工具目录，保证行为一致。
 
 ## 执行
 
@@ -19,15 +19,16 @@ description: 将 note-* skills/commands 从 opencode 同步到 cursor/codebuddy/
 | cursor | `.cursor/skills/` | `.cursor/commands/` | 只读副本 |
 | codebuddy | `.codebuddy/skills/` | `.codebuddy/commands/` | 只读副本 |
 | qoder | `.qoder/skills/` | `.qoder/commands/` | 只读副本 |
+| codex | `.codex/skills/` | `.codex/commands/` | 只读副本 |
 
-> 四个工具均遵循 Agent Skills 标准（`SKILL.md` + front matter `name`/`description`），目录映射源自各工具官方文档。
+> 五个工具均遵循 Agent Skills 标准（`SKILL.md` + front matter `name`/`description`），目录映射源自各工具官方文档。
 
 ## 同步策略
 
 - **仅覆盖 `note-*` 前缀**：只复制 `.opencode/skills/note-*/`（含 `SKILL.md`、`taxonomy.md` 等子文件）与 `.opencode/commands/note-*.md`
 - **不触碰非 note 文件**：`opsx-*`、`sync-index.md` 等其他 skills/commands 不受影响
 - **整目录覆盖**：目标工具的 `note-*` skill 目录先清除再复制，避免残留已删除的文件
-- **front matter 最小公共子集**：`note-*` 的 front matter 保持 `name`+`description`（+`disable-model-invocation`）以兼容四个工具，同步时不改写
+- **front matter 最小公共子集**：`note-*` 的 front matter 保持 `name`+`description`（+`disable-model-invocation`）以兼容五个工具，同步时不改写
 
 ## 约定
 
