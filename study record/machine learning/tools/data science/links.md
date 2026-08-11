@@ -17,7 +17,7 @@ update: "2023-07-27T00:00:00+08:00"
     - `username: azkaban, password: azkaban`
 - [Consul](http://datascience:8500)
 - [Dolphinscheduler](http://datascience:12345/dolphinscheduler/ui)
-    - `username: admin, password: dolphinscheduler123`
+    - `username: admin, password: <DOLPHINSCHEDULER_PASSWORD>`
 
 - [Flink JobManager](http://datascience:8220)
 - [Gitlab](http://datascience:8929)

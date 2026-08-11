@@ -226,7 +226,7 @@ $ kubeadm token create --print-join-command
 ... 
 
 # 在待加入的节点, 在上面生成的命令后面指定 cri socket
-$ kubeadm join 10.1.0.145:6443 --token nxxcv7.gge00x97wiphualw --discovery-token-ca-cert-hash sha256:cfb324b2ee7ee548b08e38d2e6d60905e392553bf6715504e87888183a1238fd
+$ kubeadm join <CONTROL_PLANE_ENDPOINT> --token <BOOTSTRAP_TOKEN> --discovery-token-ca-cert-hash sha256:<DISCOVERY_TOKEN_CA_CERT_HASH>
 u --cri-socket unix:///var/run/cri-dockerd.sock
 
 # 为新节点指定 label

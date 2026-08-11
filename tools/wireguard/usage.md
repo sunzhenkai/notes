@@ -140,11 +140,11 @@ ens18
 
 # server 端密钥对
 PUBLICKEY = HsNTZwNRji31XuNAhx+eMOD8y7CZEeoPEUzZWZXpqg0=
-PRIVATEKEY = UHIqicenzBJQ6gnsSHqrvZbEEbjz6NJfl1qc4UgpMm8=
+PRIVATEKEY = <REDACTED_WIREGUARD_SERVER_PRIVATE_KEY>
 
 # client 端密钥对
 PUBLICKey = KLL6tm7wiU/ouenCktUwThss5Jw9Xr79C+3u3QRnYCQ= 
-PRIVATEKEY = oNLv6Ntj5iHulThhcCtZ0jYtRV0CTsC4d6rJkWo21FY=
+PRIVATEKEY = <REDACTED_WIREGUARD_CLIENT_PRIVATE_KEY>
 ```
 
 **配置模板**
@@ -173,7 +173,7 @@ PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING 
 [Interface]
 Address = 10.110.10.1/24
 ListenPort = 51820
-PrivateKey = UHIqicenzBJQ6gnsSHqrvZbEEbjz6NJfl1qc4UgpMm8=
+PrivateKey = <REDACTED_WIREGUARD_SERVER_PRIVATE_KEY>
 
 PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o ens18 -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o ens18 -j MASQUERADE
@@ -212,7 +212,7 @@ AllowedIPs = 0.0.0.0/0
 ```shell
 # 重新生成密钥和公钥
 [Interface]
-PrivateKey = oNLv6Ntj5iHulThhcCtZ0jYtRV0CTsC4d6rJkWo21FY=
+PrivateKey = <REDACTED_WIREGUARD_CLIENT_PRIVATE_KEY>
 Address = 10.110.10.100/24
 
 [Peer]
