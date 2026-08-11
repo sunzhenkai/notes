@@ -37,6 +37,10 @@ git:
 #   - category: 分类（目录），需要指定 path
 #   - tag: 标签，需要指定 tag 名称
 menu:
+  - title: "Agent Architecture"
+    type: category
+    path: "agent architecture"
+
   - title: "AI Coding"
     type: category
     path: "ai coding"

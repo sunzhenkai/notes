@@ -1,10 +1,15 @@
-# 自建可嵌入 Agent Library 架构
+# Agent Library 与独立 Agent 应用架构
 
-> 本文记录面向“集成到其他应用”的自建 Agent 库方案。它是持续迭代的设计入口；Pi 与 QM 的调研、选型理由和可延后引入的平台能力见 [Pi 与 QM 调研](./pi-qm-research.md)。
+> 本文以面向“集成到其他应用”的自建 Agent Library 为架构基础。项目同时包含依赖该 Library 的独立长任务 Agent 应用；两个产品的 MVP 边界见 [Agent 项目 MVP 总览](./mvp/README.md)。Pi 与 QM 的调研、选型理由和可延后引入的平台能力见 [Pi 与 QM 调研](./pi-qm-research.md)。
 
 ## 目标与边界
 
-目标是提供一个可被 Web、IM、桌面端、后端服务或工作流调用的 Agent **库**，而不是在第一阶段构建完整的组织级 Agent 平台。
+项目满足两个相关需求：
+
+1. 提供可被 Web、IM、桌面端、后端服务或工作流调用的通用 Agent **Library**；
+2. 提供支持长任务执行的独立 Agent **应用**，并在任务需要 Agent 能力时复用通用 Library。
+
+依赖方向固定为“独立应用 → Agent Library”。Library 不反向依赖独立应用的 HTTP、任务编排、存储和部署基础设施。第一阶段先建立通用 Library，而不是构建完整的组织级 Agent 平台。
 
 第一阶段：
 
@@ -129,5 +134,5 @@ await agent.run({
 - [通用 Agent Service 与可执行任务模块架构](./agent-service-task-module-architecture.md)
 - [可插拔外围 Runtime 架构](./runtime-architecture.md)
 - [Pi 与 QM 调研：自建可嵌入 Agent Library 的架构取舍](./pi-qm-research.md)
-- [Harness Engineering](../harness-engineering/README.md)
-- [AI Coding Agents 概览](../agents/README.md)
+- [Harness Engineering](../ai%20coding/harness-engineering/README.md)
+- [AI Coding Agents 概览](../ai%20coding/agents/README.md)

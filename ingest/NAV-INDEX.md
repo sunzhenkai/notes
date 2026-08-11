@@ -68,6 +68,18 @@ CLI、编辑器、构建/包管理等开发工具的用法与配置。
 | [zip](../tools/zip/) | 压缩归档工具 |
 | [zsh](../tools/zsh/) | Zsh Shell 配置 |
 
+## Agent 架构（agent architecture/）
+
+可嵌入 Agent Library、Agent Service、Runtime 与外围能力槽位的设计笔记。
+
+| 目录 | 说明 |
+|------|------|
+| [README](../agent%20architecture/README.md) | Agent Library 与独立 Agent 应用架构入口 |
+| [mvp](../agent%20architecture/mvp/README.md) | 通用 Agent Library 与独立长任务 Agent 应用的 MVP 方案 |
+| [runtime-architecture](../agent%20architecture/runtime-architecture.md) | 可插拔外围 Runtime 架构 |
+| [agent-service-task-module](../agent%20architecture/agent-service-task-module-architecture.md) | 通用 Agent Service 与可执行任务模块 |
+| [pi-qm-research](../agent%20architecture/pi-qm-research.md) | Pi 与 QM 调研及架构取舍 |
+
 ## AI 编程（ai coding/）
 
 AI 编程方法论、Agent 工具、Prompt/Context/Harness 工程实践。

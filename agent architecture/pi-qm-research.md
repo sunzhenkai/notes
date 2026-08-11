@@ -141,5 +141,5 @@ Pi 提供 Agent Loop 和工具 Hook；宿主负责把这些 Hook 与上下文、
 - [QM GitHub 仓库](https://github.com/yc-software/qm)
 - [QM package.json](https://raw.githubusercontent.com/yc-software/qm/main/package.json)
 - [QM GitHub Repository API](https://api.github.com/repos/yc-software/qm)
-- [Harness Engineering](../harness-engineering/README.md)
-- [Harness Engineering 详解](../harness-engineering/xiaolin-coding-harness-engineering.md)
+- [Harness Engineering](../ai%20coding/harness-engineering/README.md)
+- [Harness Engineering 详解](../ai%20coding/harness-engineering/xiaolin-coding-harness-engineering.md)
