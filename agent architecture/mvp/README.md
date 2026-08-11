@@ -2,117 +2,143 @@
 
 ## 需求拆分
 
-项目面向两个不同但相关的产品需求：
+项目包含两个不同但相关的产品层：
 
-1. **通用 Agent Library**：作为 TypeScript/Node.js package，被 Web、IM、桌面端、后端服务或工作流等宿主直接集成。
-2. **独立 Agent 应用**：作为可部署服务接收和管理长任务；任务在需要模型推理、上下文组装或工具调用时，复用通用 Agent Library。
+1. **通用 Agent Library**：向 Web、IM、桌面端、后端服务或工作流等宿主提供可复用的 Agent 能力；
+2. **独立 Agent Application**：提供必选 UI、应用 API 和长任务管理，任务执行 Agent Slice 时复用通用 Agent Library。
 
-**决策：需求 2 依赖需求 1。** 依赖方向必须保持单向：独立应用可以组合 Library，Library 不得依赖独立应用的 HTTP、Temporal、数据库、任务状态或部署模型。
+**决策：Agent Application 依赖 Agent Library，Agent Library 不依赖 Agent Application。** Library 不感知 UI、Task、Worker、数据库或部署模型，Application 不得复制 Agent Loop。
 
-这里的“依赖”不表示长任务的每个阶段都必须执行 Agent。长任务可以处于等待、Signal、重试或人工审批阶段；只有执行 Agent Slice 时才调用 Library。
+长任务不是一个永久运行的 `Agent.run()`。它由一个或多个有界 Agent Run、等待、重试和恢复阶段组成；只有 Agent Run 阶段调用 Library。
+
+## 设计阶段约束
+
+当前设计只冻结产品语义、模块边界和适配契约，不绑定具体语言、Web 框架、数据库或 Harness 实现。
+
+实现阶段仍需选择一种原生语言：同语言宿主可进程内调用 Library，不同语言宿主需要通过 HTTP/RPC Binding 调用。两种 Binding 必须遵循同一 Agent 能力契约。
+
+```text
+Agent Capability Contract
+├── Local Library Binding
+└── Remote HTTP/RPC Binding
+```
 
 ## 方案比较
 
 | 方案 | 做法 | 成本 | 主要风险 | 可逆性 | 结论 |
 |------|------|------|----------|--------|------|
-| A. 共享 Library 契约优先 | 先冻结通用运行契约；独立应用的 API 和 Worker 都依赖同一 package | 中 | 需提前约束公共接口 | 高 | **推荐** |
-| B. Service 优先、Library 后抽取 | 先完成长任务服务，再从服务内部提取 SDK | 前期低、后期高 | Service/Temporal 概念容易泄漏到核心 | 中 | 不推荐作为 MVP |
-| C. 两套独立实现 | Library 与独立应用分别实现 Agent Loop | 前期并行、长期最高 | 行为漂移、重复修复、难以复用 | 低 | 拒绝 |
+| A. 契约优先、实现后选 | 先冻结语言无关语义，再选择原生语言和 Binding | 中 | 实现前仍需一次技术决策 | 高 | **推荐** |
+| B. 先固定语言和框架 | 直接以某个生态设计公共接口 | 低 | 公共边界被框架类型污染 | 中 | 当前不采用 |
+| C. 首版即多语言 | 同时实现多个 SDK 和远程 Runtime | 高 | 协议和运维成本掩盖 MVP 目标 | 中 | 延后 |
 
-**推荐方案 A**，因为它直接验证两个需求的共同核心，并让长任务可靠性与 Agent 推理能力独立演进。接受的取舍是：MVP 1 必须先定义少量稳定契约，MVP 2 才能基于这些契约实现。
+**推荐方案 A**：先验证 Agent 和 Task 两个产品抽象，再根据首批宿主选择原生语言。跨语言能力只在真实需求出现后增加。
 
 ## 目标架构
 
 ```text
-其他宿主应用
-    │ package dependency
-    ▼
-┌────────────────────────────────────┐
-│ MVP 1: 通用 Agent Library          │
-│ AgentRunner / Context / Tool /     │
-│ Policy Hook / Event / Provider     │
-└────────────────────────────────────┘
-                 ▲
-                 │ package dependency
-       ┌─────────┴─────────┐
-       │                   │
-┌──────┴────────┐   ┌──────┴─────────────┐
-│ Agent Service │   │ Long-task Worker    │
-│ HTTP / SSE    │   │ Agent Slice Activity│
-└──────┬────────┘   └────────┬────────────┘
-       │                     │
-       └──────┬──────────────┘
-              ▼
-┌────────────────────────────────────┐
-│ MVP 2: 独立 Agent 应用             │
-│ Task API / Temporal Workflow /     │
-│ State / Artifact / Operations      │
-└────────────────────────────────────┘
+┌───────────────────────────────────────────┐
+│ MVP 2: Agent Application                  │
+│                                           │
+│  Browser UI                               │
+│      │                                    │
+│      ▼                                    │
+│  Application API                          │
+│      │                                    │
+│      ▼                                    │
+│  Task Service ───────> Durable Task Store │
+│      │                       │             │
+│      ▼                       │             │
+│  Task Worker <───────────────┘             │
+│      │ AgentClient                         │
+└──────┼─────────────────────────────────────┘
+       │ local package or remote protocol
+       ▼
+┌───────────────────────────────────────────┐
+│ MVP 1: Agent Library                      │
+│                                           │
+│ Agent / Context / Skills / Tools / Session │
+│ Events / Budget / Cancellation             │
+│                   │                       │
+│                   ▼                       │
+│              Harness Port                 │
+└───────────────────┬───────────────────────┘
+                    │
+          ┌─────────┼─────────┐
+          ▼         ▼         ▼
+      Pi Adapter  Future A  Future B
 ```
 
-禁止的反向依赖：
+禁止的依赖：
 
 ```text
-Agent Library -X-> HTTP 框架 / Temporal / 数据库 / Artifact 实现
-Temporal Workflow -X-> LLM / Agent Loop / Tool / 网络或文件 I/O
-模型输入 -X-> Namespace / Task Queue / ExecutionTarget / 凭据
+Agent Library -X-> Task / UI / Worker / 数据库 / Web 框架
+Agent Application -X-> Pi 或其他 Harness 专有 API
+UI -X-> Agent Library 或 Harness
+模型输入 -X-> 执行环境、凭据或权限升级配置
 ```
 
 ## MVP 边界
 
-| 维度 | MVP 1：通用 Agent Library | MVP 2：独立 Agent 应用 |
-|------|----------------------------|-------------------------|
-| 产品形态 | npm package | 独立部署的 Service + Worker |
-| 核心目标 | 完成一次有界 Agent Run | 可靠推进跨时间的 AgentTask |
-| 状态范围 | 当前 Run 与宿主注入的引用 | Task、Workflow、checkpoint、artifact |
-| 接口 | TypeScript API、Provider、Event | HTTP/SSE、Task API、Signal、Cancel |
-| 可靠性 | deadline、取消、预算、错误归一化 | 重试、恢复、幂等、Continue-As-New |
-| 基础设施 | 无强制基础设施 | Temporal、状态存储、Artifact Store |
-| Sandbox | 仅预留 Execution Provider | 按首个任务风险决定是否实现 |
-| 用户与 RBAC | 不负责 | MVP 仅接入上游身份，不建设管理平台 |
+| 维度 | MVP 1：Agent Library | MVP 2：Agent Application |
+|------|----------------------|--------------------------|
+| 产品目标 | 完成一次有界 Agent Run | 管理一个可恢复的长任务 |
+| 产品形态 | 原生 Library，按需增加远程 Binding | UI + API + Task Service + Worker |
+| Agent Loop | 负责 | 只调用，不实现 |
+| Harness | 定义 Port，首版选一个 Adapter | 不感知具体 Harness |
+| Skill/Tool/Context | 定义契约并执行 | 提供资产、配置和权限 |
+| Session/Checkpoint | 定义语义 | 持久化并管理生命周期 |
+| Event | 产生 AgentEvent | 持久化、关联并投影 Task Timeline |
+| Retry | 有界操作重试 | Task 级持久重试和恢复 |
+| 状态 | 当前 Run 和外部引用 | Task、Attempt、Lease、Event、Artifact |
+| UI | 不负责 | **必选** |
+| Task Runtime | 不负责 | 数据库 + Worker Lease + Heartbeat + Recovery |
+| Temporal | 不依赖 | 首版不使用，复杂度触发后再评估 |
 
 ## 跨 MVP 最小契约
 
-MVP 1 与 MVP 2 只冻结以下稳定语义，不提前冻结具体 URL、数据库或厂商类型：
+只冻结语义，不冻结具体编程语言或厂商类型：
 
-- `AgentDefinitionRef`：`definitionId + version`，Task 创建后固定版本；
-- `AgentRunRequest`：运行标识、Definition、输入或引用、最小化 Scope、checkpoint 引用、deadline、取消信号和预算；
-- `AgentRunResult`：完成、暂停或失败状态，以及 result/checkpoint/artifact 引用；
-- `AgentEvent`：带 schema version 的文本、工具、进度、结果和错误事件；
+- `AgentDefinitionRef`：Agent 定义的稳定标识与版本；
+- `AgentRunSpec`：`run_id`、输入、Skill/Tool 引用、Scope、Session/Checkpoint 引用和运行预算；
+- `AgentRunOutcome`：完成、暂停、失败或取消，以及 output/session/checkpoint/artifact 引用；
+- `AgentEvent`：带 schema version、sequence 和 run_id 的运行事件；
 - `AgentError`：区分可重试、不可重试、取消、预算耗尽和副作用状态不确定；
-- Provider 调用上下文：`runId`、最小 Scope、deadline，以及副作用调用的 `idempotencyKey`；
-- checkpoint 与 artifact 对 Library 是 opaque ref，持久化、保留期和访问控制由应用侧 Provider 负责。
+- `HarnessPort`：执行、取消和能力声明；
+- `AgentClient`：Application 调用 Agent 能力的内部端口，可绑定本地 Library 或远程协议；
+- checkpoint 和 artifact 使用 opaque ref，持久化、保留期和访问控制由 Application 或宿主负责。
 
 ## 交付与验证顺序
 
 ```text
-冻结 MVP 1 契约
+冻结语言无关 Agent 契约
     ↓
-用普通宿主验证嵌入式运行
+选择一种原生语言和首个 Harness Adapter
     ↓
-MVP 2 Service/Worker 集成同一 Library
+用普通宿主验证有界 Agent Run
     ↓
-用一个真实长任务验证恢复、Signal、取消和幂等
+Agent Application 通过 AgentClient 集成同一能力
     ↓
-再决定 Schedule、Sandbox、多环境与跨语言接入
+用 UI 完成长任务创建、查看、取消、重试和恢复闭环
+    ↓
+再根据证据决定跨语言、Temporal、Sandbox 和复杂 Workflow
 ```
-
-这一顺序不是要求两个产品串行发布；MVP 2 的服务骨架可以并行设计，但其 Agent 执行路径必须等待 MVP 1 的公共契约稳定。
 
 ## 总体验收标准
 
-- 一个普通 Node.js 宿主可直接集成 MVP 1，不需要部署 MVP 2；
-- MVP 2 的 Service 在线运行和 Task Worker 均调用 MVP 1，不存在第二套 Agent Loop；
-- 停用 Task Module 后，MVP 1 及独立应用的在线运行能力不受影响；
-- Library package 不传递依赖 Temporal、Web 框架或具体存储 SDK；
-- 长任务能跨 Worker 重启继续推进，并支持查询、Signal 和取消；
-- 所有副作用写调用都具备稳定幂等键或明确的人工处置路径；
-- 模型不能选择或提升 ExecutionTarget、Task Queue、Sandbox Profile 或凭据权限。
+- 普通宿主无需部署 Agent Application 即可使用 Agent Library；
+- Agent Application 不直接依赖 Pi 或其他 Harness 专有 API；
+- UI 支持任务创建、列表、详情、事件时间线、取消、重试、恢复和结果查看；
+- Task Worker 通过 `AgentClient` 调用 Library，不存在第二套 Agent Loop；
+- Task、Attempt、Agent Run 和 Checkpoint 可以独立关联；
+- Worker 重启或 Lease 过期后，未完成 Task 可从 checkpoint 恢复或进入明确失败状态；
+- Library 不依赖 Task、数据库、Web 框架或具体存储实现；
+- 第一版不要求 Temporal、定时调度、复杂 Workflow 或多语言 SDK；
+- 所有副作用写调用具备稳定幂等键或明确的人工处置路径。
 
 ## 文档
 
 - [MVP 1：通用 Agent Library](./agent-library-mvp.md)
-- [MVP 2：独立长任务 Agent 应用](./long-running-agent-app-mvp.md)
+- [MVP 2：独立长任务 Agent Application](./long-running-agent-app-mvp.md)
 - [开放问题与决策门](./open-questions.md)
 - [Agent Library 架构入口](../README.md)
 - [通用 Agent Service 与可执行任务模块架构](../agent-service-task-module-architecture.md)

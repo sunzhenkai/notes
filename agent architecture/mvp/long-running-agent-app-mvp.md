@@ -1,210 +1,357 @@
-# MVP 2：独立长任务 Agent 应用
+# MVP 2：独立长任务 Agent Application
 
 ## 定位
 
-独立 Agent 应用是可部署的 Agent Service 与长任务执行系统。它面向需要异步提交、等待外部事件、失败恢复、人工审批或跨较长时间推进的任务。
+Agent Application 是面向用户的独立产品，提供必选 UI、应用 API 和可恢复的 Task Runtime。它负责管理 Task，不负责重新实现 Agent。
 
-**依赖原则**：应用必须依赖 [MVP 1：通用 Agent Library](./agent-library-mvp.md)。Service 的在线执行路径与 Task Worker 的 Agent Slice 都调用同一个 `AgentRunner`，不得复制 Agent Loop。
+**依赖原则**：Task Worker 通过 `AgentClient` 调用 [MVP 1：通用 Agent Library](./agent-library-mvp.md) 的能力契约。Application、UI 和 Task 模型不得直接依赖 Pi 或其他 Harness 专有 API。
 
-长任务不等于一个永久运行的 Agent Run。一个 `AgentTask` 由多个有界 Slice 和等待阶段组成；等待、Signal、Timer、重试和状态恢复由 Workflow 负责，模型推理和工具调用由 Library 负责。
+首个长任务不要求复杂 Workflow。MVP 使用数据库持久化、Worker Lease、Heartbeat、Checkpoint 和 Recovery Scanner 提供简单管理与进程重启恢复，不引入 Temporal。
 
 ## 目标与非目标
 
 ### MVP 目标
 
-- 提供独立 HTTP/SSE 接入；
-- 支持在线有界运行，以证明 Service 直接复用 Library；
-- 支持 Task 的提交、状态查询、事件订阅、Signal 和取消；
-- 使用 Temporal 可靠推进一个版本固定的 `AgentTask`；
-- Worker 在 Activity 中调用 Library 执行有界 Agent Slice；
-- 持久化 checkpoint、result 和 artifact 引用；
-- 支持 Worker 重启后的恢复、Activity 重试和 Workflow Continue-As-New；
+- 提供任务创建、列表、详情和结果查看 UI；
+- 支持 Task 的提交、查询、事件查看、取消、重试和恢复；
+- 使用持久化 Task Store 保存 Task、Attempt、Lease、Event 和引用；
+- Worker 通过 `AgentClient` 调用 Library 执行一个或多个有界 Agent Run；
+- 通过 Lease 和 Heartbeat 检测失联 Worker；
+- Worker 重启或 Lease 过期后，从 checkpoint 恢复或进入明确失败状态；
+- 将 AgentEvent 持久化并投影为用户可理解的 Task Timeline；
 - 对副作用提供稳定幂等键和状态不确定处置路径；
-- 由可信配置解析并固定 ExecutionTarget。
+- 保持语言、Web 框架和数据库产品未绑定。
 
 ### MVP 非目标
 
-- 通用 BPM、任意 DAG 或低代码流程平台；
+- Temporal、通用 BPM、任意 DAG 或低代码流程平台；
+- Timer、周期调度、复杂 Signal 和长达数天的确定性 Workflow；
 - 承载非 Agent 类型的组织级任务中心；
 - 用户、租户、RBAC 和组织管理后台；
 - 动态 Worker 市场、跨区域容灾和多 Cluster 治理；
 - 多 Agent 协同 Workspace；
 - 默认开放 Shell、代码执行、浏览器或不可信依赖；
-- 完整 Sandbox 平台，除非首个验证任务明确需要隔离执行；
-- `scheduleTask` 默认不进入首个 MVP，除非首个真实用例必须定时触发。
+- 完整 Sandbox 平台；
+- 首版同时实现 Local 与 Remote 两种 Agent Binding。
 
-## 逻辑与部署架构
+## 逻辑架构
 
 ```text
-Client / Host
-      │ HTTP / SSE
-      ▼
-┌──────────────────────────────┐
-│ Agent Service                │
-│  ├─ Auth/Scope Adapter       │
-│  ├─ Online Run API           │──in-process──> Agent Library
-│  ├─ Task API / Task Facade   │
-│  ├─ Provider Registry        │
-│  └─ Event / Status Read API  │
-└──────────────┬───────────────┘
-               │ start/signal/query/cancel
-               ▼
-┌──────────────────────────────┐
-│ Temporal                     │
-│  AgentTaskWorkflow           │
-│  deterministic state only    │
-└──────────────┬───────────────┘
-               │ schedule Activity
-               ▼
-┌──────────────────────────────┐
-│ Environment Task Worker      │
-│  RunAgentSliceActivity       │
-│          │ in-process        │
-│          ▼                   │
-│  MVP 1 Agent Library         │
-└───────┬───────────┬──────────┘
-        │           │
-        ▼           ▼
- Agent State     Artifact Store
- checkpoint      files/reports
+┌──────────────────────────────────────────────┐
+│ Browser UI                                   │
+│ 创建 / 列表 / 详情 / Timeline / 操作 / 结果 │
+└──────────────────────┬───────────────────────┘
+                       │ Application API
+                       ▼
+┌──────────────────────────────────────────────┐
+│ Task Service                                 │
+│ create / list / get / cancel / retry / resume│
+└───────────────┬──────────────────────────────┘
+                │
+                ▼
+┌──────────────────────────────────────────────┐
+│ Durable Task Store                          │
+│ Task / Attempt / Lease / Event / Ref         │
+└───────────────┬──────────────────────────────┘
+                │ claim / heartbeat / recover
+       ┌────────┴────────┐
+       ▼                 ▼
+┌───────────────┐  ┌──────────────────┐
+│ Task Worker   │  │ Recovery Scanner │
+│     │         │  │ expired leases   │
+│     ▼         │  └──────────────────┘
+│ AgentClient   │
+└───────┬───────┘
+        │ local package or remote protocol
+        ▼
+┌──────────────────────────────────────────────┐
+│ MVP 1 Agent Library                         │
+│ Harness / Skill / Tool / Session / Event     │
+└──────────────────────────────────────────────┘
 ```
 
-Service 与 Worker 建议分进程部署，以隔离在线请求和长任务资源；二者可位于同一仓库，并依赖同一版本的 Library package。
+UI 只能访问 Application API，不能直接调用 Library、数据库或 Harness。
+
+## UI MVP
+
+UI 是产品必选项，但首版只覆盖 Task 闭环，不建设复杂聊天工作台。
+
+### 任务列表
+
+至少展示 Task ID、标题、状态、当前阶段、更新时间和尝试次数，并支持按状态过滤。
+
+### 创建任务
+
+至少支持任务描述、Agent Definition、Skill 选择和输入参数。Harness、凭据和执行环境等内部配置不直接暴露给普通用户。
+
+### 任务详情
+
+至少展示基本信息、状态、进度时间线、Agent Run、Tool 调用、错误、checkpoint/恢复记录和最终结果。
+
+### 任务操作
+
+根据状态提供 Cancel、Retry、Resume、补充恢复输入和查看 Artifact。所有操作必须经过 Application API 的状态校验和授权。
 
 ## 核心领域对象
 
 | 对象 | 含义 | 状态归属 |
 |------|------|----------|
-| `AgentDefinition` | 版本化的行为、Prompt、工具和 Provider 配置 | Service 配置存储 |
-| `AgentRun` | 一次有边界的 Library 执行 | Library 运行态 + 事件存储 |
-| `AgentTask` | 需要可靠推进的逻辑长任务 | Task Store + Temporal Workflow |
-| `TaskAttempt` | Worker 对某个 Slice 的一次实际尝试 | Task/事件存储 |
-| `ExecutionTarget` | 环境、Namespace、Task Queue、capability、policy 和 secret scope 的可信解析结果 | Service 配置存储 |
-| `CheckpointRef` | 可恢复 Agent 状态的引用 | Agent State Provider |
-| `ArtifactRef` | 文件、报告、快照或大结果引用 | Artifact Provider |
+| `AgentDefinitionRef` | 版本化的 Agent 行为引用 | Application 配置存储 |
+| `Task` | 对用户稳定的逻辑长任务 | Task Store |
+| `TaskAttempt` | Worker 对 Task 的一次执行尝试 | Task Store |
+| `AgentRun` | Library 的一次有界执行 | Library 运行态 + Event Store |
+| `Lease` | Worker 对 Task 的限时执行权 | Task Store |
+| `SessionRef` | Agent 上下文连续性引用 | Session Provider |
+| `CheckpointRef` | 可恢复 Agent 状态引用 | Agent State Provider |
+| `ArtifactRef` | 文件、报告或大结果引用 | Artifact Provider |
 
-Task 创建时固定 `AgentDefinition` 版本和 `ExecutionTarget`。模型、Prompt、用户输入和工具结果都不能修改它们。
-
-## 最小外部接口
-
-具体 URL 可按实现调整，但 MVP 语义至少包含：
-
-| 操作 | 建议接口 | 语义 |
-|------|----------|------|
-| 在线运行 | `POST /v1/runs` | 调用 Library 执行一次有界 Run |
-| 在线/任务事件 | `GET /v1/runs/{runId}/events` | SSE 订阅版本化事件 |
-| 提交任务 | `POST /v1/tasks` | 创建 AgentTask，固定 Definition 与 Target |
-| 查询状态 | `GET /v1/tasks/{taskId}` | 返回阶段、进度、结果/错误引用 |
-| 发送 Signal | `POST /v1/tasks/{taskId}/signals` | 提交审批、外部数据或继续指令 |
-| 取消任务 | `POST /v1/tasks/{taskId}/cancel` | 请求 Workflow 与执行中的 Activity 协同取消 |
-
-`submitTask` 返回 `taskId`，不等待任务完成。重复提交应支持客户端幂等键，返回同一逻辑 Task 或明确冲突。
-
-## Workflow 与 Slice
+关系：
 
 ```text
-submitTask
-    ↓
-创建并固定 DefinitionRef + ExecutionTarget
-    ↓
-启动 AgentTaskWorkflow
-    ↓
-调度 RunAgentSliceActivity
-    ↓
-Worker 调用 MVP 1 AgentRunner
-    ├─ completed ──> 保存 resultRef ──> Task 完成
-    ├─ paused: approval/signal ──> 保存 checkpointRef ──> Workflow 等待
-    ├─ paused: budget boundary ──> 保存 checkpointRef ──> 下一 Slice
-    └─ retryable failure ──> Temporal 按策略重试
-
-Workflow History 达到阈值 ──> Continue-As-New，仅传稳定 ID/引用
+Task #123
+├── Attempt 1
+│   └── Agent Run R1
+│       └── Checkpoint C1
+├── Worker lost / Lease expired
+└── Attempt 2
+    └── Agent Run R2 resumes C1
+        └── Completed
 ```
 
-### Workflow/Activity 硬边界
+## Task 最小模型
 
-Temporal Workflow 仅保存确定性编排状态、Timer、Signal、取消和稳定引用。以下操作只能发生在 Activity：
+```text
+Task
+├── id
+├── version
+├── title
+├── input | input_ref
+├── status
+├── agent_definition_ref
+├── skill_refs[]
+├── session_ref?
+├── current_run_id?
+├── checkpoint_ref?
+├── result_ref?
+├── error?
+├── attempt_count
+├── lease_owner?
+├── lease_expires_at?
+├── created_at
+└── updated_at
+```
 
-- LLM 或 Agent Loop；
-- Context/Memory 访问；
-- Tool 和网络调用；
-- checkpoint/artifact I/O；
-- Sandbox 创建和执行。
+`version` 用于乐观锁，避免 UI、Worker 和 Recovery Scanner 并发覆盖状态。
 
-MVP 默认使用粗粒度 `RunAgentSliceActivity`。只有高风险写工具、需要独立重试的外部副作用或恢复成本过高的步骤，才考虑拆分为独立 `ExecuteToolActivity`；该粒度在真实任务验证前不冻结。
+## Task 状态机
 
-## 状态所有权
+```text
+PENDING
+   │
+   ▼
+RUNNING ───────────────┐
+   │                   │
+   ├──> PAUSED         │
+   │       │           │
+   │       └── resume ─┘
+   │
+   ├──> FAILED
+   │       │
+   │       └── retry ──> PENDING
+   │
+   ├──> CANCELLED
+   │
+   └──> COMPLETED
+```
 
-| 状态 | Owner | 不应存放的位置 |
-|------|-------|----------------|
-| Workflow 阶段、Timer、Signal | Temporal | Prompt、完整对话、大文件 |
-| Task 查询视图、Attempt、关联 ID | Task Store | Library 内存作为唯一来源 |
-| 对话、Memory、checkpoint | Agent State Provider | Temporal History |
-| 文件、报告、快照、大结果 | Artifact Provider | Event 或 Workflow payload |
-| 业务事实 | 上游宿主系统 | Agent Task 状态 |
-| 计算租约 | Sandbox Manager（若启用） | checkpoint 或长期状态 |
-| Definition、Policy、Target | Service 配置存储 | 模型输入 |
+首版不增加更多外部状态。Lease 过期、恢复扫描等内部过程通过 TaskEvent 表达。
 
-跨系统只传稳定 ID 和引用，避免把敏感正文、凭据或大对象放入事件、日志和 Workflow History。
+## Application API 语义
 
-## 可靠性与幂等
+具体 URL 和传输协议可在实现阶段选择，但必须覆盖：
+
+| 操作 | 语义 |
+|------|------|
+| Create Task | 创建 Task 并立即返回 task_id |
+| List Tasks | 分页、按状态筛选和排序 |
+| Get Task | 返回状态、当前 Run、错误和结果引用 |
+| Get Task Events | 返回或流式订阅 Task Timeline |
+| Cancel Task | 阻止新 Run，并请求取消当前 Run |
+| Retry Task | 为 FAILED Task 创建新 Attempt |
+| Resume Task | 从 PAUSED Task 的 checkpoint 继续 |
+| Get Artifact | 经授权读取结果或 Artifact |
+
+HTTP/JSON、SSE、WebSocket 或轮询均为实现选择；UI 不依赖 Harness 的原始事件协议。
+
+## AgentClient 适配
+
+Task Worker 只依赖：
+
+```text
+AgentClient
+├── run(agent_run_spec) -> AgentEvent + AgentRunOutcome
+└── cancel(run_id)
+```
+
+实现阶段可选择：
+
+```text
+LocalAgentClient
+    同语言进程内调用 Agent Library
+
+RemoteAgentClient
+    不同语言或独立部署时通过 HTTP/RPC 调用
+```
+
+MVP 只实现其中一种。Task Service、状态机和 UI 不因 Binding 改变。
+
+## Worker、Lease 与恢复
+
+### 正常执行
+
+```text
+Worker 查询 PENDING Task
+    ↓
+原子 Claim 并写入 Lease
+    ↓
+Task -> RUNNING，创建 TaskAttempt
+    ↓
+调用 AgentClient，持久化 AgentEvent
+    ↓
+定期 Heartbeat 续租
+    ↓
+保存 checkpoint/result 后更新最终状态
+    ↓
+释放 Lease
+```
+
+### Worker 失联
+
+```text
+RUNNING Task
+    ↓ Lease 超时
+Recovery Scanner
+    ↓
+检查 checkpoint 与副作用状态
+    ├── 可安全恢复 ──> 清理旧 Lease，Task -> PENDING
+    └── 不可安全恢复 ──> Task -> FAILED，等待人工 Retry
+```
+
+约束：
+
+- Claim 必须是原子操作；
+- 同一 Task 同一时间最多存在一个有效 Lease；
+- Lease 有限时长且 Worker 定期 Heartbeat；
+- checkpoint 持久化成功后才能推进可恢复边界；
+- 旧 Worker 在失去 Lease 后不得继续提交状态；
+- AgentEvent 使用递增 sequence 去重和排序；
+- 重复 Attempt 不得创建新的逻辑 Task。
+
+## AgentEvent 与 TaskEvent
+
+Library 产生 `AgentEvent`；Application 产生 `TaskEvent` 并把二者关联为 Timeline。
+
+```text
+Task Timeline
+├── task.created
+├── task.claimed
+├── attempt.started
+├── agent.run.started
+├── agent.tool.completed
+├── task.paused
+├── lease.expired
+├── task.recovered
+└── task.completed
+```
+
+Application 负责持久化、脱敏、访问控制和 UI 投影，不修改 AgentEvent 的原始语义。
+
+## Retry 与幂等
 
 MVP 采用 at-least-once 执行语义，不承诺 exactly-once。
 
-- Task 创建使用客户端幂等键；
-- 每次 Slice 具有稳定 `runId`，每次尝试具有独立 `attemptId`；
-- Tool 调用携带 `toolCallId`；
-- 副作用写调用使用由 `taskId + logicalStep + toolCallId` 派生的稳定 `idempotencyKey`；
-- Activity 重试可以产生新 Attempt，但不能产生新逻辑 Task 或新副作用键；
-- 结果未知的副作用不得盲目重试，应查询历史结果、执行补偿或转人工；
-- deadline 与取消传播到 Library 和 Provider；
-- checkpoint 必须在 Slice 边界持久化成功后，Workflow 才推进阶段。
+- Task 创建支持客户端幂等键；
+- 每个 Attempt 使用独立 `attempt_id`；
+- 每个 Agent Run 使用稳定 `run_id`；
+- Tool 调用携带 `tool_call_id`；
+- 副作用写操作使用由 task、逻辑步骤和 Tool 调用派生的稳定幂等键；
+- Library 只处理单个 Run 内的有界瞬时重试；
+- Application 负责跨 Attempt 的 Task Retry 和恢复；
+- 状态未知的副作用不得自动重试，应查询历史结果、补偿或转人工。
+
+## 状态所有权
+
+| 状态 | Owner | 不应作为唯一来源的位置 |
+|------|-------|--------------------------|
+| Task、Attempt、Lease、TaskEvent | Task Store | Worker 内存 |
+| 当前 Agent Run | Agent Library + Event Store | UI 本地状态 |
+| Session、Checkpoint | Agent State Provider | Task Event payload |
+| 文件、报告、大结果 | Artifact Provider | Task 表或事件正文 |
+| 业务事实 | 上游宿主系统 | Agent Task 状态 |
+| Definition、Policy、执行配置 | Application 配置存储 | 模型输入 |
+
+跨模块优先传稳定 ID 和引用，避免把敏感正文、凭据或大对象写入事件。
 
 ## 安全边界
 
 - 上游身份适配器签发最小 Scope；
-- Service 通过可信策略把请求映射到 ExecutionTarget；
-- Worker 只监听被授权的 Task Queue；
-- 凭据通过目标环境注入并短期化，不进入 Prompt、Task payload 或 checkpoint；
+- UI 和 API 不能选择或提升 Harness、凭据和执行权限；
+- Worker 只执行可信配置允许的 AgentDefinition、Skill 和 Tool；
+- 凭据不进入 Prompt、Task payload、checkpoint 或浏览器；
 - Policy 不可用时高风险能力 fail closed；
-- 若未实现 Sandbox，则拒绝 Shell、任意代码、浏览器和不可信依赖执行，不得退化到 Worker 主机直接运行；
-- Artifact 和事件读取沿用上游授权，不因知道 ID 即可访问。
+- 未实现 Sandbox 时拒绝 Shell、任意代码、浏览器自动化和不可信依赖执行；
+- Task、Event 和 Artifact 读取均执行访问控制，不能仅凭 ID 访问。
 
 ## 故障与降级
 
 | 故障 | MVP 行为 |
 |------|----------|
-| Service 重启 | 已提交 Workflow 不受影响；API 恢复后可继续查询 |
-| Worker 重启 | Temporal 重新投递未完成 Activity；沿用稳定幂等键 |
-| Temporal 不可用 | 新 Task 明确返回能力不可用；不得静默改为进程内任务 |
-| Agent State 不可用 | 不启动下一 Slice；按可重试策略处理 |
-| Artifact Store 不可用 | 需要 Artifact 的任务暂停或失败，不把大结果塞入 Workflow |
-| Policy 不可用 | 高风险工具拒绝；低风险是否降级由配置决定 |
-| Signal 重复 | 依据 signalId 去重 |
-| 取消与工具调用竞态 | 停止新调用；已发出的副作用按幂等/状态查询处理 |
-| Sandbox 不可用 | 需要隔离执行的任务失败或暂停，不在宿主降级执行 |
+| API 重启 | Task 保持在持久化存储中，恢复后继续查询 |
+| Worker 重启 | Lease 过期后由 Recovery Scanner 恢复或标记失败 |
+| Task Store 不可用 | 不 Claim 新 Task，不在内存静默执行 |
+| AgentClient 不可用 | 保留 checkpoint，按 Task 重试策略处理 |
+| Agent State 不可用 | 不推进恢复边界，Task 暂停或失败 |
+| Artifact Store 不可用 | 不把大结果塞入 Task/Event，明确失败或暂停 |
+| Policy 不可用 | 高风险 Tool 拒绝 |
+| UI 事件连接中断 | 通过 sequence 从上次位置恢复 Timeline |
+| Cancel 与 Tool 竞态 | 停止新调用，已发出的副作用按幂等/状态查询处理 |
+| Sandbox 不可用 | 需要隔离的 Task 失败，不在 Worker 主机降级执行 |
 
 ## MVP 验收场景
 
-选取一个真实长任务，至少包含两个 Agent Slice 和一次跨时间等待。验收应证明：
+使用一个可在合理时间内完成、支持 checkpoint 的真实任务验证：
 
-- Task 提交后立即返回 `taskId`，可持续查询状态和订阅事件；
-- 第一个 Slice 调用 MVP 1，生成 checkpoint 后等待 Signal；
-- Worker 在等待期间可重启，Signal 到达后由另一 Worker 恢复；
-- 重复 Activity 或重复 Signal 不产生重复业务副作用；
-- Task 可取消，取消后不再调度新 Slice；
-- Workflow History 达到测试阈值时可 Continue-As-New；
-- 在线 Run 与 Task Slice 使用相同 Definition 和 Library package；
-- 关闭 Task Module 后在线 Run 仍可使用；
-- 事件可通过 `taskId/runId/attemptId/toolCallId` 关联；
-- 未启用 Sandbox 时，高风险执行工具被明确拒绝。
+- 用户可在 UI 创建 Task，并立即在列表中看到状态；
+- 详情页持续展示 Agent Run、Tool 和 Task 状态时间线；
+- Worker 使用 AgentClient 调用同一 Agent Library；
+- Worker 执行中断后，Lease 过期并产生可见恢复事件；
+- 存在 checkpoint 时由新 Attempt 恢复，不存在安全 checkpoint 时明确失败；
+- 用户可在 UI Cancel、Retry 或 Resume；
+- 重复 Claim、Retry 或事件投递不产生重复逻辑 Task；
+- Task、Attempt、Run、Tool 调用可通过关联 ID 追踪；
+- UI 能查看最终结果或经授权访问 Artifact；
+- Application 不包含第二套 Agent Loop，也不依赖 Harness 专有 API。
 
 ## 主要取舍
 
-- **选择 Temporal，而不是进程内队列**：获得持久 Timer、Signal、重试和恢复；接受额外基础设施与确定性约束。
-- **选择多个有界 Slice，而不是永久 Agent Run**：获得可取消、可计费和可恢复边界；接受 checkpoint 兼容成本。
-- **Service 与 Worker 分进程**：隔离在线与后台资源；接受部署单元增加。
-- **首个 MVP 不建设通用任务平台**：快速验证 Agent 长任务；未来若承载非 Agent 工作负载，应独立立项。
-- **Sandbox 按风险触发**：降低首版成本；代价是未启用时必须拒绝部分高风险任务。
+- **选择数据库 Durable Worker，而不是进程内后台任务**：获得重启恢复；接受 Lease 和并发控制复杂度。
+- **首版不使用 Temporal**：降低基础设施和认知成本；复杂 Signal、Timer、长周期 Workflow 延后。
+- **UI 为必选但保持任务导向**：完成产品闭环；不建设复杂聊天和协作工作台。
+- **选择多个有界 Agent Run，而不是永久执行**：获得取消和恢复边界；需要管理 checkpoint 兼容。
+- **AgentClient 隔离本地/远程 Binding**：设计不绑定语言；实现阶段仍需选定一种 Binding。
+
+## Temporal 升级触发条件
+
+出现以下任一真实需求时，再评估用 Temporal 或其他 Workflow Engine 替换 Task Runtime 内部实现：
+
+- 任务持续数小时或数天并包含大量 Timer；
+- 需要复杂 Signal、审批和分支编排；
+- 需要多个 Activity 的独立重试和补偿；
+- 数据库状态机难以保证恢复正确性；
+- 需要完整、可重放的 Workflow History；
+- Worker 类型和执行环境显著增加。
+
+升级不得改变 UI 的核心 Task 语义或 Agent Library 契约。
 
 ## 相关文档
 
