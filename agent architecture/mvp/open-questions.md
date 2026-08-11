@@ -1,83 +1,83 @@
 # MVP 开放问题与决策门
 
-本文区分已经确定的产品决策、实现前必须确认的技术决策，以及在真实 MVP 验证后再决定的扩展能力。
+本文区分第一版已经确定的决策、实现前必须冻结的配置，以及 MVP 验证后再决定的扩展能力。
 
 ## 已确定
 
 | 决策 | 状态 | 理由 |
 |------|------|------|
-| Agent Application 依赖 Agent Library | **已决定** | 避免两套 Agent Loop 和行为漂移 |
-| Agent Library 不依赖 UI、Task、数据库和 Worker | **已决定** | 保持可嵌入和可复用 |
-| 设计阶段保持语言和框架无关 | **已决定** | 先冻结产品语义和适配契约 |
-| 实现阶段只选择一种原生语言和 Binding | **已决定** | 避免首版同时建设多语言 Runtime |
-| Pi 只作为候选 Harness Adapter | **已决定** | Application 和公共 API 不绑定 Pi |
-| Skill 使用 Library 公共契约与 Registry | **已决定** | Skill 资产不依赖 Harness 私有 API |
-| UI 是 Agent Application MVP 必选项 | **已决定** | 完成长任务产品操作闭环 |
-| 首版 Task Runtime 使用持久化存储、Lease 和恢复扫描 | **已决定** | 满足简单管理与进程重启恢复 |
-| 首版不使用 Temporal | **已决定** | 当前任务不需要复杂 Workflow |
-| Task 由一个或多个有界 Agent Run 推进 | **已决定** | 支持取消、预算和 checkpoint |
-| Task 执行采用 at-least-once + 幂等 | **已决定** | 不做不现实的 exactly-once 承诺 |
-| checkpoint/artifact 通过引用传递 | **已决定** | 避免大对象和敏感数据进入 Task/Event |
+| Agent Application 依赖 Agent Library | **已决定** | Chat 与 Worker 复用同一 Agent Loop |
+| Agent Library 不依赖 Chat、Task、Temporal、UI 和数据库 | **已决定** | 保持可嵌入和可复用 |
+| 第一版使用 TypeScript + Node.js | **已决定** | 与 Pi 和 Temporal TS SDK 保持单语言 Runtime |
+| 第一版使用 PiHarness | **已决定** | Pi 只位于 Harness Adapter 内 |
+| 第一版使用 React/Vite + Fastify + SSE | **已决定** | 同时承载 Chat 和 Task UI |
+| Chat 是第一版核心能力 | **已决定** | 支持多轮 Session、流式 Run 和长请求提升 |
+| Temporal 是第一版核心 Task Runtime | **已决定** | 提供 Workflow、Signal、Retry、Cancel 和恢复 |
+| 支持多个 Temporal 环境/实例 | **已决定** | 满足环境、网络、隔离和数据驻留差异 |
+| Task 按可信 TaskType 自动选择 Temporal Target | **已决定** | 普通用户和模型不能直接选择基础设施 |
+| WorkflowTarget 在启动时固化 | **已决定** | 避免 Registry 变化或故障造成重复执行 |
+| Workflow 启动后不静默跨 Cluster 迁移 | **已决定** | Temporal History 归属原 Cluster |
+| PostgreSQL Task Store 只做产品状态与查询投影 | **已决定** | Temporal History 是 Workflow 执行事实源 |
+| Chat/Task/Session 不保存明文密钥 | **已决定** | CredentialProvider 通过 Secret Manager 解析 |
+| Task 执行使用 at-least-once + 幂等 | **已决定** | Activity Retry 不承诺 exactly-once |
 
 ## 实现前决策门
 
-这些问题不改变产品架构，但会影响第一版代码、部署和数据模型。
-
 | 问题 | 当前建议 | 需要的证据 | 未决定的影响 |
 |------|----------|------------|--------------|
-| 原生实现语言 | 根据首批宿主与 Harness SDK 选择一种 | 宿主技术栈、团队能力、Pi 集成成本 | 无法确定 package 与进程模型 |
-| 首个 Harness 及准确上游 | Pi 候选，但需锁定仓库、包、版本和许可 | SDK/嵌入能力、Skill/Event/Session 行为 | Adapter 范围无法冻结 |
-| Agent Binding | 同语言优先 Local Binding | Agent App 与 Library 是否同语言/同进程 | 决定是否需要 HTTP/RPC |
-| Web UI 技术栈 | 选择团队已有方案 | 部署环境、设计系统、实时事件需求 | 不影响 UI 产品范围 |
-| Application API 传输 | HTTP/JSON；事件可选 SSE、WebSocket 或轮询 | 客户端环境和断线恢复需求 | 影响实时事件实现 |
-| Task Store | 优先关系数据库或团队已有可靠存储 | 并发量、事务、锁和部署约束 | Lease/乐观锁实现无法确定 |
-| 首个真实 Task | 可 checkpoint、可中断恢复的中等任务 | 输入、时长、Tool、副作用和结果形式 | 无法验证恢复闭环 |
-| `AgentDefinition` 发布方式 | 版本化配置，只读加载 | 谁发布、如何回滚 | Task 版本固定不完整 |
-| Session/Checkpoint Store | opaque ref + schema version | Harness 恢复能力和状态大小 | 跨 Attempt 恢复无法验证 |
-| Artifact Store | 复用已有对象存储或文件服务 | 大小、权限、保留期 | 大结果无法稳定引用 |
-| Event/Error 版本策略 | schema version + 向后兼容增量字段 | UI 与外部消费者类型 | 升级可能破坏 Timeline |
-| Lease 参数 | 有限 Lease + 定期 Heartbeat | 任务耗时和 Worker 故障检测目标 | 恢复速度和误抢占风险未知 |
+| Pi 精确依赖 | 锁定上游仓库、npm package 和精确版本 | Agent Core、Skill、Event、Session、许可 | PiHarness 无法实现 |
+| Temporal SDK 版本 | 锁定 TypeScript SDK 精确版本 | Node 兼容、Worker bundle、mTLS | Workflow/Worker 构建不可冻结 |
+| TaskType 配置 Owner | 版本化配置 + 审批发布 | 谁创建、灰度、回滚和审计 | 路由策略不可治理 |
+| TemporalTarget Registry 存储 | 受信任配置存储，Secret 只保存引用 | 环境数量和动态更新频率 | Client Factory 无法实现 |
+| Cluster 与 Namespace 策略 | 按网络/故障域决定独立 Cluster 或 Namespace | 数据驻留、成本、隔离要求 | 部署边界不确定 |
+| Target Health 来源 | 主动探测 + 运维状态 + Worker backlog | 可用性和容量信号 | 路由可能选择不可用目标 |
+| 次优目标选择 | 仅启动前、显式 allowFallback | 哪些 TaskType 可跨环境 | 可能违反隔离/数据驻留 |
+| 跨 Cluster 显式迁移 | 首版不自动迁移 | Checkpoint、幂等、迁移审计 | Cluster 长故障时只能等待/人工处理 |
+| Chat 提升 Task 规则 | 用户显式选择优先，受限规则辅助 | 时长、Tool、风险和恢复需求 | 短 Run 与 Task 边界不稳定 |
+| Chat 保留与摘要 | 按 token/消息数生成 Summary | 隐私、费用和上下文质量 | 长对话不可控 |
+| Identity/租户 Scope | 接入已有 OIDC Provider | 单租户/多租户和 Tool 授权 | 安全边界无法实现 |
+| Secret Manager | 复用团队已有方案 | 用户 OAuth、服务 Secret、Temporal mTLS | CredentialProvider 无后端 |
+| Artifact Store | S3-compatible | 大小、权限、保留期和环境访问 | 附件与报告无法稳定引用 |
 
 ## MVP 验证后再决定
 
 | 问题 | 触发条件 | 当前处理 |
 |------|----------|----------|
-| Remote Binding / 多语言 SDK | 出现不同语言的真实宿主 | 首版只实现一种 Binding |
-| Temporal 或 Workflow Engine | 复杂 Signal、Timer、分支、补偿或数天任务 | 首版数据库 Durable Worker |
-| 定时/周期任务 | 出现明确 schedule 用例 | 首版延后 |
-| 多 Harness 路由 | 首个 Harness 无法满足已量化场景 | 保留 HarnessPort，不实现路由平台 |
-| Harness 原生 Session 恢复 | 首个 Adapter 能力确认 | 公共 CheckpointRef 保持 opaque |
-| 独立 Tool Activity | 出现高风险写操作或独立恢复需求 | 首版由有界 Agent Run 执行 |
-| Sandbox | 需要 Shell、任意代码、浏览器或不可信依赖 | 未启用时明确拒绝 |
-| Sandbox 技术选型 | 已确认隔离级别、启动延迟和成本目标 | 不提前选择具体产品 |
-| 多环境 Worker | 需要测试/生产隔离或不同 capability | 首版单一可信执行环境 |
-| 多 Agent DAG / 协同 Workspace | 单 AgentTask 无法满足真实业务 | 不进入两个 MVP |
-| 复杂聊天工作台 | 任务型 UI 无法满足用户操作 | 首版只做任务闭环 UI |
+| 自动跨 Cluster 迁移 | 业务要求 Cluster 长故障下继续任务 | 首版显式人工迁移 |
+| Global Namespace/Replication | 需要跨区域 Workflow HA | 不进入第一版 |
+| 动态容量负载均衡 | 同类 Target 存在显著 backlog 差异 | 首版 priority + health |
+| Remote Agent Binding | 出现不同语言或独立 Agent Runtime | 首版 LocalAgentClient |
+| 多 Harness 路由 | Pi 无法满足已量化场景 | 保留 HarnessPort |
+| 定时/周期任务 | 出现真实 Schedule 用例 | Temporal 已具备能力但 UI 延后 |
+| Chat 分支/多人协作 | 线性 Session 无法满足用户需求 | 首版 parent_message_id 仅预留 |
+| Sandbox | 需要任意代码、浏览器或不可信依赖 | 未启用时明确拒绝 |
+| 多 Agent DAG | 单 AgentTask 无法满足真实业务 | 不进入两个 MVP |
 
 ## 运营与治理问题
 
-以下事项不阻塞设计，但在生产试运行前必须有 Owner：
+生产试运行前必须明确：
 
-- Task、Attempt、AgentEvent、Artifact 和长期 Session 的保留期；
-- 用户删除、租户隔离和敏感数据脱敏策略；
-- 哪些 Tool 属于高风险写操作，哪些需要人工审批；
-- 模型、Tool 和 Artifact 的成本配额及告警阈值；
-- AgentDefinition、Skill、Policy 和执行配置的审批、发布与回滚；
-- Lease 卡死、状态不确定副作用和人工恢复的值班流程；
-- Library、Harness Adapter 与 Application 的版本兼容窗口和升级顺序。
+- Chat、Task、Temporal History、AgentEvent、Artifact 和 Session 的保留期；
+- TaskType、TargetProfile、AgentDefinition、Skill 和 Policy 的发布 Owner；
+- Cluster/Namespace、Task Queue、Worker Build ID 和兼容部署策略；
+- Temporal、PostgreSQL、Artifact 和 Secret Manager 的备份、RTO/RPO；
+- Tool 副作用、Activity Retry、幂等和人工恢复流程；
+- 租户隔离、数据驻留、敏感数据脱敏和删除流程；
+- 路由失败、Cluster 不可用、投影漂移和 Task Queue 积压告警。
 
 ## 决策原则
 
-1. 先冻结语言无关语义，再选择最适合首个宿主的实现栈；
-2. 每个适配层只隔离真实变化点，不为假设中的框架创建大而全抽象；
-3. 优先用一个真实 Task 提供证据，不为假设场景建设平台能力；
-4. 安全能力缺失时拒绝高风险操作，不降级到更弱隔离；
-5. 公共契约冻结语义而非厂商、框架和部署细节；
-6. 新能力默认作为外围 Adapter/Provider，不反向侵入 Agent Library；
-7. 如果未来 Application 需要承载不使用 Agent 的通用任务，应另建产品边界。
+1. TaskType 和 WorkflowTarget 都来自受信任配置，不接受模型直接控制基础设施；
+2. 路由只在 Workflow 启动前选择，启动后固定事实源；
+3. Temporal 管执行历史，PostgreSQL 管产品查询，不建立双主；
+4. Chat 短 Run 追求交互延迟，Task 追求持久恢复；
+5. Workflow 保持确定性，所有 Agent、Tool、数据库和 Secret I/O 进入 Activity；
+6. 公共 Agent Contract 不暴露 Pi 或 Temporal 专有类型；
+7. 安全能力缺失时 fail closed，不降级到更弱环境。
 
 ## 相关文档
 
 - [MVP 总览](./README.md)
 - [MVP 1：通用 Agent Library](./agent-library-mvp.md)
-- [MVP 2：独立长任务 Agent Application](./long-running-agent-app-mvp.md)
+- [MVP 2：独立 Agent Application](./long-running-agent-app-mvp.md)
+- [第一版具体系统架构](./first-version-system-architecture.md)
