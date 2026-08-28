@@ -35,6 +35,7 @@ CLI、编辑器、构建/包管理等开发工具的用法与配置。
 | [github](../tools/github/) | GitHub 用法与工作流 |
 | [gitlab](../tools/gitlab/) | GitLab CI/CD 与运维 |
 | [helix](../tools/helix/) | Helix 模态编辑器 |
+| [herdr](../tools/herdr/) | 面向 AI coding agent 的终端复用器 |
 | [hexo](../tools/hexo/) | Hexo 静态博客框架 |
 | [hiddify-app](../tools/hiddify-app/) | 代理客户端 |
 | [htop](../tools/htop/) | 进程监控工具 |
