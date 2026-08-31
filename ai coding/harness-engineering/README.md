@@ -113,3 +113,4 @@ Context 是 Harness 的一部分，Harness 还多管了**约束、反馈和质�
 ## 进一步阅读
 
 - [小林coding：Harness Engineering 详解](xiaolin-coding-harness-engineering.md) — 从 Prompt → Context → Harness 三阶段演进，六层架构，五大工程难题与原则
+- [WikiSkill：让 Agent 技能自己进化的三层知识架构](wikiskill.md) — Google Research 提出的三层知识架构（Raw / Wiki / Skills），让 Agent 技能从沉淀的知识中持续进化
