@@ -132,7 +132,7 @@ npm i node-rsa
 
 ```js
 const NodeRSA = require('node-rsa')
-const privateKey = '<REDACTED_RSA_PRIVATE_KEY>'
+const privateKey = '<tutorial-sample-key-removed>'
 
 var key = NodeRSA(privateKey, '<RSA_PRIVATE_KEY_FORMAT>',
 {'environment': 'node', 'encryptionScheme': 'pkcs1', 'signingScheme': 'sha256'});
