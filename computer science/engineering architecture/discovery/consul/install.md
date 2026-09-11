@@ -31,7 +31,7 @@ update: "2020-12-28T00:00:00+08:00"
         "only_passing": true
     },
     "enable_syslog": true,
-    "encrypt": "MUEfHaiegJAg9oKogQYG9G5xDg3Bp1eBe/wd4OpoWwE=",
+    "encrypt": "<removed-from-public-repo>",
     "leave_on_terminate": true,
     "log_level": "INFO",
     "rejoin_after_leave": true,
@@ -65,7 +65,7 @@ update: "2020-12-28T00:00:00+08:00"
         "only_passing": true
     },
     "enable_syslog": true,
-    "encrypt": "MUEfHaiegJAg9oKogQYG9G5xDg3Bp1eBe/wd4OpoWwE=",
+    "encrypt": "<removed-from-public-repo>",
     "leave_on_terminate": true,
     "log_level": "INFO",
     "rejoin_after_leave": true,

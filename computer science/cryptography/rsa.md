@@ -75,7 +75,7 @@ import java.util.Base64;
 public class RSAUtil {
 
     private final static String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOhQ81fJEKI/b0+iKtK0/WN7wcMJKuGL5QhzuRDyFLCADbKPkB7uGKfkQ1QDcntjZ8k4+mx2oGBKF5E1vSB+bD7SP7fkSgDmdCzGLSJX04Q9H95xuEfFsTXwW8dGh4uQDFt/dTIY2WAx8RnGhiJFKq6y9mj+tcofnzLbQNfy2PoQIDAQAB";
-    private final static String privateKey = "<REDACTED_RSA_PRIVATE_KEY>";
+    private final static String privateKey = "<tutorial-sample-key-removed>";
 
     @SneakyThrows
     public static PublicKey getPublicKey(String base64PublicKey) {
