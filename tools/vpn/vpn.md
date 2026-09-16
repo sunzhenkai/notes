@@ -82,7 +82,7 @@ sudo nano /etc/shadowsocks-libev/config.json
     "mode":"tcp_and_udp",
     "server_port":8388,
     "local_port":1080,
-    "password":"ACRrobo9ymXb",
+    "password":"<REDACTED_SHADOWSOCKS_PASSWORD>",
     "timeout":60,
     "method":"chacha20-ietf-poly1305"
 }
