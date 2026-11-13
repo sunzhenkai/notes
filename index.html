@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>Wii's Blogs</title>
+  <style>
+    :root {
+      --fg: #1f2328;
+      --muted: #656d76;
+      --line: #d8dee4;
+      --card: #f6f8fa;
+      --accent: #0969da;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fg: #e6edf3;
+        --muted: #9198a1;
+        --line: #30363d;
+        --card: #161b22;
+        --accent: #4493f8;
+      }
+    }
+    .home { color: var(--fg); line-height: 1.6; }
+    .home h1 { margin: 0 0 .25rem; font-size: 1.75rem; letter-spacing: -.01em; }
+    .home p.lead { margin: 0 0 1.5rem; color: var(--muted); }
+    .home ul.grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      gap: .75rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .home ul.grid a {
+      display: block;
+      padding: .85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: .6rem;
+      background: var(--card);
+      color: var(--fg);
+      text-decoration: none;
+      transition: border-color .15s, transform .15s;
+    }
+    .home ul.grid a:hover { border-color: var(--accent); transform: translateY(-1px); }
+    .home ul.grid a span { display: block; margin-top: .15rem; color: var(--muted); font-size: .82rem; }
+    .home footer { margin-top: 1.75rem; padding-top: .9rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+    .home footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="home">
+    <h1>Wii's Blogs</h1>
+    <p class="lead">技术笔记与学习记录，按主题分目录归档。</p>
+
+    <ul class="grid">
+      <li><a href="agent architecture">Agent Architecture<span>智能体架构与工程实践</span></a></li>
+      <li><a href="ai coding">AI Coding<span>AI 辅助编程</span></a></li>
+      <li><a href="artificial intelligence">Artificial Intelligence<span>模型、算法与训练</span></a></li>
+      <li><a href="basic programming">Basic Programming<span>语言与基础工程</span></a></li>
+      <li><a href="computer science">Computer Science<span>系统、网络与原理</span></a></li>
+      <li><a href="study record">Study Record<span>学习过程记录</span></a></li>
+      <li><a href="tools">Tools<span>工具与效率</span></a></li>
+      <li><a href="play">Play<span>随手写的杂项</span></a></li>
+    </ul>
+
+    <footer>
+      全量目录见 <a href="README.md">README</a>，可搜索与按标签浏览。
+    </footer>
+  </div>
+</body>
+</html>
