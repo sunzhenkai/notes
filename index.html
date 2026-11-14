@@ -2,80 +2,82 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Wii's Blogs</title>
-  <style>
-    :root {
-      --fg: #1f2328;
-      --muted: #656d76;
-      --line: #d8dee4;
-      --card: #f6f8fa;
-      --accent: #0969da;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --fg: #e6edf3;
-        --muted: #9198a1;
-        --line: #30363d;
-        --card: #161b22;
-        --accent: #4493f8;
-      }
-    }
-    .home { color: var(--fg); line-height: 1.6; }
-    .home h1 { margin: 0 0 .25rem; font-size: 1.75rem; letter-spacing: -.01em; }
-    .home h2 { margin: 2rem 0 .65rem; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    .home p.lead { margin: 0; color: var(--muted); }
-    .home ul.grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-      gap: .75rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .home ul.grid a {
-      display: block;
-      height: 100%;
-      padding: .85rem 1rem;
-      border: 1px solid var(--line);
-      border-radius: .6rem;
-      background: var(--card);
-      color: var(--fg);
-      text-decoration: none;
-      transition: border-color .15s, transform .15s;
-    }
-    .home ul.grid a:hover { border-color: var(--accent); transform: translateY(-1px); }
-    .home ul.grid a span { display: block; margin-top: .2rem; color: var(--muted); font-size: .82rem; }
-    .home footer { margin-top: 2rem; padding-top: .9rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
-    .home footer a { color: var(--accent); text-decoration: none; }
-  </style>
 </head>
 <body>
-  <div class="home">
-    <h1>Wii's Blogs</h1>
-    <p class="lead">技术笔记与学习记录，按主题分目录归档。左侧目录树可展开全部笔记，右上角支持全文搜索。</p>
+  <!--
+    视觉方向（轻量卡）
+    北极星：一本索引册的扉页 —— 一眼知道这是哪儿，第二眼知道往哪走。
+    排版：系统字体栈，H1 收紧字距做主角；正文与说明靠字号/明度分层，颜色不参与分级。
+    色彩：底色/正文/次要文字/分隔线全部走 mdserve 主题变量（--foreground / --muted-foreground / --border），
+          跟随站点亮暗切换；唯一彩色是朱红 oklch(0.58 0.16 28)，只用于细则线与箭头（图形元素，3:1 即可）。
+    特征元素：编号目录 + 发丝分隔线，箭头常驻不靠 hover。
+    约束：mdserve 渲染内联 HTML 时会丢弃 <style>（DOMPurify 只保留 style 属性），因此样式必须内联，
+          也就没有 :hover 与媒体查询 —— 布局用 flex 自然折行，不设固定列宽。
+  -->
+  <div style="max-width:40rem;margin:.5rem 0 3rem;color:var(--foreground,#1f2328);font-size:1rem;line-height:1.7;">
 
-    <h2>从这里开始</h2>
-    <ul class="grid">
-      <li><a href="ingest/NAV-INDEX.md">全量目录导航<span>仓库里所有笔记的索引</span></a></li>
-      <li><a href="INDEX.md">推荐笔记<span>值得优先读的精选清单</span></a></li>
-      <li><a href="README.md">关于本站<span>站点说明</span></a></li>
-    </ul>
+    <h1 style="margin:0;font-size:clamp(1.9rem,4.5vw,2.5rem);font-weight:650;letter-spacing:-.022em;line-height:1.12;color:var(--foreground,#1f2328);">Wii's Blogs</h1>
 
-    <h2>按主题</h2>
-    <ul class="grid">
-      <li><a href="agent architecture/README.md">Agent Architecture<span>智能体架构与工程实践</span></a></li>
-      <li><a href="ai coding/agents/README.md">AI Coding<span>各类 AI Coding Agents 概览</span></a></li>
-      <li><a href="artificial intelligence/favor.md">Artificial Intelligence<span>模型、算法与训练</span></a></li>
-      <li><a href="basic programming/terms.md">Basic Programming<span>语言与基础工程</span></a></li>
-      <li><a href="computer science/engineering architecture/index.md">Computer Science<span>系统、网络与原理</span></a></li>
-      <li><a href="study record/list.md">Study Record<span>学习过程记录</span></a></li>
-      <li><a href="tools/favor.md">Tools<span>工具与效率</span></a></li>
-      <li><a href="play/unraid/usage.md">Play<span>NAS、软路由等杂项</span></a></li>
-    </ul>
+    <div style="width:2.4rem;height:3px;margin:1.05rem 0 .95rem;border-radius:2px;background:oklch(0.58 0.16 28);"></div>
 
-    <footer>
-      部分主题没有汇总页，入口先落在子目录的代表文档上；<a href="ingest/NAV-INDEX.md">全量导航</a>里有完整清单。
-    </footer>
+    <p style="max-width:33rem;margin:0;color:var(--muted-foreground,#656d76);font-size:1rem;">技术笔记与学习记录，按主题分目录归档。左侧目录树可展开全部笔记，右上角支持全文搜索。</p>
+
+    <p style="margin:2.6rem 0 .55rem;font-size:.75rem;font-weight:600;letter-spacing:.16em;color:var(--muted-foreground,#656d76);">起步</p>
+
+    <p style="margin:0;display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.975rem;">
+      <a href="ingest/NAV-INDEX.md" style="color:var(--foreground,#1f2328);text-decoration:none;border-bottom:1px solid var(--border,#d8dee4);padding-bottom:1px;">全量目录导航 <span style="color:var(--muted-foreground,#656d76);font-size:.85rem;">所有笔记</span></a>
+      <a href="INDEX.md" style="color:var(--foreground,#1f2328);text-decoration:none;border-bottom:1px solid var(--border,#d8dee4);padding-bottom:1px;">推荐笔记 <span style="color:var(--muted-foreground,#656d76);font-size:.85rem;">精选</span></a>
+      <a href="README.md" style="color:var(--foreground,#1f2328);text-decoration:none;border-bottom:1px solid var(--border,#d8dee4);padding-bottom:1px;">关于本站</a>
+    </p>
+
+    <p style="margin:2.6rem 0 .35rem;font-size:.75rem;font-weight:600;letter-spacing:.16em;color:var(--muted-foreground,#656d76);">按主题</p>
+
+    <div style="margin:0;border-top:1px solid var(--border,#d8dee4);">
+      <a href="agent architecture/README.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">01</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Agent Architecture</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">智能体架构与工程实践</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="ai coding/agents/README.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">02</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">AI Coding</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">各类 AI Coding Agents 概览</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="artificial intelligence/favor.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">03</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Artificial Intelligence</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">模型、算法与训练</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="basic programming/terms.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">04</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Basic Programming</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">语言与基础工程</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="computer science/engineering architecture/index.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">05</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Computer Science</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">系统、网络与原理</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="study record/list.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">06</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Study Record</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">学习过程记录</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="tools/favor.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">07</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Tools</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">工具与效率</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+      <a href="play/unraid/usage.md" style="display:flex;gap:.75rem;align-items:baseline;padding:.66rem .2rem .66rem 0;border-bottom:1px solid var(--border,#d8dee4);color:var(--foreground,#1f2328);text-decoration:none;">
+        <span style="flex:0 0 1.7rem;font-size:.78rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--muted-foreground,#656d76);">08</span>
+        <span style="flex:1 1 auto;min-width:0;"><span style="font-weight:550;letter-spacing:-.005em;">Play</span><span style="display:block;font-size:.875rem;line-height:1.5;color:var(--muted-foreground,#656d76);">NAS、软路由等杂项</span></span>
+        <span style="flex:0 0 auto;color:oklch(0.58 0.16 28);font-size:.95rem;">→</span>
+      </a>
+    </div>
+
+    <p style="max-width:33rem;margin:2.2rem 0 0;font-size:.85rem;line-height:1.6;color:var(--muted-foreground,#656d76);">AI Coding、Computer Science、Play 暂无汇总页，入口先落在子目录的代表文档上；完整清单见 <a href="ingest/NAV-INDEX.md" style="color:var(--foreground,#1f2328);text-decoration:none;border-bottom:1px solid var(--border,#d8dee4);">全量目录导航</a>。</p>
   </div>
 </body>
 </html>
