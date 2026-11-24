@@ -24,7 +24,7 @@ nodes:
     layer: Actors
     group: Host Integration
     positionHint: far-left
-  - id: agent-web-ui
+  - id: web-app-ui
     label: "Agent Web UI\nChat + Tasks"
     type: manager
     layer: Manager
@@ -165,12 +165,12 @@ nodes:
 edges:
   - id: user-operates-web-ui
     from: end-user
-    to: agent-web-ui
+    to: web-app-ui
     protocol: HTTPS
     sync: sync
     label: "HTTPS · chat and task operations"
   - id: web-ui-calls-application-api
-    from: agent-web-ui
+    from: web-app-ui
     to: application-api
     protocol: HTTP/JSON and SSE
     sync: sync

@@ -85,7 +85,7 @@ findings:
   - rule_id: ha.control-plane-single-replica
     severity: low
     element_ids:
-      - agent-web-ui
+      - web-app-ui
       - application-api
       - chat-store
       - task-store

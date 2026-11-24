@@ -86,7 +86,7 @@ mvp/
 │   └── app-contracts/         # Chat/Task API schema 与客户端
 │
 ├── apps/
-│   ├── agent-web/             # React/Vite Chat + Task UI
+│   ├── web-app/             # React/Vite Chat + Task UI
 │   ├── agent-api/             # Fastify、Chat Service、Task Service/Router
 │   └── agent-worker/          # 各环境 Temporal Worker + Agent Library
 │
@@ -99,7 +99,7 @@ mvp/
 关键依赖：
 
 ```text
-agent-web -> app-contracts
+web-app -> app-contracts
 agent-api -> chat-domain + task-domain + temporal-routing
 agent-worker -> temporal-workflows + agent-client + storage adapters
 agent-client -> agent-contracts + agent-lib
@@ -113,7 +113,7 @@ temporal Activity -> agent-client / database / artifact / credential-provider
 
 | 部署单元 | 内容 | 位置 |
 |----------|------|------|
-| `agent-web` | Chat/Task SPA | 控制面环境 |
+| `web-app` | Chat/Task SPA | 控制面环境 |
 | `agent-api` | Fastify、Chat Service、Task Service、Task Router、Temporal clients | 控制面环境 |
 | `agent-worker-general` | 通用 Workflow/Activity、Agent Library、PiHarness | 通用执行环境 |
 | `agent-worker-prod` | 生产只读/受控 Tool Worker | 生产网络环境 |
@@ -410,7 +410,7 @@ correlation_id
 
 ```text
 控制面：
-  agent-web
+  web-app
   agent-api
   postgresql
   artifact-store

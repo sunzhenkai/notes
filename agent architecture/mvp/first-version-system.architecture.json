@@ -22,14 +22,14 @@
       "boundary": "external"
     },
     {
-      "id": "agent-web-ui",
+      "id": "web-app-ui",
       "name": "Agent Web UI",
       "kind": "container",
       "type": "manager",
       "layer": "Manager",
       "boundedContext": "Agent Application",
       "boundary": "internal",
-      "deployment": "agent-web",
+      "deployment": "web-app",
       "replicas": 1
     },
     {
@@ -262,14 +262,14 @@
     {
       "id": "user-operates-web-ui",
       "from": "end-user",
-      "to": "agent-web-ui",
+      "to": "web-app-ui",
       "protocol": "HTTPS",
       "sync": "sync",
       "description": "进行 Chat 并创建、查看、取消、重试和恢复 Task"
     },
     {
       "id": "web-ui-calls-application-api",
-      "from": "agent-web-ui",
+      "from": "web-app-ui",
       "to": "application-api",
       "protocol": "HTTP/JSON and SSE",
       "sync": "sync",
@@ -530,6 +530,6 @@
     "Workflow 启动后默认固定 Cluster；跨 Cluster 故障切换需要外部 Checkpoint、新 Workflow 与幂等迁移协议，首版不做静默迁移。",
     "Chat Message 保留期、摘要阈值、分支对话和长请求自动提升为 Task 的判定策略尚未量化。",
     "实现前需锁定 Pi 和 Temporal TypeScript SDK 的准确 package、版本和许可。",
-    "MVP 的 agent-web、agent-api、PostgreSQL 与 Artifact Store 允许单副本，是已知 SPOF；生产试运行前需确定副本、备份和 RTO/RPO。"
+    "MVP 的 web-app、agent-api、PostgreSQL 与 Artifact Store 允许单副本，是已知 SPOF；生产试运行前需确定副本、备份和 RTO/RPO。"
   ]
 }
